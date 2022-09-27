@@ -30,7 +30,6 @@ export function Impcaps(props) {
 
   }
 
-
   useEffect(() => {
 
     cargarPagina()
@@ -104,11 +103,12 @@ clickCode()
   }
 
   const mostrar =  () => {
-    setMostrarPreguntas(!mostrarPreguntas)
-    if(mostrarPreguntas === true) {
-      setBotonMostrar("nada")
-    } else if (edit === false) {
+    if(mostrarPreguntas) {
+      setBotonMostrar("nada");
+      setMostrarPreguntas(!mostrarPreguntas)
+    } else if (mostrarPreguntas === false) {
       setBotonMostrar("botonmostrar")
+      setMostrarPreguntas(!mostrarPreguntas)
     }
 
   }
@@ -119,7 +119,7 @@ clickCode()
     await navigate("/cursos/"+curso+"/"+titulo+"/"+navegarSeccion);
     setCodes(document.querySelectorAll('code'));
     clickCode(codes);
-    setMostrarPreguntas(false);
+    mostrar();
     setSeccion(navegarSeccion);
     if(edit) {
       editar()
@@ -131,13 +131,12 @@ const ingresarSeccion = async (siguienteTitulo, navegarSeccion) => {
   await navigate("/cursos/"+curso+"/"+siguienteTitulo+"/"+navegarSeccion);
   setCodes(document.querySelectorAll('code'));
   clickCode(codes);
-  setMostrarPreguntas(false);
+  mostrar();
   setSeccion(navegarSeccion);
   if(edit) {
     editar()
   }
 }    
-
 
     return (
       <div>
