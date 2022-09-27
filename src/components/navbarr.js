@@ -1,9 +1,6 @@
   import React, { useState, useEffect } from 'react';
   import { useNavigate } from 'react-router-dom';
   import { useAuth } from '../context/AuthContext';
-  import { db } from '../firebase';
-  import { collection, getDocs, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore';
-  
   import { getAuth, updateProfile } from "firebase/auth";
   
   
@@ -38,12 +35,39 @@ export function Nav() {
       }
     }
 
+    const [boton, setBoton] = useState("botonnomostrar");
+    const [botonPerfil, setBotonPerfil] = useState("botonnomostrar");
+    const [botonCursos, setBotonCursos] = useState("botonnomostrar");
+    const navegar = (e) => {
+      if(e == "") {
+        setBoton("botonmostrar");
+        setBotonPerfil("nada");
+        setBotonCursos("nada");
+      } else if (e == "perfil") {
+        setBoton("nada");
+        setBotonPerfil("botonmostrar");
+        setBotonCursos("nada");
+      } else if (e == "cursos") {
+        setBoton("nada");
+        setBotonPerfil("nada");
+        setBotonCursos("botonmostrar");
+      }
+      console.log(e)
+      navigate(`/${e}`)
+    }
+
+    if(loading) return <h1></h1>
+    
+    console.log(user)
     return (
       <header className='nav-bar'>
-      <navbar>
-        <li class="usuario">
+        {user == null ? "Login" :
+        <div
+        class="usuario">
+        <li>
           Usuario: 
-          
+          </li>
+          <li>
           <input 
           class="userNombre"
           placeholder={user.displayName}
@@ -52,26 +76,43 @@ export function Nav() {
             </input> 
           <button 
           onClick={() => modNombre(nombreUser)}
-          className='boton btn-primary'>
-            editar
+          className='boton-editar'>
+            &#9999;
           </button>
-        </li>
-      </navbar>
-        <navbar><ul>
+          </li>
+        </div>
+}
+        <ul>
           <li>
-            <a href={"/"}>Home</a>
+          <button
+          id={boton}
+          className='nav-boton'
+          onClick={() => navegar("")}>
+            Home
+          </button>
           </li>
           <li>
-            <a href={"/perfil"}>Mi perfil</a>
+          <button
+          id={botonPerfil}
+          className='nav-boton'
+          onClick={() => navegar("perfil")}>
+            Mi perfil
+          </button>
           </li>
           <li>
-            <a href={"/cursos"}>Cursos</a>
+          <button
+          id={botonCursos}
+          className='nav-boton'
+          onClick={() => navegar("cursos")}>
+            Cursos
+          </button>
           </li>
           <li>
-            <button onClick={handleLogout}>Logout</button>
+            <button 
+            className='nav-boton'
+            onClick={handleLogout}>Logout</button>
           </li>
         </ul>
-        </navbar>
         </header>
     )
 }

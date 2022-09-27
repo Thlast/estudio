@@ -68,7 +68,6 @@ export function MisExamenes() {
 
     return (
         <div>
-        <Nav />
         <div className='examenes'>
         <div className="cuadrilla">
             

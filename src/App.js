@@ -1,6 +1,5 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom'
-import { Home } from './components/Home';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { AuthProvider } from './context/AuthContext';
@@ -9,20 +8,20 @@ import { Perfil } from './components/Perfil';
 import { Examenes } from './components/Examenes';
 import {Examen} from './components/examen'
 import {MisExamenes} from './components/MisExamenes'
-import {useParams} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cursos } from './components/Cursos'
-import { Capitulos } from './paginasCaps/Conta7Caps'
 import { Curso } from './components/Curso'
-import { Conta7 } from './components/Conta7'
-import { Impcaps } from './paginasCaps/impcaps';
-import { Finanzas } from './paginasCaps/FinanzasCaps';
-
+import { Impcaps } from './paginasCaps/impuestos/impcaps';
+import { Impuestos } from './components/impuestos';
+import { AgregarMongo } from './components/agregarmongo';
+import { Nav } from './components/navbarr'
+import { HomeMongo } from './components/HomeMongo';
 
 function App() {
 
   return (
     <AuthProvider>
+      <Nav />
       <Routes>
       <Route 
           path="/cursos" 
@@ -32,11 +31,19 @@ function App() {
               </ProtectedRoute>
             } 
           />
-        <Route 
+          <Route 
           path="/" 
+          element={
+            <ProtectedRoute> 
+              <HomeMongo />
+            </ProtectedRoute>
+          } 
+        />
+          <Route 
+          path="/agregarmongo" 
             element={
               <ProtectedRoute> 
-                <Home />
+                <AgregarMongo />
               </ProtectedRoute>
             } 
           />
@@ -65,26 +72,18 @@ function App() {
             }
           />
           <Route 
-          path="/cursos/conta7/:id" 
+          path="/cursos/:materia/:titulo/:sec" 
             element={
               <ProtectedRoute>
-                <Capitulos curso="Conta7"/>
+                <Impcaps />
               </ProtectedRoute>
             }
           />
           <Route 
-          path="/cursos/impuestos/:id" 
+          path="/imp" 
             element={
               <ProtectedRoute>
-                <Impcaps curso="Impuestos"/>
-              </ProtectedRoute>
-            }
-          />
-          <Route 
-          path="/cursos/finanzas/:id" 
-            element={
-              <ProtectedRoute>
-                <Finanzas curso="finanzas"/>
+                <Impuestos />
               </ProtectedRoute>
             }
           />
@@ -104,9 +103,9 @@ function App() {
               </ProtectedRoute>
             }
           />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          </Routes>
     </AuthProvider>
   )
 }
