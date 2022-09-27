@@ -4,7 +4,6 @@ import {Navigate, useParams} from "react-router-dom";
 import { db } from "../firebase";
 import { AgregarPregunta } from './Agregar';
 import { useAuth } from '../context/AuthContext';
-import { async } from '@firebase/util';
 import { useNavigate } from 'react-router-dom';
 
 

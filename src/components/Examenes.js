@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase';
 import { collection, getDocs, addDoc, deleteDoc, doc} from 'firebase/firestore';
-import {Nav} from "./navbarr";
 
 
 export function Examenes() {
