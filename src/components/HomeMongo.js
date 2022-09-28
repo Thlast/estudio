@@ -16,7 +16,7 @@ export function HomeMongo() {
   const [curso, setCurso] = useState("impuestos");
   const [cargando, setCargando] = useState(true);
   const [materias, setMaterias] = useState([]);
-  const url = process.env.PROYECTO_URL || "http://192.168.0.15:3000"
+  const url = process.env.REACT_APP_PROYECTO_URL || "http://192.168.0.15:3000"
 
   useEffect(() => {
     obtenerMaterias(curso)
