@@ -1,7 +1,9 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom'
-import { Login } from './components/Login';
-import { Register } from './components/Register';
+import { Login } from './components/Login/Login/Login';
+// import { LoginB } from './components/LoginB';
+// import { Register } from './components/Register';
+import { SignUp } from './components/Login/SignUp/SignUp';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/protectedRoute';
 import { Perfil } from './components/Perfil';
@@ -16,6 +18,8 @@ import { Impuestos } from './components/impuestos';
 import { AgregarMongo } from './components/agregarmongo';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
+import {UserContextProvider} from './components/Login/context/UserContext';
+
 
 function App() {
 
@@ -104,7 +108,7 @@ function App() {
             }
           />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<SignUp />} />
           </Routes>
     </AuthProvider>
   )

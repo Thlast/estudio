@@ -1,0 +1,36 @@
+.contenedor {
+    display: none;
+}
+
+.seccion {
+    text-decoration: none;
+    color: aliceblue;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.seccion:hover{
+    text-decoration: none;
+    color: aliceblue;
+    background-color: #3b3b4f;
+}
+
+.volver {
+    text-decoration: none;
+    color: aliceblue;
+    display: flex;
+    padding: 10px;
+}
+
+.cursolistado {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #1b1b32;
+    color: #e5e7e9;
+    font-size: 20px;
+  }

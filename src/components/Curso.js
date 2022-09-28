@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {Navigate, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { obtenerCursos } from './servicios/cursos/obtenerCurso';
+import { Spinner } from './Login/Spinner';
+import style from './modulos css/Curso.module.css'
 
 export function Curso() {
 
@@ -34,22 +36,19 @@ export function Curso() {
         
     }
 
-    const ingresar = (tema, titulo) => {
-      navigate("/cursos/"+curso+"/"+titulo+"/"+tema)
-        
-    }    
-
     return (
     <div className="App">
-        <div className='cursos'>
-        <a href="/cursos">
-        Volver a cursos
-        </a>
+        <div className={style.cursolistado}>
+        <Link 
+        className={style.volver}
+        to={"/cursos"}>
+        {"<"} Volver a cursos
+        </Link>
         <div class="cursos-container">
         
             <div class='cursos-descripcion'>
             
-          {cargando ? "...cargando" :
+          {cargando ? "...loading":
           <div>
             <h1>
             Curso: {curs[0].nombre}
@@ -60,7 +59,7 @@ export function Curso() {
           }
 
           <div class='block'>
-          {cargando ? "...cargando" :
+          {cargando ? <Spinner></Spinner> :
           curs[0].capitulos.map((c, num) => {
                  
           return (
@@ -95,20 +94,15 @@ export function Curso() {
                     Ocultar curso
                 </button>
             </div>
-            <ul id={"capitulo"+num} class="hide">
+            <ul className={style.contenedor} id={"capitulo"+num}>
             {
             c.desarrollo.map((t) => {
             return (
-            <div>
-                <li 
-                onClick={() => ingresar(t.nombre, c.nombre)}
-                class="tema">
-                    <a>
-                    {t.nombre}
-                    </a>
-                </li>
-            
-        </div>
+                <Link
+                className={style.seccion}
+                  to={"/cursos/"+curso+"/"+c.nombre+"/"+t.nombre}>
+                  {t.nombre}
+                </Link>
 )
     })
 }

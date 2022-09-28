@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { Spinner } from './Login/Spinner';
 import { obtenerMaterias } from './servicios/cursos/obtenerCurso';
 
 export function Cursos() {
@@ -30,16 +30,13 @@ return (
           <h1>
             Curso:
           </h1>
-          {cargando ? "...Cargando" :
+          {cargando ? <Spinner></Spinner> :
           materias.map(m => {
             return (
           <div class="listado-cursos">
-            <button
-              value={m.id}
-              className='home-boton'
-              onClick={(e) => ingresar(e.target.value)}>
-                {m.nombre}
-            </button>
+            <Link 
+            className='home-boton'
+            to={`/cursos/${m.id}`}>{m.nombre}</Link>
           </div>
             )
           })

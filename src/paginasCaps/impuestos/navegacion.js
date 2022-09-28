@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
+import { Spinner } from "../../components/Login/Spinner";
 import { obtenerDatosCapitulos, obtenerDatosTitulos } from "../../components/servicios/cursos/obtenerSeccion"
+
 
 export function NavegacionCursos(props)  {
 
@@ -42,50 +45,54 @@ useEffect(() => {
   })))
 }, [titulo])
 
+if (cargando) return <div className="cursos-botones"><Spinner></Spinner></div>;
 
 return (
+  
 <div class="cursos-botones">
-  {cargando ? "...Cargando" :
-
+{
         indiceSeccion === 0 ? 
-          <button 
-          onClick={() => ingresarSeccion(anterior, anteriorSeccion)}
+          <Link 
+          to={"/cursos/"+curso+"/"+anterior+"/"+anteriorSeccion}
+          onClick={() => ingresarSeccion(anteriorSeccion)}
           class="cursos-as cambioseccion">
           <p>Anterior Capitulo {" >"}</p>
           <p>
            {anterior}
                    </p>
-            </button>
+            </Link>
                  
             :
-        <button 
+        <Link 
+        to={"/cursos/"+curso+"/"+titulo+"/"+secciones[indiceSeccion-1]}
         onClick={() => ingresar(secciones[indiceSeccion-1])}
         class="cursos-as">
         <p>{"< "} Anterior</p>
          <p>
           {secciones[indiceSeccion-1]}
          </p>
-          </button>   
+          </Link>   
 }
 {secciones.length === indiceSeccion+1 ? 
- <button 
- onClick={() => ingresarSeccion(proximo, siguienteSeccion)}
+ <Link 
+  to={"/cursos/"+curso+"/"+proximo+"/"+siguienteSeccion}
+ onClick={() => ingresarSeccion(siguienteSeccion)}
  class="cursos-as cambioseccion">
  <p>Siguiente Capitulo {" >"}</p>
  <p>
   {proximo}
           </p>
-   </button>
+   </Link>
           :
-          <button 
+          <Link 
+          to={"/cursos/"+curso+"/"+titulo+"/"+secciones[indiceSeccion+1]}
           onClick={(e) => ingresar(secciones[indiceSeccion+1])}
           class="cursos-as">
           <p>Siguiente {" >"}</p>
             <p>
             {secciones[indiceSeccion+1]}
             </p>
-
-            </button>
+          </Link>
 
 }
 </div>

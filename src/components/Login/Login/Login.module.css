@@ -1,0 +1,116 @@
+.titleOutsideForm {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.contenedorFormulario {
+  background: #13132a;
+  padding: 40px;
+  max-width: 400px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  height: fit-content;
+}
+
+/* LABELS */
+.label {
+  position: absolute;
+  transform: translateY(6px);
+  left: 13px;
+  color: rgb(255, 255, 255, 0.5);
+  transition: all 0.25s ease;
+  backface-visibility: hidden;
+  pointer-events: none;
+  font-size: 22px;
+}
+
+.req {
+  margin: 2px;
+  color: #61dafb;
+}
+
+.opacityCero {
+  opacity: 0;
+}
+
+.activeLabel {
+  transform: translateY(50px);
+  left: 2px;
+  font-size: 14px;
+}
+
+.highLight {
+  color: #fff;
+}
+
+/* FILA ARRIBA */
+
+.filaArriba:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.filaArriba div {
+  float: left;
+  width: 48%;
+  margin-right: 4%;
+}
+
+.filaArriba div:last-child {
+  margin: 0;
+}
+
+/* INPUTS */
+.contenedorInput {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.input {
+  font-size: 22px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+  background: none;
+  background-image: none;
+  border: 1px solid #a0b3b0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: #fff;
+  border-radius: 0;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #61dafb;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+/* BUTTON INGRESAR */
+.button {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 15px 0;
+  font-size: 1.5rem;
+  background: #61dafb;
+  color: #fff;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+  margin-bottom: 1rem;
+}
+
+.button:hover {
+  background: #16c9f9;
+}

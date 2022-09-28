@@ -5,20 +5,22 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { obtenerPreguntaMateria } from './servicios/preguntas/obtenerPregunta';
 import { obtenerMaterias } from './servicios/cursos/obtenerCurso';
+import { Spinner } from './Login/Spinner';
 
 
 export function HomeMongo() {
-  const {loading} = useAuth();
+  // const {loading} = useAuth();
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
   const [curso, setCurso] = useState("impuestos");
   const [cargando, setCargando] = useState(true);
   const [materias, setMaterias] = useState([]);
+  const url = process.env.PROYECTO_URL || "http://192.168.0.15:3000"
 
   useEffect(() => {
     obtenerMaterias(curso)
-    .then(data => (setMaterias(data), setCargando(false)));
+    .then(data => (setMaterias(data)));
     
   }, [])
  
@@ -151,14 +153,15 @@ export function HomeMongo() {
       setCurrent(historialConta.historial[historialConta.historial.length-1])
     }
   }
-
-  if(loading) return <h1>Loading...</h1>
+  const {loading} = useAuth()
 
     return (
     <div className="App">
-      {cargando ? "...Cargando" :
+    
       <main className="HomeMongo">
-        
+          {loading ? <h1>Loading...</h1>
+      :
+      <div>
     <div>
       <select 
         onChange={(e) => cambiarCurso(e.target.value)} 
@@ -193,7 +196,8 @@ export function HomeMongo() {
             Siguiente{" >"}
           </button>
           </div>
-        {preguntas.map((p, num) => {
+          {cargando ? <Spinner></Spinner> : 
+        preguntas.map((p, num) => {
           if (preguntas.indexOf(p) === current)
           return (
             <div
@@ -206,7 +210,7 @@ export function HomeMongo() {
               De la seccion: 
               <ReactMarkdown
               className='home-seccion'>
-                {`[${p.seccion}](http://localhost:3000/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion.replaceAll(" ", "%20")})`}
+                {`[${p.seccion}](${url}/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion.replaceAll(" ", "%20")})`}
                 </ReactMarkdown>
                 </div>
                 : ""
@@ -292,10 +296,11 @@ export function HomeMongo() {
               </div>
         }
             </div>
+            
           )
-        })}
+        })}</div>}
       </main>
-      }
+      
     </div>
     );
   }

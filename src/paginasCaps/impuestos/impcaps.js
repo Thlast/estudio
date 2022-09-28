@@ -105,33 +105,34 @@ clickCode()
   const mostrar =  () => {
     if(mostrarPreguntas) {
       setBotonMostrar("nada");
-      setMostrarPreguntas(!mostrarPreguntas)
+      setMostrarPreguntas(false)
     } else if (mostrarPreguntas === false) {
       setBotonMostrar("botonmostrar")
-      setMostrarPreguntas(!mostrarPreguntas)
+      setMostrarPreguntas(true)
     }
 
   }
 
-  const ingresar = async (navegarSeccion) => {
+  const ingresar =  (navegarSeccion) => {
     
     setDic("");
-    await navigate("/cursos/"+curso+"/"+titulo+"/"+navegarSeccion);
+    // navigate("/cursos/"+curso+"/"+titulo+"/"+navegarSeccion);
     setCodes(document.querySelectorAll('code'));
     clickCode(codes);
-    mostrar();
+    setBotonMostrar("nada");
+    setMostrarPreguntas(false);
     setSeccion(navegarSeccion);
     if(edit) {
       editar()
     }
 }    
-const ingresarSeccion = async (siguienteTitulo, navegarSeccion) => {
-
+const ingresarSeccion = (navegarSeccion) => {
   setDic("");
-  await navigate("/cursos/"+curso+"/"+siguienteTitulo+"/"+navegarSeccion);
+  // navigate("/cursos/"+curso+"/"+siguienteTitulo+"/"+navegarSeccion);
   setCodes(document.querySelectorAll('code'));
   clickCode(codes);
-  mostrar();
+  setBotonMostrar("nada");
+  setMostrarPreguntas(false);
   setSeccion(navegarSeccion);
   if(edit) {
     editar()
@@ -140,7 +141,7 @@ const ingresarSeccion = async (siguienteTitulo, navegarSeccion) => {
 
     return (
       <div>
-        {cargando ? "...Cargando" :
+        {/* {cargando ? "...Cargando" : */}
       <div className="capitulos">
       
          <div class="secciones">
@@ -216,7 +217,7 @@ enunciado={enunciado} />
             
       </div>
     </div>
-    }
+    
 </div>
 
     );

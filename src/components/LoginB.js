@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 
-export function Login() {
+export function LoginB() {
     
     const [user, setUser] = useState({
         email: "",
@@ -31,9 +31,7 @@ export function Login() {
     };
 
     return <div>
-
             {error && <p>{error}</p>}
-
                 <form onSubmit={handleSubmit}>
 
                     {/* <label htmlFor="name">Nombre</label>

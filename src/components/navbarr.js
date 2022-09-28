@@ -2,13 +2,15 @@
   import { useNavigate } from 'react-router-dom';
   import { useAuth } from '../context/AuthContext';
   import { getAuth, updateProfile } from "firebase/auth";
-  
+  import {signOut} from "firebase/auth";
   
 export function Nav() {
   
       const auth = getAuth();
-    
-      const {user, logout, loading} = useAuth();
+
+      const logout = () => signOut(auth);
+
+      const {user} = useAuth();
       const navigate = useNavigate();
   
   
@@ -56,7 +58,7 @@ export function Nav() {
       navigate(`/${e}`)
     }
 
-    if(loading) return <h1></h1>
+    // if(loading) return <h1></h1>
     
     console.log(user)
     return (

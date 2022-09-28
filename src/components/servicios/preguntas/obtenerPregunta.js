@@ -1,5 +1,5 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
-const urlserver = 'https://serverestudio-fzvt-fc98oe5kq-thlast.vercel.app' || "http://192.168.0.15:4000"
+const urlserver = process.env.SERVER_PRODUCTION_URL || "http://192.168.0.15:4000"
 
 export const obtenerPregunta = async () => {
   
