@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 import { obtenerPreguntaMateria } from './servicios/preguntas/obtenerPregunta';
 import { obtenerMaterias } from './servicios/cursos/obtenerCurso';
 import { Spinner } from './Login/Spinner';
-
+import { Link } from 'react-router-dom';
 
 export function HomeMongo() {
   // const {loading} = useAuth();
@@ -16,7 +16,6 @@ export function HomeMongo() {
   const [curso, setCurso] = useState("impuestos");
   const [cargando, setCargando] = useState(true);
   const [materias, setMaterias] = useState([]);
-  const url = process.env.REACT_APP_PROYECTO_URL || "http://192.168.0.15:3000"
 
   useEffect(() => {
     obtenerMaterias(curso)
@@ -208,10 +207,11 @@ export function HomeMongo() {
               {p.titulo ?
               <div>
               De la seccion: 
-              <ReactMarkdown
+              <Link
+              to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion.replaceAll(" ", "%20")}`}
               className='home-seccion'>
-                {`[${p.seccion}](${url}/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion.replaceAll(" ", "%20")})`}
-                </ReactMarkdown>
+                {p.seccion}
+              </Link>
                 </div>
                 : ""
         }

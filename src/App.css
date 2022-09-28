@@ -72,12 +72,12 @@
     color: #3b3b4f;
 }
 
-.home-seccion a {
+.home-seccion {
   text-decoration: none;
   color: #74767a;
   font-size: 20px;
 }
-.home-seccion a:hover {
+.home-seccion:hover {
   color: var(--links);
 }
 
