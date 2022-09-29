@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
 
 export function Perfil() {
 
     const {user, logout, loading} = useAuth();
-    const navigate = useNavigate();
     const [mostrarPreguntas, setMostrarPreguntas] = useState(false)
     const [edit, setEdit] = useState(false)
 
@@ -26,13 +25,13 @@ export function Perfil() {
             <nav  class="menu">
               <ul>
               <hr></hr>
-                    <a 
+                    <Link 
                     className='perfil-boton'
-                    href="/examenes">Examenes</a>
+                    to="/examenes">Examenes</Link>
                     <hr></hr>
-                    <a 
+                    <Link 
                     className='perfil-boton'
-                    href={'/misexamenes/'+user.uid}>Mis Examenes</a>
+                    to={'/misexamenes/'+user.uid}>Mis Examenes</Link>
                 <hr></hr>
                 <button 
                 className='perfil-boton'

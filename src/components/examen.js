@@ -4,13 +4,14 @@ import {Navigate, useParams} from "react-router-dom";
 import { db } from "../firebase";
 import { AgregarPregunta } from './Agregar';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { Spinner } from './Login/Spinner';
 
 
  export const Examen = () => {
   
     const {id} = useParams();
-    const [loading, setLoading] = useState(true);
+    const [cargando, setCargando] = useState(true);
     const [examen, setExamen] = useState({});
     const examenesCollectionRef = collection(db, "examenes");
     const {user, logout} = useAuth();
@@ -21,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
             async function request(){
                 try {
                     const document = await getDoc(doc(db, "examenes/"+id)); 
-                    setLoading(false);
+                    setCargando(false);
                     setExamen(document.data());
                     
                 } catch (e){
@@ -75,8 +76,6 @@ const getPreguntas = async () => {
         document.getElementById("ocultar"+num).style.display = 'none';
        
       }
-
-      const [show, setShow] = useState(false);
 
       const [nombre, setNombre] = useState();
       const [materia, setMateria] = useState();
@@ -194,20 +193,14 @@ const getPreguntas = async () => {
       }
     }
     
-
-
-    if(loading){
-        return (
-            <div>
-                Loading...
-            </div>
-        )
-    } else{ 
         return(
             <div class="pagina-examen">
-              
+              {cargando ? <Spinner></Spinner> :
+              <div>
                 <div>
-                  <a href={"/misexamenes/"+user.uid}>volver</a>
+                  <Link to={"/misexamenes/"+user.uid}>
+                    volver
+                  </Link>
                 </div>
                 <div>
                   <button 
@@ -217,12 +210,17 @@ const getPreguntas = async () => {
                   </button>
                 </div>
                 <div>
-                 Examen: 
+                 Examen: {" "}
+                 {most ?
                 <input 
                   class="boton" 
                   placeholder={examen.nombre}
                   onChange={(e) => setNombre(e.target.value)}>
-                </input>
+                </input> : 
+                  <span>
+                  {examen.nombre}
+                  </span>
+ }
                 {most &&
                     <button 
                       className='boton btn-primary'
@@ -234,11 +232,16 @@ const getPreguntas = async () => {
                 
                  <div>
                  Materia: 
+                 {most ? 
                   <input 
                     onChange={(e) => setMateria(e.target.value)}
                     class="boton" 
                     placeholder={examen.materia}>
-                  </input> 
+                  </input> : 
+                  <span>
+                  {examen.materia}
+                  </span>
+ }
                   {most &&
                  <button 
                  onClick={() => modMateria(materia)}
@@ -249,11 +252,16 @@ const getPreguntas = async () => {
                  </div>
                  <div>
                  Descripcion: 
+                 {most ? 
                   <input 
                     onChange={(e) => setDescripcion(e.target.value)}
                     class="boton" 
                     placeholder={examen.descripcion}>
-                  </input> 
+                  </input> : 
+                  <span>
+                  {examen.descripcion}
+                  </span>
+ }
                   {most &&
                  <button 
                  onClick={() => modDescripcion(descripcion)}
@@ -376,8 +384,7 @@ const getPreguntas = async () => {
             }
           
           </div>
-                
+                </div>}
             </div>
         )
     }
-}

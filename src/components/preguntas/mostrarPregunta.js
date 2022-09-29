@@ -9,6 +9,7 @@ import { crearPregunta } from '../servicios/preguntas/crearPregunta';
 import { useAuth } from '../../context/AuthContext';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { Spinner } from '../Login/Spinner';
 
 export function MostrarPregunta(props) {
 
@@ -78,7 +79,7 @@ export function MostrarPregunta(props) {
         
           
         {mostrarPreguntas & !modificar ?
-        cargando ? "Cargando..." :
+        cargando ? <Spinner></Spinner> :
         <div 
         className={"contenedorpreguntas"}>
           {preguntas.length !== 0 ?

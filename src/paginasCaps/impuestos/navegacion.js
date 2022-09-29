@@ -45,13 +45,13 @@ useEffect(() => {
   })))
 }, [titulo])
 
-if (cargando) return <div className="cursos-botones"><Spinner></Spinner></div>;
-
 return (
-  
+  <div>{
+  cargando ? <Spinner></Spinner> :
 <div class="cursos-botones">
 {
-        indiceSeccion === 0 ? 
+        indiceSeccion === 0 ?
+        anterior ? 
           <Link 
           to={"/cursos/"+curso+"/"+anterior+"/"+anteriorSeccion}
           onClick={() => ingresarSeccion(anteriorSeccion)}
@@ -61,7 +61,7 @@ return (
            {anterior}
                    </p>
             </Link>
-                 
+                 : <div></div>
             :
         <Link 
         to={"/cursos/"+curso+"/"+titulo+"/"+secciones[indiceSeccion-1]}
@@ -96,6 +96,8 @@ return (
 
 }
 </div>
+
+}</div>
 )
 
 }

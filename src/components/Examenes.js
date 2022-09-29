@@ -1,38 +1,27 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase';
 import { collection, getDocs, addDoc, deleteDoc, doc} from 'firebase/firestore';
+import { Spinner } from './Login/Spinner';
 
 
 export function Examenes() {
 
     const {user, logout, loading} = useAuth();
-    const navigate = useNavigate();
     const [examenes, setExamenes] = useState([]);
     const examenesCollectionRef = collection(db, "examenes");
-
-    const handleLogout = async () => {
-      await logout();
-    }
-
+    const [cargando, setCargando] = useState(true)
     const getExamenes = async () => {
         const data = await getDocs(examenesCollectionRef);
-        setExamenes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        setExamenes(data.docs.map((doc) => ({...doc.data(), id: doc.id}), setCargando(false)));
       
       }
           useEffect(() => {
             
             getExamenes()
           }, [])
-
-  
-    const ingresar = (id) => {
-        navigate("/examenes/"+id)
-
-        console.log(id)
-    }    
 
     const [nombre, setNombre] = useState()
 
@@ -68,19 +57,21 @@ export function Examenes() {
         <div>
             <div className='examenes'>
         <div className="cuadrilla">
-            
-            {examenes.map((exa) => {
+            {cargando ? <Spinner></Spinner> :
+
+            examenes.map((exa) => {
                 return (
-                  <div onClick={() => ingresar(exa.id)} className="examen">
+                  <Link 
+                  to={"/examenes/"+exa.id} className="examen">
                   <h6 className='textos'>Examen: {exa.nombre}</h6>
                   
                   <p className='textos'>Materia: {exa.materia}</p>
                   
                   <p className='textos'>Descripcion: {exa.descripcion}</p>
-              </div>
+              </Link>
                 )
             })}
-  
+  {cargando ? "" :
 <div className="examen">
   <input 
     required
@@ -92,6 +83,7 @@ export function Examenes() {
     Agregar Exámen
   </button>
 </div>
+}
 </div>
 </div>
 </div>

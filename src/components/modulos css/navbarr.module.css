@@ -1,0 +1,140 @@
+.links {
+    background: none;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor {
+    background-color: #3b3b4f;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100px;
+    align-items: center;
+    color: #ffffff;
+    width: 100%;
+    justify-content: flex-end;
+    font-size: 20px;
+    border-bottom: 2px solid aliceblue;
+}
+
+.contenedorlista {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    box-sizing: border-box;
+  }
+  .elementolista {
+    display: flex;
+    color: #ffffff;
+    border: #ffffff solid 2px;
+    background-color: none;
+    width: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .links:hover {
+    background-color: #ffffff;
+    color: #3b3b4f;
+  }
+  .usuario {
+    padding: 0px 0px 0px 20px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+  }
+  .botoneditar {
+    width: 30px;
+    background: none;
+    border: none;
+  }
+  .botonconfirmar {
+    background: none;
+    border: none;
+    font-size: 25px;
+  }
+  .botonconfirmar:hover {
+    color: #0fc956;
+  }
+  .botoncancelar {
+    background: none;
+    border: none;
+    font-size: 25px;
+  }
+  .botoncancelar:hover {
+    color: #b40a0a;
+  }
+  .usermodificar {
+    width: 100px;
+  }
+  .login {
+    text-align: right;
+    padding: 20px;
+  }
+  .loginlinks {
+    font-size: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    border: none;
+  }
+  .loginlinks:hover {
+    color: #61dafb;
+
+  }
+
+  @media screen and (max-width: 750px) {
+    .links {
+      
+      font-size: 15px;
+    } .contenedor {
+        grid-template-columns: 28% 72%;
+    } .usuario {
+       display: flex;
+       flex-direction: column;
+        font-size: 15px;
+      }.botonconfirmar {
+        font-size: 15px;
+      }.botoncancelar {
+        font-size: 15px;
+      } .usermodificar {
+        width: 60px;
+      }
+  }
+  @media screen and (max-width: 500px) {
+    .contenedorlista {
+        padding-left: 5px;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      gap: 5px;
+    } .contenedor {
+        grid-template-columns: 35% 65%;
+    } .usuario {
+        padding-left: 5px;
+       display: flex;
+       flex-direction: column;
+       font-size: 15px;
+      } .links {
+        font-size: 15px;
+      }
+  }
+  @media screen and (max-width: 350px) {
+    .elementolista {
+        width: 80px;
+    }
+    .links {
+        
+        font-size: 13px;
+      }.contenedor {
+        grid-template-columns: 40% 60%;
+    } .login {
+        display: flex;
+        text-align: left;
+        padding: 0;
+    }
+  }

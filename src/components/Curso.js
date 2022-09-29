@@ -51,7 +51,7 @@ export function Curso() {
           {cargando ? "...loading":
           <div>
             <h1>
-            Curso: {curs[0].nombre}
+            {curs[0].nombre}
             
             </h1>
           <p>{curs[0].descripcion}</p>

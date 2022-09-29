@@ -177,6 +177,7 @@ export function HomeMongo() {
       })}
    </select>
      </div>        
+     <br></br>
       <div>
           <button 
           class="boton home-boton" 
@@ -206,7 +207,7 @@ export function HomeMongo() {
               </h1>
               {p.titulo ?
               <div>
-              De la seccion: 
+              De la seccion: {" "}
               <Link
               to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion.replaceAll(" ", "%20")}`}
               className='home-seccion'>

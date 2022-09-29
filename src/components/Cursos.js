@@ -28,7 +28,7 @@ return (
       <div class="cursos-container">
         <div class='cursos-descripcion'>
           <h1>
-            Curso:
+            Cursos:
           </h1>
           {cargando ? <Spinner></Spinner> :
           materias.map(m => {

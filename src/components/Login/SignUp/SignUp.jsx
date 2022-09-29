@@ -106,7 +106,8 @@ export const SignUp = () => {
   };
 
   return (
-    <div>
+    <div
+    className={style.contenedor}>
       {loading ? (
         <Spinner />
       ) : (
