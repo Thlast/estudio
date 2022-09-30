@@ -88,6 +88,12 @@
 
   }
 
+  .elementolista button:hover {
+    background-color: #0a0a23 !important;
+    border: none !important;
+    color: #ffffff;
+  }
+  
   @media screen and (max-width: 750px) {
     .links {
       

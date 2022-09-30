@@ -1,5 +1,5 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
-const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || "http://192.168.0.15:4000"
+const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
 export const modificarPregunta = async (mat, tipo, preg, resp, curso, a,b,c,d, correcta, id, seccion, titulo, event) => {
   const url = `${urlserver}/preguntas/${id}`;
@@ -36,5 +36,5 @@ export const modificarPregunta = async (mat, tipo, preg, resp, curso, a,b,c,d, c
     }
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(data => alert("Pregunta modificada correctamente"), console.log('Pregunta modificada'));
+    .then(response => console.log('Pregunta modificada:', response), alert("Pregunta modificada correctamente"));
   }

@@ -6,6 +6,7 @@ import { Consola } from "../consola";
 import { obtenerDatosConsola, obtenerDatosSeccion } from "../../components/servicios/cursos/obtenerSeccion";
 import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
+import style from '../../components/modulos css/impcaps.module.css'
     
 export function Impcaps(props) {
   
@@ -70,7 +71,7 @@ const limpiarHistorial = () => {
 }
 
 const clickCode = () => {
-  console.log(`Los codes son${codes}` ,codes, enconsola);
+  // console.log(`Los codes son${codes}` ,codes, enconsola);
   for (let i = 0; i < codes.length; i++) {
    codes[i].onclick = function(e) {
     if(enconsola.indexOf(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')) === -1) {
@@ -83,7 +84,7 @@ const clickCode = () => {
      
    }      
  }  
- console.log("funcion ejecutada")
+//  console.log("funcion ejecutada")
 }
 clickCode()
 
@@ -126,7 +127,7 @@ clickCode()
       editar()
     }
 }    
-const ingresarSeccion = (navegarSeccion) => {
+const ingresarSeccion = (proximo, navegarSeccion) => {
   setDic("");
   // navigate("/cursos/"+curso+"/"+siguienteTitulo+"/"+navegarSeccion);
   setCodes(document.querySelectorAll('code'));
@@ -134,9 +135,12 @@ const ingresarSeccion = (navegarSeccion) => {
   setBotonMostrar("nada");
   setMostrarPreguntas(false);
   setSeccion(navegarSeccion);
+  setCargando(true)
   if(edit) {
     editar()
   }
+  alert(`Has finalizado el capitulo ${titulo}, pasando a ${proximo}`)
+  // console.log(titulo)
 }    
 
     return (
@@ -146,22 +150,17 @@ const ingresarSeccion = (navegarSeccion) => {
       
          <div class="secciones">
           <div
-          className="encabezadocursos">
+          className={style.cursotitulo}>
             <a className="aa"
             href={"/cursos/"+curso}>
             <span>
             {curso}
             </span>          
            </a>
-           <span>
+           <span
+           className={style.titulo}>
             {titulo}
-           </span>
-           <button
-           id={botoneditar}
-            className="cursos-as editarcurso"
-            onClick={() => editar()}>
-            Editar
-        </button>            
+           </span>        
         </div>
         <hr></hr>
         <div>
@@ -185,12 +184,18 @@ enunciado={enunciado} />
         </div>
         <div class="secciones">
           <div
-          class="encabezadocursos">
+          className={style.cursointeraccion}>
           <button
           className="cursos-as"
           onClick={() => setDic("sin datos")}>
           Limpiar consola
         </button>
+        <button
+           id={botoneditar}
+            className="cursos-as editarcurso"
+            onClick={() => editar()}>
+            Editar
+        </button>    
         <button
           id={botonmostrar}
           className="cursos-as mostrarpreg"

@@ -1,5 +1,5 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
-const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || "http://192.168.0.15:4000"
+const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
 export const crearPregunta = (mat, tipo, preg, resp, curso, a,b,c,d, correcta, seccion, titulo, event) => {
     const url = `${urlserver}/preguntas`;

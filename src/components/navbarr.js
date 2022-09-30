@@ -15,7 +15,6 @@ export function Nav() {
         await logout();
       }
      
-  
     const [nombreUser, setNombreUser] = useState();
   
     const modNombre = (nombreUser) => {
@@ -35,29 +34,10 @@ export function Nav() {
       }
     }
     const [edit, setEdit] = useState(false)
-    const [boton, setBoton] = useState("botonnomostrar");
-    const [botonPerfil, setBotonPerfil] = useState("botonnomostrar");
-    const [botonCursos, setBotonCursos] = useState("botonnomostrar");
-    const navegar = (e) => {
-      if(e == "") {
-        setBoton("botonmostrar");
-        setBotonPerfil("nada");
-        setBotonCursos("nada");
-      } else if (e == "perfil") {
-        setBoton("nada");
-        setBotonPerfil("botonmostrar");
-        setBotonCursos("nada");
-      } else if (e == "cursos") {
-        setBoton("nada");
-        setBotonPerfil("nada");
-        setBotonCursos("botonmostrar");
-      }
-
-    }
 
     // if(loading) return <h1></h1>
     
-    console.log(user)
+    // console.log(user)
     return (
       <header className={style.contenedor}>
         {user == null ? 
@@ -127,7 +107,6 @@ className={style.login}>
           className={style.elementolista}>
             
           <Link
-          id={boton}
           className={style.links}
           to={"/"}>
             Home
@@ -136,7 +115,6 @@ className={style.login}>
           <li
           className={style.elementolista}>
           <Link
-          id={botonPerfil}
           className={style.links}
           to={"/perfil"}>
             Mi perfil
@@ -145,7 +123,6 @@ className={style.login}>
           <li
           className={style.elementolista}>
           <Link
-          id={botonCursos}
           className={style.links}
           to={"/cursos"}>
             Cursos

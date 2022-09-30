@@ -29,7 +29,7 @@
 
 @media screen and (max-width: 700px) {
   .HomeMongo {
-    padding: 5px;
+    padding: 20px 5px;
   }
 }
 .home-pregunta {
@@ -138,17 +138,12 @@
   align-items: center;
 }
 
-/* @media (max-width: 710px) {
-  .form-pyr {
-    width: 400px;
-    }
-  } */
-
 .editarcurso {
   display: flex;
 }
 .aa::after {
   content: "→";
+  padding-right: 20px;
 }
 
 h2 {
@@ -234,108 +229,10 @@ code:hover {
   color: var(--links);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-.nav-bar li {
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-}
-.nav-bar ul {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.nav-bar {
-  background-color: #3b3b4f;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 100px;
-  align-items: center;
-  color: #ffffff;
-  width: 100%;
-  justify-content: flex-end;
-  font-size: 20px;
-  border-bottom: 2px solid aliceblue;
-}
-.nav-bar a {
-  text-decoration: none;
-  color: #ffffff;
-}
-.nav-bar a:hover {
-  color: var(--links);
-}
-
-.nav-boton {
-  background: #3b3b4f;
-  border: 15px;
-  border-color: #ffffff;
-  text-align: center;
-  border: 2px solid #e5e7e9;
-  color: #ffffff;
-  align-items: center;
-  width: 90px;
-}
-.nav-boton:hover {
-  background: #e5e7e9;
-  color: #3b3b4f;
-}
-
-.usuario {
-  padding: 0px 0px 0px 20px;
-  gap: 15px;
-  display: flex;
-}
-
 
 .dropdown {
   font-size: 20px;
 }
-
-
-.menu {
-  display: flex;
-  font-size: 20px;
-  text-align: left;
-}
-.menu ul {
-  list-style: none;
-  padding: 5px;
-}
-
-@media (max-width: 633px) {
-  .nav-bar ul {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    line-height: 1.4;
-    text-align: center;
-    font-size: 14px;
-    gap: 0px;
-    padding: 0px;
-    }
-    .nav-boton {
-      width: 70px;
-    }
-  }
-  
-@media (max-width: 700px) {
-  .nav-bar{
-    font-size: 17px;
-    }
-  .nav-boton {
-      width: 80px;
-    }
-  }
 
 .boton-editar {
   background: #3b3b4f;
@@ -461,7 +358,7 @@ li {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 .boton {
   font-size: 15px;
@@ -759,7 +656,7 @@ display: none;
 
 .capitulos {
   display: grid;
-  grid-template-columns: 50% 2px 50%;
+  grid-template-columns: calc(50% - 1px) 2px calc(50% - 1px);
   min-height: 100vh;
 
 }
@@ -823,10 +720,6 @@ display: none;
   align-items: center;
 }
 
-.cambioseccion {
-  background-color: #0a0a23;
-  font-size: 20px;
-}
 
 .cursos-as:hover {
     background: #e5e7e9;
@@ -840,6 +733,7 @@ display: none;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  padding-top: 20px;
 }
 
 .as {

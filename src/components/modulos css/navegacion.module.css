@@ -1,0 +1,71 @@
+
+.contenedorSeccion {
+    font-size: 17px;
+    padding: 5px;
+    justify-content: space-around;
+    background: #3b3b4f;
+    border-color: #ffffff;
+    border: 2px solid #e5e7e9;
+    color: #ffffff;
+    height: 100px;
+    overflow-wrap:break-word;
+    text-overflow: ellipsis;
+    display: block;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+}
+.contenedorSeccion:hover {
+    color: #3b3b4f !important;
+    background-color: #e5e7e9;
+}
+.siguiente {
+    text-align: center;
+}
+.anterior {
+    text-align: center;
+}
+
+.seccion {
+    width: 100px;
+    height: 100px;
+}
+
+.cambioseccion {
+    background-color: #0a0a23;
+    font-size: 17px;
+    padding: 5px;
+    justify-content: space-around;
+    border-color: #ffffff;
+    border: 2px solid #e5e7e9;
+    color: #ffffff;
+    height: fit-content;
+    overflow-wrap:break-word;
+    text-overflow: ellipsis;
+    display: block;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+}
+.cambioseccion:hover {
+    color: #61dafb !important;
+    border-color: #61dafb;
+}
+.blockellipsis {
+    display: block;
+    display: -webkit-box;
+    max-width: 100%;
+    height: 36px;
+    margin: 0 auto;
+    line-height: 1;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media screen and (max-width: 700px) {
+    .contenedorSeccion{
+        font-size: 15px;
+    }
+
+}

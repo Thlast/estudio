@@ -22,7 +22,7 @@ export function HomeMongo() {
     .then(data => (setMaterias(data)));
     
   }, [])
- 
+  
 
   useEffect(() => {
     obtenerPreguntaMateria(curso)

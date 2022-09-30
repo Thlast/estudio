@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { Spinner } from "../../components/Login/Spinner";
 import { obtenerDatosCapitulos, obtenerDatosTitulos } from "../../components/servicios/cursos/obtenerSeccion"
-
+import style from '../../components/modulos css/navegacion.module.css'
 
 export function NavegacionCursos(props)  {
 
@@ -34,13 +34,20 @@ useEffect(() => {
   obtenerDatosTitulos(curso)
   .then(data => (setTitulos(data), 
   data.map((t, num)=> {
-    if (t.titulo === titulo) {
-      setProximo(data[num + 1].titulo)
-      setSiguienteSeccion(data[num + 1].secciones[0]);
+    switch (t.titulo){
+      case titulo: if(data.length !== num+1) {
+        setProximo(data[num + 1].titulo)
+        setSiguienteSeccion(data[num + 1].secciones[0]);
+      } else if (data.length === num+1) {
+        setProximo(null)
+        setSiguienteSeccion(null);
+      }
       if (num !== 0) {
         setAnterior(data[num - 1].titulo)
         setAnteriorSeccion(data[num - 1].secciones[data[num - 1].secciones.length - 1])
-      }
+      } else if (num === 0) {
+        setAnterior(undefined)
+      }; break
     }
   })))
 }, [titulo])
@@ -54,44 +61,56 @@ return (
         anterior ? 
           <Link 
           to={"/cursos/"+curso+"/"+anterior+"/"+anteriorSeccion}
-          onClick={() => ingresarSeccion(anteriorSeccion)}
-          class="cursos-as cambioseccion">
-          <p>Anterior Capitulo {" >"}</p>
-          <p>
+          onClick={() => ingresarSeccion(anterior, anteriorSeccion)}
+          className={style.cambioseccion}>
+          <p
+          className={style.anterior}>{"< "}Anterior Capitulo </p>
+          <div
+            className={style.blockellipsis}>
            {anterior}
-                   </p>
+                   </div>
             </Link>
                  : <div></div>
             :
         <Link 
         to={"/cursos/"+curso+"/"+titulo+"/"+secciones[indiceSeccion-1]}
         onClick={() => ingresar(secciones[indiceSeccion-1])}
-        class="cursos-as">
-        <p>{"< "} Anterior</p>
-         <p>
+        className={style.contenedorSeccion}>
+        <p
+        className={style.anterior}>{"< "} Anterior</p>
+        <div
+            className={style.blockellipsis}>
           {secciones[indiceSeccion-1]}
-         </p>
+         </div>
           </Link>   
 }
 {secciones.length === indiceSeccion+1 ? 
+proximo ?
  <Link 
   to={"/cursos/"+curso+"/"+proximo+"/"+siguienteSeccion}
- onClick={() => ingresarSeccion(siguienteSeccion)}
- class="cursos-as cambioseccion">
- <p>Siguiente Capitulo {" >"}</p>
- <p>
+ onClick={() => ingresarSeccion(proximo, siguienteSeccion)}
+ className={style.cambioseccion}>
+ <p
+ className={style.siguiente}>Siguiente Capitulo {" >"}</p>
+ <div
+          className={style.blockellipsis}>
   {proximo}
-          </p>
+          </div>
    </Link>
+   : <div>
+
+   </div>
           :
           <Link 
           to={"/cursos/"+curso+"/"+titulo+"/"+secciones[indiceSeccion+1]}
           onClick={(e) => ingresar(secciones[indiceSeccion+1])}
-          class="cursos-as">
-          <p>Siguiente {" >"}</p>
-            <p>
+          className={style.contenedorSeccion}>
+          <p
+          className={style.siguiente}>Siguiente {" >"}</p>
+            <div
+            className={style.blockellipsis}>
             {secciones[indiceSeccion+1]}
-            </p>
+            </div>
           </Link>
 
 }

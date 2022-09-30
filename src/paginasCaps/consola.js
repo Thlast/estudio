@@ -22,7 +22,7 @@ export function Consola(props) {
   }, [dic, cargando])
 
   clickCode()
-  console.log(datos, dic)
+  // console.log(datos, dic)
 
 return (
   <div>

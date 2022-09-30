@@ -1,8 +1,6 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom'
 import { Login } from './components/Login/Login/Login';
-// import { LoginB } from './components/LoginB';
-// import { Register } from './components/Register';
 import { SignUp } from './components/Login/SignUp/SignUp';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/protectedRoute';
@@ -18,10 +16,11 @@ import { Impuestos } from './components/impuestos';
 import { AgregarMongo } from './components/agregarmongo';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
-import {UserContextProvider} from './components/Login/context/UserContext';
 
 
 function App() {
+
+  document.title = 'Estudio'
 
   return (
     <AuthProvider>

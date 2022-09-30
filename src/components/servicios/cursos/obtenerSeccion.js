@@ -1,6 +1,5 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
-const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || "http://192.168.0.15:4000"
-
+const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 export const obtenerDatosSeccion = async (materia, seccion, titulo) => {
   const mat = materia.toLowerCase().replace(/[-º°`'".,]/g, '');
   const sec = seccion.toLowerCase().replace(/[-º°`'".,]/g, '');

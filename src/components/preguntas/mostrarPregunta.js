@@ -10,13 +10,21 @@ import { useAuth } from '../../context/AuthContext';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Spinner } from '../Login/Spinner';
+import { async } from '@firebase/util';
 
 export function MostrarPregunta(props) {
 
-  const [actualizar, setActualizar] = useState(0)
-  const modificarPreguntas = (mat, tipo, preg, resp, curso, a,b,c,d, correcta, idmodif, seccion, titulo, event) => {
-    modificarPregunta(mat, tipo, preg, resp, curso, a,b,c,d, correcta, idmodif, seccion, titulo, event)
-    (setModificar(!modificar), setActualizar(actualizar+1))
+  const [actualizar, setActualizar] = useState(0);
+
+  const eliminar = async (idpregunta) => {
+    await eliminarPregunta(idpregunta);
+    setActualizar(actualizar+1)
+  }
+
+  const modificarPreguntas = async (mat, tipo, preg, resp, curso, a,b,c,d, correcta, idmodif, seccion, titulo, event) => {
+    await modificarPregunta(mat, tipo, preg, resp, curso, a,b,c,d, correcta, idmodif, seccion, titulo, event);
+    setActualizar(actualizar+1)
+    setModificar(!modificar)
   }
   const crearPreguntas = (mat, tipo, preg, resp, curso, a,b,c,d, correcta, seccion, titulo, event) => {
     crearPregunta(mat, tipo, preg, resp, curso, a,b,c,d, correcta, seccion, titulo, event);
@@ -54,7 +62,7 @@ export function MostrarPregunta(props) {
         } else {
           alert("respuesta incorrecta")
         }
-        console.log(respuesta)
+        // console.log(respuesta)
       }
 
     const irModificarPregunta = (p) => {
@@ -87,7 +95,7 @@ export function MostrarPregunta(props) {
 							return (
                 <div
                 className='cuadro'
-                id={num}
+                id={p.id}
                 key={p.id}>           
                   {p.tipo === "Normal" &&
                   <div
@@ -130,7 +138,7 @@ export function MostrarPregunta(props) {
                   Modificar
                 </button>
                 <button
-                onClick={() => (eliminarPregunta(p.id), setActualizar(actualizar+1))}
+                onClick={() => (eliminar(p.id))}
                 className='btn btn-danger'>
                   Eliminar
                 </button>
@@ -173,7 +181,6 @@ export function MostrarPregunta(props) {
                 </button>
                 </div>
                 <div
-                id={p.id}
                 className='hide'>
                   <p>La respuesta correcta es: {p.correcta}</p>
                 <ReactMarkdown
