@@ -17,7 +17,14 @@ export function MostrarPregunta(props) {
   const [actualizar, setActualizar] = useState(0);
 
   const eliminar = async (idpregunta) => {
-    await eliminarPregunta(idpregunta);
+    try {
+      await eliminarPregunta(idpregunta);
+      // document.getElementById(idpregunta).remove()
+      console.log("eliminado")
+    } catch (error) {
+      console.log(error)
+    }
+    
     setActualizar(actualizar+1)
   }
 
@@ -26,8 +33,8 @@ export function MostrarPregunta(props) {
     setActualizar(actualizar+1)
     setModificar(!modificar)
   }
-  const crearPreguntas = (mat, tipo, preg, resp, curso, a,b,c,d, correcta, seccion, titulo, event) => {
-    crearPregunta(mat, tipo, preg, resp, curso, a,b,c,d, correcta, seccion, titulo, event);
+  const crearPreguntas = (preguntaCrear, event) => {
+    crearPregunta(preguntaCrear, event);
     setActualizar(actualizar+1)
   }
   const {titulo} = props;
@@ -39,6 +46,7 @@ export function MostrarPregunta(props) {
   const [modificar, setModificar] = useState(false) 
   const [preguntaModificar, setPreguntaModificar] = useState({})
   const [cargando, setCargando] = useState(true)
+  const {agregar} = props;
 
 		useEffect(() => {
       if(seccion) {
@@ -65,6 +73,9 @@ export function MostrarPregunta(props) {
         // console.log(respuesta)
       }
 
+    const cancelar = () => {
+      setModificar(!modificar)
+    }
     const irModificarPregunta = (p) => {
       setModificar(!modificar)
       setPreguntaModificar(p)
@@ -84,8 +95,6 @@ export function MostrarPregunta(props) {
 
     return (
       <div>
-        
-          
         {mostrarPreguntas & !modificar ?
         cargando ? <Spinner></Spinner> :
         <div 
@@ -123,7 +132,7 @@ export function MostrarPregunta(props) {
                 </div>
                 <div
                 id={"respuesta-"+p.id}
-                className='respuesta-hide'>
+                className='respuesta-hide show-element'>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}>
                   {p.respuesta}
@@ -181,7 +190,7 @@ export function MostrarPregunta(props) {
                 </button>
                 </div>
                 <div
-                className='hide'>
+                className='hide show-element'>
                   <p>La respuesta correcta es: {p.correcta}</p>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}>
@@ -197,7 +206,7 @@ export function MostrarPregunta(props) {
                   Modificar
                 </button>
                 <button
-                onClick={() => eliminarPregunta(p.id)}
+                onClick={() => (eliminarPregunta(p.id), setActualizar(actualizar+1))}
                 className='btn btn-danger'>
                   Eliminar
                 </button>
@@ -212,30 +221,26 @@ export function MostrarPregunta(props) {
             : <p>No hay preguntas</p>
 }
             </div>
-            : <p></p>
+            : ""
 }
 
-            {edit & !modificar ?
+            {agregar & !modificar ?
             <FormAgregarPregunta 
               crearPregunta={crearPreguntas}
               titulo={titulo}
               seccion={seccion} 
               curso={curso} />
-            : <p></p>
+            : ""
             }
             {modificar &&
             <div>
             <FormModificarPregunta 
+              cancelar={cancelar}
               titulo={titulo}
               seccion={seccion} 
               curso={curso} 
               modificarPregunta={modificarPreguntas}
               preguntaModificar={preguntaModificar}/>
-            <button
-            className='btn btn-danger'
-            onClick={() => setModificar(!modificar)}
-            > Cancelar
-            </button>
             </div>
             }
             </div>

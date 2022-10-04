@@ -13,3 +13,9 @@ export const obtenerMaterias = async () => {
     return data.json()
   
 }
+
+export const buscarFiltrado = async (curso) => {
+    const data = await fetch(`${urlserver}/filtrar/${curso}`)
+    return data.json()
+  
+}

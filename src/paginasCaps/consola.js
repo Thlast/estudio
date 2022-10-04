@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { Spinner } from '../components/Login/Spinner';
+import { TextoCurso } from './impuestos/textoCurso';
 
 export function Consola(props) {
 
@@ -9,20 +11,8 @@ export function Consola(props) {
   const {eliminarDelHistorial} = props;
   const {limpiarHistorial} = props;
   const {enconsola} = props;
-  const [cargando, setCargando] = useState(true)
-  const {clickCode} = props;
-
-  useEffect(() => {
-    
-  }, [dic, cargando])
-
-  useEffect(() => {
-
-    clickCode()
-  }, [dic, cargando])
-
-  clickCode()
-  // console.log(datos, dic)
+  // const {seccion} = props;
+  const {cargando} = props;
 
 return (
   <div>
@@ -30,6 +20,12 @@ return (
           id="consol"
           className="navconsola">
             <p>
+              {cargando ? 
+              <div className='consolacargando'>
+                <Spinner></Spinner>
+              </div>
+              : <div></div>
+}
               <button
               className="botonhistorial"
               onClick={() => limpiarHistorial()}
@@ -58,35 +54,36 @@ return (
           </div>
   <div
   className="consola">   
-  {datos.length == 0 || datos[0].enunciado == undefined ? "no hay datos" :
+  {/* <TextoCurso 
+  seccion={seccion} 
+  enunciado={datos}
+  cargando={cargando} /> */}
+  {datos.length == 0 || datos[0].enunciado == undefined || dic === "" ? "no hay datos" :
     
       datos[0].enunciado.map((b, num) => {
             if(typeof b === "string") {
-              return (                       
+              return (         
+                <div
+                key={"consola"+dic+num}
+                class="show-element">              
                 <ReactMarkdown 
                 remarkPlugins={[remarkGfm]}> 
                 {b}                       
-                </ReactMarkdown>                                                                   
+                </ReactMarkdown>
+                </div>                                                                   
               )
             } else if (b.destacar) {
               return (
-                <div class="destacar">
+                <div
+                key={"consola"+dic+num}
+                class="destacar show-element">
                 <ReactMarkdown 
                 remarkPlugins={[remarkGfm]}>                          
                   {b.destacar} 
                 </ReactMarkdown>    
                 </div>
               )
-            } else if (b.link){
-                  return (
-                    <div class="link">
-                      <a href={b.link[1]} target="_blank">
-                          {b.link[0]}
-                      </a>
-                      <br></br>
-                    </div>    
-                  )
-                }                        
+            }                   
           })}
             
     

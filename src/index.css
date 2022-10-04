@@ -14,7 +14,7 @@ code {
 
 .show-element {
   /*duracion de la animacion, puedes variar el tiempo, entre mas grande mas tarda el efecto*/
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-fill-mode: both;
   /*le indicas que animacion quieres aplicarle, animacion hecha por ti en un keyframe*/
   animation-name: fadeIn;

@@ -82,14 +82,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route 
+          {/* <Route 
           path="/imp" 
             element={
               <ProtectedRoute>
                 <Impuestos />
               </ProtectedRoute>
             }
-          />
+          /> */}
           <Route 
           path="/examenes/:id" 
             element={

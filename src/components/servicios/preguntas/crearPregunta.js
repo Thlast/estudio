@@ -1,33 +1,34 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
-export const crearPregunta = (mat, tipo, preg, resp, curso, a,b,c,d, correcta, seccion, titulo, event) => {
+export const crearPregunta = (preguntaCrear, event) => {
     const url = `${urlserver}/preguntas`;
     event.preventDefault();
-if(tipo == "Normal") {
-  a = null;
-  b = null;
-  c = null;
-  d = null;
-  correcta = null
+
+if(preguntaCrear.tipo == "Normal") {
+preguntaCrear.a = null;
+preguntaCrear.b = null;
+preguntaCrear.c = null;
+preguntaCrear.d = null;
+preguntaCrear.correcta = null
 }
     let data = {  
-tipo: tipo,
-pregunta: preg,
-respuesta: resp,
+tipo: preguntaCrear.tipo,
+pregunta: preguntaCrear.preg,
+respuesta: preguntaCrear.resp,
 opciones: {
-  a: a,
-  b: b,
-  c: c,
-  d: d,
+  a: preguntaCrear.a,
+  b: preguntaCrear.b,
+  c: preguntaCrear.c,
+  d: preguntaCrear.d,
 },
-correcta: correcta,
-curso: curso,
-seccion: seccion,
-materia: mat,
-titulo: titulo
+correcta: preguntaCrear.correcta,
+curso: preguntaCrear.curso,
+seccion: preguntaCrear.seccion,
+titulo: preguntaCrear.titulo
 
 };
+console.log(data)
     fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),

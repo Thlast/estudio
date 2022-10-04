@@ -56,10 +56,11 @@ export function Examenes() {
     return (
         <div>
             <div className='examenes'>
-        <div className="cuadrilla">
             {cargando ? <Spinner></Spinner> :
+        <div className="cuadrilla">
+           
 
-            examenes.map((exa) => {
+            {examenes.map((exa) => {
                 return (
                   <Link 
                   to={"/examenes/"+exa.id} className="examen">
@@ -84,7 +85,7 @@ export function Examenes() {
   </button>
 </div>
 }
-</div>
+</div>}
 </div>
 </div>
     )

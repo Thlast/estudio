@@ -9,7 +9,7 @@ import { Spinner } from './Login/Spinner';
 import { Link } from 'react-router-dom';
 
 export function HomeMongo() {
-  // const {loading} = useAuth();
+
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
@@ -57,7 +57,6 @@ export function HomeMongo() {
       reiniciarh
     }
   }
-
   const historialImp = useHistorial([0])
   const historialConta = useHistorial([0])
   const historialFinanzas = useHistorial([0])
@@ -146,12 +145,17 @@ export function HomeMongo() {
 
   const cambiarCurso = (e) => {
     setCurso(e);
-    if(e === "impuestos") {
-      setCurrent(historialImp.historial[historialImp.historial.length-1])
-    } else if(e === "conta7") {
-      setCurrent(historialConta.historial[historialConta.historial.length-1])
-    }
+    switch(e) {
+      case "impuestos": setCurrent(historialImp.historial[historialImp.historial.length-1]); break;
+      case "conta7": setCurrent(historialConta.historial[historialConta.historial.length-1]); break;
+      case "finanzas": setCurrent(historialFinanzas.historial[historialFinanzas.historial.length-1]); break;
+      case "judicial": setCurrent(historialJudicial.historial[historialJudicial.historial.length-1]); break;
+      case "auditoria": setCurrent(historialAuditoria.historial[historialAuditoria.historial.length-1]); break;
+      case "conta9": setCurrent(historialConta9.historial[historialConta9.historial.length-1]); break;
+    };
   }
+
+  console.log(preguntas)
   const {loading} = useAuth()
 
     return (
@@ -165,6 +169,8 @@ export function HomeMongo() {
       <select 
         onChange={(e) => cambiarCurso(e.target.value)} 
         class="boton home-boton" 
+        value={curso}
+        name="curso"
         for="materias">
     {materias.map(a => {
           return (

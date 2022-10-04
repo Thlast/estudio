@@ -18,7 +18,8 @@
     width: 100%;
     justify-content: flex-end;
     font-size: 20px;
-    border-bottom: 2px solid aliceblue;
+    border-bottom: 1px solid aliceblue;
+    box-shadow: 0px 0px 5px 2px #ffffff;
 }
 
 .contenedorlista {
@@ -31,17 +32,19 @@
   .elementolista {
     display: flex;
     color: #ffffff;
-    border: #ffffff solid 2px;
+    border: #ffffff solid 1px;
     background-color: none;
     width: 100px;
     text-align: center;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    box-shadow: 0px 0px 5px 0.5px #ffffff;
   }
   .links:hover {
     background-color: #ffffff;
     color: #3b3b4f;
+    
   }
   .usuario {
     padding: 0px 0px 0px 20px;

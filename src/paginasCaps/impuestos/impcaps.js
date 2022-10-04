@@ -1,4 +1,4 @@
-import {Navigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
@@ -8,38 +8,40 @@ import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
 import style from '../../components/modulos css/impcaps.module.css'
     
-export function Impcaps(props) {
+export function Impcaps() {
   
   const {sec} = useParams();
   const {titulo} = useParams();
   const [cargando, setCargando] = useState(true)
   const {materia} = useParams();
-  const [dic, setDic] = useState("sin datos");
+  const [dic, setDic] = useState("");
   const [seccion, setSeccion] = useState(sec);
-  const navigate = useNavigate();
   const [enunciado, setEnunciado] = useState()
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
   const [datos, setDatos] = useState([]) 
   const curso = materia
-  
-  const cargarPagina = async () => {
+  const [cargandoconsola, setCargandoConsola] = useState(false);
 
+  const cargarPagina = async () => {
     await obtenerDatosSeccion(curso, seccion, titulo)
     .then(data => (setEnunciado(data), 
     setCargando(false),
     setCodes(document.querySelectorAll('code'))));
-
   }
 
   useEffect(() => {
-
+    setEnunciado();
     cargarPagina()
   }, [seccion])
 
   const cargarConsola = async () => {
-    await obtenerDatosConsola(curso, dic)
-    .then(data => (setDatos(data), 
-    setCodes(document.querySelectorAll('code'))));
+    if (dic !== "") {
+      setCargandoConsola(true);
+      await obtenerDatosConsola(curso, dic)
+      .then(data => (setDatos(data), 
+      setCodes(document.querySelectorAll('code')),
+      setCargandoConsola(false)));
+    }
   }
 
   useEffect(() => {
@@ -117,7 +119,6 @@ clickCode()
   const ingresar =  (navegarSeccion) => {
     
     setDic("");
-    // navigate("/cursos/"+curso+"/"+titulo+"/"+navegarSeccion);
     setCodes(document.querySelectorAll('code'));
     clickCode(codes);
     setBotonMostrar("nada");
@@ -129,7 +130,6 @@ clickCode()
 }    
 const ingresarSeccion = (proximo, navegarSeccion) => {
   setDic("");
-  // navigate("/cursos/"+curso+"/"+siguienteTitulo+"/"+navegarSeccion);
   setCodes(document.querySelectorAll('code'));
   clickCode(codes);
   setBotonMostrar("nada");
@@ -163,7 +163,8 @@ const ingresarSeccion = (proximo, navegarSeccion) => {
            </span>        
         </div>
         <hr></hr>
-        <div>
+        <div
+        className="show-element">
 <NavegacionCursos 
 curso={curso}
 cargando={cargando}
@@ -174,10 +175,8 @@ titulo={titulo} />
 <hr></hr>
 <TextoCurso 
 seccion={seccion} 
-cargando={cargando} 
 enunciado={enunciado} />
-        <br></br>
-              <hr></hr>
+  <hr></hr>
         </div>
         </div>
         <div class="reflex-spliter">
@@ -187,7 +186,7 @@ enunciado={enunciado} />
           className={style.cursointeraccion}>
           <button
           className="cursos-as"
-          onClick={() => setDic("sin datos")}>
+          onClick={() => setDic("")}>
           Limpiar consola
         </button>
         <button
@@ -205,9 +204,8 @@ enunciado={enunciado} />
           </div>
           <hr></hr>
           <Consola 
-            cargando={cargando}
+            cargando={cargandoconsola}
             datos={datos}
-            clickCode={clickCode}
             dic={dic} 
             enconsola={enconsola} 
             eliminarDelHistorial={eliminarDelHistorial} 
@@ -217,6 +215,7 @@ enunciado={enunciado} />
             titulo={titulo}
             curso={curso} 
             seccion={seccion} 
+            agregar={edit} 
             edit={edit} 
             mostrarPreguntas={mostrarPreguntas} />      
             

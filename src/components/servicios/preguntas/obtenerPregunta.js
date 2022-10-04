@@ -23,3 +23,11 @@ export const obtenerPreguntaMateria = async (materia) => {
   return data.json()
 
 }
+
+export const filtrarPregunta = async (filtro) => {
+  
+
+  const data = await fetch(`${urlserver}/preguntas/buscar/${filtro}`)
+  return data.json()
+
+}

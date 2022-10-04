@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { usePreguntaForm } from './usePregunta';
 
 export function FormAgregarPregunta(props) {
 
@@ -6,61 +7,44 @@ export function FormAgregarPregunta(props) {
     const {crearPregunta} = props;
     const {seccion} = props;
     const {curso} = props;
-    const [preg, setPreg] = useState();
-    const [resp, setResp] = useState();
-    const [mat, setMat] = useState(curso);
-		const [tipo, setTipo] = useState("Normal");
-    const [a, setA] = useState();
-    const [b, setB] = useState();
-    const [c, setC] = useState();
-    const [d, setD] = useState();
-    const [opciones, setOpciones] = useState({
-      a: a,
-      b: b,
-      c: c,
-      d: d
-    })
-    const [correcta, setCorrecta] = useState("a");
-      
-      const cambiarTipo = (t) => {
-        setTipo(t);
-        if(t == "multiple") {
-          setCorrecta("a")
-        }
-      }
-  
+    
+   const preguntaCrear = usePreguntaForm({
+    preg: "",
+    resp: "",
+    tipo: "Normal",
+    // id: "",
+    curso: curso,
+    //opciones:
+      a: "",
+      b: "",
+      c: "",
+      d: "",
+    correcta: "a",
+    titulo: titulo,
+    seccion: seccion,
+   })
+
     const limpiarPregunta = () => {
-      setPreg("");
-      setResp("");
-      setTipo("Normal");
-      setA("");
-      setB("");
-      setC("");
-      setD("");
-      setCorrecta("a")
+     
+
     }
     return (
-      <div>
-  
       <form
       className='form-container'
       onSubmit={
-        (event) => 
-        (crearPregunta(mat, tipo, preg, resp, curso, a,b,c,d, correcta, seccion, titulo, event), 
-        limpiarPregunta())}>
-        <select required onChange={ e => setMat(e.target.value)} class="home-boton" for="materias" value={mat}>
-              <option>
-                Contabilidad VII
-              </option>
-              <option>
-                Auditoria
-              </option>
-              <option>
-                Impuestos
-              </option>
-          </select>
+        // preguntaCrear.handleSubmit}
+        (event) =>
+        crearPregunta(preguntaCrear.datosPregunta, event)
+        // preguntaCrear.handleSubmit
+      }
+        >
         <div>
-        <select required onChange={ e => cambiarTipo(e.target.value)} class="home-boton" for="tipo" value={tipo}>
+        <select required 
+        onChange={preguntaCrear.handleChangeTipo}
+        class="home-boton" 
+        name='tipo'
+        for="tipo" 
+        value={preguntaCrear.tipo}>
               <option>
                 Normal
               </option>
@@ -70,73 +54,90 @@ export function FormAgregarPregunta(props) {
           </select>
         </div>
           <div className="pyr-container">
-          <label className="form-pyr" for="pregunta">
-            <textarea className="form-pyr" required onChange={ e => setPreg(e.target.value)} placeholder="Escribe una pregunta" name="pregunta" type="text" value={preg}></textarea>
+          <label className="form-pyr" for="preg">
+            Pregunta:
+            <textarea className="form-pyr" 
+            required 
+            onChange={preguntaCrear.handleChange} 
+            placeholder="Escribe una pregunta" 
+            name="preg" 
+            type="text" 
+            value={preguntaCrear.preg}>
+
+            </textarea>
           </label>
           </div>
-    {tipo == "Multiple" &&
+    {preguntaCrear.habilitarMultiple &&
             <div>
               <div
               className='opciones-container'>
-              <label class="form-opciones" for="a">
+              <label className="form-opciones" for="a">
               <span>Opción A:</span>
             <textarea class="" required 
-              onChange={ e => setA(e.target.value)} 
+              onChange={preguntaCrear.handleChange} 
               placeholder="Escribe la opcion A" 
-              name="pregunta" type="text" 
-              value={a}>
-    
+              name="a" type="text" 
+              value={preguntaCrear.a}>
             </textarea>
           </label>
-          <label class="form-opciones" for="b">
+          <label className="form-opciones" for="b">
           <span>Opción B:</span>
             <textarea class="" 
               required 
-              onChange={ e => setB(e.target.value)} 
+              onChange={preguntaCrear.handleChange} 
               placeholder="Escribe la opcion B" 
-              name="pregunta" 
+              name="b" 
               type="text" 
-              value={b}>
-    
+              value={preguntaCrear.b}>
             </textarea>
           </label>
-          <label class="form-opciones" for="c">
+          <label className="form-opciones" for="c">
           <span>Opción C:</span>
             <textarea class="" 
               required 
-              onChange={ e => setC(e.target.value)} 
+              onChange={preguntaCrear.handleChange} 
               placeholder="Escribe la opcion C" 
-              name="pregunta" 
+              name="c" 
               type="text" 
-              value={c}>
+              value={preguntaCrear.c}>
             </textarea>
           </label>
-          <label class="" for="d">
+          <label className="form-opciones" for="d">
           <span>Opción D:</span>
-            <textarea class="form-opciones" 
+            <textarea
               required 
-              onChange={ e => setD(e.target.value)} 
+              onChange={preguntaCrear.handleChange} 
               placeholder="Escribe la opcion D" 
-              name="pregunta" 
+              name="d" 
               type="text" 
-              value={d}>    
+              value={preguntaCrear.d}>    
             </textarea>
           </label>
           </div>
-          <div>
+          <div
+          className='form-correcta'>
           <p>Cual es la respuesta correcta?</p>
           <label>
-          <select required value={correcta} onChange={ e => setCorrecta(e.target.value)} class="" for="rcorrecta">
-              <option>
+          <select required 
+          value={preguntaCrear.correcta} 
+          onChange={preguntaCrear.handleChange} 
+          class="" 
+          name='correcta'
+          for="correcta">
+              <option
+              >
                   a
               </option>
-              <option>
+              <option
+              >
                   b
               </option>
-              <option>
+              <option
+              >
                   c
               </option>
-              <option>
+              <option
+              >
                   d
               </option>
           </select>
@@ -144,18 +145,23 @@ export function FormAgregarPregunta(props) {
         </div>
             </div>       
           }          
-          <p>Respuesta:</p>
           <div className="pyr-container">
           <label className="form-pyr" for="respuesta">
-            <textarea className="form-pyr" onChange={ e => setResp(e.target.value)} placeholder="Escribe una respuesta o explicación" name="respuesta" type="text" value={resp}></textarea>
+          Respuesta:
+            <textarea className="form-pyr" 
+            onChange={preguntaCrear.handleChange} 
+            placeholder="Escribe una respuesta o explicación" 
+            name="resp" 
+            type="text" 
+            value={preguntaCrear.resp}>
+
+            </textarea>
           </label>
           </div>    
          <button 
-            class="boton btn-primary" 
-            >
+            class="boton btn-primary" >
             Agregar
           </button>            
           </form>
-    </div>
     );
   }

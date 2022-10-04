@@ -1,60 +1,44 @@
 import React, { useState, useEffect } from 'react';
+import { usePreguntaForm } from './usePregunta';
 
 
 export function FormModificarPregunta(props) {
-
-    const {modificarPregunta} = props;
-    const {preguntaModificar} = props || {};
-
-    const [preg, setPreg] = useState(preguntaModificar.pregunta);
-    const [resp, setResp] = useState(preguntaModificar.respuesta);
-    const [mat, setMat] = useState("Contabilidad VII");
-		const [tipo, setTipo] = useState(preguntaModificar.tipo);
-    const [idmodif, setIdModif] = useState(preguntaModificar.id);
-    const [curso, setCurso] = useState(preguntaModificar.curso);
-    const {seccion} = props;
-    const [a, setA] = useState(preguntaModificar.opciones.a);
-    const [b, setB] = useState(preguntaModificar.opciones.b);
-    const [c, setC] = useState(preguntaModificar.opciones.c);
-    const [d, setD] = useState(preguntaModificar.opciones.d);
-    const [opciones, setOpciones] = useState({
-      a: a,
-      b: b,
-      c: c,
-      d: d
-    })
-    const [correcta, setCorrecta] = useState(preguntaModificar.correcta);
-    const {titulo} = props;
-    
-
-    const cambiarTipo = (t) => {
-        setTipo(t);
-        if(t == "multiple") {
-          setCorrecta("a")
-        }
-      }
-
   
+  const {modificarPregunta} = props;
+  const {preguntaModificar} = props || {};
+  const {cancelar} = props;
+  const {titulo} = props;
+  const {seccion} = props;
+  const {id} = preguntaModificar;
+
+    const datosmodificar = usePreguntaForm({
+    preg: preguntaModificar.pregunta,
+    resp: preguntaModificar.respuesta,
+		tipo: preguntaModificar.tipo,
+    curso: preguntaModificar.curso,
+      a: preguntaModificar.opciones.a,
+      b: preguntaModificar.opciones.b,
+      c: preguntaModificar.opciones.c,
+      d: preguntaModificar.opciones.d,
+    correcta: preguntaModificar.correcta,
+    titulo: titulo,
+    seccion: seccion,
+  })
+
 return (
   <div>
   
   <form
   className='form-container'
   onSubmit={
-    (event) => modificarPregunta(mat, tipo, preg, resp, curso, a,b,c,d, correcta, idmodif, seccion, titulo, event)}>
-    <select required onChange={ e => setMat(e.target.value)} class="home-boton" for="mat" value={mat}>
-          <option>
-            Contabilidad VII
-          </option>
-          <option>
-            Auditoria
-          </option>
-          <option>
-            Impuestos
-          </option>
-      </select>     
+    (event) => modificarPregunta(datosmodificar.datosPregunta, id, event)}>
     <div>
-    <select required onChange={ e => cambiarTipo(e.target.value)} class="home-boton" for="tipo" value={tipo}>
+    <select required 
+    onChange={datosmodificar.handleChangeTipo} 
+    class="home-boton" 
+    for="tipo"
+    name='tipo'
+    value={datosmodificar.datosPregunta.tipo}>
           <option>
             Normal
           </option>
@@ -65,60 +49,76 @@ return (
     </div>
       <div className="pyr-container">
       <label className="form-pyr" for="pregunta">
-        <textarea className="form-pyr" required onChange={ e => setPreg(e.target.value)} placeholder="Escribe una pregunta" name="pregunta" type="text" value={preg}></textarea>
+        Pregunta:
+        <textarea className="form-pyr" required 
+        onChange={datosmodificar.handleChange} 
+        placeholder="Escribe una pregunta" 
+        name="preg" 
+        type="text" 
+        value={datosmodificar.datosPregunta.preg}>
+
+        </textarea>
       </label>
       </div>
-{tipo == "Multiple" &&
+{datosmodificar.datosPregunta.tipo === "Multiple" &&
         <div>
           <div
           className='opciones-container'>
-          <label class="form-opciones" for="a">
+          <label className="form-opciones" for="a">
           <span>Opción A:</span>
         <textarea class="" required 
-          onChange={ e => setA(e.target.value)} 
+          onChange={datosmodificar.handleChange} 
           placeholder="Escribe la opcion A" 
-          name="pregunta" type="text" 
-          value={a}>
+          name="a" 
+          type="text" 
+          value={datosmodificar.datosPregunta.a}>
         </textarea>
       </label>
-      <label class="form-opciones" for="b">
+      <label className="form-opciones" for="b">
       <span>Opción B:</span>
         <textarea class="" 
           required 
-          onChange={ e => setB(e.target.value)} 
+          onChange={datosmodificar.handleChange}  
           placeholder="Escribe la opcion B" 
-          name="pregunta" 
+          name="b" 
           type="text" 
-          value={b}>
+          value={datosmodificar.datosPregunta.b}>
         </textarea>
       </label>      
-      <label class="form-opciones" for="c">
+      <label className="form-opciones" for="c">
       <span>Opción C:</span>
         <textarea class="" 
           required 
-          onChange={ e => setC(e.target.value)} 
+          onChange={datosmodificar.handleChange}  
           placeholder="Escribe la opcion C" 
-          name="pregunta" 
+          name="c" 
           type="text" 
-          value={c}>
+          value={datosmodificar.datosPregunta.c}>
         </textarea>
       </label>
-      <label class="" for="d">
+      <label className="form-opciones" for="d">
       <span>Opción D:</span>
-        <textarea class="form-opciones" 
+        <textarea className="form-opciones" 
           required 
-          onChange={ e => setD(e.target.value)} 
+          onChange={datosmodificar.handleChange} 
           placeholder="Escribe la opcion D" 
-          name="pregunta" 
+          name="d" 
           type="text" 
-          value={d}>
+          value={datosmodificar.datosPregunta.d}>
         </textarea>
       </label>
       </div>
-      <div>
+      <div
+      className='form-correcta'>
       <p>Cual es la respuesta correcta?</p>
       <label>
-      <select required value={correcta} onChange={ e => setCorrecta(e.target.value)} class="" for="rcorrecta">
+      <select 
+      required 
+      value={datosmodificar.datosPregunta.correcta} 
+      onChange={datosmodificar.handleChange} 
+      name="correcta"
+      class="" 
+      for="correcta">
           <option>
               a
           </option>
@@ -136,16 +136,32 @@ return (
     </div>
         </div>   
       }
-      <p>Respuesta:</p>
+      
       <div className="pyr-container">
-      <label className="form-pyr" for="respuesta">
-        <textarea className="form-pyr" onChange={ e => setResp(e.target.value)} placeholder="Escribe una respuesta o explicación" name="respuesta" type="text" value={resp}></textarea>
+      <label 
+      name="resp"
+      className="form-pyr" 
+      for="respuesta">
+      Respuesta:
+        <textarea className="form-pyr" 
+        onChange={datosmodificar.handleChange} 
+        placeholder="Escribe una respuesta o explicación" 
+        name="resp" 
+        type="text" 
+        value={datosmodificar.datosPregunta.resp}>
+
+        </textarea>
       </label>
       </div>
      <button 
         class="boton btn-primary">       
         Modificar
       </button>    
+      <button
+            className='btn btn-danger form-cancelar'
+            onClick={() => cancelar()}
+            > X
+            </button>
       </form>
 </div>
     );

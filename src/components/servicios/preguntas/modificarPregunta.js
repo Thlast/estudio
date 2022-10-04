@@ -1,31 +1,31 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
-export const modificarPregunta = async (mat, tipo, preg, resp, curso, a,b,c,d, correcta, id, seccion, titulo, event) => {
+export const modificarPregunta = async (datosPregunta, id, event) => {
   const url = `${urlserver}/preguntas/${id}`;
   event.preventDefault();
-  if(tipo == "Normal") {
-    a = null;
-    b = null;
-    c = null;
-    d = null;
-    correcta = null
+  if(datosPregunta.tipo == "Normal") {
+    datosPregunta.a = null;
+    datosPregunta.b = null;
+    datosPregunta.c = null;
+    datosPregunta.d = null;
+    datosPregunta.correcta = null
     }
       let preguntaModificada = {  
-      tipo: tipo,
-      pregunta: preg,
-      respuesta: resp,
+      tipo: datosPregunta.tipo,
+      pregunta: datosPregunta.preg,
+      respuesta: datosPregunta.resp,
       opciones: {
-      a: a,
-      b: b,
-      c: c,
-      d: d,
+      a: datosPregunta.a,
+      b: datosPregunta.b,
+      c: datosPregunta.c,
+      d: datosPregunta.d,
     },
-      correcta: correcta,
-      seccion: seccion,
-      curso: curso,
-      materia: mat,
-      titulo: titulo
+      correcta: datosPregunta.correcta,
+      seccion: datosPregunta.seccion,
+      curso: datosPregunta.curso,
+      materia: datosPregunta.mat,
+      titulo: datosPregunta.titulo
     };
       console.log(preguntaModificada, typeof id)
       fetch(url, {

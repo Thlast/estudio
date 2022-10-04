@@ -6,9 +6,13 @@ export const eliminarPregunta = async (id) => {
 
 fetch(url, {
     method: 'DELETE', 
+    headers:{
+      'Content-Type': 'application/json'
+  }
   })
-  .then(res => res.json())
-  .catch(error => console.error('Error:', error))
-  .then(response => console.log('Pregunta eliminada', response), alert("Pregunta eliminada correctamente")
-);
+  .then(res => res.text())
+  .catch(error => {console.error('Error:', error)})
+  .then(data => console.log('Pregunta eliminada', data), alert("Pregunta eliminada correctamente")
+  
+  );
 }

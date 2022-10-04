@@ -1,49 +1,47 @@
-import React, {useEffect, useState} from "react";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 export function TextoCurso(props) {
 
   const {seccion} = props;
-  const {cargando} = props
   const {enunciado} = props
 
+  console.log(enunciado)
   return (
     <div>
     <h1>
       {seccion}    
     </h1>
+    <br></br>
         <div>
-      {cargando ? "...Cargando" :
-      enunciado[0].enunciado.map(e => {
+      {enunciado === undefined || enunciado[0].enunciado === undefined || enunciado[0].enunciado.length === 0 ? "" :
+      enunciado[0].enunciado.map((e, num) => {
         if(typeof e === `string`) {
           return (
+            <div
+            className='show-element'
+            key={seccion+num}>
             <ReactMarkdown 
             remarkPlugins={[remarkGfm]}>  
             {e}   
-            </ReactMarkdown>                    
+            </ReactMarkdown>   
+            </div>                 
           )
         } else if (e.destacar) {
           return (
-            <div class="destacar">
+            <div className="destacar show-element"
+            key={seccion+num}>
             <ReactMarkdown 
             remarkPlugins={[remarkGfm]}>                          
               {e.destacar} 
             </ReactMarkdown>    
             </div>
           )
-        } else if (e.link){
-            return (
-              <div class="link">
-              <a href={e.link[1]} target="_blank">
-                  {e.link[0]}
-              </a>
-              <br></br>
-              </div>    
-              )
-            } else {
+        } else {
               return (
-                <div></div>
+                <div
+                key={seccion+num}>
+                </div>
               )
             } 
       } 

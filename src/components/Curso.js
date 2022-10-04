@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {Link, useParams} from "react-router-dom";
 import { obtenerCursos } from './servicios/cursos/obtenerCurso';
 import { Spinner } from './Login/Spinner';
@@ -10,7 +9,6 @@ export function Curso() {
 
     const [cargando, setCargando] = useState(true)
     const {id} = useParams();
-    const navigate = useNavigate();
     const [curs, setCurs] = useState([]);
     const curso = id;
 
@@ -48,7 +46,7 @@ export function Curso() {
         
             <div class='cursos-descripcion'>
             
-          {cargando ? "...loading":
+          {cargando ? "":
           <div>
             <h1>
             {curs[0].nombre}

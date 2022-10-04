@@ -65,10 +65,10 @@ return (
           className={style.cambioseccion}>
           <p
           className={style.anterior}>{"< "}Anterior Capitulo </p>
-          <div
+          <p
             className={style.blockellipsis}>
            {anterior}
-                   </div>
+                   </p>
             </Link>
                  : <div></div>
             :
@@ -78,10 +78,10 @@ return (
         className={style.contenedorSeccion}>
         <p
         className={style.anterior}>{"< "} Anterior</p>
-        <div
+        <p
             className={style.blockellipsis}>
           {secciones[indiceSeccion-1]}
-         </div>
+         </p>
           </Link>   
 }
 {secciones.length === indiceSeccion+1 ? 
@@ -92,10 +92,10 @@ proximo ?
  className={style.cambioseccion}>
  <p
  className={style.siguiente}>Siguiente Capitulo {" >"}</p>
- <div
+ <p
           className={style.blockellipsis}>
   {proximo}
-          </div>
+          </p>
    </Link>
    : <div>
 
@@ -107,10 +107,10 @@ proximo ?
           className={style.contenedorSeccion}>
           <p
           className={style.siguiente}>Siguiente {" >"}</p>
-            <div
+            <p
             className={style.blockellipsis}>
             {secciones[indiceSeccion+1]}
-            </div>
+            </p>
           </Link>
 
 }
