@@ -7,9 +7,12 @@ import { obtenerDatosConsola, obtenerDatosSeccion } from "../../components/servi
 import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
 import style from '../../components/modulos css/impcaps.module.css'
-    
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 export function Impcaps() {
-  
+
+  const MySwal = withReactContent(Swal)
   const {sec} = useParams();
   const {titulo} = useParams();
   const [cargando, setCargando] = useState(true)
@@ -139,7 +142,19 @@ const ingresarSeccion = (proximo, navegarSeccion) => {
   if(edit) {
     editar()
   }
-  alert(`Has finalizado el capitulo ${titulo}, pasando a ${proximo}`)
+  Swal.fire({
+    title: `Has finalizado el capitulo ${titulo}, pasando a ${proximo}`,
+    width: 550,
+    padding: '0',
+    color: '#716add',
+    background: '#fff url(/images/trees.png)',
+    backdrop: `
+      rgba(0,0,123,0.4)
+      url("https://media.tenor.com/rI_0O_9AJ5sAAAAj/nyan-cat-poptart-cat.gif")
+      left top
+      no-repeat
+    `
+  })
   // console.log(titulo)
 }    
 

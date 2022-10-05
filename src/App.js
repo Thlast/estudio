@@ -7,7 +7,6 @@ import { ProtectedRoute } from './components/protectedRoute';
 import { Perfil } from './components/Perfil';
 import { Examenes } from './components/Examenes';
 import {Examen} from './components/examen'
-import {MisExamenes} from './components/MisExamenes'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cursos } from './components/Cursos'
 import { Curso } from './components/Curso'
@@ -23,6 +22,7 @@ function App() {
   document.title = 'Estudio'
 
   return (
+
     <AuthProvider>
       <Nav />
       <Routes>
@@ -95,14 +95,6 @@ function App() {
             element={
               <ProtectedRoute>
                 <Examen />
-              </ProtectedRoute>
-            }
-          />
-          <Route 
-          path="/misexamenes/:user" 
-            element={
-              <ProtectedRoute>
-                <MisExamenes />
               </ProtectedRoute>
             }
           />

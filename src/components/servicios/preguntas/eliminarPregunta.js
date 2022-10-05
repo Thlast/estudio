@@ -1,3 +1,5 @@
+import { alertaeliminada } from "../../alertas";
+
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
@@ -12,7 +14,7 @@ fetch(url, {
   })
   .then(res => res.text())
   .catch(error => {console.error('Error:', error)})
-  .then(data => console.log('Pregunta eliminada', data), alert("Pregunta eliminada correctamente")
+  .then(data => console.log('Pregunta eliminada', data), alertaeliminada()
   
   );
 }

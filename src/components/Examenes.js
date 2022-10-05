@@ -9,19 +9,22 @@ import { Spinner } from './Login/Spinner';
 
 export function Examenes() {
 
-    const {user, logout, loading} = useAuth();
+    const {user} = useAuth();
     const [examenes, setExamenes] = useState([]);
+    const [misExamenes, setMisExamenes] = useState([]);
+    const [mostrarMisExamenes, setMostrarMisExamenes] = useState(false);
     const examenesCollectionRef = collection(db, "examenes");
     const [cargando, setCargando] = useState(true)
+
     const getExamenes = async () => {
         const data = await getDocs(examenesCollectionRef);
         setExamenes(data.docs.map((doc) => ({...doc.data(), id: doc.id}), setCargando(false)));
-      
       }
-          useEffect(() => {
+
+      useEffect(() => {
             
-            getExamenes()
-          }, [])
+        getExamenes()
+      }, [])
 
     const [nombre, setNombre] = useState()
 
@@ -42,25 +45,48 @@ export function Examenes() {
         }
       } 
       catch(error) {
-        // setError("Error al agregar");
         alert("error")
       }
-
-      // getMaterias();
     }
-
+    const filtrarExamenes = () => {
+      setMisExamenes(examenes.filter(examen => examen.user === user.uid));
+      setMostrarMisExamenes(!mostrarMisExamenes)
+    }
     
-
-    if(loading) return <h1>Loading...</h1>
 
     return (
         <div>
             <div className='examenes'>
             {cargando ? <Spinner></Spinner> :
+            <div>
+            <div
+            className='examen-filtrar'>
+              <button
+              className='home-boton'
+              onClick={() => filtrarExamenes()}>
+                {mostrarMisExamenes ? "Mostrar todos" : "Mostrar solo mis examenes"}
+                
+              </button>
+              
+            </div>
+            <hr></hr>
         <div className="cuadrilla">
-           
-
-            {examenes.map((exa) => {
+          
+           {mostrarMisExamenes && 
+           misExamenes.map((exa) => {
+            return (
+              <Link 
+              to={"/examenes/"+exa.id} className="examen">
+              <h6 className='textos'>Examen: {exa.nombre}</h6>
+              
+              <p className='textos'>Materia: {exa.materia}</p>
+              
+              <p className='textos'>Descripcion: {exa.descripcion}</p>
+          </Link>
+            )
+        })}
+{!mostrarMisExamenes &&
+        examenes.map((exa) => {
                 return (
                   <Link 
                   to={"/examenes/"+exa.id} className="examen">
@@ -85,7 +111,9 @@ export function Examenes() {
   </button>
 </div>
 }
-</div>}
+</div>
+</div>
+}
 </div>
 </div>
     )

@@ -50,13 +50,6 @@ export function Perfil() {
               to="/examenes">Examenes
               </Link>
               </li>
-              <hr></hr>
-              <li>
-              <Link 
-              className='perfil-boton'
-              to={'/misexamenes/'+user.uid}>Mis Examenes
-              </Link>
-              </li>
                 <hr></hr>
                 <li>
                 <button 

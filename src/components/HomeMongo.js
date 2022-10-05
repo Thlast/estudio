@@ -7,9 +7,13 @@ import { obtenerPreguntaMateria } from './servicios/preguntas/obtenerPregunta';
 import { obtenerMaterias } from './servicios/cursos/obtenerCurso';
 import { Spinner } from './Login/Spinner';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { alertafail, alertasuccess } from './alertas';
 
 export function HomeMongo() {
-
+  const MySwal = withReactContent(Swal)
+ 
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
@@ -17,6 +21,14 @@ export function HomeMongo() {
   const [cargando, setCargando] = useState(true);
   const [materias, setMaterias] = useState([]);
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
   useEffect(() => {
     obtenerMaterias(curso)
     .then(data => (setMaterias(data)));
@@ -30,17 +42,17 @@ export function HomeMongo() {
     
   }, [curso])
 
-  const checkearRespuesta = (correcta, num) => {
+  const checkRespuesta = (c, num, id) => {
     const respuesta = document.querySelector(`input[name=opciones${num}]:checked`).value;
-    if(respuesta === correcta) {
-      alert("respuesta correcta");
-      setShow(!show);
+    if(respuesta === c) {
+      alertasuccess();
+      setShow(true)
     } else if (respuesta === null) {
       alert("debe seleccionar una respuesta") 
     } else {
-      alert("respuesta incorrecta")
+      alertafail()
     }
-    console.log(respuesta)
+    // console.log(respuesta)
   }
   
   const useHistorial = () => {
@@ -65,20 +77,43 @@ export function HomeMongo() {
   const historialConta9 = useHistorial([0])
 
   const reiniciar = () => {
-    let respuesta = window.confirm("Esas son todas las preguntas, ¿desea reiniciar?");
-    if(respuesta) {
-      switch (curso) {
-        case "impuestos": historialImp.reiniciarh(); break
-        case "conta7": historialConta.reiniciarh(); break
-        case "finanzas": historialFinanzas.reiniciarh(); break
-        case "judicial": historialJudicial.reiniciarh(); break
-        case "auditoria": historialAuditoria.reiniciarh(); break
-        case "conta9": historialConta9.reiniciarh(); break
-  
-    }} else {
 
-    }
-  }
+    swalWithBootstrapButtons.fire({
+      title: 'Desea reiniciar el contador?',
+      text: "Ya has visto todas las preguntas de esta sección!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, reiniciar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        switch (curso) {
+          case "impuestos": historialImp.reiniciarh(); break
+          case "conta7": historialConta.reiniciarh(); break
+          case "finanzas": historialFinanzas.reiniciarh(); break
+          case "judicial": historialJudicial.reiniciarh(); break
+          case "auditoria": historialAuditoria.reiniciarh(); break
+          case "conta9": historialConta9.reiniciarh(); break;}
+
+        swalWithBootstrapButtons.fire(
+          'Reiniciado!',
+          'Ya puedes volver a sortear preguntas :)',
+          'success'
+        );
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'La funcion aleatorio no funcionara :(',
+          'error'
+        )
+      }
+    })
+      
+      }
  
   const random = () => {
     const indice = Math.floor(Math.random() * preguntas.length)
@@ -121,7 +156,7 @@ export function HomeMongo() {
       }
       setCurrent(indice);
     } else if(indice >= preguntas.length) {
-      alert("No hay mas preguntas")
+      MySwal.fire({icon: 'info', title: <p>No hay mas preguntas</p> });
     } 
     setShow(false);   
   }
@@ -204,7 +239,7 @@ export function HomeMongo() {
           </div>
           {cargando ? <Spinner></Spinner> : 
         preguntas.map((p, num) => {
-          if (preguntas.indexOf(p) === current)
+          if (preguntas.indexOf(p) === current){
           return (
             <div
             key={p.id}>
@@ -223,7 +258,8 @@ export function HomeMongo() {
                 : ""
         }
               {p.tipo === "Normal" &&
-              <div>             
+              <div>  
+                <div>           
               <div
                 className='home-pregunta'>
               <ReactMarkdown
@@ -231,13 +267,14 @@ export function HomeMongo() {
                 {p.pregunta}              
               </ReactMarkdown>
               </div>
-              <hr></hr>
+              
               <button
               className='boton home-boton'
               onClick={() => setShow(!show)}>
                 {show ? "Ocultar Respuesta" : "Mostrar Respuesta" }
               </button>
               <div>
+                </div>
         </div>
               <hr></hr> 
               </div>
@@ -282,7 +319,7 @@ export function HomeMongo() {
         <br></br>
         <button
               className='boton home-boton'
-              onClick={() => checkearRespuesta(p.correcta, num)}>
+              onClick={() => checkRespuesta(p.correcta, num)}>
                 Controlar Respuesta
               </button>
               <hr></hr> 
@@ -304,7 +341,8 @@ export function HomeMongo() {
         }
             </div>
             
-          )
+          )  
+        }
         })}</div>}
       </main>
       

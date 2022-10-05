@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { eliminarPregunta } from '../servicios/preguntas/eliminarPregunta';
 import { obtenerPregunta, obtenerSeccion } from '../servicios/preguntas/obtenerPregunta';
 import { FormAgregarPregunta } from './formAgregarPregunta';
@@ -10,7 +9,7 @@ import { useAuth } from '../../context/AuthContext';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Spinner } from '../Login/Spinner';
-import { async } from '@firebase/util';
+import { alertafail, alertasuccess } from '../alertas';
 
 export function MostrarPregunta(props) {
 
@@ -63,12 +62,12 @@ export function MostrarPregunta(props) {
     const checkRespuesta = (c, num, id) => {
         const respuesta = document.querySelector(`input[name=opciones${num}]:checked`).value;
         if(respuesta === c) {
-          alert("respuesta correcta");
-          document.getElementById(id).style.display = 'block'
+         alertasuccess()
+          document.getElementById(`respuesta-${id}`).style.display = 'block'
         } else if (respuesta === null) {
           alert("debe seleccionar una respuesta") 
         } else {
-          alert("respuesta incorrecta")
+          alertafail()
         }
         // console.log(respuesta)
       }
@@ -106,9 +105,6 @@ export function MostrarPregunta(props) {
                 className='cuadro'
                 id={p.id}
                 key={p.id}>           
-                  {p.tipo === "Normal" &&
-                  <div
-                  >
 								<p>
                  Pregunta Nº {1 + num}:
                  </p>
@@ -116,6 +112,8 @@ export function MostrarPregunta(props) {
                   remarkPlugins={[remarkGfm]}>
 									{p.pregunta}
                   </ReactMarkdown>
+                  {p.tipo === "Normal" &&
+                  <div>
                 <div>
                 <button
                   className='boton respuesta-show'
@@ -130,59 +128,38 @@ export function MostrarPregunta(props) {
                   Ocultar Respuesta
                 </button>
                 </div>
+                
                 <div
                 id={"respuesta-"+p.id}
                 className='respuesta-hide show-element'>
+                  <hr></hr>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}>
                   {p.respuesta}
                 </ReactMarkdown>
-                </div>
-                {edit &&
-                <div
-                className='botones-editar'>
-                <button
-                onClick={() => irModificarPregunta(p)}
-                className='btn btn-primary'>
-                  Modificar
-                </button>
-                <button
-                onClick={() => (eliminar(p.id))}
-                className='btn btn-danger'>
-                  Eliminar
-                </button>
-                </div> 
-            }
-                
+                </div>            
                 </div>
                 }
                 {p.tipo === "Multiple" &&
                   <div>
-								<p>
-                Pregunta Nº {1 + num}:
-                </p>
-                <ReactMarkdown
-                remarkPlugins={[remarkGfm]}>
-									{p.pregunta}
-                </ReactMarkdown>
                 <div
                 className='opciones'>
-                  <div>
+                  <label>
                 <input name={`opciones${num}`} type="radio" value="a"/>
                 {`a) ${p.opciones.a}`}  
-                </div>
-                <div>           
+                </label>
+                <label>           
                 <input name={`opciones${num}`} type="radio" value="b"/>
                 {`b) ${p.opciones.b}`}
-                  </div>   
-                  <div>          
+                  </label>   
+                  <label>          
                 <input name={`opciones${num}`} type="radio" value="c"/>
                 {`c) ${p.opciones.c}`}
-                </div>
-                <div>
+                </label>
+                <label>
                 <input name={`opciones${num}`} type="radio" value="d"/>
                 {`d) ${p.opciones.d}`}
-                </div>
+                </label>
                 <button
                 className='home-boton'
                 onClick={() => checkRespuesta(p.correcta, num, p.id)}>
@@ -190,14 +167,18 @@ export function MostrarPregunta(props) {
                 </button>
                 </div>
                 <div
-                className='hide show-element'>
+                id={`respuesta-${p.id}`}
+                className='respuesta-hide show-element'>
                   <p>La respuesta correcta es: {p.correcta}</p>
+                  <hr></hr>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}>
                   {p.respuesta}
                 </ReactMarkdown>
+                </div>        
                 </div>
-                {edit &&
+                }
+                 {edit &&
                 <div
                 className='botones-editar'>
                 <button
@@ -211,10 +192,8 @@ export function MostrarPregunta(props) {
                   Eliminar
                 </button>
                 </div> 
-            }
                 
-                </div>
-                }
+            }
                 </div>
 							)
 							})        

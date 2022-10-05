@@ -15,6 +15,7 @@ const [curso, setCurso] = useState("impuestos");
 const [materias, setMaterias] = useState([]);
 const [cargando, setCargando] = useState(true);
 const [titulos, setTitulos] = useState([])
+const [valorBuscado, setValorBuscado] = useState("")
 
 useEffect(() => {
   obtenerMaterias(curso)
@@ -22,7 +23,7 @@ useEffect(() => {
 
   obtenerDatosTitulos(curso)
   .then(data => setTitulos(data))
-}, [])
+}, [curso])
 
 useEffect(() => {
   setCargando(true)
@@ -33,7 +34,7 @@ useEffect(() => {
 
 
 const find = (valor) => {
-
+  setValorBuscado(valor)
   const respuesta = []
   const datos = cursoDatos.map(a => a.enunciado);
 
@@ -43,7 +44,7 @@ const find = (valor) => {
       
     )
   ).map((z, num) => z.filter(b => {
-  if(b.includes(valor)) {
+  if(b.includes(valor) || b.includes(valor.toLowerCase().replace(/[-º°`'".,]/g, ''))) {
     let titus = ""
     for(let i = 0; i < titulos.length; i++) {
     if(titulos[i].secciones.indexOf(cursoDatos[num].nombre) !== -1){
@@ -109,16 +110,20 @@ return (
       
       </form>
       </div>
+      {resultados.length !== 0 &&
+      <p>Se encontraron {resultados.length} resultados</p>
+      }
+      
+
       <div
       className="contenedorpreguntas">
         {cargando ? <Spinner></Spinner> :
-        
-      resultados.length !== 0 &&
+      resultados.length !== 0 ?
       resultados.map(resultado => {
         return (
           <div>
             <Link 
-            to={`/cursos/impuestos/${resultado.titulo}/${cursoDatos[resultado.seccion].nombre}`}>
+            to={`/cursos/${curso}/${resultado.titulo}/${cursoDatos[resultado.seccion].nombre}`}>
             {cursoDatos[resultado.seccion].nombre}
             </Link>
             
@@ -131,7 +136,7 @@ return (
         </div>
         )
       })
-      
+      : `${valorBuscado}: sin resultados`
       }
       </div>
     </div>

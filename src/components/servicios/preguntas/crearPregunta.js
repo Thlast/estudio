@@ -1,4 +1,8 @@
+
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
+
+import { alertaagregada } from "../../alertas";
+
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
 export const crearPregunta = (preguntaCrear, event) => {
@@ -36,6 +40,6 @@ console.log(data)
             'Content-Type': 'application/json'
         }
     }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response), alert("Pregunta agregada correctamente"));
+    .catch(error => (console.error('Error:', error)))
+    .then(response => console.log('Success:', response), alertaagregada());
 }

@@ -60,11 +60,11 @@
   text-align: center;
   justify-content: center;
   background: var(--console);
-  border-color: #ffffff;
-  border: 2px solid var(--target);
+  border: 1px solid #36363b;
   color: #ffffff;
   gap: 5px;
   min-height: 100px;
+  box-shadow: 0px 0px 3px 1px #3b3b4f;
 }
 
 
@@ -73,6 +73,17 @@
   flex-direction: column;
   gap: 20px;
   padding: 10px;
+  text-align: left;
+}
+.opciones input {
+  width: 20px;
+  height: 20px;
+  color: #22223c;
+}
+.opciones label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .home-boton {
@@ -247,8 +258,8 @@ hr {
   margin-top: 25px;
   margin-bottom: 25px;
   border: 0;
-  border-top: 1px solid #eee;
-  border-top: 1px solid #3b3b4f;
+  border-top: 1px solid #eee !important;
+  border-top: 1px solid #ffffff !important;
 
 }
 .enconsola {
@@ -431,18 +442,27 @@ li {
 .cuadrilla {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 5px;
+  gap: 15px;
   
 }
 
 .examenes {
-  --exaback: #74767a;
-  --exa: #2d3036;
-  background-color: var(--exaback);
+  background-color: #1b1b32;
   min-height: 100vh;
   padding: 20px;
  
 }
+.examen-filtrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+.examen-filtrar button {
+ width: 300px;
+}
+
 .examen {
   height: 200px;
   color: antiquewhite;
@@ -452,12 +472,12 @@ li {
   flex-direction: column;
   min-width: 150px;
   word-wrap: break-word;
-  background-color: var(--exa);
+  background-color: #3b3b4f;
   background-clip: border-box;
-  border: 2px solid rgba(0,0,0,.125);
   border-radius: 0.25rem;
   padding: 15px;
-  
+  text-decoration: none;
+  box-shadow: 0px 0px 3px 1px #3b3b4f;
 }
 .examen .textos {
   justify-content: space-between;
@@ -477,9 +497,9 @@ li {
 
 
 .examen:hover {
+  color: #ffffff;
   box-sizing: border-box;
-  box-shadow: var(--links);
-  border-color: var(--links);
+  box-shadow: 0px 0px 5px 2px #07c9ff;
 }
 
 .pagina-examen {
@@ -625,7 +645,6 @@ display: none;
   display: none;
   background: #0a0a23;
   color: #e5e7e9;
-  height: 50px;
   border: none;
   padding: 10px;
 }
