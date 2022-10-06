@@ -679,6 +679,12 @@ display: none;
   background: #3b3b4f;
 }
 
+.botonespreguntas {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  
+}
 
 @media screen and (max-width: 1000px) {
   .cursos-descripcion {

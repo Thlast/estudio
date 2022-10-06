@@ -1,4 +1,4 @@
-import { alertamodificada } from "../../alertas";
+import { alertasuccess } from "../../alertas";
 
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
@@ -38,5 +38,5 @@ export const modificarPregunta = async (datosPregunta, id, event) => {
     }
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Pregunta modificada:', response), alertamodificada());
+    .then(response => console.log('Pregunta modificada:', response), alertasuccess("Pregunta modificada"));
   }

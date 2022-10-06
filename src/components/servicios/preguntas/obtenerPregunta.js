@@ -31,3 +31,17 @@ export const filtrarPregunta = async (filtro) => {
   return data.json()
 
 }
+
+export const obtenerExamen = async (examenid) => {
+  
+  const data = await fetch(`${urlserver}/preguntas/examen/${examenid}`)
+  return data.json()
+
+}
+
+export const obtenerUsuario = async (usuarioid) => {
+  
+  const data = await fetch(`${urlserver}/preguntas/usuario/${usuarioid}`)
+  return data.json()
+
+}

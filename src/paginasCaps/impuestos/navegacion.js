@@ -61,7 +61,7 @@ return (
         anterior ? 
           <Link 
           to={"/cursos/"+curso+"/"+anterior+"/"+anteriorSeccion}
-          onClick={() => ingresarSeccion(anterior, anteriorSeccion)}
+          onClick={() => ingresarSeccion(anterior, anteriorSeccion, true)}
           className={style.cambioseccion}>
           <p
           className={style.anterior}>{"< "}Anterior Capitulo </p>
@@ -88,7 +88,7 @@ return (
 proximo ?
  <Link 
   to={"/cursos/"+curso+"/"+proximo+"/"+siguienteSeccion}
- onClick={() => ingresarSeccion(proximo, siguienteSeccion)}
+ onClick={() => ingresarSeccion(proximo, siguienteSeccion, false)}
  className={style.cambioseccion}>
  <p
  className={style.siguiente}>Siguiente Capitulo {" >"}</p>

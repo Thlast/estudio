@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { eliminarPregunta } from '../servicios/preguntas/eliminarPregunta';
-import { obtenerPregunta, obtenerSeccion } from '../servicios/preguntas/obtenerPregunta';
+import { obtenerExamen, obtenerPregunta, obtenerSeccion } from '../servicios/preguntas/obtenerPregunta';
 import { FormAgregarPregunta } from './formAgregarPregunta';
 import { FormModificarPregunta } from './formModificarPregunta';
 import { modificarPregunta } from '../servicios/preguntas/modificarPregunta';
@@ -11,33 +11,13 @@ import remarkGfm from 'remark-gfm'
 import { Spinner } from '../Login/Spinner';
 import { alertafail, alertasuccess } from '../alertas';
 
+
 export function MostrarPregunta(props) {
 
+  const {examenid} = props
   const [actualizar, setActualizar] = useState(0);
-
-  const eliminar = async (idpregunta) => {
-    try {
-      await eliminarPregunta(idpregunta);
-      // document.getElementById(idpregunta).remove()
-      console.log("eliminado")
-    } catch (error) {
-      console.log(error)
-    }
-    
-    setActualizar(actualizar+1)
-  }
-
-  const modificarPreguntas = async (mat, tipo, preg, resp, curso, a,b,c,d, correcta, idmodif, seccion, titulo, event) => {
-    await modificarPregunta(mat, tipo, preg, resp, curso, a,b,c,d, correcta, idmodif, seccion, titulo, event);
-    setActualizar(actualizar+1)
-    setModificar(!modificar)
-  }
-  const crearPreguntas = (preguntaCrear, event) => {
-    crearPregunta(preguntaCrear, event);
-    setActualizar(actualizar+1)
-  }
   const {titulo} = props;
-  const {loading} = useAuth();
+  const {user, loading} = useAuth();
   const {seccion} = props;
   const {curso} = props;
   let edit = props.edit;
@@ -46,18 +26,54 @@ export function MostrarPregunta(props) {
   const [preguntaModificar, setPreguntaModificar] = useState({})
   const [cargando, setCargando] = useState(true)
   const {agregar} = props;
+  const [preguntas, setPreguntas] = useState([]);
+  const [misPreguntas, setMisPreguntas] = useState([]);
+  const {eliminarExamen} = props
 
-		useEffect(() => {
-      if(seccion) {
-        obtenerSeccion(curso, seccion)
-        .then(data => (setPreguntas(data), setCargando(false)));
-      } else {
-        obtenerPregunta(curso)
-			.then(data => (setPreguntas(data), setCargando(false)));
-      }
-		}, [seccion, actualizar])
+  console.log(preguntas)
+  useEffect(() => {
+    if(seccion) {
+      obtenerSeccion(curso, seccion)
+      .then(data => (setPreguntas(data), setCargando(false)));
+    } else if (examenid) {
+      obtenerExamen(examenid)
+      .then(data => (setPreguntas(data), setCargando(false)));
+    }
+    else {
+      obtenerPregunta(curso)
+    .then(data => (setPreguntas(data), setCargando(false)));
+    }
+  }, [seccion, actualizar])
 
-		const [preguntas, setPreguntas] = useState([]);
+  const eliminar = async (idpregunta) => {
+    try {
+      await eliminarPregunta(idpregunta);
+      console.log("eliminado")
+    } catch (error) {
+      console.log(error)
+    }
+    setActualizar(actualizar+1)
+  }
+
+  const modificarPreguntas = async (datos, idmodif, event) => {
+    try {
+      await modificarPregunta(datos, idmodif, event);
+    } catch (error) {
+      console.log(error)
+    }
+    setActualizar(actualizar+1)
+    setModificar(!modificar)
+  }
+  const crearPreguntas = (preguntaCrear, event) => {
+    try {
+      crearPregunta(preguntaCrear, event);
+      setActualizar(actualizar+1)
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
 
     const checkRespuesta = (c, num, id) => {
         const respuesta = document.querySelector(`input[name=opciones${num}]:checked`).value;
@@ -80,6 +96,11 @@ export function MostrarPregunta(props) {
       setPreguntaModificar(p)
     }
   
+    const filtrarMisPreguntas = () => {
+
+      setPreguntas(preguntas.filter(p => p.user === user.uid))
+    }
+
     const mostrar = (id) => {
       document.getElementById("respuesta-"+id).style.display = 'block';
       document.getElementById("ocultar-"+id).style.display = 'block';
@@ -98,6 +119,25 @@ export function MostrarPregunta(props) {
         cargando ? <Spinner></Spinner> :
         <div 
         className={"contenedorpreguntas"}>
+          <div
+          className='botonespreguntas'>
+          {examenid ? "" :
+          <button
+          className='home-boton'
+          onClick={() => filtrarMisPreguntas()}>
+            Mostrar solo mis preguntas
+          </button>
+}
+          {edit & examenid !== undefined ?
+          <button
+          className='eliminarexamen btn-danger'
+          onClick={() => eliminarExamen(preguntas)}>
+            eliminar examen
+          </button>
+          : ""
+}
+</div>
+          {/* {misPreguntas !== 0 } */}
           {preguntas.length !== 0 ?
             preguntas.map((p, num) => {
 							return (
@@ -205,6 +245,7 @@ export function MostrarPregunta(props) {
 
             {agregar & !modificar ?
             <FormAgregarPregunta 
+              examenid={examenid}
               crearPregunta={crearPreguntas}
               titulo={titulo}
               seccion={seccion} 
@@ -214,6 +255,7 @@ export function MostrarPregunta(props) {
             {modificar &&
             <div>
             <FormModificarPregunta 
+              examenid={examenid}
               cancelar={cancelar}
               titulo={titulo}
               seccion={seccion} 

@@ -1,7 +1,7 @@
 
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 
-import { alertaagregada } from "../../alertas";
+import { alertasuccess } from "../../alertas";
 
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
@@ -29,8 +29,9 @@ opciones: {
 correcta: preguntaCrear.correcta,
 curso: preguntaCrear.curso,
 seccion: preguntaCrear.seccion,
-titulo: preguntaCrear.titulo
-
+titulo: preguntaCrear.titulo,
+examen: preguntaCrear.examen,
+user: preguntaCrear.user
 };
 console.log(data)
     fetch(url, {
@@ -41,5 +42,5 @@ console.log(data)
         }
     }).then(res => res.json())
     .catch(error => (console.error('Error:', error)))
-    .then(response => console.log('Success:', response), alertaagregada());
+    .then(response => console.log('Success:', response), alertasuccess("Pregunta agregada"));
 }

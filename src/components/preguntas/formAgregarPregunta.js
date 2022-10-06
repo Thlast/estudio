@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePreguntaForm } from './usePregunta';
+import { obtenerMaterias } from '../servicios/cursos/obtenerCurso';
+import { useAuth } from '../../context/AuthContext';
 
 export function FormAgregarPregunta(props) {
 
@@ -7,6 +9,15 @@ export function FormAgregarPregunta(props) {
     const {crearPregunta} = props;
     const {seccion} = props;
     const {curso} = props;
+    const {examenid} = props;
+    const [materias, setMaterias] = useState([]);
+    const {user} = useAuth();
+
+    useEffect(() => {
+      obtenerMaterias()
+      .then(data => (setMaterias(data)));
+      
+    }, [])
     
    const preguntaCrear = usePreguntaForm({
     preg: "",
@@ -22,12 +33,10 @@ export function FormAgregarPregunta(props) {
     correcta: "a",
     titulo: titulo,
     seccion: seccion,
+    examen: examenid,
+    user: user.uid
    })
 
-    const limpiarPregunta = () => {
-     
-
-    }
     return (
       <form
       className='form-container'
@@ -38,6 +47,31 @@ export function FormAgregarPregunta(props) {
         // preguntaCrear.handleSubmit
       }
         >
+          {examenid || seccion !== undefined ? "" :
+          <div>
+      <select 
+        required
+        onChange={preguntaCrear.handleChange} 
+        class="boton home-boton" 
+        value={preguntaCrear.curso}
+        name="curso"
+        for="materias">
+          <option
+          selected="selected">
+            Selecciona un curso
+          </option>
+    {materias.map(a => {
+          return (
+      <option 
+      key={"materia-"+a.id}
+      value={a.id}>
+        {a.nombre}
+      </option>      
+       )
+      })}
+   </select>
+     </div>
+     }  
         <div>
         <select required 
         onChange={preguntaCrear.handleChangeTipo}
@@ -159,6 +193,7 @@ export function FormAgregarPregunta(props) {
           </label>
           </div>    
          <button 
+            type='submit'
             class="boton btn-primary" >
             Agregar
           </button>            

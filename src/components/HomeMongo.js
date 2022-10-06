@@ -30,7 +30,7 @@ export function HomeMongo() {
   })
   
   useEffect(() => {
-    obtenerMaterias(curso)
+    obtenerMaterias()
     .then(data => (setMaterias(data)));
     
   }, [])
@@ -45,12 +45,12 @@ export function HomeMongo() {
   const checkRespuesta = (c, num, id) => {
     const respuesta = document.querySelector(`input[name=opciones${num}]:checked`).value;
     if(respuesta === c) {
-      alertasuccess();
+      alertasuccess("Respuesta correcta");
       setShow(true)
     } else if (respuesta === null) {
       alert("debe seleccionar una respuesta") 
     } else {
-      alertafail()
+      alertafail("Respuesta incorrecta")
     }
     // console.log(respuesta)
   }

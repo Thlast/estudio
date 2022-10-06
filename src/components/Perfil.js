@@ -5,9 +5,10 @@ import { Buscador } from './buscador';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { filtrarPregunta } from './servicios/preguntas/obtenerPregunta';
 
+
 export function Perfil() {
 
-    const {user, logout, loading} = useAuth();
+    const {loading} = useAuth();
     const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
     const [agregar, setAgregar] = useState(false);
     const [buscador, setBuscador] = useState(false);
@@ -35,7 +36,7 @@ export function Perfil() {
       setAgregar(false)
       setMostrarPreguntas(false)
     }
-
+    
     if(loading) return <h1>Loading...</h1>
   
     return (
@@ -55,7 +56,7 @@ export function Perfil() {
                 <button 
                 className='perfil-boton'
                 onClick={() => most()}>
-                   Todas mis preguntas
+                   Mostrar preguntas
                 </button>
                 </li>
                 <hr></hr>

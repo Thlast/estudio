@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
 import { obtenerDatosConsola, obtenerDatosSeccion } from "../../components/servicios/cursos/obtenerSeccion";
@@ -131,7 +131,7 @@ clickCode()
       editar()
     }
 }    
-const ingresarSeccion = (proximo, navegarSeccion) => {
+const ingresarSeccion = (proximo, navegarSeccion, volver) => {
   setDic("");
   setCodes(document.querySelectorAll('code'));
   clickCode(codes);
@@ -142,8 +142,14 @@ const ingresarSeccion = (proximo, navegarSeccion) => {
   if(edit) {
     editar()
   }
+  let alert = "";
+  if(volver === true) {
+    alert = `Regresando a: '${proximo}'`
+  } else {
+    alert = `Has finalizado '${titulo}'!, siguiente: '${proximo}'`
+  }
   Swal.fire({
-    title: `Has finalizado el capitulo ${titulo}, pasando a ${proximo}`,
+    title: alert,
     width: 550,
     padding: '0',
     color: '#716add',
@@ -160,18 +166,15 @@ const ingresarSeccion = (proximo, navegarSeccion) => {
 
     return (
       <div>
-        {/* {cargando ? "...Cargando" : */}
       <div className="capitulos">
       
          <div class="secciones">
           <div
           className={style.cursotitulo}>
-            <a className="aa"
-            href={"/cursos/"+curso}>
-            <span>
-            {curso}
-            </span>          
-           </a>
+            <Link className="aa"
+            to={"/cursos/"+curso}>
+            {curso}  
+          </Link>
            <span
            className={style.titulo}>
             {titulo}

@@ -1,22 +1,31 @@
-import { collection, getDoc, addDoc, deleteDoc, doc, getDocs, updateDoc} from 'firebase/firestore';
+import { collection, getDoc, addDoc, deleteDoc, doc, updateDoc} from 'firebase/firestore';
 import React, {useEffect, useState} from "react";
-import {Navigate, useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { db } from "../firebase";
-import { AgregarPregunta } from './Agregar';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Spinner } from './Login/Spinner';
-
+import { MostrarPregunta } from './preguntas/mostrarPregunta';
+import { eliminarPregunta } from './servicios/preguntas/eliminarPregunta';
+import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2'
 
  export const Examen = () => {
-  
+    const MySwal = withReactContent(Swal)
     const {id} = useParams();
     const [cargando, setCargando] = useState(true);
     const [examen, setExamen] = useState({});
     const examenesCollectionRef = collection(db, "examenes");
-    const {user, logout} = useAuth();
+    const {user} = useAuth();
     const navigate = useNavigate();
-    
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
     useEffect(
         ()=>{
             async function request(){
@@ -35,34 +44,6 @@ import { Spinner } from './Login/Spinner';
         []
     )
 
-    const [materias, setMaterias] = useState([]);
-    const materiasCollectionRef = collection(db, "materias");
-
-    const [preguntas, setPreguntas] = useState([]);
-    const preguntasCollectionRef = collection(db, "preguntas");
-//Cargar la base de datos:
-const getMaterias = async () => {
-  const data = await getDocs(materiasCollectionRef);
-  setMaterias(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-  // console.log(data);
-}
-const getPreguntas = async () => {
-  const data = await getDocs(preguntasCollectionRef);
-  setPreguntas(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-  // console.log(data);
-}
-    useEffect(() => {
-      
-      getPreguntas()
-      getMaterias()
-    }, [])
-
-
-    const eliminarPregunta = async (id) => {
-        await deleteDoc(doc(db, 'preguntas', id));
-        getPreguntas();
-      }
-    
 
       const mostrar = (num) => {
         document.getElementById(num).style.display = 'block';
@@ -81,22 +62,9 @@ const getPreguntas = async () => {
       const [materia, setMateria] = useState();
       const [descripcion, setDescripcion] = useState();
 
-      const [idPre, setIdPre] = useState();
-      const [preg, setPreg] = useState();
-      const [resp, setResp] = useState();
-      const [mat, setMat] = useState("Contabilidad VII");
-
       const [mod, setMod] = useState(false);
-      const [agregarpregunta, setAgregarPregunta] = useState(true);
 
-      const modificar = (id, preg, respu) => {
-        setPreg(preg);
-        setResp(respu);
-        setIdPre(id);
-        setMod(!mod);
-        setAgregarPregunta(!agregarpregunta);
-        
-      }
+
       const modificarNombre = (nombre) => {
         updateDoc(doc(db, "examenes", id), {nombre})
       }
@@ -136,57 +104,51 @@ const getPreguntas = async () => {
         }
       }
 
-      const modificarPregunta = async (id, materia, pregunta, respuesta) => {
-        await updateDoc(doc(db, 'preguntas', id), {materia, pregunta, respuesta});
-      
-      }
-    
-      const modPreg = async () => {
-        try {
-        await modificarPregunta(idPre, mat, preg, resp);
-        alert("Pregunta Modificada");
-        getPreguntas();
-        setAgregarPregunta(true);
-        setMod(false);
-        }
-        catch(error) {
-          alert("error")
-        }
-      }
+      const eliminarExamen = async (pregs) => {
 
-      const eliminarExamen = async() => {
-        try{
-        await renderId.map((n) => eliminarPregunta(n));
-        deleteDoc(doc(db, 'examenes', id));
-        alert("Examen Eliminado");
-        navigate("/misexamenes/"+user)
-        // getPreguntas();  
-        }
-        catch(error) {
-          alert("error")
-        }
-        
+        swalWithBootstrapButtons.fire({
+          title: 'Seguro desea eliminar el examen?',
+          text: "Se eliminaran todas las preguntas en este examen",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si, eliminar todo!',
+          cancelButtonText: 'No, cancelar!',
+          reverseButtons: true
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            try{
+              await pregs.map((n) => eliminarPregunta(n.id));
+              deleteDoc(doc(db, 'examenes', id));
+              swalWithBootstrapButtons.fire(
+                'Eliminado!',
+                'navegando a examenes',
+                'success'
+              );
+              navigate("/examenes/")
+              }
+              catch(error) {
+                alert("error" + error)
+              }
+            
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelado',
+              'El examen y las preguntas no se han eliminado',
+              'error'
+            )
+          }
+        })
       }
     
-    const renderPreguntas = ([]);
-    const renderRespuestas = ([]);
-    const renderId = ([]);
-    
-    {preguntas.map((exa) => {
-                  if(exa.examen === id) {
-                    renderPreguntas.push(exa.pregunta);
-                    renderRespuestas.push(exa.respuesta);
-                    renderId.push(exa.id);
-                  }
-              })}
-
     const [most, setMost] = useState(false)
 
     const editar = () => {
       if (user.uid === examen.user) {
         setMod(false);
-        setMost(!most);
-        setAgregarPregunta(true);
+        setMost(!most);    
       }
       else {
         alert("solo el creador tiene permiso a editar")
@@ -198,8 +160,8 @@ const getPreguntas = async () => {
               {cargando ? <Spinner></Spinner> :
               <div>
                 <div>
-                  <Link to={"/misexamenes/"+user.uid}>
-                    volver
+                  <Link to={"/examenes/"}>
+                   {"< "} volver
                   </Link>
                 </div>
                 <div>
@@ -272,116 +234,15 @@ const getPreguntas = async () => {
                  </div>
                  Creado por: {examen.usernombre}
                  <div>
-                 {most &&
-                   <button 
-                   onClick={() => eliminarExamen()}
-                   className='boton btn-danger'>
-                     Eliminar Examen
-                   </button>
-    }
                  </div>
                  <br></br>
                <div class="">
-          {preguntas.filter((exa) => {
-              if(id === exa.examen) {
-                  return exa.pregunta
-                }
-              }).map((pre, num) => {
-                return (
-                    <div key={pre.id} className='cuadro' >
-                        Pregunta {num + 1}:
-                  <li>
-                    {pre.pregunta}
-                  </li>
-                  <br></br>
-                      Respuesta:
-                      <div>
-                      <button 
-                        id={"ocultar"+num}
-                        onClick={() => ocultar(num)} 
-                        class="boton botonocultar">
-                          Ocultar Respuesta
-                      </button>
-                      <button 
-                        id={"mostrar"+num}
-                        onClick={() => mostrar(num)} 
-                        class="boton">
-                          Mostrar Respuesta
-                      </button>
-                      </div>
-              
-                      <p 
-                      id={num}
-                      // style="display:none"
-                      class="respuestaa respuesta">
-                        {pre.respuesta}
-                        </p>
-                      {most &&
-                      <div>
-                      <button
-                      class="boton btn-primary"
-                     
-                      onClick={() => modificar(pre.id, pre.pregunta, pre.respuesta)}
-                      >
-                        <a href="#modificar">
-                          Modificar
-                          </a>
-                        </button>
-                      <button 
-                      onClick={() => eliminarPregunta(pre.id)} 
-                      class="boton btn-danger">Eliminar</button>
-                      </div>
-              }           
-                 </div>
-              );
-            })}
-             {mod &&
-             <div 
-             id='modificar'
-             class="pagina-examen-agregar-preg">
-            <div className="AgregarPregunta">
-         
-            <div>
-              <select required onChange={ e => setMat(e.target.value)} class="dropdown" for="materias">
-                  {materias.map((mat) => {
-                  return (
-                    <option value={mat.nombre}>
-                      {mat.nombre}
-                    </option>
-                  );
-                })}
-                </select>
-                <div>
-                <label class="agregar" for="pregunta">
-                  <textarea class="agregar" required onChange={ e => setPreg(e.target.value)} placeholder="Escribe una pregunta" name="pregunta" type="text">{preg}</textarea>
-                </label>
-                </div>
-                <div>
-                <label 
-                  class="agregar" 
-                  for="respuesta">
-                  <textarea 
-                    class="agregar" 
-                    onChange={ e => setResp(e.target.value)} 
-                    placeholder="Escribe una respuesta" 
-                    name="respuesta" type="text">
-                      {resp}
-                    </textarea>
-                </label>
-                </div>
-                <button 
-                class="boton btn-primary" 
-                onClick={modPreg}>Modificar</button>
-                </div>
-                </div>
-                </div>
-            } 
-            {most &&
-            agregarpregunta &&
-            <div class="pagina-examen-agregar-preg">
-              <AgregarPregunta idexa={id} />
-            </div>
-            }
+               <MostrarPregunta 
+                eliminarExamen={eliminarExamen}
+                examenid={id}
+                agregar={most} 
+                edit={most} 
+                mostrarPreguntas={true} />
           
           </div>
                 </div>}

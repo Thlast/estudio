@@ -6,41 +6,17 @@ import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal)
   
-export const alertasuccess = () => {
+export const alertasuccess = (mensaje) => {
     MySwal.fire({icon: 'success', 
-    title: <p>Respuesta correcta</p>,
+    title: <p>{mensaje}</p>,
     showConfirmButton: false,
     timer: 1500
   });
 }
 
-export const alertafail = () => {
+export const alertafail = (mensaje) => {
     MySwal.fire({icon: 'error', 
-      title: <p>Respuesta incorrecta</p>,
-      showConfirmButton: false,
-      timer: 1500
-    });
-}
-
-export const alertamodificada = () => {
-    MySwal.fire({icon: 'success', 
-    title: <p>Pregunta modificada</p>,
-    showConfirmButton: false,
-    timer: 1500
-  });
-}
-
-export const alertaagregada = () => {
-    MySwal.fire({icon: 'success', 
-      title: <p>Pregunta agregada</p>,
-      showConfirmButton: false,
-      timer: 1500
-    });
-}
-
-export const alertaeliminada = () => {
-    MySwal.fire({icon: 'success', 
-      title: <p>Pregunta eliminada</p>,
+      title: <p>{mensaje}</p>,
       showConfirmButton: false,
       timer: 1500
     });
