@@ -1,40 +1,26 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { obtenerPreguntaMateria } from './servicios/preguntas/obtenerPregunta';
-import { obtenerMaterias } from './servicios/cursos/obtenerCurso';
 import { Spinner } from './Login/Spinner';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import { alertafail, alertasuccess } from './alertas';
+import { alertafail, alertainfo, alertareiniciar, alertasuccess } from './alertas';
+import { useHistorial } from './useHistorial';
+import { MateriasContext } from '../context/MateriasContext';
 
 export function HomeMongo() {
-  const MySwal = withReactContent(Swal)
  
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
   const [curso, setCurso] = useState("impuestos");
   const [cargando, setCargando] = useState(true);
-  const [materias, setMaterias] = useState([]);
-
-  const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: false
-  })
-  
-  useEffect(() => {
-    obtenerMaterias()
-    .then(data => (setMaterias(data)));
-    
-  }, [])
-  
+  const materias = useContext(MateriasContext);
+  const {loading} = useAuth()
+  const [numeroBuscar, setNumeroBuscar] = useState(1)
+console.log(materias)
 
   useEffect(() => {
     obtenerPreguntaMateria(curso)
@@ -42,7 +28,7 @@ export function HomeMongo() {
     
   }, [curso])
 
-  const checkRespuesta = (c, num, id) => {
+  const checkRespuesta = (c, num) => {
     const respuesta = document.querySelector(`input[name=opciones${num}]:checked`).value;
     if(respuesta === c) {
       alertasuccess("Respuesta correcta");
@@ -52,23 +38,8 @@ export function HomeMongo() {
     } else {
       alertafail("Respuesta incorrecta")
     }
-    // console.log(respuesta)
   }
   
-  const useHistorial = () => {
-    const [historial, setHistorial] = useState([0]);
-    const agregar = (i) => { 
-      if(historial.indexOf(i) === -1) {
-      setHistorial(historial.concat(i))}
-    }
-    const reiniciarh = () => setHistorial([current])
-  
-    return {
-      historial,
-      agregar,
-      reiniciarh
-    }
-  }
   const historialImp = useHistorial([0])
   const historialConta = useHistorial([0])
   const historialFinanzas = useHistorial([0])
@@ -76,130 +47,105 @@ export function HomeMongo() {
   const historialAuditoria = useHistorial([0])
   const historialConta9 = useHistorial([0])
 
-  const reiniciar = () => {
-
-    swalWithBootstrapButtons.fire({
-      title: 'Desea reiniciar el contador?',
-      text: "Ya has visto todas las preguntas de esta sección!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Si, reiniciar!',
-      cancelButtonText: 'No, cancelar!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        switch (curso) {
-          case "impuestos": historialImp.reiniciarh(); break
-          case "conta7": historialConta.reiniciarh(); break
-          case "finanzas": historialFinanzas.reiniciarh(); break
-          case "judicial": historialJudicial.reiniciarh(); break
-          case "auditoria": historialAuditoria.reiniciarh(); break
-          case "conta9": historialConta9.reiniciarh(); break;}
-
-        swalWithBootstrapButtons.fire(
-          'Reiniciado!',
-          'Ya puedes volver a sortear preguntas :)',
-          'success'
-        );
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelado',
-          'La funcion aleatorio no funcionara :(',
-          'error'
-        )
-      }
-    })
-      
-      }
- 
-  const random = () => {
-    const indice = Math.floor(Math.random() * preguntas.length)
-    let record = []
-    switch(curso) {
-      case "impuestos": record = historialImp.historial; break;
-      case "conta7": record = historialConta.historial; break;
-      case "finanzas": record = historialFinanzas.historial; break;
-      case "judicial": record = historialJudicial.historial; break;
-      case "auditoria": record = historialAuditoria.historial; break;
-      case "conta9": record = historialConta9.history; break;
+  const identificarCurso = async (e) => {
+    let evaluar = e || curso;
+    switch (evaluar) {
+      case "impuestos": return historialImp; 
+      case "conta7": return historialConta; 
+      case "finanzas": return historialFinanzas; 
+      case "judicial": return historialJudicial; 
+      case "auditoria": return historialAuditoria; 
+      case "conta9": return historialConta9;
     }
-      if (record.indexOf(indice) === -1 && preguntas.length !== record.length) {
-        switch(curso) {
-          case "impuestos": historialImp.agregar(indice); break;
-          case "conta7": historialConta.agregar(indice); break;
-          case "finanzas": historialFinanzas.agregar(indice); break;
-          case "judicial": historialJudicial.agregar(indice); break;
-          case "auditoria": historialAuditoria.agregar(indice); break;
-          case "conta9": historialConta9.agregar(indice); break;
-        }
+  }
+
+  const funcionreiniciar = async () => {
+    await identificarCurso().then(resp => resp.reiniciarh(current))
+  }
+
+  const reiniciar = () => {
+    alertareiniciar(funcionreiniciar)
+  }
+ 
+  const random = async () => {
+    const indice = Math.floor(Math.random() * preguntas.length)
+    await identificarCurso().then(resp => {
+
+      if (resp.historial.indexOf(indice) === -1 && preguntas.length !== resp.historial.length) {
+        resp.agregar(indice)
         setCurrent(indice)
-      } else if (record.indexOf(indice) !== -1 && preguntas.length !== record.length) {
+      } else if (resp.historial.indexOf(indice) !== -1 && preguntas.length !== resp.historial.length) {
         random()
-      } else if (preguntas.length === record.length) {
+      } else if (preguntas.length === resp.historial.length) {
         reiniciar()
-      }
+      }})
     } 
 
-  const siguiente = () => {
+  const siguiente = async () => {
     const indice = current + 1
     if(indice !== preguntas.length) {
-      switch(curso) {
-        case "impuestos": historialImp.agregar(indice); break;
-        case "conta7": historialConta.agregar(indice); break;
-        case "finanzas": historialFinanzas.agregar(indice); break;
-        case "judicial": historialJudicial.agregar(indice); break;
-        case "auditoria": historialAuditoria.agregar(indice); break;
-        case "conta9": historialConta9.agregar(indice); break;
-      }
+      await identificarCurso().then(resp => resp.agregar(indice));
       setCurrent(indice);
     } else if(indice >= preguntas.length) {
-      MySwal.fire({icon: 'info', title: <p>No hay mas preguntas</p> });
+      alertainfo("No hay mas preguntas")
+    } 
+    setShow(false);   
+  }
+  const anterior = async () => {
+    const indice = current - 1
+    if(indice !== -1) {
+      await identificarCurso().then(resp => resp.agregar(indice));
+      setCurrent(indice);
+    } else if(indice <= 0) { 
+
+    } 
+    setShow(false);
+  }
+  
+  const cambiarCurso = async (e) => {
+    setCurso(e);
+    await identificarCurso(e).then(resp => setCurrent(resp.historial[resp.historial.length-1]))
+  }
+
+  const buscarPregunta = async (event, numeroBuscar) => {
+    event.preventDefault();
+    const indice = parseInt(numeroBuscar) - 1
+    if(indice < preguntas.length & indice >= 0) {
+      await identificarCurso().then(resp => resp.agregar(indice));
+      setCurrent(indice);
+    } else if(indice >= preguntas.length) {
+      alertainfo("No existe la pregunta número "+ numeroBuscar + ", número máximo "+ preguntas.length)
     } 
     setShow(false);   
   }
 
-  const anterior = () => {
-    const indice = current - 1
-    if(indice !== -1) {
-      switch(curso) {
-        case "impuestos": historialImp.agregar(indice); break;
-        case "conta7": historialConta.agregar(indice); break;
-        case "finanzas": historialFinanzas.agregar(indice); break;
-        case "judicial": historialJudicial.agregar(indice); break;
-        case "auditoria": historialAuditoria.agregar(indice); break;
-        case "conta9": historialConta9.agregar(indice); break;
-      } setCurrent(indice);
-    } else if(indice <= 0) {
-      
-    } 
-    setShow(false);
-  }
-
-  const cambiarCurso = (e) => {
-    setCurso(e);
-    switch(e) {
-      case "impuestos": setCurrent(historialImp.historial[historialImp.historial.length-1]); break;
-      case "conta7": setCurrent(historialConta.historial[historialConta.historial.length-1]); break;
-      case "finanzas": setCurrent(historialFinanzas.historial[historialFinanzas.historial.length-1]); break;
-      case "judicial": setCurrent(historialJudicial.historial[historialJudicial.historial.length-1]); break;
-      case "auditoria": setCurrent(historialAuditoria.historial[historialAuditoria.historial.length-1]); break;
-      case "conta9": setCurrent(historialConta9.historial[historialConta9.historial.length-1]); break;
-    };
-  }
-
-  console.log(preguntas)
-  const {loading} = useAuth()
-
     return (
     <div className="App">
-    
       <main className="HomeMongo">
-          {loading ? <h1>Loading...</h1>
+          {loading ? <Spinner></Spinner>
       :
       <div>
+        <form
+        className='homebuscar'>
+          <div>
+            <span>
+              Buscar por Nº {" "}
+            </span>
+        <input
+        min={1}
+        max={preguntas.length}
+        onChange={(e) => setNumeroBuscar(e.target.value)}
+        value={numeroBuscar}
+        type="number">
+        </input>
+        <button
+        className='home-botonbuscar'
+        onClick={(event) => buscarPregunta(event, numeroBuscar)}>
+          🔎
+        </button>
+        </div>
+        </form>
+        <br></br>
     <div>
       <select 
         onChange={(e) => cambiarCurso(e.target.value)} 
@@ -228,7 +174,7 @@ export function HomeMongo() {
           <button 
           class="boton home-boton" 
           onClick={() => (random(), setShow(false))}>
-            Pregunta aleatoria ⚄
+            ⚄ Aleatoria ⚄
           </button>
           <button 
           class="boton home-boton" 
@@ -258,43 +204,38 @@ export function HomeMongo() {
                 : ""
         }
               {p.tipo === "Normal" &&
-              <div>  
-                <div>           
+              <div>                   
               <div
-                className='home-pregunta'>
+                className='home-pregunta cuadro'>
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}>
                 {p.pregunta}              
               </ReactMarkdown>
               </div>
-              
+              <br></br>
               <button
               className='boton home-boton'
               onClick={() => setShow(!show)}>
                 {show ? "Ocultar Respuesta" : "Mostrar Respuesta" }
-              </button>
-              <div>
-                </div>
-        </div>
+              </button>      
               <hr></hr> 
               </div>
               }
               {p.tipo === "Multiple" &&
               <div>
               <div
-                className='home-pregunta'> 
+                className='home-pregunta cuadro'> 
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}>
                 {p.pregunta}              
               </ReactMarkdown>
               </div>
               <hr></hr>
-              <div>
+              <div
+              className="home-multiple cuadro">
               <p>
                   Selecciona la opción correcta:
                 </p>
-              <div
-              className="home-pregunta">
               <div
               className='opciones'>
                 <label>
@@ -313,25 +254,23 @@ export function HomeMongo() {
                 <input name={`opciones${num}`} type="radio" value="d"/>
                 {`d) ${p.opciones.d}`}
                 </label>
-                </div>
-              </div>
-        </div>
-        <br></br>
+                </div> 
         <button
               className='boton home-boton'
               onClick={() => checkRespuesta(p.correcta, num)}>
                 Controlar Respuesta
               </button>
-              <hr></hr> 
-              </div>
-              }
+        </div>
+        <hr></hr>
+              </div>    
+              } 
               {show &&
               <div>
                <p>
                La respuesta correcta es: {p.correcta}
              </p>
               <div
-              className="show-element home-pregunta">
+              className="show-element home-pregunta cuadro">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}>
                 {p.respuesta}             
@@ -340,7 +279,6 @@ export function HomeMongo() {
               </div>
         }
             </div>
-            
           )  
         }
         })}</div>}

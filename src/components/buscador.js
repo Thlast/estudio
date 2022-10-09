@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { buscarFiltrado, obtenerMaterias } from "./servicios/cursos/obtenerCurso";
+import React, { useEffect, useState, useContext } from "react"
+import { buscarFiltrado } from "./servicios/cursos/obtenerCurso";
 import { Link } from "react-router-dom";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Spinner } from "./Login/Spinner";
 import { obtenerDatosTitulos } from "./servicios/cursos/obtenerSeccion";
+import { MateriasContext } from "../context/MateriasContext";
 
 export const Buscador = (props) => {
 
@@ -12,14 +13,12 @@ const {buscar} = props;
 const [cursoDatos, setCursoDatos] = useState([]);
 const [resultados, setResultados] = useState([]);
 const [curso, setCurso] = useState("impuestos");
-const [materias, setMaterias] = useState([]);
+const materias = useContext(MateriasContext);
 const [cargando, setCargando] = useState(true);
 const [titulos, setTitulos] = useState([])
 const [valorBuscado, setValorBuscado] = useState("")
 
 useEffect(() => {
-  obtenerMaterias(curso)
-  .then(data => setMaterias(data));
 
   obtenerDatosTitulos(curso)
   .then(data => setTitulos(data))

@@ -1,4 +1,4 @@
-import { collection, getDoc, addDoc, deleteDoc, doc, updateDoc} from 'firebase/firestore';
+import { getDoc, deleteDoc, doc, updateDoc} from 'firebase/firestore';
 import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
@@ -7,160 +7,108 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Spinner } from './Login/Spinner';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { eliminarPregunta } from './servicios/preguntas/eliminarPregunta';
-import withReactContent from 'sweetalert2-react-content'
-import Swal from 'sweetalert2'
+import { alertainfo, alertasuccess, alertafail, alertaexamen } from './alertas';
+import { obtenerAnexadas } from './servicios/preguntas/obtenerPregunta';
 
  export const Examen = () => {
-    const MySwal = withReactContent(Swal)
+
     const {id} = useParams();
     const [cargando, setCargando] = useState(true);
     const [examen, setExamen] = useState({});
-    const examenesCollectionRef = collection(db, "examenes");
     const {user} = useAuth();
     const navigate = useNavigate();
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
+    const [nombre, setNombre] = useState();
+    const [materia, setMateria] = useState();
+    const [descripcion, setDescripcion] = useState();
+    const [most, setMost] = useState(false)
+    const [anexadas, setAnexadas] = useState([])
 
-    useEffect(
-        ()=>{
-            async function request(){
-                try {
-                    const document = await getDoc(doc(db, "examenes/"+id)); 
-                    setCargando(false);
-                    setExamen(document.data());
-                    
-                } catch (e){
-                    console.log("error", e);
-                }
-                
-            }
-            request();
+    useEffect(() => {
+        async function request(){
+            try {
+                const document = await getDoc(doc(db, "examenes/"+id)); 
+                setExamen(document.data());
+                setMateria(document.data().materia);
+                setCargando(false);
+                // setMateria(document.materia);
+            } catch (e){
+                console.log("error", e);
+            }    
+        }
+        request();
+        obtenerAnexadas(id).then(data => setAnexadas(data))
         },
         []
     )
-
-
-      const mostrar = (num) => {
-        document.getElementById(num).style.display = 'block';
-        document.getElementById("mostrar"+num).style.display = 'none';
-        document.getElementById("ocultar"+num).style.display = 'block';
-        
-      }
-      const ocultar = (num) => {
-        document.getElementById(num).style.display = 'none';
-        document.getElementById("mostrar"+num).style.display = 'block';
-        document.getElementById("ocultar"+num).style.display = 'none';
-       
-      }
-
-      const [nombre, setNombre] = useState();
-      const [materia, setMateria] = useState();
-      const [descripcion, setDescripcion] = useState();
-
-      const [mod, setMod] = useState(false);
-
-
       const modificarNombre = (nombre) => {
         updateDoc(doc(db, "examenes", id), {nombre})
       }
-      const modificarMateria = (materia) => {
-        updateDoc(doc(db, "examenes", id), {materia})
-      }
+      // const modificarMateria = (materia) => {
+      //   updateDoc(doc(db, "examenes", id), {materia})
+      // }
       const modificarDescripcion = (descripcion) => {
         updateDoc(doc(db, "examenes", id), {descripcion})
       }
-
       const modNombre = async(nombre) => {
         try {
         await modificarNombre(nombre)
-        alert("nombre modificado")
+        alertasuccess("nombre modificado")
         }
         catch(error) {
-          alert("error")
+          alertafail(`error: ${error}`)
         }
       }
       const modMateria = async(materia) => {
-        try {
-        await modificarMateria(materia)
-        alert("materia modificada")
-        }
-        catch(error) {
-          alert("error")
-        }
+        alertainfo("La opcion de modificar la materia de un examen se encuentra deshabilitada")
+        // try {
+        // await modificarMateria(materia)
+        // alertasuccess("materia modificada")
+        // }
+        // catch(error) {
+        //   alertafail(`error: ${error}`)
+        // }
       }
-
       const modDescripcion = async(descripcion) => {
         try {
         await modificarDescripcion(descripcion)
-        alert("descripcion modificada")
+        alertasuccess("descripcion modificada")
         }
         catch(error) {
-          alert("error")
+          alertafail(`error: ${error}`)
         }
       }
 
       const eliminarExamen = async (pregs) => {
-
-        swalWithBootstrapButtons.fire({
-          title: 'Seguro desea eliminar el examen?',
-          text: "Se eliminaran todas las preguntas en este examen",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Si, eliminar todo!',
-          cancelButtonText: 'No, cancelar!',
-          reverseButtons: true
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            try{
-              await pregs.map((n) => eliminarPregunta(n.id));
-              deleteDoc(doc(db, 'examenes', id));
-              swalWithBootstrapButtons.fire(
-                'Eliminado!',
-                'navegando a examenes',
-                'success'
-              );
-              navigate("/examenes/")
-              }
-              catch(error) {
-                alert("error" + error)
-              }
-            
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
-            swalWithBootstrapButtons.fire(
-              'Cancelado',
-              'El examen y las preguntas no se han eliminado',
-              'error'
-            )
+        const eliminar = async () => {
+          try{
+          await pregs.map((n) => eliminarPregunta(n.id));
+          deleteDoc(doc(db, 'examenes', id));
+          navigate("/examenes/");
           }
-        })
+          catch(error) {
+            alertafail("error" + error)
+          }}
+
+          alertaexamen(eliminar)
+
       }
     
-    const [most, setMost] = useState(false)
-
     const editar = () => {
       if (user.uid === examen.user) {
-        setMod(false);
         setMost(!most);    
       }
       else {
-        alert("solo el creador tiene permiso a editar")
+        alertainfo("solo el creador tiene permiso a editar")
       }
     }
-    
+
         return(
             <div class="pagina-examen">
               {cargando ? <Spinner></Spinner> :
               <div>
                 <div>
-                  <Link to={"/examenes/"}>
+                  <Link 
+                  to={"/examenes/"}>
                    {"< "} volver
                   </Link>
                 </div>
@@ -171,79 +119,90 @@ import Swal from 'sweetalert2'
                     editar
                   </button>
                 </div>
-                <div>
+                <div
+                className='examen-descripcion'>
+                <div
+                className='examen-descripcion-elementos'>
                  Examen: {" "}
                  {most ?
+                <div>
                 <input 
                   class="boton" 
                   placeholder={examen.nombre}
                   onChange={(e) => setNombre(e.target.value)}>
-                </input> : 
+                </input> 
+                <button 
+                className='boton btn-primary'
+                onClick={() => modNombre(nombre)}>
+                modificar
+              </button> 
+                </div>
+                : 
                   <span>
                   {examen.nombre}
                   </span>
- }
-                {most &&
-                    <button 
-                      className='boton btn-primary'
-                      onClick={() => modNombre(nombre)}>
-                      modificar
-                    </button> 
-    }
+ }        
                  </div>
-                
-                 <div>
+                 <div
+                 className='examen-descripcion-elementos'>
                  Materia: 
                  {most ? 
+                 <div>
                   <input 
-                    onChange={(e) => setMateria(e.target.value)}
+                    // onChange={(e) => setMateria(e.target.value)}
                     class="boton" 
                     placeholder={examen.materia}>
-                  </input> : 
+                  </input> 
+                    <button 
+                    onClick={() => modMateria(materia)}
+                    class="boton btn-primary">
+                      modificar
+                    </button>
+                    </div>
+                  : 
                   <span>
                   {examen.materia}
                   </span>
- }
-                  {most &&
-                 <button 
-                 onClick={() => modMateria(materia)}
-                 class="boton btn-primary">
-                   modificar
-                 </button>
-    }
+ }          
                  </div>
-                 <div>
+                 <div
+                 className='examen-descripcion-elementos'>
                  Descripcion: 
                  {most ? 
+                 <div>
                   <input 
                     onChange={(e) => setDescripcion(e.target.value)}
                     class="boton" 
                     placeholder={examen.descripcion}>
-                  </input> : 
+                  </input> 
+                    <button 
+                    onClick={() => modDescripcion(descripcion)}
+                    class="boton btn-primary">
+                      modificar
+                    </button>
+                    </div>
+                  : 
                   <span>
                   {examen.descripcion}
                   </span>
  }
-                  {most &&
-                 <button 
-                 onClick={() => modDescripcion(descripcion)}
-                 class="boton btn-primary">
-                   modificar
-                 </button>
-    }
+                  
                  </div>
-                 Creado por: {examen.usernombre}
-                 <div>
+                 <p>Creado por: {examen.usernombre}</p>
+                 <p>fecha: {examen.fecha}</p>
                  </div>
                  <br></br>
+                 <hr></hr>
                <div class="">
                <MostrarPregunta 
+                anexadas={anexadas}
+                curso={materia}
                 eliminarExamen={eliminarExamen}
                 examenid={id}
                 agregar={most} 
                 edit={most} 
                 mostrarPreguntas={true} />
-          
+          <hr></hr>
           </div>
                 </div>}
             </div>

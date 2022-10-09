@@ -43,7 +43,6 @@ export function Curso() {
         {"<"} Volver a cursos
         </Link>
         <div class="cursos-container">
-        
             <div class='cursos-descripcion'>
             
           {cargando ? "":
@@ -61,17 +60,18 @@ export function Curso() {
           curs[0].capitulos.map((c, num) => {
                  
           return (
-              <div>
+              <div
+              key={"curso-"+c.nombre+num}>
               <div class="cuadro-curso">
           <div class="bloque-curso">
-              <h3>
+              <h3
+              id={c.nombre}>
               {c.nombre}
               </h3>
           </div>
           <div class="bloque-descripcion">
           <p>
             {c.descripcion}
-
           </p>
           <p>Bibliografia:</p>
           <ul>
@@ -85,14 +85,22 @@ export function Curso() {
                 </ul>
             </div>
             <div class="boton-curso">
-                <button class="show boton-curso" id={"mostrar"+num} onClick={() => most(num)}>
+                <button 
+                class="show boton-curso" 
+                id={"mostrar"+num} 
+                onClick={() => most(num)}>
                     Expandir curso
                 </button>
-                <button class="hide boton-curso" id={"ocultar"+num} onClick={() => ocultar(num)}>
+                <button 
+                class="hide boton-curso" 
+                id={"ocultar"+num}
+                onClick={() => ocultar(num)}>
                     Ocultar curso
                 </button>
             </div>
-            <ul className={style.contenedor} id={"capitulo"+num}>
+            <ul 
+            className={style.contenedor} 
+            id={"capitulo"+num}>
             {
             c.desarrollo.map((t) => {
             return (

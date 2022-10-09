@@ -11,10 +11,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cursos } from './components/Cursos'
 import { Curso } from './components/Curso'
 import { Impcaps } from './paginasCaps/impuestos/impcaps';
-import { Impuestos } from './components/impuestos';
-import { AgregarMongo } from './components/agregarmongo';
+// import { Impuestos } from './components/impuestos';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
+import { DataProvider } from './context/MateriasContext';
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
   document.title = 'Estudio'
 
   return (
-
+    <DataProvider>
     <AuthProvider>
       <Nav />
       <Routes>
@@ -42,14 +42,6 @@ function App() {
             </ProtectedRoute>
           } 
         />
-          <Route 
-          path="/agregarmongo" 
-            element={
-              <ProtectedRoute> 
-                <AgregarMongo />
-              </ProtectedRoute>
-            } 
-          />
         <Route 
           path="/perfil" 
             element={
@@ -101,7 +93,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           </Routes>
+
     </AuthProvider>
+    </DataProvider>
   )
 }
 

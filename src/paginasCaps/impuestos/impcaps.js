@@ -175,10 +175,11 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
             to={"/cursos/"+curso}>
             {curso}  
           </Link>
-           <span
+           <Link
+           to={"/cursos/"+curso}
            className={style.titulo}>
             {titulo}
-           </span>        
+            </Link>        
         </div>
         <hr></hr>
         <div

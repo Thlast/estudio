@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { usePreguntaForm } from './usePregunta';
-import { obtenerMaterias } from '../servicios/cursos/obtenerCurso';
+import { MateriasContext } from '../../context/MateriasContext';
 import { useAuth } from '../../context/AuthContext';
 
 export function FormAgregarPregunta(props) {
 
     const {titulo} = props;
-    const {crearPregunta} = props;
+    const {crearPreguntas} = props;
     const {seccion} = props;
     const {curso} = props;
     const {examenid} = props;
-    const [materias, setMaterias] = useState([]);
+    const materias = useContext(MateriasContext)
     const {user} = useAuth();
-
-    useEffect(() => {
-      obtenerMaterias()
-      .then(data => (setMaterias(data)));
-      
-    }, [])
     
    const preguntaCrear = usePreguntaForm({
     preg: "",
@@ -43,11 +37,11 @@ export function FormAgregarPregunta(props) {
       onSubmit={
         // preguntaCrear.handleSubmit}
         (event) =>
-        crearPregunta(preguntaCrear.datosPregunta, event)
+        crearPreguntas(preguntaCrear.datosPregunta, event)
         // preguntaCrear.handleSubmit
       }
         >
-          {examenid || seccion !== undefined ? "" :
+          {curso !== undefined ? "" :
           <div>
       <select 
         required

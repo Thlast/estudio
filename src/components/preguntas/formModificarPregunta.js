@@ -10,10 +10,11 @@ export function FormModificarPregunta(props) {
   const {titulo} = props;
   const {seccion} = props;
   const {id} = preguntaModificar;
+  const indice = preguntaModificar.indice
 
     const datosmodificar = usePreguntaForm({
-    preg: preguntaModificar.pregunta,
-    resp: preguntaModificar.respuesta,
+    pregunta: preguntaModificar.pregunta,
+    respuesta: preguntaModificar.respuesta,
 		tipo: preguntaModificar.tipo,
     curso: preguntaModificar.curso,
       a: preguntaModificar.opciones.a,
@@ -24,14 +25,14 @@ export function FormModificarPregunta(props) {
     titulo: titulo,
     seccion: seccion,
   })
-
+// console.log(preguntaModificar)
 return (
   <div>
   
   <form
   className='form-container'
   onSubmit={
-    (event) => modificarPregunta(datosmodificar.datosPregunta, id, event)}>
+    (event) => modificarPregunta(datosmodificar.datosPregunta, indice, id, event)}>
     <div>
     <select required 
     onChange={datosmodificar.handleChangeTipo} 
@@ -53,9 +54,9 @@ return (
         <textarea className="form-pyr" required 
         onChange={datosmodificar.handleChange} 
         placeholder="Escribe una pregunta" 
-        name="preg" 
+        name="pregunta" 
         type="text" 
-        value={datosmodificar.datosPregunta.preg}>
+        value={datosmodificar.datosPregunta.pregunta}>
 
         </textarea>
       </label>
@@ -146,9 +147,9 @@ return (
         <textarea className="form-pyr" 
         onChange={datosmodificar.handleChange} 
         placeholder="Escribe una respuesta o explicación" 
-        name="resp" 
+        name="respuesta" 
         type="text" 
-        value={datosmodificar.datosPregunta.resp}>
+        value={datosmodificar.datosPregunta.respuesta}>
 
         </textarea>
       </label>

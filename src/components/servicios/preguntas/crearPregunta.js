@@ -5,10 +5,10 @@ import { alertasuccess } from "../../alertas";
 
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
-export const crearPregunta = (preguntaCrear, event) => {
+export const crearPregunta = async (preguntaCrear, event) => {
     const url = `${urlserver}/preguntas`;
     event.preventDefault();
-
+let respuesta = {}
 if(preguntaCrear.tipo == "Normal") {
 preguntaCrear.a = null;
 preguntaCrear.b = null;
@@ -34,7 +34,7 @@ examen: preguntaCrear.examen,
 user: preguntaCrear.user
 };
 console.log(data)
-    fetch(url, {
+    await fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
         headers:{
@@ -42,5 +42,10 @@ console.log(data)
         }
     }).then(res => res.json())
     .catch(error => (console.error('Error:', error)))
-    .then(response => console.log('Success:', response), alertasuccess("Pregunta agregada"));
+    .then(response => (
+        console.log('Pregunta agregada:', response), 
+        alertasuccess("Pregunta agregada"),
+        respuesta = response)
+        )
+    return respuesta
 }

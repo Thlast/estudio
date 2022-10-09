@@ -85,7 +85,11 @@ export function Perfil() {
             <Buscador 
             buscar={buscar} />
             }     
-            <MostrarPregunta agregar={agregar} edit={true} mostrarPreguntas={mostrarPreguntas} /> 
+            <MostrarPregunta 
+            perfil={true}
+            agregar={agregar} 
+            edit={true} 
+            mostrarPreguntas={mostrarPreguntas} /> 
             </div>
       </main>
       </div>

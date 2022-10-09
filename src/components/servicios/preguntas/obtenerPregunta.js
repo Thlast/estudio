@@ -38,6 +38,12 @@ export const obtenerExamen = async (examenid) => {
   return data.json()
 
 }
+export const obtenerAnexadas = async (examenid) => {
+
+  const data = await fetch(`${urlserver}/preguntas/anexo/examen/${examenid}`)
+  return data.json()
+
+}
 
 export const obtenerUsuario = async (usuarioid) => {
   
@@ -45,3 +51,4 @@ export const obtenerUsuario = async (usuarioid) => {
   return data.json()
 
 }
+
