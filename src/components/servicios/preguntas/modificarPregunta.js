@@ -74,3 +74,30 @@ export const modificarPregunta = async (datosPregunta, id, event) => {
         )
         return respuesta
     }
+    
+
+    export const desanexarExamen = async (examenid, id) => {
+      const url = `${urlserver}/preguntas/exa/desanexarexamen/${id}`;
+      // event.preventDefault();
+      let respuesta = {}
+      
+      let preguntaModificada = {  
+          examenes: examenid
+        };
+          // console.log(preguntaModificada, typeof id)
+    
+          await fetch(url, {
+          method: 'PUT',
+          body: JSON.stringify(preguntaModificada),
+          headers:{
+          'Content-Type': 'application/json'
+        }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => 
+          (console.log('Pregunta modificada:', response), 
+          alertasuccess("Pregunta quitada correctamente del examen"),
+          respuesta = response)
+          )
+          return respuesta
+      }

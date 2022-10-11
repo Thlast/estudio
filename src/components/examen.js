@@ -9,6 +9,7 @@ import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { eliminarPregunta } from './servicios/preguntas/eliminarPregunta';
 import { alertainfo, alertasuccess, alertafail, alertaexamen } from './alertas';
 import { obtenerAnexadas } from './servicios/preguntas/obtenerPregunta';
+import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
 
  export const Examen = () => {
 
@@ -78,10 +79,17 @@ import { obtenerAnexadas } from './servicios/preguntas/obtenerPregunta';
         }
       }
 
+      const quitar = async (examenid, idepregunta) => {
+
+        await desanexarExamen(examenid, idepregunta)
+        
+      }
+
       const eliminarExamen = async (pregs) => {
         const eliminar = async () => {
           try{
           await pregs.map((n) => eliminarPregunta(n.id));
+          await anexadas.map((n) => quitar(id, n.id));
           deleteDoc(doc(db, 'examenes', id));
           navigate("/examenes/");
           }
@@ -195,6 +203,7 @@ import { obtenerAnexadas } from './servicios/preguntas/obtenerPregunta';
                  <hr></hr>
                <div class="">
                <MostrarPregunta 
+                quitar={quitar}
                 anexadas={anexadas}
                 curso={materia}
                 eliminarExamen={eliminarExamen}

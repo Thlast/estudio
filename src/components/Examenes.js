@@ -18,7 +18,7 @@ export function Examenes() {
     const examenesCollectionRef = collection(db, "examenes");
     const [cargando, setCargando] = useState(true)
     const [curso, setCurso] = useState()
-    const materias = useContext(MateriasContext);
+    const {materias} = useContext(MateriasContext);
     const [examenBuscar, setExamenBuscar] = useState("")
     const [examenesRender, setExamenesRender] = useState()
 
@@ -49,8 +49,6 @@ export function Examenes() {
           (alertasuccess("Examen agregado correctamente"),
         navigate(`/examenes/${docRef.id}`))
         )
-        
-         // getExamenes();
         } else {
           alertafail("Al menos 3 caracteres")
         }

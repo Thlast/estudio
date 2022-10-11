@@ -20,7 +20,6 @@ export function Curso() {
     
   }, [])
 
-  console.log(curs)
   const most = (e) => {
       document.getElementById("capitulo"+e).style.display = 'block';
       document.getElementById("mostrar"+e).style.display = 'none';

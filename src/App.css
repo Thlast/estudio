@@ -412,8 +412,16 @@ li {
     background-clip: border-box;
     border: 2px solid rgba(0,0,0,.125);
     border-radius: 0.25rem;
-    padding: 15px;
     box-shadow: 0px 0px 5px 2px #3b3b4f;
+}
+.contenedor-opciones {
+  width: 100%;
+}
+
+.pregunta-encabezado {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 40px 10px 40px;
 }
 
 .cuadro-respuesta {
@@ -446,20 +454,42 @@ li {
   width: 30px;
   height: 30px;
   padding-bottom: 5px;
+  font-size: 20px;
 }
+.anexo-pregunta button {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: none;
+  border: none;
+  color: #ffffff;
+}
+
 .quitar {
   position: absolute;
   display: flex;
   flex-direction: row;
   align-items: center;
   right: 10px;
-
+  font-size: 25px;
+  top: 5px;
+}
+.quitar button {
+  
+  background: none;
+  border: none;
+  color: #ffffff;
 }
 .anexo-examen {
   visibility: hidden;
 }
 .anexo-examen select {
   width: 150px;
+}
+.container-anexo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .respuesta {
@@ -627,6 +657,9 @@ li {
     display: flex;
     gap: 5px;
     text-align: center;
+  }
+  .contenedorpreguntas {
+    padding: 0;
   }
 }
 

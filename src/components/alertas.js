@@ -97,3 +97,33 @@ swalWithBootstrapButtons.fire({
   }
 })
 }
+export const alertaquitar = (funcionquitar) => {
+
+  swalWithBootstrapButtons.fire({
+    title: 'Quitar pregunta del examen?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Si, quitar!',
+    cancelButtonText: 'No, cancelar!',
+    reverseButtons: true
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      funcionquitar();
+      swalWithBootstrapButtons.fire(
+        'Se ha quitado la pregunta!',
+        '',
+        'success'
+      )
+    } else if (
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        'La pregunta continúa en el examen',
+        'error'
+      )
+    }
+  })
+
+}

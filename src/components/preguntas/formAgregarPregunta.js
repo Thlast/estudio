@@ -10,7 +10,7 @@ export function FormAgregarPregunta(props) {
     const {seccion} = props;
     const {curso} = props;
     const {examenid} = props;
-    const materias = useContext(MateriasContext)
+    const {materias} = useContext(MateriasContext)
     const {user} = useAuth();
     
    const preguntaCrear = usePreguntaForm({

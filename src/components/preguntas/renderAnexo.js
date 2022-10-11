@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { alertainfo, alertasuccess, alertafail } from '../alertas';
 import {Link} from "react-router-dom";
+import { alertaquitar } from '../alertas';
+
 export function AnexadasExamen(props) {
 
-  const {anexadas} = props
-
+  const {quitar} = props;
+  const {anexadas} = props;
+  const {examenid} = props;
+  const {numpreguntas} = props;
+  const [renderanexadas, setRenderAnexadas] = useState(anexadas)
+  
   const checkRespuesta = (c, num, id) => {
     try {
     const respuesta = document.querySelector(`input[name=opciones${num}]:checked`).value;
@@ -32,14 +38,21 @@ export function AnexadasExamen(props) {
     document.getElementById("ocultar-"+id).style.display = 'none';
   }
 
-  const quitar = () => {
-    
+  const quitarAnexo = (preguntaid) => {
+
+    const funcionquitar = async() => {
+      await quitar(examenid, preguntaid);
+      setRenderAnexadas(renderanexadas.filter(a => a.id !== preguntaid))
+    }
+
+    alertaquitar(funcionquitar)
   }
+  
 
 return (
-  <div>
+  <div className='container-anexo'>
       {anexadas.length !== 0 ?
-        anexadas.map((p, num) => {
+        renderanexadas.map((p, num) => {
           return (
             <div
             className='cuadro cuadro-pregunta'
@@ -48,14 +61,14 @@ return (
             <div
             className='quitar'>
             <button
-            onClick={() => quitar(p.id)}
+            onClick={() => quitarAnexo(p.id)}
             className=''>
-              Quitar
+              -
             </button>
             </div>
               
             <p>
-              Pregunta Nº {1 + num}: {" "}
+              Pregunta Nº {numpreguntas + num + 1}: {" "}
               <Link
               to={`/cursos/${p.curso}/${p.titulo}/${p.seccion}`}>
                 { p.seccion}

@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
 import { obtenerDatosConsola, obtenerDatosSeccion } from "../../components/servicios/cursos/obtenerSeccion";
@@ -8,11 +8,9 @@ import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
 import style from '../../components/modulos css/impcaps.module.css'
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 
 export function Impcaps() {
 
-  const MySwal = withReactContent(Swal)
   const {sec} = useParams();
   const {titulo} = useParams();
   const [cargando, setCargando] = useState(true)
@@ -80,7 +78,7 @@ const clickCode = () => {
   for (let i = 0; i < codes.length; i++) {
    codes[i].onclick = function(e) {
     if(enconsola.indexOf(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')) === -1) {
-      enconsola.push(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, ''));
+      setEnConsola(enconsola.concat(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')));
       setCount(count+1)
      }
     setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, ''));
@@ -161,7 +159,6 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
       no-repeat
     `
   })
-  // console.log(titulo)
 }    
 
     return (
@@ -184,18 +181,18 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
         <hr></hr>
         <div
         className="show-element">
-<NavegacionCursos 
-curso={curso}
-cargando={cargando}
-ingresarSeccion={ingresarSeccion}
-seccion={seccion} 
-ingresar={ingresar} 
-titulo={titulo} />
-<hr></hr>
-<TextoCurso 
-seccion={seccion} 
-enunciado={enunciado} />
-  <hr></hr>
+        <NavegacionCursos 
+        curso={curso}
+        cargando={cargando}
+        ingresarSeccion={ingresarSeccion}
+        seccion={seccion} 
+        ingresar={ingresar} 
+        titulo={titulo} />
+        <hr></hr>
+        <TextoCurso 
+        seccion={seccion} 
+        enunciado={enunciado} />
+          <hr></hr>
         </div>
         </div>
         <div class="reflex-spliter">

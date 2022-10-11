@@ -1,25 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { MateriasContext } from '../context/MateriasContext';
 import { Spinner } from './Login/Spinner';
-import { obtenerMaterias } from './servicios/cursos/obtenerCurso';
 
 export function Cursos() {
 
-    const [cargando, setCargando] = useState(true)
-    const navigate = useNavigate();
-    const [materias, setMaterias] = useState()
+    const {materias} = useContext(MateriasContext)
+    const {cargandoMaterias} = useContext(MateriasContext)
 
-    useEffect(() => {
-      obtenerMaterias()
-      .then(data => (setMaterias(data), setCargando(false)))
-    }, [])
-
-      const ingresar = (e) => {
-        navigate("/cursos/"+e)
-        
-    }    
-    console.log(materias)
 
 return (
   <div className="App">
@@ -30,7 +19,7 @@ return (
           <h1>
             Cursos:
           </h1>
-          {cargando ? <Spinner></Spinner> :
+          {cargandoMaterias ? <Spinner></Spinner> :
           materias.map(m => {
             return (
           <div class="listado-cursos">

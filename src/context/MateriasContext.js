@@ -6,16 +6,19 @@ export const MateriasContext = React.createContext({})
 export function DataProvider ({ children }) {
 
   const [materias, setMaterias] = useState({})
+  const [cargandoMaterias, setCargandoMaterias] = useState(true)
 
   useEffect(() => {
     obtenerMaterias()
-    .then(data => (setMaterias(data)));
+    .then(data => (setMaterias(data), setCargandoMaterias(false)));
     
   }, [])
-  
-console.log(materias)
+
 return (
-    <MateriasContext.Provider value={materias}>
+    <MateriasContext.Provider value={{
+      materias,
+      cargandoMaterias
+    }}>
       { children }
     </MateriasContext.Provider>
 )

@@ -1,5 +1,5 @@
   import React, { useState, useEffect } from 'react';
-  import { useNavigate, Link } from 'react-router-dom';
+  import { Link } from 'react-router-dom';
   import { useAuth } from '../context/AuthContext';
   import { getAuth, updateProfile } from "firebase/auth";
   import {signOut} from "firebase/auth";
@@ -35,9 +35,6 @@ export function Nav() {
     }
     const [edit, setEdit] = useState(false)
 
-    // if(loading) return <h1></h1>
-    
-    // console.log(user)
     return (
       <header className={style.contenedor}>
         {user == null ? 
