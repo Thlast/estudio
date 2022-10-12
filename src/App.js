@@ -58,8 +58,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route 
+          path="/cursos/:curso" 
+            element={
+              <ProtectedRoute>
+                <Curso />
+              </ProtectedRoute>
+            }
+          />
            <Route 
-          path="/cursos/:id" 
+          path="/cursos/:curso/:focus" 
             element={
               <ProtectedRoute>
                 <Curso />

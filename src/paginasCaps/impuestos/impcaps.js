@@ -23,6 +23,7 @@ export function Impcaps() {
   const curso = materia
   const [cargandoconsola, setCargandoConsola] = useState(false);
 
+ 
   const cargarPagina = async () => {
     await obtenerDatosSeccion(curso, seccion, titulo)
     .then(data => (setEnunciado(data), 
@@ -31,6 +32,11 @@ export function Impcaps() {
   }
 
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     setEnunciado();
     cargarPagina()
   }, [seccion])
@@ -60,17 +66,16 @@ export function Impcaps() {
 
   
 const [enconsola, setEnConsola] = useState([]);
-const [count, setCount] = useState(0)
 const eliminarDelHistorial = async (num, a) => {
 
   const indice = enconsola.indexOf(a);
     await enconsola.splice(indice, 1);
-    setCount(count+1)
+   
 }
 
 const limpiarHistorial = () => {
   enconsola.splice(0, enconsola.length)
-  setCount(count+1)
+  // 
 }
 
 const clickCode = () => {
@@ -79,7 +84,7 @@ const clickCode = () => {
    codes[i].onclick = function(e) {
     if(enconsola.indexOf(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')) === -1) {
       setEnConsola(enconsola.concat(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')));
-      setCount(count+1)
+      document.getElementById("consol").scrollIntoView();
      }
     setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, ''));
     setCodes(document.querySelectorAll('code'));
@@ -106,13 +111,13 @@ clickCode()
     setEdit(!edit)
   }
 
-  const mostrar =  () => {
+  const mostrar = async() => {
     if(mostrarPreguntas) {
       setBotonMostrar("nada");
       setMostrarPreguntas(false)
     } else if (mostrarPreguntas === false) {
       setBotonMostrar("botonmostrar")
-      setMostrarPreguntas(true)
+      await setMostrarPreguntas(true)
     }
 
   }
@@ -173,7 +178,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
             {curso}  
           </Link>
            <Link
-           to={"/cursos/"+curso}
+           to={"/cursos/"+curso+"/"+titulo}
            className={style.titulo}>
             {titulo}
             </Link>        
@@ -227,6 +232,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
             eliminarDelHistorial={eliminarDelHistorial} 
             limpiarHistorial={limpiarHistorial} />          
           <hr></hr>
+
             <MostrarPregunta 
             titulo={titulo}
             curso={curso} 
@@ -234,7 +240,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
             agregar={edit} 
             edit={edit} 
             mostrarPreguntas={mostrarPreguntas} />      
-            
+
       </div>
     </div>
     

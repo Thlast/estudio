@@ -6,7 +6,7 @@ export function TextoCurso(props) {
   const {seccion} = props;
   const {enunciado} = props
 
-  console.log(enunciado)
+ 
   return (
     <div>
     <h1>
@@ -16,7 +16,7 @@ export function TextoCurso(props) {
         <div>
       {enunciado === undefined || enunciado[0].enunciado === undefined || enunciado[0].enunciado.length === 0 ? "" :
       enunciado[0].enunciado.map((e, num) => {
-        if(typeof e === `string`) {
+        
           return (
             <div
             className='show-element'
@@ -27,23 +27,6 @@ export function TextoCurso(props) {
             </ReactMarkdown>   
             </div>                 
           )
-        } else if (e.destacar) {
-          return (
-            <div className="destacar show-element"
-            key={seccion+num}>
-            <ReactMarkdown 
-            remarkPlugins={[remarkGfm]}>                          
-              {e.destacar} 
-            </ReactMarkdown>    
-            </div>
-          )
-        } else {
-              return (
-                <div
-                key={seccion+num}>
-                </div>
-              )
-            } 
       } 
     )
       

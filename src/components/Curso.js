@@ -8,17 +8,30 @@ import style from './modulos css/Curso.module.css'
 export function Curso() {
 
     const [cargando, setCargando] = useState(true)
-    const {id} = useParams();
+    const {curso} = useParams();
     const [curs, setCurs] = useState([]);
-    const curso = id;
+    const materia = curso;
+    const {focus} = useParams();
 
   useEffect(() => {
             
-    obtenerCursos(curso)
-    .then(data => (setCurs(data), setCargando(false)))
+    obtenerCursos(materia)
+    .then(data => (setCurs(data), setCargando(false)));
 
+   
     
   }, [])
+
+  useEffect(() => {
+    if(!cargando && focus) {
+
+      document.getElementById(focus).scrollIntoView();
+    }
+  
+    
+  }, [cargando])
+
+  
 
   const most = (e) => {
       document.getElementById("capitulo"+e).style.display = 'block';
