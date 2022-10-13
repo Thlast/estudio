@@ -15,13 +15,14 @@ import { Impcaps } from './paginasCaps/impuestos/impcaps';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
 import { DataProvider } from './context/MateriasContext';
-
+import { HistorialProvider } from './context/Resueltas';
 
 function App() {
 
   document.title = 'Estudio'
 
   return (
+    <HistorialProvider>
     <DataProvider>
     <AuthProvider>
       <Nav />
@@ -104,6 +105,7 @@ function App() {
 
     </AuthProvider>
     </DataProvider>
+    </HistorialProvider>
   )
 }
 

@@ -30,7 +30,8 @@ export function HomeMongo() {
     .then(data => (setPreguntas(data), setCargando(false)));
     
   }, [curso])
-  
+
+
   const historialImp = useHistorial([0])
   const historialConta = useHistorial([0])
   const historialFinanzas = useHistorial([0])

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Buscador } from './buscador';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { filtrarPregunta } from './servicios/preguntas/obtenerPregunta';
-
+import { alertalimpiarHistorialUsuario } from './alertas';
+import { ResueltasContext } from '../context/Resueltas'
 
 export function Perfil() {
 
+    const {reiniciarHistorial} = useContext(ResueltasContext)
     const {loading} = useAuth();
     const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
     const [agregar, setAgregar] = useState(false);
@@ -36,7 +38,12 @@ export function Perfil() {
       setAgregar(false)
       setMostrarPreguntas(false)
     }
+    const limpiarHistorialUsuario = () => {
+
+      alertalimpiarHistorialUsuario(reiniciarHistorial)
+    }
     
+
     if(loading) return <h1>Loading...</h1>
   
     return (
@@ -75,6 +82,14 @@ export function Perfil() {
                 onClick={() => buscarPregunta()}
                 >
                    Buscador
+                </button>
+                </li>
+                <hr></hr>
+                <li>
+                <button
+                className='perfil-boton'
+                onClick={() => limpiarHistorialUsuario()}
+                > Borrar historial
                 </button>
                 </li>
               </ul>

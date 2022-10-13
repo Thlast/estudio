@@ -125,5 +125,35 @@ export const alertaquitar = (funcionquitar) => {
       )
     }
   })
+}
+
+export const alertalimpiarHistorialUsuario = (funcion) => {
+
+  swalWithBootstrapButtons.fire({
+    title: 'limpiar historial?',
+    text: "se borrarán las preguntas contestadas correctamente",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Si!',
+    cancelButtonText: 'No, cancelar!',
+    reverseButtons: true
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      funcion();
+      swalWithBootstrapButtons.fire(
+        'Se ha limpiado el historial!',
+        '',
+        'success'
+      )
+    } else if (
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        '',
+        'error'
+      )
+    }
+  })
 
 }
