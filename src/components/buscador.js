@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react"
-import { buscarFiltrado } from "./servicios/cursos/obtenerCurso";
+import { buscarFiltradoNuevo } from "./servicios/cursos/obtenerCurso";
 import { Link } from "react-router-dom";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Spinner } from "./Login/Spinner";
@@ -20,47 +20,48 @@ const [valorBuscado, setValorBuscado] = useState("")
 
 useEffect(() => {
 
-  obtenerDatosTitulos(curso)
-  .then(data => setTitulos(data))
+  // obtenerDatosTitulos(curso)
+  // .then(data => setTitulos(data))
 }, [curso])
 
 useEffect(() => {
-  setCargando(true)
-    buscarFiltrado(curso)
-    .then(data => (setCursoDatos(data), setCargando(false)))
+  // setCargando(true)
+  //   buscarFiltrado(curso)
+  //   .then(data => (setCursoDatos(data), setCargando(false)))
     
 }, [curso])
 
 
-const find = (valor) => {
+const find = async (valor) => {
   setValorBuscado(valor)
-  const respuesta = []
-  const datos = cursoDatos.map(a => a.enunciado);
-
-  datos.map(x => 
-    x.filter(y=> 
-      typeof y === "string"
-      
-    )
-  ).map((z, num) => z.filter(b => {
-  if(b.includes(valor) || b.includes(valor.toLowerCase().replace(/[-º°`'".,]/g, ''))) {
-    let titus = ""
-    for(let i = 0; i < titulos.length; i++) {
-    if(titulos[i].secciones.indexOf(cursoDatos[num].nombre) !== -1){
-      titus = titulos[i].titulo
-    }
-    }
-  respuesta.push({
-    titulo: titus,
-    seccion: num, 
-    enunciado: b
-      }
-    )
-  }
-return respuesta
-})
-)
-setResultados(respuesta)
+  setCargando(true)
+  await buscarFiltradoNuevo(curso, valor).then(data => setResultados(data));
+  setCargando(false)
+//   const respuesta = []
+//   const datos = cursoDatos.map(a => a.enunciado);
+//   datos.map(x => 
+//     x.filter(y=> 
+//       typeof y === "string"
+//     )
+//   ).map((z, num) => z.filter(b => {
+//   if(b.includes(valor) || b.includes(valor.toLowerCase().replace(/[-º°`'".,]/g, ''))) {
+//     let titus = ""
+//     for(let i = 0; i < titulos.length; i++) {
+//     if(titulos[i].secciones.indexOf(cursoDatos[num].nombre) !== -1){
+//       titus = titulos[i].titulo
+//     }
+//     }
+//   respuesta.push({
+//     titulo: titus,
+//     seccion: num, 
+//     enunciado: b
+//       }
+//     )
+//   }
+// return respuesta
+// })
+// )
+// setResultados(respuesta)
 
 }
 
@@ -122,8 +123,8 @@ return (
         return (
           <div>
             <Link 
-            to={`/cursos/${curso}/${resultado.titulo}/${cursoDatos[resultado.seccion].nombre}`}>
-            {cursoDatos[resultado.seccion].nombre}
+            to={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
+            {resultado.seccion}
             </Link>
             
           <div

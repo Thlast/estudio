@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Spinner } from '../components/Login/Spinner';
-import { TextoCurso } from './impuestos/textoCurso';
 
 export function Consola(props) {
 
@@ -11,7 +10,6 @@ export function Consola(props) {
   const {eliminarDelHistorial} = props;
   const {limpiarHistorial} = props;
   const {enconsola} = props;
-  // const {seccion} = props;
   const {cargando} = props;
 
 return (
@@ -33,7 +31,8 @@ return (
               </button>Visto reciente:{" "}
               {enconsola.map((a, num) => {
                 return (       
-                  <span>                         
+                  <span
+                  key={`historial-${a}`}>                         
                     <button
                     className="botonhistorial"
                     onClick={() => eliminarDelHistorial(num, a)}
@@ -54,14 +53,9 @@ return (
           </div>
   <div
   className="consola">   
-  {/* <TextoCurso 
-  seccion={seccion} 
-  enunciado={datos}
-  cargando={cargando} /> */}
   {datos.length == 0 || datos[0].enunciado == undefined || dic === "" ? "no hay datos" :
     
       datos[0].enunciado.map((b, num) => {
-            if(typeof b === "string") {
               return (         
                 <div
                 key={"consola"+dic+num}
@@ -71,19 +65,7 @@ return (
                 {b}                       
                 </ReactMarkdown>
                 </div>                                                                   
-              )
-            } else if (b.destacar) {
-              return (
-                <div
-                key={"consola"+dic+num}
-                class="destacar show-element">
-                <ReactMarkdown 
-                remarkPlugins={[remarkGfm]}>                          
-                  {b.destacar} 
-                </ReactMarkdown>    
-                </div>
-              )
-            }                   
+              )            
           })}
             
     

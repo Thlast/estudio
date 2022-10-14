@@ -74,7 +74,7 @@ const eliminarDelHistorial = async (num, a) => {
 }
 
 const limpiarHistorial = () => {
-  enconsola.splice(0, enconsola.length)
+  setEnConsola([])
   // 
 }
 
@@ -84,7 +84,7 @@ const clickCode = () => {
    codes[i].onclick = function(e) {
     if(enconsola.indexOf(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')) === -1) {
       setEnConsola(enconsola.concat(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')));
-      document.getElementById("consol").scrollIntoView();
+      document.getElementById("consol").scrollIntoView({behavior: 'smooth'});
      }
     setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, ''));
     setCodes(document.querySelectorAll('code'));
