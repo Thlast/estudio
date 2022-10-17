@@ -7,10 +7,8 @@ import { modificarPregunta } from '../servicios/preguntas/modificarPregunta';
 import { crearPregunta } from '../servicios/preguntas/crearPregunta';
 import { useAuth } from '../../context/AuthContext';
 import { Spinner } from '../Login/Spinner';
-import { Respuesta } from './respuesta';
 import { AnexadasExamen } from './renderAnexo';
 import { Preguntas } from './preguntas';
-import { Opciones } from './opcionesMultiples';
 
 export function MostrarPregunta(props) {
 
@@ -40,8 +38,8 @@ export function MostrarPregunta(props) {
       obtenerExamen(examenid)
       .then(data => (setPreguntas(data), setCargando(false)));
     } else if (perfil) {
-      obtenerUsuario(user.uid).
-      then(data => (setPreguntas(data), setCargando(false)));
+      obtenerUsuario(user.uid)
+      .then(data => (setPreguntas(data), setCargando(false)));
     } else {
       obtenerPregunta(curso)
     .then(data => (setPreguntas(data), setCargando(false)));
@@ -167,7 +165,7 @@ export function MostrarPregunta(props) {
               preguntaModificar={preguntaModificar}/>
             </div>
             }
-            
+            <hr></hr>
             </div>
 						
     );

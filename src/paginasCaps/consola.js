@@ -35,7 +35,7 @@ return (
                   key={`historial-${a}`}>                         
                     <button
                     className="botonhistorial"
-                    onClick={() => eliminarDelHistorial(num, a)}
+                    onClick={() => eliminarDelHistorial(a)}
                     >X
                     </button>  
                   <code

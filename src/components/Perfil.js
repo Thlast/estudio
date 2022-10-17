@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Buscador } from './buscador';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
-import { filtrarPregunta } from './servicios/preguntas/obtenerPregunta';
 import { alertalimpiarHistorialUsuario } from './alertas';
 import { ResueltasContext } from '../context/Resueltas'
 
@@ -21,12 +20,6 @@ export function Perfil() {
       setBuscador(false)
     }
 
-    const buscar = (valor, e) => {
-      e.preventDefault();
-      filtrarPregunta(valor)
-      .then(data => console.log(data))
-      console.log(valor)
-    }
     const most = () => {
       setMostrarPreguntas(!mostrarPreguntas);
       setAgregar(false);
@@ -97,8 +90,7 @@ export function Perfil() {
             </div>
             <div>
             {buscador &&
-            <Buscador 
-            buscar={buscar} />
+            <Buscador />
             }     
             <MostrarPregunta 
             perfil={true}

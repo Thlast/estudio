@@ -1,70 +1,27 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { buscarFiltradoNuevo } from "./servicios/cursos/obtenerCurso";
 import { Link } from "react-router-dom";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Spinner } from "./Login/Spinner";
-import { obtenerDatosTitulos } from "./servicios/cursos/obtenerSeccion";
 import { MateriasContext } from "../context/MateriasContext";
 
-export const Buscador = (props) => {
+export const Buscador = () => {
 
 const [valor, setValor] = useState(null);
-const {buscar} = props;
-const [cursoDatos, setCursoDatos] = useState([]);
 const [resultados, setResultados] = useState([]);
 const [curso, setCurso] = useState("impuestos");
 const {materias} = useContext(MateriasContext);
-const [cargando, setCargando] = useState(true);
-const [titulos, setTitulos] = useState([])
+const [cargando, setCargando] = useState(false);
 const [valorBuscado, setValorBuscado] = useState("")
 
-useEffect(() => {
 
-  // obtenerDatosTitulos(curso)
-  // .then(data => setTitulos(data))
-}, [curso])
-
-useEffect(() => {
-  // setCargando(true)
-  //   buscarFiltrado(curso)
-  //   .then(data => (setCursoDatos(data), setCargando(false)))
-    
-}, [curso])
-
-
-const find = async (valor) => {
+const find = async (valor, e) => {
+  e.preventDefault()
   setValorBuscado(valor)
   setCargando(true)
   await buscarFiltradoNuevo(curso, valor).then(data => setResultados(data));
   setCargando(false)
-//   const respuesta = []
-//   const datos = cursoDatos.map(a => a.enunciado);
-//   datos.map(x => 
-//     x.filter(y=> 
-//       typeof y === "string"
-//     )
-//   ).map((z, num) => z.filter(b => {
-//   if(b.includes(valor) || b.includes(valor.toLowerCase().replace(/[-º°`'".,]/g, ''))) {
-//     let titus = ""
-//     for(let i = 0; i < titulos.length; i++) {
-//     if(titulos[i].secciones.indexOf(cursoDatos[num].nombre) !== -1){
-//       titus = titulos[i].titulo
-//     }
-//     }
-//   respuesta.push({
-//     titulo: titus,
-//     seccion: num, 
-//     enunciado: b
-//       }
-//     )
-//   }
-// return respuesta
-// })
-// )
-// setResultados(respuesta)
-
 }
-
 
 
 const cambiarCurso = (e) => {
@@ -95,15 +52,16 @@ return (
    </select>
       </div>
       <form
+      onSubmit={(e) => find(valor, e)}
       className="form-buscador"
-      onSubmit={(e) => buscar(valor, e)}>
+      >
       <input 
+      required
       onChange={(e) => setValor(e.target.value)}
       type="text"
       value={valor}>
       </input>
       <button
-      onClick={() => find(valor)}
       className="boton-buscar">
         Buscar
       </button>
@@ -116,7 +74,7 @@ return (
       
 
       <div
-      className="contenedorpreguntas">
+      className="contenedorbuscador">
         {cargando ? <Spinner></Spinner> :
       resultados.length !== 0 ?
       resultados.map(resultado => {

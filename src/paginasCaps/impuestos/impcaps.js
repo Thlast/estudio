@@ -66,11 +66,10 @@ export function Impcaps() {
 
   
 const [enconsola, setEnConsola] = useState([]);
-const eliminarDelHistorial = async (num, a) => {
 
-  const indice = enconsola.indexOf(a);
-    await enconsola.splice(indice, 1);
-   
+const eliminarDelHistorial = async (a) => {
+
+  setEnConsola(enconsola.filter(s => s !== a))
 }
 
 const limpiarHistorial = () => {

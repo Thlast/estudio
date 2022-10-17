@@ -199,7 +199,6 @@ className="examen-agregar">
       <select 
         required
         onChange={(e) => setCurso(e.target.value)} 
-        class="boton" 
         value={curso}
         name="curso"
         for="materias">

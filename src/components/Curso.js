@@ -24,7 +24,6 @@ export function Curso() {
 
   useEffect(() => {
     if(!cargando && focus) {
-
       document.getElementById(focus).scrollIntoView();
     }
   
