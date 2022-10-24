@@ -4,9 +4,12 @@ import remarkGfm from 'remark-gfm'
 import { alertainfo, alertasuccess, alertafail } from '../alertas';
 import {Link} from "react-router-dom";
 import { alertaquitar } from '../alertas';
+import { ResueltasContext } from '../../context/Resueltas'
+import { useContext } from 'react'
 
 export function AnexadasExamen(props) {
 
+  const {completadas} = useContext(ResueltasContext)
   const {quitar} = props;
   const {anexadas} = props;
   const {examenid} = props;
@@ -58,6 +61,17 @@ return (
             className='cuadro cuadro-pregunta'
             id={p.id}
             key={p.id}>
+          {completadas.length === 0 ? <circle></circle> :
+          completadas.indexOf(p.id) !== -1 ?
+            <circle
+            className='resuelta'>
+            ✓
+            </circle>
+            :
+            <circle>
+
+            </circle>
+          }
             <div
             className='quitar'>
             <button
@@ -67,13 +81,15 @@ return (
             </button>
             </div>
               
-            <p>
+            <div
+            className='pregunta-encabezado'>            
               Pregunta Nº {numpreguntas + num + 1}: {" "}
               <Link
               to={`/cursos/${p.curso}/${p.titulo}/${p.seccion}`}>
                 { p.seccion}
               </Link>
-              </p>
+              </div>
+              <hr></hr>
               <ReactMarkdown
               remarkPlugins={[remarkGfm]}>
               {p.pregunta}

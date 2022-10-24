@@ -1,8 +1,5 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc} from 'firebase/firestore';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../../../firebase';
 import { Spinner } from '../Spinner';
 import style from './SignUp.module.css';
 import { toast } from 'react-toastify';
@@ -61,12 +58,6 @@ export const SignUp = () => {
         userData.name
       );
       setLoading(true);
-      // await addDoc(collection(db, 'usuarios'), {
-      //   name: userData.name,
-      //   lastName: userData.lastName,
-      //   email: userData.email,
-      //   userId: responseUser.user.uid,
-      // });
       setLoading(false);
       toast.success('Registro exitoso');
       navigate('/');

@@ -1,16 +1,12 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, db } from '../../../firebase';
-import { authContext, useAuth} from '../../../context/AuthContext';
+import { useAuth} from '../../../context/AuthContext';
 // import { userContext } from '../context/UserContext';
 import { Spinner } from '../Spinner';
 import style from './Login.module.css';
 import { toast } from 'react-toastify';
 
 export const Login = () => {
-  const userContextResult = useContext(authContext);
   const [user, setUser] = useState({
     login_email: '',
     login_password: '',
@@ -33,13 +29,6 @@ export const Login = () => {
         user.login_email,
         user.login_password
       );
-
-      // const q = query(
-      //   collection(db, 'usuarios'),
-      //   where('userId', '==', responseUser.user.uid)
-      // );
-      // const querySnapshot = await getDocs(q)
-      // userContextResult.loginUser(querySnapshot.docs[0]?.data());
       setLoading(false);
       navigate('/');
       console.log("navegando a la home")

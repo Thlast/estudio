@@ -10,7 +10,6 @@ import { useHistorial } from './useHistorial';
 import { MateriasContext } from '../context/MateriasContext';
 import { Preguntas } from './preguntas/preguntas';
 import { Opciones } from './preguntas/opcionesMultiples';
-import { Respuesta } from './preguntas/respuesta';
 
 
 export function HomeMongo() {
@@ -173,7 +172,7 @@ export function HomeMongo() {
           class="boton home-boton" 
           onClick={() => siguiente()
           }>
-            Siguiente{" >"}
+            <span>Siguiente{" >"}</span>
           </button>
           </div>
           {cargando ? <Spinner></Spinner> : 
@@ -187,7 +186,7 @@ export function HomeMongo() {
             </h1>
             {p.titulo ?
             <div>
-            De la seccion: {" "}
+            <span>De la seccion: {" "}</span>
             <Link
             to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion.replaceAll(" ", "%20")}`}
             className='home-seccion'>

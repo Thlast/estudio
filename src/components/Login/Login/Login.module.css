@@ -1,10 +1,10 @@
 .titleOutsideForm {
-  color: white;
+  color: var(--text-color);
   margin-bottom: 2rem;
 }
 
 .contenedorFormulario {
-  background: #13132a;
+  background: var(--destacar);
   padding: 40px;
   max-width: 400px;
   margin: 40px auto;
@@ -18,7 +18,7 @@
   position: absolute;
   transform: translateY(6px);
   left: 13px;
-  color: rgb(255, 255, 255, 0.5);
+  color: var(--text-color);
   transition: all 0.25s ease;
   backface-visibility: hidden;
   pointer-events: none;
@@ -41,7 +41,7 @@
 }
 
 .highLight {
-  color: #fff;
+  color: var(--text-color);
 }
 
 /* FILA ARRIBA */
@@ -80,7 +80,7 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  color: #fff;
+  color: var(--text-color);
   border-radius: 0;
   transition: all 0.5s ease;
   border-radius: 5px;

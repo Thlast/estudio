@@ -3,11 +3,9 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { ResueltasContext } from '../../context/Resueltas'
 import { alertafail, alertainfo, alertasuccess } from '../alertas'
-import { useState } from 'react'
 
 export function Opciones(props) {
 
-  const {completadas} = useContext(ResueltasContext)
   const {agregarHistorial} = useContext(ResueltasContext)
   const {p} = props
   const {num} = props
@@ -36,6 +34,8 @@ export function Opciones(props) {
       <div
       className='contenedor-opciones'>
         {p.tipo === "Multiple" &&
+        <div>
+        <div>
       <div
       className='opciones'>
       <label>
@@ -54,8 +54,11 @@ export function Opciones(props) {
       <input name={`opciones${num}`} type="radio" value="d"/>
       {`d) ${p.opciones.d}`}
       </label>
+      </div>
+      
+      </div>
       <button
-      className='home-boton'
+      className='home-boton controlar'
       onClick={() => checkRespuesta(p.correcta, num, p.id)}>
       Controlar
       </button>

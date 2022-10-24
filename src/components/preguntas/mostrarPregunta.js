@@ -128,7 +128,7 @@ export function MostrarPregunta(props) {
                 num={num}
                 integral={true}
                 />
-                
+                <hr></hr>
                 </div>
 							)
 							})        
@@ -165,7 +165,7 @@ export function MostrarPregunta(props) {
               preguntaModificar={preguntaModificar}/>
             </div>
             }
-            <hr></hr>
+           
             </div>
 						
     );

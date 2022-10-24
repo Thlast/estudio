@@ -3,20 +3,23 @@
   import { useAuth } from '../context/AuthContext';
   import { getAuth, updateProfile } from "firebase/auth";
   import {signOut} from "firebase/auth";
-  import style from './modulos css/navbarr.module.css'
+  import style from './modulos css/navbarr.module.scss'
 
 export function Nav() {
   
+  useEffect(() => {
+    checkTema()
+  }, [])
+
+
       const auth = getAuth();
       const logout = () => signOut(auth);
       const {user} = useAuth();
-  
       const handleLogout = async () => {
         await logout();
       }
-     
+    const selectedTheme = localStorage.getItem('selected-theme')
     const [nombreUser, setNombreUser] = useState();
-  
     const modNombre = (nombreUser) => {
       if(nombreUser.length > 0)
       updateProfile(auth.currentUser, {
@@ -27,13 +30,37 @@ export function Nav() {
         getAuth()
         setEdit(false)
       }).catch((error) => {
-        alert("An error occurred")
+        alert("An error occurred "+error)
       
       }); else {
         alert("Escribe un nombre")
       }
     }
     const [edit, setEdit] = useState(false)
+
+    const getCurrentTheme = () => document.body.classList.contains('dark-theme') ? 'dark' : 'light'
+
+    const checkTema = () => {
+      const userHasDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      if (selectedTheme) {
+        // Si se cumple la validación, preguntamos cuál fue el tema para saber si activamos o desactivamos el dark
+        document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove']('dark-theme')
+      } else {
+        // Preguntamos si el usuario tiene tema dark en su sistema
+        // En caso de que sí, lo activamos en la interfaz
+        if (userHasDarkTheme) document.body.classList.add('dark-theme')
+      }
+
+    }
+
+    const switchTema = () => {
+
+      document.body.classList.toggle('dark-theme')
+      // Guardamos el tema actual que eligió el usuario
+      localStorage.setItem('selected-theme', getCurrentTheme())
+      console.log(selectedTheme)
+    }
 
     return (
       <header className={style.contenedor}>
@@ -130,6 +157,13 @@ className={style.login}>
             <button 
             className={style.links}
             onClick={handleLogout}>Logout</button>
+          </li>
+          <li
+          className={style.elementolista}>
+            <button 
+            className="switchTema"
+            onClick={() => switchTema()}>
+            </button>
           </li>
         </ul>}
         </header>

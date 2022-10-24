@@ -19,6 +19,7 @@
     "react-toastify": "^8.1.0",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
+    "sass": "^1.55.0",
     "sweetalert2": "^11.4.37",
     "sweetalert2-react-content": "^5.0.3",
     "web-vitals": "^2.1.4"

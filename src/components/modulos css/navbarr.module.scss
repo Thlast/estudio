@@ -1,24 +1,23 @@
 .links {
-    background: none;
-    color: #ffffff;
+    background: var(--body-color);
+    color: var(--text-color);
     font-size: 20px;
     text-decoration: none;
     border: none;
     width: 100%;
     height: 100%;
 }
-
 .contenedor {
-    background-color: #3b3b4f;
+    background-color: var(--secundario);
     display: grid;
     grid-template-columns: 40% 60%;
     grid-template-rows: 100px;
     align-items: center;
-    color: #ffffff;
+    color: var(--text-color);
     width: 100%;
     justify-content: flex-end;
     font-size: 20px;
-    border-bottom: 1px solid aliceblue;
+    border-bottom: 1px solid var(--text-color);
     box-shadow: 0px 0px 5px 2px #ffffff;
 }
 
@@ -31,20 +30,24 @@
   }
   .elementolista {
     display: flex;
-    color: #ffffff;
-    border: #ffffff solid 1px;
+    color: var(--text-color);
+    border: var(--text-color) solid 1px;
     background-color: none;
     width: 100px;
     text-align: center;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    box-shadow: 0px 0px 5px 0.5px #ffffff;
+    box-shadow: 0px 0px 5px 0.5px var(--text-color);
+  }
+  .elementolista button:hover {
+    background-color: var(--text-color);
+    color: var(--body-color) !important;
+    
   }
   .links:hover {
-    background-color: #ffffff;
-    color: #3b3b4f;
-    
+    background-color: var(--text-color);
+    color: var(--body-color);
   }
   .usuario {
     padding: 0px 0px 0px 20px;
@@ -56,6 +59,7 @@
     width: 30px;
     background: none;
     border: none;
+    color: var(--text-color);
   }
   .botonconfirmar {
     background: none;
@@ -83,7 +87,7 @@
   .loginlinks {
     font-size: 20px;
     text-decoration: none;
-    color: #ffffff;
+    color: var(--text-color);
     border: none;
   }
   .loginlinks:hover {
@@ -92,7 +96,7 @@
   }
 
   .elementolista button:hover {
-    background-color: #0a0a23 !important;
+    background-color: var(--text-color) !important;
     border: none !important;
     color: #ffffff;
   }
