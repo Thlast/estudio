@@ -25,7 +25,7 @@ export function FormModificarPregunta(props) {
     titulo: titulo,
     seccion: seccion,
   })
-// console.log(preguntaModificar)
+console.log(preguntaModificar)
 return (
   <div>
   

@@ -55,11 +55,9 @@ export function Nav() {
     }
 
     const switchTema = () => {
-
       document.body.classList.toggle('dark-theme')
       // Guardamos el tema actual que eligió el usuario
       localStorage.setItem('selected-theme', getCurrentTheme())
-      console.log(selectedTheme)
     }
 
     return (

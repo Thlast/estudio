@@ -5,6 +5,7 @@ import { Opciones } from './opcionesMultiples'
 import { Respuesta } from './respuesta'
 import { ResueltasContext } from '../../context/Resueltas'
 import { useContext } from 'react'
+import { VoF } from './formVoF'
 
 export function Preguntas(props) {
 
@@ -15,7 +16,7 @@ export function Preguntas(props) {
   const {p} = props
   const {num} = props
   const {integral} = props
-
+  const {irModificarVof} = props
   // console.log(completadas[0])
 
   return (
@@ -54,7 +55,14 @@ export function Preguntas(props) {
         {integral &&
         p.tipo === "Multiple" &&
         <Opciones 
-        // completadas={completadas}
+        p={p}
+        num={num}
+        />
+      
+      }
+       {integral &&
+        p.tipo === "vof" &&
+        <VoF 
         p={p}
         num={num}
         />
@@ -63,11 +71,18 @@ export function Preguntas(props) {
        {edit &&
       <div
       className='botones-editar'>
-      <button
-      onClick={() => irModificarPregunta(p, num)}
-      className='btn btn-primary'>
-        Modificar
-      </button>
+        {p.tipo === "vof" ?  
+        <button
+         onClick={() => irModificarVof(p, num)}
+         className='btn btn-primary'>
+           Modificar
+         </button> :
+         <button
+         onClick={() => irModificarPregunta(p, num)}
+         className='btn btn-primary'>
+           Modificar
+         </button>
+        }
       <button
       onClick={() => (eliminar(p.id))}
       className='btn btn-danger'>

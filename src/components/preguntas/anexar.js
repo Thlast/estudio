@@ -38,14 +38,17 @@ export function Anexar(props) {
     
     if (examenid === "elegir examen") {
       alertainfo("Debe seleccionar un examen")
-    } else if(pregunta.examenes.indexOf(examenid) === -1) {
+    } else if(pregunta.examenes.indexOf(examenid) === -1 & pregunta.examen !== examenid) {
       await anexarExamen(examenid, pregunta.id)
       for(let i = 0; e.target.length > i; i++) {
         if (e.target[i].value === examenid) {
           e.target[i].style.display = 'none'
         }
       }
-    } else {
+    } else if (pregunta.examen === examenid) {
+      alertainfo("La pregunta ya se encuentra en el examen")
+    }
+    else {
       alertainfo("La pregunta ya se encuentra en el examen")
     }
   }

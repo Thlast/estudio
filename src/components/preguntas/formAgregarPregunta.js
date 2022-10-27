@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { usePreguntaForm } from './usePregunta';
 import { MateriasContext } from '../../context/MateriasContext';
 import { useAuth } from '../../context/AuthContext';
+import { FormVof } from './VoF';
 
 export function FormAgregarPregunta(props) {
 
@@ -32,6 +33,39 @@ export function FormAgregarPregunta(props) {
    })
 
     return (
+      <div
+      style={{"padding": "10px"}}>
+        <div
+        style={{"textAlign": "center"}}>
+        <select required 
+        onChange={preguntaCrear.handleChangeTipo}
+        class="home-boton" 
+        name='tipo'
+        for="tipo" 
+        value={preguntaCrear.tipo}>
+              <option
+              value={"Normal"}>
+                Normal
+              </option>
+              <option
+              value={"Multiple"}>
+                Multiple
+              </option>
+              <option
+              value={"vof"}>
+                vof
+              </option>
+          </select>
+        </div>
+        {preguntaCrear.datosPregunta.tipo === "vof" ? 
+<FormVof 
+examenid={examenid}
+titulo={titulo}
+seccion={seccion} 
+curso={curso} 
+/>  
+:
+      <div>
       <form
       className='form-container'
       onSubmit={
@@ -66,21 +100,7 @@ export function FormAgregarPregunta(props) {
    </select>
      </div>
      }  
-        <div>
-        <select required 
-        onChange={preguntaCrear.handleChangeTipo}
-        class="home-boton" 
-        name='tipo'
-        for="tipo" 
-        value={preguntaCrear.tipo}>
-              <option>
-                Normal
-              </option>
-              <option>
-                Multiple
-              </option>
-          </select>
-        </div>
+        
           <div className="pyr-container">
           <label className="form-pyr" for="preg">
             Pregunta:
@@ -95,6 +115,7 @@ export function FormAgregarPregunta(props) {
             </textarea>
           </label>
           </div>
+
     {preguntaCrear.habilitarMultiple &&
             <div>
               <div
@@ -192,5 +213,7 @@ export function FormAgregarPregunta(props) {
             Agregar
           </button>            
           </form>
+          </div>}
+          </div>
     );
   }

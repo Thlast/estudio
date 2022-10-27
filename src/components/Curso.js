@@ -88,7 +88,8 @@ export function Curso() {
           <ul>
           {c.bibliografia.map((biblio) => {
               return (
-                  <li>
+                  <li
+                  key={'biblio-'+c.nombre}>
                       {biblio}
                   </li>
               )
@@ -116,6 +117,7 @@ export function Curso() {
             c.desarrollo.map((t) => {
             return (
                 <Link
+                key={'capitulo-'+t.nombre}
                 className={style.seccion}
                   to={"/cursos/"+curso+"/"+c.nombre+"/"+t.nombre}>
                   {t.nombre}

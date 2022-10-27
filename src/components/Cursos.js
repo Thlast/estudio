@@ -14,15 +14,17 @@ return (
   <div className="App">
    
     <div className='cursos'>
-      <div class="cursos-container">
-        <div class='cursos-descripcion'>
+      <div className="cursos-container">
+        <div className='cursos-descripcion'>
           <h1>
             Cursos:
           </h1>
           {cargandoMaterias ? <Spinner></Spinner> :
           materias.map(m => {
             return (
-          <div class="listado-cursos">
+          <div 
+          key={'listado-'+m.nombre}
+          className="listado-cursos">
             <Link 
             className='home-boton'
             to={`/cursos/${m.id}`}>{m.nombre}</Link>

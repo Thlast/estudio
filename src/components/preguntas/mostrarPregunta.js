@@ -9,6 +9,7 @@ import { useAuth } from '../../context/AuthContext';
 import { Spinner } from '../Login/Spinner';
 import { AnexadasExamen } from './renderAnexo';
 import { Preguntas } from './preguntas';
+import { FormVof } from './VoF';
 
 export function MostrarPregunta(props) {
 
@@ -22,13 +23,14 @@ export function MostrarPregunta(props) {
   let edit = props.edit;
   const mostrarPreguntas = props.mostrarPreguntas
   const [modificar, setModificar] = useState(false) 
+  const [modificarVof, setModificarVof] = useState(false) 
   const [preguntaModificar, setPreguntaModificar] = useState()
   const [cargando, setCargando] = useState(true)
   const {agregar} = props;
   const [preguntas, setPreguntas] = useState([]);
   const {eliminarExamen} = props
   const {perfil} = props
-
+  const [datosVof, setDatosVof] = useState()
 
   useEffect(() => {
     if(seccion) {
@@ -80,21 +82,27 @@ export function MostrarPregunta(props) {
   }
       
     const cancelar = () => {
-      setModificar(!modificar)
+      setModificar(false)
+      setModificarVof(false)
     }
     const irModificarPregunta = (p, num) => {
       setModificar(!modificar)
       setPreguntaModificar({...p, indice: num})
-      
     }
     const filtrarMisPreguntas = () => {
       setPreguntas(preguntas.filter(p => (p.user === user.uid)))
     }
 
+    const irModificarVof = (p, num) => {
+      setModificarVof(!modificarVof)
+      setPreguntaModificar(p.arrayPreguntas)
+      setDatosVof({id: p.id, enunciado: p.pregunta})
+      console.log(p.id, p.pregunta)
+    }
 
     return (
       <div>
-        {mostrarPreguntas & !modificar ?
+        {mostrarPreguntas & !modificar & !modificarVof ?
         cargando ? <Spinner></Spinner> :
         <div 
         className={"contenedorpreguntas"}>
@@ -119,8 +127,10 @@ export function MostrarPregunta(props) {
           {preguntas.length !== 0 ?
             preguntas.map((p, num) => {
 							return (
-                <div>
+                <div
+                key={'mostrar-'+p.id}>
                 <Preguntas 
+                irModificarVof={irModificarVof}
                 edit={edit}
                 irModificarPregunta={irModificarPregunta}
                 eliminar={eliminar}
@@ -150,7 +160,8 @@ export function MostrarPregunta(props) {
               crearPreguntas={crearPreguntas}
               titulo={titulo}
               seccion={seccion} 
-              curso={curso} />
+              curso={curso} 
+              />
             : ""
             }
             {modificar &&
@@ -165,7 +176,15 @@ export function MostrarPregunta(props) {
               preguntaModificar={preguntaModificar}/>
             </div>
             }
-           
+            {modificarVof &&
+            <div>
+            <FormVof
+              cancelar={cancelar}
+              datospregunta={datosVof}
+              vofModificar={preguntaModificar}
+              />
+            </div>
+            }
             </div>
 						
     );

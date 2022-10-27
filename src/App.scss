@@ -230,6 +230,43 @@ body {
 
                                 /* //formulario// */
 
+.contenedor-vof {
+  display: flex;
+  flex-direction: column;
+
+}      
+.form-vof textarea {
+  width: 100%;
+
+}                          
+.form-vof {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}                              
+.vof-listado {
+  display: grid;
+  grid-template-columns: 85% 15%;
+  padding: 20px;
+}
+.vof-inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.vof-vf {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.vof-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
 .contenedoragregar {
   display: flex;
   justify-content: center;
@@ -275,6 +312,14 @@ body {
     align-items: center;
   } .form-container {
     padding: 1px;
+  } .vof-listado {
+    padding: 5px;
+  } .vof-inputs{
+    gap: 2px;
+  } .vof-vf{
+    gap: 2px;
+  } .form-vof {
+    padding: 5px;
   }
 }
 .form-correcta {
@@ -853,7 +898,7 @@ li {
 display: block;
 }
 .hide {
-  width: 100%;
+  // width: 100%;
 display: none;
 }
 .respuesta-hide {
@@ -890,6 +935,7 @@ display: none;
   height: 50px;
   border: none;
   padding: 0;
+  width: 100%;
 }
 .boton-curso:hover {
   color: var(--text-color);
