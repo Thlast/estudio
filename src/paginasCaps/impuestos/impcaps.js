@@ -23,9 +23,9 @@ export function Impcaps() {
   const curso = materia
   const [cargandoconsola, setCargandoConsola] = useState(false);
 
- 
-  const cargarPagina = async () => {
-    await obtenerDatosSeccion(curso, seccion, titulo)
+  
+  const cargarPagina = async ({ signal }) => {
+    await obtenerDatosSeccion(curso, seccion, titulo, { signal })
     .then(data => (setEnunciado(data), 
     setCargando(false),
     setCodes(document.querySelectorAll('code'))));
@@ -38,7 +38,13 @@ export function Impcaps() {
       behavior: 'smooth'
     });
     setEnunciado();
-    cargarPagina()
+     // Creamos el controlador para abortar la petición
+     const controller = new AbortController()
+     // Recuperamos la señal del controlador
+     const { signal } = controller
+     // Hacemos la petición a la API y le pasamos como options la señal
+    cargarPagina({ signal })
+    return () => controller.abort()
   }, [seccion])
 
   const cargarConsola = async () => {

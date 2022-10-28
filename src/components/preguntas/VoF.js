@@ -64,6 +64,7 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
 }
   
 export function FormVof(props) {
+  const {materias} = props
   const {examenid} = props
   const {titulo} = props
   const {seccion} = props
@@ -72,7 +73,7 @@ export function FormVof(props) {
   const {datospregunta} = props
   const {vofModificar} = props
   const {user} = useAuth();
-
+  const [mat, setMat] = useState(curso)
   const irModificarVof = (e) => {
     e.preventDefault()
     modificarVof(user.uid, enunciado, rows, datospregunta.id, e)
@@ -80,7 +81,7 @@ export function FormVof(props) {
   }
   const agregarVof = (e, enunciado) => {
     e.preventDefault()
-    crearVoF(user.uid, enunciado, rows, curso, seccion, titulo, examenid, e)
+    crearVoF(user.uid, enunciado, rows, mat, seccion, titulo, examenid, e)
     // console.log(enunciado, rows)
   }
     const [rows, setRows] = useState(vofModificar || [defaultState]);
@@ -107,8 +108,35 @@ export function FormVof(props) {
   return (
     <div>
       <form
+      style={{"position": "relative"}}
       className="form-vof"
       >
+        {curso !== undefined ? "" :
+          <div
+          style={{"textAlign": "center"}}>
+      <select 
+        required
+        onChange={(e) => setMat(e.target.value)} 
+        class="boton home-boton" 
+        value={curso}
+        name="curso"
+        for="materias">
+          <option
+          selected="selected">
+            Selecciona un curso
+          </option>
+    {materias.map(a => {
+          return (
+      <option 
+      key={"materia-"+a.id}
+      value={a.id}>
+        {a.nombre}
+      </option>      
+       )
+      })}
+   </select>
+     </div>
+     }  
       <div className="form-vof">
       <p>Verdadero o Falso:</p>
       <label className="" for="enunciado">
@@ -142,15 +170,21 @@ export function FormVof(props) {
       
       </div>
       {vofModificar ?
-      <div>
+      <div
+      style={{"text-align": "center"}}>
         <button
       onClick={(e) => irModificarVof(e, enunciado)}
-      className="home-boton"
+      className="home-boton btn-primary"
       type="submit">
         Modificar
       </button>
       <button
-      className='btn btn-danger'
+      className='home-boton btn-danger'
+      onClick={() => cancelar()}
+      > Cancelar
+      </button>
+      <button
+      className='btn btn-danger form-cancelar'
       onClick={() => cancelar()}
       > X
       </button>

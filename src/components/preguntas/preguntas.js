@@ -6,9 +6,11 @@ import { Respuesta } from './respuesta'
 import { ResueltasContext } from '../../context/Resueltas'
 import { useContext } from 'react'
 import { VoF } from './formVoF'
+import { useAuth } from '../../context/AuthContext'
 
 export function Preguntas(props) {
 
+  const {user} = useAuth()
   const {completadas} = useContext(ResueltasContext)
   const {edit} = props
   const {irModificarPregunta} = props
@@ -64,11 +66,10 @@ export function Preguntas(props) {
         p.tipo === "vof" &&
         <VoF 
         p={p}
-        num={num}
         />
       
       }
-       {edit &&
+       {edit & p.user === user.uid ?
       <div
       className='botones-editar'>
         {p.tipo === "vof" ?  
@@ -84,12 +85,12 @@ export function Preguntas(props) {
          </button>
         }
       <button
-      onClick={() => (eliminar(p.id))}
+      onClick={() => (eliminar(p.id, p.user))}
       className='btn btn-danger'>
         Eliminar
       </button>
       </div> 
-      
+      : null
   }
       </div>
   )

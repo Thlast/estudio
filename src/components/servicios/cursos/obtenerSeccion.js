@@ -1,11 +1,11 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
-export const obtenerDatosSeccion = async (materia, seccion, titulo) => {
+export const obtenerDatosSeccion = async (materia, seccion, titulo, { signal }) => {
   const mat = materia.toLowerCase().replace(/[-º°`'".,]/g, '');
   const sec = seccion.toLowerCase().replace(/[-º°`'".,]/g, '');
   const tit = titulo.toLowerCase().replace(/[-º°`'".,]/g, '');
 
-  const data = await fetch(`${urlserver}/app/${mat}/${tit}/desarrollo/${sec}`)
+  const data = await fetch(`${urlserver}/app/${mat}/${tit}/desarrollo/${sec}`, { signal })
   return data.json()
   
 }

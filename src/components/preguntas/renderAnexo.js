@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 import { alertaquitar } from '../alertas';
 import { ResueltasContext } from '../../context/Resueltas'
 import { useContext } from 'react'
+import { Opciones } from './opcionesMultiples';
+import { VoF } from './formVoF';
 
 export function AnexadasExamen(props) {
 
@@ -82,7 +84,7 @@ return (
             </div>
               
             <div
-            className='pregunta-encabezado'>            
+            className='pregunta-encabezado'>
               Pregunta Nº {numpreguntas + num + 1}: {" "}
               <Link
               to={`/cursos/${p.curso}/${p.titulo}/${p.seccion}`}>
@@ -122,44 +124,15 @@ return (
             </div>            
             </div>
             }
-            {p.tipo === "Multiple" &&
-              <div>
-            <div
-            className='opciones'>
-              <label>
-            <input name={`opciones${num}`} type="radio" value="a"/>
-            {`a) ${p.opciones.a}`}  
-            </label>
-            <label>           
-            <input name={`opciones${num}`} type="radio" value="b"/>
-            {`b) ${p.opciones.b}`}
-              </label>   
-              <label>          
-            <input name={`opciones${num}`} type="radio" value="c"/>
-            {`c) ${p.opciones.c}`}
-            </label>
-            <label>
-            <input name={`opciones${num}`} type="radio" value="d"/>
-            {`d) ${p.opciones.d}`}
-            </label>
-            <button
-            className='home-boton'
-            onClick={() => checkRespuesta(p.correcta, num, p.id)}>
-              Controlar
-            </button>
-            </div>
-            <div
-            id={`respuesta-${p.id}`}
-            className='respuesta-hide show-element'>
-              <p>La respuesta correcta es: {p.correcta}</p>
-              <hr></hr>
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}>
-              {p.respuesta}
-            </ReactMarkdown>
-            </div>        
-            </div>
-            }
+            {p.tipo === "Multiple" ?
+            <Opciones 
+            p={p}
+            num={num} 
+            /> : null
+          }
+            {p.tipo === "vof" ? <VoF 
+               p={p}
+               /> : null}
             </div>
           )
           })        

@@ -59,6 +59,7 @@ export function FormAgregarPregunta(props) {
         </div>
         {preguntaCrear.datosPregunta.tipo === "vof" ? 
 <FormVof 
+materias={materias}
 examenid={examenid}
 titulo={titulo}
 seccion={seccion} 

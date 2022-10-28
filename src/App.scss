@@ -23,6 +23,8 @@
   --codes: #d0d0d5;
   --secundario: #dfdfe2;
   --border-cuadro: #1b1b32;
+  --textarea-color: #f5f6f7;
+  --textarea-placeholder: #989fa3;  
 }
 body.dark-theme {
   --main-color: #52A5E0;
@@ -38,12 +40,22 @@ body.dark-theme {
   --destacar: #0a0a23;
   --codes: #3b3b4f;
   --secundario: #3b3b4f;
-  --border-cuadro: 0a0a23;
+  --border-cuadro: #0a0a23;
+  --textarea-color: var(--secundario);
+  --textarea-placeholder: var(--text-color);
 }
 
 body {
   background: var(--body-color) !important;
   color: var(--text-color) !important;
+}
+textarea::placeholder {
+  color: var(--textarea-placeholder);
+}
+textarea {
+  color: var(--text-color);
+  background-color: var(--textarea-color);
+  border-color: var(--border-color);
 }
 
 .switchTema {
@@ -154,6 +166,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  font-size: 18px;
 }
 
 .opciones {
@@ -655,11 +668,11 @@ li {
 .volver {
   font-size: 30px;
   text-decoration: none;
-  color: #dfdfe2;
+  color: var(--text-color);
   text-align: left;
 }
 .volver:hover {
-  color: #74767a;
+  color: var(--link-hover);
 }
                                 /* // examenes //*/
 .examenes {
@@ -715,7 +728,7 @@ li {
   border-radius: 0.25rem;
   padding: 15px;
   text-decoration: none;
-  box-shadow: 0px 0px 3px 1px var(--container-shadow-hover);
+  box-shadow: 0px 0px 3px 1px var(--container-shadow);
 }
 .examen .textos {
   justify-content: space-between;
@@ -739,8 +752,9 @@ li {
   }
 }
 .examen:hover {
+  color: var(--link-hover) ;
   box-sizing: border-box;
-  box-shadow: 0px 0px 5px 2px #07c9ff;
+  box-shadow: 0px 0px 5px 2px var(--container-shadow-hover);
 }
 
 .pagina-examen {

@@ -10,6 +10,7 @@ import { Spinner } from '../Login/Spinner';
 import { AnexadasExamen } from './renderAnexo';
 import { Preguntas } from './preguntas';
 import { FormVof } from './VoF';
+import { alertainfo } from '../alertas';
 
 export function MostrarPregunta(props) {
 
@@ -33,9 +34,15 @@ export function MostrarPregunta(props) {
   const [datosVof, setDatosVof] = useState()
 
   useEffect(() => {
+     // Creamos el controlador para abortar la petición
+     const controller = new AbortController()
+     // Recuperamos la señal del controlador
+     const { signal } = controller
+     // Hacemos la petición a la API y le pasamos como options la señal
     if(seccion) {
-      obtenerSeccion(curso, seccion)
+      obtenerSeccion(curso, seccion, { signal })
       .then(data => (setPreguntas(data), setCargando(false)));
+      return () => controller.abort()
     } else if (examenid) {
       obtenerExamen(examenid)
       .then(data => (setPreguntas(data), setCargando(false)));
@@ -49,7 +56,8 @@ export function MostrarPregunta(props) {
    
   }, [seccion])
 
-  const eliminar = async (idpregunta) => {
+  const eliminar = async (idpregunta, usuario) => {
+    if(usuario === user.uid) {
     try {
       await eliminarPregunta(idpregunta);
       setPreguntas(preguntas.filter(a => a.id !== idpregunta))
@@ -57,6 +65,9 @@ export function MostrarPregunta(props) {
     } catch (error) {
       console.log(error)
     }
+  } else {
+    alertainfo("No tienes permiso")
+  }
   }
 
   const modificarPreguntas = async (datos, indice, idmodif, event) => {

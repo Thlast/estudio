@@ -10,6 +10,7 @@ import { useHistorial } from './useHistorial';
 import { MateriasContext } from '../context/MateriasContext';
 import { Preguntas } from './preguntas/preguntas';
 import { Opciones } from './preguntas/opcionesMultiples';
+import { VoF } from './preguntas/formVoF';
 
 
 export function HomeMongo() {
@@ -214,6 +215,14 @@ export function HomeMongo() {
             <div
             className="home-multiple cuadro">
               <Opciones 
+              p={p}
+              num={num}/>            
+            </div>}
+            {p.tipo === "vof" &&
+            <div
+            style={{"text-align": "left"}}
+            className="home-multiple cuadro">
+              <VoF 
               p={p}
               num={num}/>            
             </div>}
