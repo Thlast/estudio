@@ -16,7 +16,6 @@ import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
 import { DataProvider } from './context/MateriasContext';
 import { HistorialProvider } from './context/Resueltas';
-import { FormVof } from './components/preguntas/VoF'
 
 function App() {
 
@@ -92,14 +91,6 @@ function App() {
               </ProtectedRoute>
             }
           /> */}
-           <Route 
-          path="/vof" 
-            element={
-              <ProtectedRoute>
-                <FormVof />
-              </ProtectedRoute>
-            }
-          />
           <Route 
           path="/examenes/:id" 
             element={

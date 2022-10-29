@@ -20,6 +20,7 @@ preguntaCrear.correcta = null
 tipo: preguntaCrear.tipo,
 pregunta: preguntaCrear.preg,
 respuesta: preguntaCrear.resp,
+resultado: preguntaCrear.resultado,
 opciones: {
   a: preguntaCrear.a,
   b: preguntaCrear.b,

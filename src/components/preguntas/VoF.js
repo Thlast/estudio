@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { crearVoF } from "../servicios/preguntas/crearVoF";
 import { useAuth } from '../../context/AuthContext';
-import { modificarVof } from "../servicios/preguntas/modificarVof";
+
 
   const defaultState = {
     pregunta: "",
     vof: "",
     respuesta: ""
   };
-  
+
+  //renderiza las preguntas del vof para modificar o agregar
 function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
 
   return (
@@ -62,7 +62,8 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
     </div>
   );
 }
-  
+
+//renderiza para crear o modificar vof:
 export function FormVof(props) {
   const {materias} = props
   const {examenid} = props
@@ -74,16 +75,10 @@ export function FormVof(props) {
   const {vofModificar} = props
   const {user} = useAuth();
   const [mat, setMat] = useState(curso)
-  const irModificarVof = (e) => {
-    e.preventDefault()
-    modificarVof(user.uid, enunciado, rows, datospregunta.id, e)
+  const {crearPreguntasVoF} = props
+  const {modificarPreguntasVoF} = props
 
-  }
-  const agregarVof = (e, enunciado) => {
-    e.preventDefault()
-    crearVoF(user.uid, enunciado, rows, mat, seccion, titulo, examenid, e)
-    // console.log(enunciado, rows)
-  }
+
     const [rows, setRows] = useState(vofModificar || [defaultState]);
     const [enunciado, setEnunciado] = useState(datospregunta ? datospregunta.enunciado : "");
     const handleOnChange = (index, name, value) => {
@@ -111,7 +106,10 @@ export function FormVof(props) {
       style={{"position": "relative"}}
       className="form-vof"
       >
-        {curso !== undefined ? "" :
+        {curso ? "" :
+        <div>
+        {materias ?
+          
           <div
           style={{"textAlign": "center"}}>
       <select 
@@ -136,6 +134,9 @@ export function FormVof(props) {
       })}
    </select>
      </div>
+     
+     : null
+     }</div>
      }  
       <div className="form-vof">
       <p>Verdadero o Falso:</p>
@@ -173,7 +174,7 @@ export function FormVof(props) {
       <div
       style={{"text-align": "center"}}>
         <button
-      onClick={(e) => irModificarVof(e, enunciado)}
+      onClick={(e) => modificarPreguntasVoF(user.uid, enunciado, rows, datospregunta.id, datospregunta.indice, e)}
       className="home-boton btn-primary"
       type="submit">
         Modificar
@@ -190,7 +191,7 @@ export function FormVof(props) {
       </button>
       </div>
       :  <button
-      onClick={(e) => agregarVof(e, enunciado)}
+      onClick={(event) => crearPreguntasVoF(user.uid, enunciado, rows, mat, seccion, titulo, examenid, event)}
       className="home-boton"
       type="submit">
         Confirmar

@@ -18,6 +18,7 @@ export const modificarPregunta = async (datosPregunta, id, event) => {
       tipo: datosPregunta.tipo,
       pregunta: datosPregunta.pregunta,
       respuesta: datosPregunta.respuesta,
+      resultado: datosPregunta.resultado,
       opciones: {
       a: datosPregunta.a,
       b: datosPregunta.b,

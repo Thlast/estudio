@@ -3,7 +3,7 @@ import { alertasuccess } from "../../alertas";
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
-export const modificarVof = async (user, enunciado, datosPregunta, id, event) => {
+export const serverModificarVof = async (user, enunciado, datosPregunta, id, event) => {
   const url = `${urlserver}/preguntas/${id}`;
   event.preventDefault();
   let respuesta = {}

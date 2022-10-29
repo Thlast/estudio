@@ -21,16 +21,16 @@ const [anteriorSeccion, setAnteriorSeccion] = useState("")
 const [siguienteSeccion, setSiguienteSeccion] = useState("")
 
 useEffect(() => {
-  obtenerDatosCapitulos(curso, titulo)
-  .then(data => (
-    setIndiceSeccion(data.caps.indexOf(seccion)),
-    setSecciones(data.caps)));
+  
   setIndiceSeccion(secciones.indexOf(seccion))
 }, [seccion])
 
 
 useEffect(() => {
- 
+  obtenerDatosCapitulos(curso, titulo)
+  .then(data => (
+    setIndiceSeccion(data.caps.indexOf(seccion)),
+    setSecciones(data.caps)));
   obtenerDatosTitulos(curso)
   .then(data => (setTitulos(data), 
   data.map((t, num)=> {

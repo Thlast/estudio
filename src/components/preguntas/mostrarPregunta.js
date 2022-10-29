@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { eliminarPregunta } from '../servicios/preguntas/eliminarPregunta';
 import { obtenerExamen, obtenerPregunta, obtenerSeccion, obtenerUsuario } from '../servicios/preguntas/obtenerPregunta';
 import { FormAgregarPregunta } from './formAgregarPregunta';
@@ -11,6 +11,8 @@ import { AnexadasExamen } from './renderAnexo';
 import { Preguntas } from './preguntas';
 import { FormVof } from './VoF';
 import { alertainfo } from '../alertas';
+import { serverModificarVof } from "../servicios/preguntas/modificarVof";
+import { crearVoF } from "../servicios/preguntas/crearVoF";
 
 export function MostrarPregunta(props) {
 
@@ -69,7 +71,7 @@ export function MostrarPregunta(props) {
     alertainfo("No tienes permiso")
   }
   }
-
+//normal-multiple
   const modificarPreguntas = async (datos, indice, idmodif, event) => {
     try {
       let preguntamodif = null
@@ -91,6 +93,31 @@ export function MostrarPregunta(props) {
       console.log(error)
     } 
   }
+//vof
+  const modificarPreguntasVoF = async (user, enunciado, rows, id, indice, event) => {
+    try {
+      let preguntamodif = null
+      await serverModificarVof(user, enunciado, rows, id, event).then(response =>
+          preguntamodif = {...response, id: id}
+        );
+      preguntas.splice(indice, 1, preguntamodif)
+    } catch (error) {
+      console.log(error)
+    }
+    setModificarVof(false)
+  }
+
+  const crearPreguntasVoF = async (user, enunciado, rows, mat, seccion, titulo, examenid, event) => {
+    event.preventDefault()
+    try {
+      await crearVoF(user, enunciado, rows, mat, seccion, titulo, examenid, event).then(response =>
+        setPreguntas(preguntas.concat(response))
+        );
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
       
     const cancelar = () => {
       setModificar(false)
@@ -107,9 +134,10 @@ export function MostrarPregunta(props) {
     const irModificarVof = (p, num) => {
       setModificarVof(!modificarVof)
       setPreguntaModificar(p.arrayPreguntas)
-      setDatosVof({id: p.id, enunciado: p.pregunta})
+      setDatosVof({id: p.id, enunciado: p.pregunta, indice: num})
       console.log(p.id, p.pregunta)
     }
+
 
     return (
       <div>
@@ -165,8 +193,9 @@ export function MostrarPregunta(props) {
             : ""
 }
 
-            {agregar & !modificar ?
+            {agregar & !modificar & !modificarVof ?
             <FormAgregarPregunta 
+              crearPreguntasVoF={crearPreguntasVoF}
               examenid={examenid}
               crearPreguntas={crearPreguntas}
               titulo={titulo}
@@ -190,6 +219,7 @@ export function MostrarPregunta(props) {
             {modificarVof &&
             <div>
             <FormVof
+              modificarPreguntasVoF={modificarPreguntasVoF}
               cancelar={cancelar}
               datospregunta={datosVof}
               vofModificar={preguntaModificar}

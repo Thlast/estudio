@@ -110,6 +110,17 @@ export function HomeMongo() {
     } 
     setShow(false);   
   }
+  const mostrarRespuesta = (id) => {
+    let estado = document.getElementById(`respuesta-${id}`).style.display
+
+    if(estado === 'block') {
+      document.getElementById(`respuesta-${id}`).style.display = 'none'
+      setShow(false)
+    } else {
+      document.getElementById(`respuesta-${id}`).style.display = 'block'
+      setShow(true)
+    }
+  }
 
     return (
     <div className="App">
@@ -206,7 +217,7 @@ export function HomeMongo() {
             {p.tipo === "Normal" &&
             <button
             className='boton home-boton'
-            onClick={() => setShow(!show)}>
+            onClick={() => mostrarRespuesta(p.id)}>
               {show ? "Ocultar Respuesta" : "Mostrar Respuesta" }
             </button>}   
             <hr></hr> 
@@ -226,11 +237,16 @@ export function HomeMongo() {
               p={p}
               num={num}/>            
             </div>}
-          {show &&
-          <div>
+          
+          <div
+          className='hide'
+          id={"respuesta-"+p.id}>
+            <div>
+            <p style={{"color": "green"}} className='hide' id={`correcto-${p.id}`}>✓</p>
             <p>
-            La respuesta correcta es: {p.correcta}
+            La respuesta correcta es: {p.correcta || p.resultado}
           </p>
+          </div>
           <div
           className="show-element home-pregunta cuadro">
           <ReactMarkdown
@@ -239,7 +255,7 @@ export function HomeMongo() {
           </ReactMarkdown>
           </div>
           </div>
-      }
+      
             </div>
           )  
         }

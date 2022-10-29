@@ -15,6 +15,7 @@ export function FormModificarPregunta(props) {
     const datosmodificar = usePreguntaForm({
     pregunta: preguntaModificar.pregunta,
     respuesta: preguntaModificar.respuesta,
+    resultado: preguntaModificar.resultado,
 		tipo: preguntaModificar.tipo,
     curso: preguntaModificar.curso,
       a: preguntaModificar.opciones.a,
@@ -57,9 +58,18 @@ return (
         name="pregunta" 
         type="text" 
         value={datosmodificar.datosPregunta.pregunta}>
-
         </textarea>
       </label>
+      <div>
+            Resultado:
+            <input 
+            style={{"width": "100%"}}
+            onChange={datosmodificar.handleChange} 
+            placeholder="Escribe un resultado (opcional)" 
+            name="resultado" 
+            type="number" 
+            value={datosmodificar.datosPregunta.resultado} />
+          </div>
       </div>
 {datosmodificar.datosPregunta.tipo === "Multiple" &&
         <div>

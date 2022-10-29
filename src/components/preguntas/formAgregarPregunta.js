@@ -13,10 +13,12 @@ export function FormAgregarPregunta(props) {
     const {examenid} = props;
     const {materias} = useContext(MateriasContext)
     const {user} = useAuth();
+    const {crearPreguntasVoF} = props
     
    const preguntaCrear = usePreguntaForm({
     preg: "",
     resp: "",
+    resultado: "",
     tipo: "Normal",
     // id: "",
     curso: curso,
@@ -58,14 +60,15 @@ export function FormAgregarPregunta(props) {
           </select>
         </div>
         {preguntaCrear.datosPregunta.tipo === "vof" ? 
-<FormVof 
-materias={materias}
-examenid={examenid}
-titulo={titulo}
-seccion={seccion} 
-curso={curso} 
-/>  
-:
+      <FormVof 
+      crearPreguntasVoF={crearPreguntasVoF}
+      materias={materias}
+      examenid={examenid}
+      titulo={titulo}
+      seccion={seccion} 
+      curso={curso} 
+      />  
+      :
       <div>
       <form
       className='form-container'
@@ -115,6 +118,16 @@ curso={curso}
 
             </textarea>
           </label>
+          <div>
+            Resultado:
+            <input 
+            style={{"width": "100%"}}
+            onChange={preguntaCrear.handleChange} 
+            placeholder="Escribe un resultado (opcional)" 
+            name="resultado" 
+            type="number" 
+            value={preguntaCrear.resultado} />
+          </div>
           </div>
 
     {preguntaCrear.habilitarMultiple &&

@@ -38,6 +38,7 @@ export function Respuesta(props) {
       id={"respuesta-"+p.id}
       className='respuesta-hide show-element'>
         <hr></hr>
+        <span style={{"color": "green"}} className='hide' id={`correcto-${p.id}`}>✓</span>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}>
         {p.respuesta}

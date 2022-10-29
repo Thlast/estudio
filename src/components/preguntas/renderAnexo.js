@@ -8,6 +8,7 @@ import { ResueltasContext } from '../../context/Resueltas'
 import { useContext } from 'react'
 import { Opciones } from './opcionesMultiples';
 import { VoF } from './formVoF';
+import { Resultado } from './resultado';
 
 export function AnexadasExamen(props) {
 
@@ -17,20 +18,6 @@ export function AnexadasExamen(props) {
   const {examenid} = props;
   const {numpreguntas} = props;
   const [renderanexadas, setRenderAnexadas] = useState(anexadas)
-  
-  const checkRespuesta = (c, num, id) => {
-    try {
-    const respuesta = document.querySelector(`input[name=opciones${num}]:checked`).value;
-    if(respuesta === c) {
-     alertasuccess("Respuesta correcta")
-      document.getElementById(`respuesta-${id}`).style.display = 'block'
-    } else {
-      alertafail("Respuesta incorrecta")
-    }
-    } catch (error) {
-        alertainfo("debe seleccionar una respuesta") 
-    }
-  }
 
   const mostrar = (id) => {
     document.getElementById("respuesta-"+id).style.display = 'block';
@@ -96,6 +83,15 @@ return (
               remarkPlugins={[remarkGfm]}>
               {p.pregunta}
               </ReactMarkdown>
+              {p.resultado ? 
+       
+          <Resultado
+          c={p.resultado}
+          id={p.id}
+          num={num}
+          />
+        : null
+        }
               {p.tipo === "Normal" &&
               <div>
             <div>

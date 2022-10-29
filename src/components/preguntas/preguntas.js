@@ -7,6 +7,7 @@ import { ResueltasContext } from '../../context/Resueltas'
 import { useContext } from 'react'
 import { VoF } from './formVoF'
 import { useAuth } from '../../context/AuthContext'
+import { Resultado } from './resultado'
 
 export function Preguntas(props) {
 
@@ -20,6 +21,7 @@ export function Preguntas(props) {
   const {integral} = props
   const {irModificarVof} = props
   // console.log(completadas[0])
+
 
   return (
       <div
@@ -50,7 +52,14 @@ export function Preguntas(props) {
         remarkPlugins={[remarkGfm]}>
         {p.pregunta}
         </ReactMarkdown>
-        
+        {p.resultado ? 
+        <Resultado 
+        c={p.resultado}
+        id={p.id}
+        num={num}
+        />
+        : null
+        }
         {integral &&
        <Respuesta 
          p={p}/>}
