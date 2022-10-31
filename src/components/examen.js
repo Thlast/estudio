@@ -117,7 +117,7 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
                 <div>
                   <Link 
                   to={"/examenes/"}>
-                   {"< "} volver
+                   {"< "} examenes
                   </Link>
                 </div>
                 <div>
@@ -135,6 +135,7 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
                  {most ?
                 <div>
                 <input 
+                  maxlength="51"
                   class="boton" 
                   placeholder={examen.nombre}
                   onChange={(e) => setNombre(e.target.value)}>
@@ -142,7 +143,7 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
                 <button 
                 className='boton btn-primary'
                 onClick={() => modNombre(nombre)}>
-                modificar
+                ✓
               </button> 
                 </div>
                 : 
@@ -164,7 +165,7 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
                     <button 
                     onClick={() => modMateria(materia)}
                     class="boton btn-primary">
-                      modificar
+                      ✓
                     </button>
                     </div>
                   : 
@@ -174,19 +175,22 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
  }          
                  </div>
                  <div
-                 className='examen-descripcion-elementos'>
-                 Descripcion: 
+                 className='examen-descripcion-elementos contenedor-descripcion'>
+                 Descripcion: {" "}
                  {most ? 
-                 <div>
-                  <input 
+                 <div
+                 className='descripcion-editar'>
+                  <textarea 
+                    style={{"width": "100%"}}
                     onChange={(e) => setDescripcion(e.target.value)}
+                    maxlength="100"
                     class="boton" 
-                    placeholder={examen.descripcion}>
-                  </input> 
+                    value={descripcion}
+                  />
                     <button 
                     onClick={() => modDescripcion(descripcion)}
                     class="boton btn-primary">
-                      modificar
+                      ✓
                     </button>
                     </div>
                   : 

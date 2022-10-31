@@ -158,7 +158,9 @@ export function Examenes() {
               <h6 >{exa.materia || "-  "}: {exa.nombre}</h6>
               Descripcion:
               <br></br>
-              <span>{exa.descripcion}</span>
+              <div className='contenedor-descripcion'>
+              <span className='examenes-descripcion'>{exa.descripcion}</span>
+              </div>
               </div>
               <div 
               className='examenfecha'>
@@ -177,7 +179,9 @@ export function Examenes() {
                   <h6 >{exa.materia || "-  "}: {exa.nombre}</h6>
                   Descripcion:
                   <br></br>
-                  <span>{exa.descripcion}</span>
+                  <div className='contenedor-descripcion'>
+              <span className='examenes-descripcion'>{exa.descripcion}</span>
+              </div>
                   </div>
                   <div 
                   className='examenfecha'>
@@ -193,6 +197,7 @@ onSubmit={(e) => agExa(e, curso)}
 className="examen-agregar">
   <input 
     required
+    maxlength="51"
     placeholder='Introducir un nombre' 
     onChange={(e) => setNombre(e.target.value)}>
   </input>

@@ -207,6 +207,16 @@ export function HomeMongo() {
               </div>
               : ""
               }
+              {p.examen ?
+            <div>
+            <Link
+            to={`/examenes/${p.examen}`}
+            className='home-seccion'>
+              Examen
+            </Link>
+              </div>
+              : ""
+              }
               <Preguntas 
               edit={false}
               p={p}

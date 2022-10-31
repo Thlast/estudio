@@ -12,7 +12,6 @@ export function Resultado(props) {
 
   const checkResultado = async (c, num, id, e) => {
     e.preventDefault()
-    console.log(typeof parseInt(document.querySelector(`input[name=resultado${num}-${id}]`).value))
     try {
     const respuesta = parseInt(document.querySelector(`input[name=resultado${num}-${id}]`).value);
     if(respuesta === c) {
@@ -20,6 +19,7 @@ export function Resultado(props) {
       document.getElementById(`respuesta-${id}`).style.display = 'block'
       document.getElementById(`correcto-${id}`).style.display = 'block'
       agregarHistorial(id)
+      console.log(id)
       // localStorage.setItem("listaResueltas", lista)
     } else if (respuesta === null || undefined) {
       alertainfo("debe seleccionar una respuesta") 
@@ -40,13 +40,16 @@ return (
   </span>
   <form
   onSubmit={(e) => checkResultado(c, num, id, e)}>
+    <div
+    className="resultado">
 <input
 name={`resultado${num}-${id}`}
 type="number" />
 <button
 className='btn-primary'>
-  Ok
+  ok
 </button>
+</div>
 </form>
 </div>
 )
