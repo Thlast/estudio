@@ -35,13 +35,13 @@ export function Resultado(props) {
     
 return (
 <div>
-  <span>
-    Resultado:
-  </span>
   <form
   onSubmit={(e) => checkResultado(c, num, id, e)}>
     <div
     className="resultado">
+      <span>
+    Resultado:
+  </span>
 <input
 name={`resultado${num}-${id}`}
 type="number" />

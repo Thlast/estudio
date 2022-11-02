@@ -25,3 +25,9 @@ export const buscarFiltradoNuevo = async (curso, valor) => {
     return data.json()
   
 }
+
+export const obtenerDetalleCurso = async (materia) => {
+    const data = await fetch(`${urlserver}/app/${materia}/detalle`)
+    return data.json()
+  
+}

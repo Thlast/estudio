@@ -217,11 +217,14 @@ export function HomeMongo() {
               </div>
               : ""
               }
+              <div
+              style={{"text-align": "-webkit-center"}}>
               <Preguntas 
               edit={false}
               p={p}
               num={num}
               />
+              </div>
             <div>                   
             <br></br>
             {p.tipo === "Normal" &&
@@ -258,7 +261,7 @@ export function HomeMongo() {
           </p>
           </div>
           <div
-          className="show-element home-pregunta cuadro">
+          className="show-element cuadro contendedor-pregunta-respuesta">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}>
             {p.respuesta}             

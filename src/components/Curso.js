@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import {Link, useParams} from "react-router-dom";
-import { obtenerCursos } from './servicios/cursos/obtenerCurso';
+import { obtenerCursos, obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
+import { obtenerDatosTitulos } from './servicios/cursos/obtenerSeccion';
 import { Spinner } from './Login/Spinner';
 import style from './modulos css/Curso.module.css'
 
@@ -12,13 +13,14 @@ export function Curso() {
     const [curs, setCurs] = useState([]);
     const materia = curso;
     const {focus} = useParams();
+    const [datosCaps, setDatosCaps] = useState([]);
 
   useEffect(() => {
             
-    obtenerCursos(materia)
+    obtenerDetalleCurso(materia)
     .then(data => (setCurs(data), setCargando(false)));
-
-   
+    obtenerDatosTitulos(materia)
+    .then(data => (setDatosCaps(data), setCargando(false)));
     
   }, [])
 
@@ -55,45 +57,42 @@ export function Curso() {
         </Link>
         <div class="cursos-container">
             <div class='cursos-descripcion'>
-            
-          {cargando ? "":
-          <div>
-            <h1>
-            {curs[0].nombre}
-            
-            </h1>
-          <p>{curs[0].descripcion}</p>
-          </div>
-          }
 
+            {curs.map((t, num) => {
+              return (
+                <div
+              key={"curso-descripcion-"+t.nombre+num}>
+
+              <h1>
+              {t.nombre}
+              </h1>
+
+          <div class="bloque-descripcion">
+            {t.descripcion}
+
+</div>
+</div>
+              )
+            }     
+              
+              )}
           <div class='block'>
           {cargando ? <Spinner></Spinner> :
-          curs[0].capitulos.map((c, num) => {
-                 
-          return (
+          curs.map(t => 
+          t.capitulo.map((c, num) => {
+            return (
               <div
+              id={c}
               key={"curso-"+c.nombre+num}>
               <div class="cuadro-curso">
           <div class="bloque-curso">
-              <h3
-              id={c.nombre}>
-              {c.nombre}
+              <h3>
+              {c}
               </h3>
           </div>
           <div class="bloque-descripcion">
-          <p>
-            {c.descripcion}
-          </p>
           <p>Bibliografia:</p>
           <ul>
-          {c.bibliografia.map((biblio) => {
-              return (
-                  <li
-                  key={'biblio-'+c.nombre}>
-                      {biblio}
-                  </li>
-              )
-                })}
                 </ul>
             </div>
             <div class="boton-curso">
@@ -113,17 +112,23 @@ export function Curso() {
             <ul 
             className={style.contenedor} 
             id={"capitulo"+num}>
-            {
-            c.desarrollo.map((t) => {
-            return (
-                <Link
-                key={'capitulo-'+t.nombre}
-                className={style.seccion}
-                  to={"/cursos/"+curso+"/"+c.nombre+"/"+t.nombre}>
-                  {t.nombre}
-                </Link>
-)
-    })
+            {datosCaps ? 
+            datosCaps.map((s) => {
+              if(s.titulo === c) {
+                return (s.secciones.map(sec => {
+                  return (
+                    <Link
+                    key={'capitulo-'+sec}
+                    className={style.seccion}
+                      to={"/cursos/"+curso+"/"+c+"/"+sec}>
+                      {sec}
+                    </Link>
+    )
+                }))
+              }
+            
+    }
+    ) : null
 }
                 </ul>
             </div>
@@ -132,7 +137,9 @@ export function Curso() {
             </div>
             </div>
                 )
-            })}
+          })
+          
+            )}
             
       </div>
       </div>

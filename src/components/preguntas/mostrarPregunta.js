@@ -28,7 +28,7 @@ export function MostrarPregunta(props) {
   const [modificar, setModificar] = useState(false) 
   const [modificarVof, setModificarVof] = useState(false) 
   const [preguntaModificar, setPreguntaModificar] = useState()
-  const [cargando, setCargando] = useState(true)
+  const [cargandoPreguntas, setCargandoPreguntas] = useState(true)
   const {agregar} = props;
   const [preguntas, setPreguntas] = useState([]);
   const {eliminarExamen} = props
@@ -43,19 +43,18 @@ export function MostrarPregunta(props) {
      // Hacemos la petición a la API y le pasamos como options la señal
     if(seccion) {
       obtenerSeccion(curso, seccion, { signal })
-      .then(data => (setPreguntas(data), setCargando(false)));
+      .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
       return () => controller.abort()
     } else if (examenid) {
       obtenerExamen(examenid)
-      .then(data => (setPreguntas(data), setCargando(false)));
+      .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else if (perfil) {
       obtenerUsuario(user.uid)
-      .then(data => (setPreguntas(data), setCargando(false)));
+      .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else {
       obtenerPregunta(curso)
-    .then(data => (setPreguntas(data), setCargando(false)));
-    };
-   
+    .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
+    }
   }, [seccion])
 
   const eliminar = async (idpregunta, usuario) => {
@@ -78,7 +77,10 @@ export function MostrarPregunta(props) {
       await modificarPregunta(datos, idmodif, event).then(response =>
           preguntamodif = {...response, id: idmodif}
         );
-      preguntas.splice(indice, 1, preguntamodif)
+      await preguntas.splice(indice, 1, preguntamodif);
+      console.log(document.getElementById("6345b860ade02f7c0aa591b1"
+        ))
+      // document.getElementById(idmodif).scrollIntoView()
     } catch (error) {
       console.log(error)
     }
@@ -142,7 +144,7 @@ export function MostrarPregunta(props) {
     return (
       <div>
         {mostrarPreguntas & !modificar & !modificarVof ?
-        cargando ? <Spinner></Spinner> :
+        cargandoPreguntas ? <Spinner></Spinner> :
         <div 
         className={"contenedorpreguntas"}>
           <div

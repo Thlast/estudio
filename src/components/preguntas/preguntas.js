@@ -48,6 +48,7 @@ export function Preguntas(props) {
        Pregunta Nº {1 + num}:
        </p>
        </div>
+       <div className='contendedor-pregunta-respuesta'>
        <ReactMarkdown
         remarkPlugins={[remarkGfm]}>
         {p.pregunta}
@@ -58,8 +59,10 @@ export function Preguntas(props) {
         id={p.id}
         num={num}
         />
+        
         : null
         }
+        </div>
         {integral &&
        <Respuesta 
          p={p}/>}

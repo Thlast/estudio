@@ -49,6 +49,19 @@ body {
   background: var(--body-color) !important;
   color: var(--text-color) !important;
 }
+
+table th {
+  border: 1px solid;
+  min-width: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+table td {
+  border: 1px solid;
+  min-width: 40px;  
+  padding-left: 5px;
+  padding-right: 5px;
+}
 textarea::placeholder {
   color: var(--textarea-placeholder);
 }
@@ -73,6 +86,15 @@ textarea {
       content :  '🌙';
     }
   }
+}
+.contendedor-pregunta-respuesta {
+  width: 100%;
+  overflow: scroll;
+  overflow-y: hidden;
+  // overflow-x: hidden;
+}
+.contendedor-pregunta-respuesta::-webkit-scrollbar {
+  display: none;
 }
 
 .contenedorbuscador {
@@ -343,6 +365,7 @@ textarea {
 .resultado {
   font-size: 17px !important;
   display: flex;
+  gap: 5px;
 } 
 .form-correcta {
   text-align: center;
@@ -828,6 +851,12 @@ li {
   }
   .cuadro {
     font-size: 18px;
+  }
+  .contendedor-pregunta-respuesta {
+    width: 100%;
+    overflow: scroll;
+    overflow-y: hidden;
+    // overflow-x: hidden;
   }
 }
 

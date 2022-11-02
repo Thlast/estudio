@@ -171,6 +171,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
   })
 }    
 
+
     return (
       <div>
       <div className="capitulos">

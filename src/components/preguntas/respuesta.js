@@ -19,7 +19,7 @@ export function Respuesta(props) {
     return (
       <div>
       {p.tipo === "Normal" &&
-        <div>
+        <div className='contendedor-pregunta-respuesta'>
       <div>
       <button
         className='boton respuesta-show'
