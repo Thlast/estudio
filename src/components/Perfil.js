@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Buscador } from './buscador';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
@@ -13,6 +13,7 @@ export function Perfil() {
     const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
     const [agregar, setAgregar] = useState(false);
     const [buscador, setBuscador] = useState(false);
+    const navigate = useNavigate();
 
     const agregarPregunta = () => {
       setMostrarPreguntas(false);
@@ -56,7 +57,7 @@ export function Perfil() {
                 <button 
                 className='perfil-boton'
                 onClick={() => most()}>
-                   Mostrar preguntas
+                   Mis preguntas
                 </button>
                 </li>
                 <hr></hr>
@@ -83,6 +84,14 @@ export function Perfil() {
                 className='perfil-boton'
                 onClick={() => limpiarHistorialUsuario()}
                 > Borrar historial
+                </button>
+                </li>
+                <hr></hr>
+                <li>
+                <button
+                className='perfil-boton'
+                onClick={() => navigate("/calculadora-prestamos")}
+                > Calculadora prestamos
                 </button>
                 </li>
               </ul>

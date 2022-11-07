@@ -16,6 +16,7 @@ import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
 import { DataProvider } from './context/MateriasContext';
 import { HistorialProvider } from './context/Resueltas';
+import { Prestamos } from './components/calcPrestamos';
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
           } 
         />
         <Route 
-          path="/perfil" 
+          path="/menu" 
             element={
               <ProtectedRoute>
                 <Perfil />
@@ -96,6 +97,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Examen />
+              </ProtectedRoute>
+            }
+          />
+          <Route 
+          path="/calculadora-prestamos" 
+            element={
+              <ProtectedRoute>
+                <Prestamos />
               </ProtectedRoute>
             }
           />

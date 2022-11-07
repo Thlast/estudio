@@ -1,0 +1,57 @@
+.contenedorprestamos {
+  padding: 20px;
+}
+
+.contenedorinput {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+  }
+  .contenedorprestamos input {
+    width: 100px;
+  }
+  
+  .contenedorprestamos table {
+    width: 100%;
+    border: 1px solid #000;
+  }
+  .contenedorprestamos th, td {
+    width: auto;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 0.3em;
+    caption-side: bottom;
+  }
+  .contenedorprestamos caption {
+    padding: 0.3em;
+    color: #fff;
+     background: #000;
+  }
+  .contenedorprestamos th {
+    background: #eee;
+  }
+  
+  .resumencontainer {
+    padding: 15px;
+  }
+  
+  .cuadroresumen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 600px;
+  
+  }
+  
+  .cuadroresumenelementos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .equivalencias {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }

@@ -138,8 +138,8 @@ className={style.login}>
           className={style.elementolista}>
           <Link
           className={style.links}
-          to={"/perfil"}>
-            Mi perfil
+          to={"/menu"}>
+            Menú
           </Link>
           </li>
           <li

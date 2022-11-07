@@ -77,10 +77,8 @@ export function MostrarPregunta(props) {
       await modificarPregunta(datos, idmodif, event).then(response =>
           preguntamodif = {...response, id: idmodif}
         );
-      await preguntas.splice(indice, 1, preguntamodif);
-      console.log(document.getElementById("6345b860ade02f7c0aa591b1"
-        ))
-      // document.getElementById(idmodif).scrollIntoView()
+      preguntas.splice(indice, 1, preguntamodif)
+      document.getElementById(idmodif).scrollIntoView()
     } catch (error) {
       console.log(error)
     }
