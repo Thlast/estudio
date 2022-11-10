@@ -18,6 +18,7 @@ export const Prestamos = () => {
     const [costoFinanciero, setCostoFinanciero] = useState(0)
     let ivaAcumulado = 0
     const [ivaTotal, setIvaTotal] = useState(iTotal)
+    const [sistema, setSistema] = useState("frances")
   
     const calcularCuadro = async (inicial, interes, cuotas, iva, e) => {
       e.preventDefault()
@@ -46,11 +47,15 @@ export const Prestamos = () => {
       const r1 = (tasainteres/(Math.pow((1+tasainteres), qcuotas) -1))*monto
       let amortizacioncalculada = 0
       let ivacalculado = 0
-      if(cuota == 1) {
-        amortizacioncalculada = r1
-      } else {
-        amortizacioncalculada = r1 *Math.pow((1+tasainteres), cuota-1)
+      switch(sistema) {
+        case "frances": if(cuota == 1) {
+          amortizacioncalculada = r1
+        } else {
+          amortizacioncalculada = r1 *Math.pow((1+tasainteres), cuota-1)
+        }; break;
+        case "aleman": amortizacioncalculada = monto/qcuotas
       }
+      
   
       if(iva === "si") {
         ivacalculado = interescalculado * 0.21
@@ -73,23 +78,36 @@ export const Prestamos = () => {
     return (
       <div className={style.contenedorprestamos}>
         <header>
-          <div >
+          <div className={style.prestamoshead}>
             <form
             className={style.contenedorinput}
             onSubmit={(e) => calcularCuadro(monto, interes, qcuotas, iva, e)}>
+              <select
+              onChange={(e) => setSistema(e.target.value)}
+              value={sistema}>
+                <option
+                value="frances"
+                selected>
+                  Francés
+                </option>
+                <option
+                value="aleman">
+                  Alemán
+                </option>
+              </select>
               <label>
               <span>Monto inicial: </span>
-              <input onChange={(e) => setMonto(e.target.value)} value={monto} type="number" />
+              <input required onChange={(e) => setMonto(e.target.value)} value={monto} type="number" />
               $
               </label>
               <label>
                 <span>Tasa (TNA): </span>
-              <input onChange={(e) => setInteres(e.target.value)} value={interes} type="number" step="any" />
+              <input required onChange={(e) => setInteres(e.target.value)} value={interes} type="number" step="any" />
               %
               </label>
               <label>
               <span>Cuotas: </span>
-              <input max={600} onChange={(e) => setQcuotas(e.target.value)} value={qcuotas} type="number" />
+              <input required max={600} onChange={(e) => setQcuotas(e.target.value)} value={qcuotas} type="number" />
               </label>
               <label>
               <span>IVA: </span>
@@ -121,6 +139,7 @@ export const Prestamos = () => {
             }
             </div>
           </div>
+          <div className={style.cuadroamortizacion}>
           <table>
           <td
           style={{width: "40px"}}>
@@ -149,24 +168,29 @@ export const Prestamos = () => {
         <tr>
         <td>Totales</td>
         <td></td>
-        <td>{monto}</td>
+        <td>{(monto *1).toLocaleString('de-DE')}</td>
         <td>{Math.round(interesTotal).toLocaleString('de-DE')}</td>
         <td>{Math.round(ivaTotal).toLocaleString('de-DE')}</td>
         <td>{Math.round(abonadoTotal).toLocaleString('de-DE')}</td>
         <td></td>
         </tr>
         </table>
+        </div>
         <div className={style.resumencontainer}>
           <p>Resumen:</p>
-          <p>Monto solicitado: ${Math.round(monto).toLocaleString('de-DE')} a una TNA de {interes}% a cancelar en {qcuotas} meses</p>
+          <p>Monto solicitado: ${Math.round(monto).toLocaleString('de-DE')} a una TNA de {interes}% a cancelar en {qcuotas} meses con un sistema de amortización {sistema}:</p>
           <div
           className={style.cuadroresumen}>
           <p className={style.cuadroresumenelementos}>Saldo total a abonar:<span>${Math.round(abonadoTotal).toLocaleString('de-DE')}</span></p>
+          <hr></hr>
           <p className={style.cuadroresumenelementos}>Total intereses: <span>${Math.round(interesTotal).toLocaleString('de-DE')}</span></p>
+          <hr></hr>
           <p className={style.cuadroresumenelementos}>Total IVA: <span>${Math.round(ivaTotal).toLocaleString('de-DE')}</span></p>
+          <hr></hr>
         <p className={style.cuadroresumenelementos}>
         El costo financiero total mensual es:<span> {(costoFinanciero * 100).toLocaleString('de-DE')} %</span>
         </p>
+        <hr></hr>
         <p className={style.cuadroresumenelementos}>
         El costo financiero total anual es:<span> {((Math.pow(1 + costoFinanciero, 12)-1)*100).toLocaleString('de-DE')} %</span>
         </p>

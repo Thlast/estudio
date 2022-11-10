@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import {Link, useParams} from "react-router-dom";
-import { obtenerCursos, obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
+import { obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
 import { obtenerDatosTitulos } from './servicios/cursos/obtenerSeccion';
 import { Spinner } from './Login/Spinner';
 import style from './modulos css/Curso.module.css'
@@ -18,7 +18,7 @@ export function Curso() {
   useEffect(() => {
             
     obtenerDetalleCurso(materia)
-    .then(data => (setCurs(data), setCargando(false)));
+    .then(data => setCurs(data));
     obtenerDatosTitulos(materia)
     .then(data => (setDatosCaps(data), setCargando(false)));
     

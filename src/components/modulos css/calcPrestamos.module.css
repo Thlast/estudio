@@ -1,6 +1,11 @@
 .contenedorprestamos {
   padding: 20px;
 }
+.prestamoshead {
+  background-color: var(--secundario);
+  border: 1px solid var(--border-color);
+  /* box-shadow: 0px 0px 2px 2px var(--container-shadow); */
+}
 
 .contenedorinput {
     display: flex;
@@ -42,7 +47,9 @@
     flex-direction: column;
     justify-content: space-between;
     max-width: 600px;
-  
+    background-color: var(--destacar);
+    padding: 20px;
+    border: 1px solid var(--border-color);
   }
   
   .cuadroresumenelementos {
@@ -54,4 +61,8 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
+  }
+  .cuadroamortizacion {
+
+    padding-top: 10px;
   }
