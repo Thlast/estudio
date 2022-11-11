@@ -73,8 +73,6 @@ export const Prestamos = () => {
       return resultado
     }
   
-    
-    console.log(iva)
     return (
       <div className={style.contenedorprestamos}>
         <header>
@@ -96,18 +94,24 @@ export const Prestamos = () => {
                 </option>
               </select>
               <label>
-              <span>Monto inicial: </span>
+             
+                Monto inicial:  
+                <span className={style.inputprestamo}>
               <input required onChange={(e) => setMonto(e.target.value)} value={monto} type="number" />
-              $
+              $</span>
               </label>
               <label>
-                <span>Tasa (TNA): </span>
+                
+                  Tasa (TNA): 
+                  <span className={style.inputprestamo}>
               <input required onChange={(e) => setInteres(e.target.value)} value={interes} type="number" step="any" />
-              %
+              %</span>
               </label>
               <label>
               <span>Cuotas: </span>
+              <span className={style.inputprestamo}>
               <input required max={600} onChange={(e) => setQcuotas(e.target.value)} value={qcuotas} type="number" />
+              </span>
               </label>
               <label>
               <span>IVA: </span>

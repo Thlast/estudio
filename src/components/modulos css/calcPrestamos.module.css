@@ -4,9 +4,12 @@
 .prestamoshead {
   background-color: var(--secundario);
   border: 1px solid var(--border-color);
-  /* box-shadow: 0px 0px 2px 2px var(--container-shadow); */
+  min-width: fit-content;
 }
 
+.inputprestamo {
+  white-space: nowrap;
+}
 .contenedorinput {
     display: flex;
     gap: 15px;
