@@ -21,7 +21,7 @@ export function HistorialProvider ({ children }) {
   }
   const reiniciarHistorial = async () => {
 
-    await localStorage.clear()
+    await localStorage.setItem("listaResueltas", [])
     setCompletadas([])
   }
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Spinner } from "./Login/Spinner";
 import { MateriasContext } from "../context/MateriasContext";
+import remarkGfm from 'remark-gfm'
 
 export const Buscador = () => {
 
@@ -77,9 +78,10 @@ return (
       className="contenedorbuscador">
         {cargando ? <Spinner></Spinner> :
       resultados.length !== 0 ?
-      resultados.map(resultado => {
+      resultados.map((resultado, num) => {
         return (
-          <div>
+          <div
+          key={resultado.titulo+resultado.seccion+num}>
             <Link 
             to={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
             {resultado.seccion}
@@ -87,7 +89,8 @@ return (
             
           <div
           className="cuadro">
-            <ReactMarkdown >
+            <ReactMarkdown 
+            remarkPlugins={[remarkGfm]}>
             {resultado.enunciado}
             </ReactMarkdown>
           </div>

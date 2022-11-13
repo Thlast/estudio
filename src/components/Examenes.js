@@ -99,7 +99,7 @@ export function Examenes() {
               <div>
                 <Link
               className='volver'
-              to={"/perfil"}>
+              to={"/menu"}>
               {"<"} menú
               </Link>
             <div
