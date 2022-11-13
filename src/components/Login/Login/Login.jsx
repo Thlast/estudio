@@ -80,6 +80,18 @@ export const Login = () => {
     }
   };
 
+  const ingresarInvitado = async (e) => {
+
+    await login(
+      'invitado@app.com',
+      '123456'
+     );
+     setLoading(false);
+     navigate('/');
+     console.log("navegando a la home")
+
+  }
+
   return (
     <div
     className='login'>
@@ -119,9 +131,14 @@ export const Login = () => {
                 value={user.login_password}
               />
             </div>
-
             <button className={`${style.button}`}>Ingresar</button>
 
+            <button 
+            type='button'
+            onClick={(e) => ingresarInvitado(e)}
+            className={`${style.button}`}>
+                Ingresar como invitado
+              </button>
             <div>
               <Link to="/register">¿No tienes una cuenta? Regístrate aquí</Link>
             </div>
