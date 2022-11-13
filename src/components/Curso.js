@@ -20,7 +20,7 @@ export function Curso() {
     obtenerDetalleCurso(materia)
     .then(data => setCurs(data));
     obtenerDatosTitulos(materia)
-    .then(data => (setDatosCaps(data), setCargando(false)));
+    .then(data => setDatosCaps(data)).then(res => setCargando(false))
     
   }, [])
 
