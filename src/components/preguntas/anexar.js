@@ -18,7 +18,7 @@ export function Anexar(props) {
     const misdatos = await data.docs.map((doc) => ({...doc.data(), id: doc.id})).filter(
       exa => exa.user === user.uid);
       if(misdatos.length === 0) {
-        alertainfo("crea un examen en perfil")
+        alertainfo("crea un examen en menu/examenes")
       } else {
         setMisExamenes(misdatos)
       }

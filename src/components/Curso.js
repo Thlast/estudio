@@ -25,7 +25,7 @@ export function Curso() {
   }, [])
 
   useEffect(() => {
-    if(cargando === false & focus !== undefined) {
+    if(cargando === false & focus !== undefined & datosCaps !== []) {
       document.getElementById(focus).scrollIntoView();
     }
   
