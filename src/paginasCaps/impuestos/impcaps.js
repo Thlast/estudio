@@ -152,9 +152,9 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
   }
   let alert = "";
   if(volver === true) {
-    alert = `Regresando a: '${proximo}'`
+    alert = `Regresando a: ${proximo}`
   } else {
-    alert = `Has finalizado '${titulo}'!, siguiente: '${proximo}'`
+    alert = `Has finalizado ${titulo}!, siguiente: ${proximo}`
   }
   Swal.fire({
     title: alert,

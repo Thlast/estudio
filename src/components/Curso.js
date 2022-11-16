@@ -20,17 +20,17 @@ export function Curso() {
     obtenerDetalleCurso(materia)
     .then(data => setCurs(data));
     obtenerDatosTitulos(materia)
-    .then(data => setDatosCaps(data)).then(res => setCargando(false))
-    
+    .then(data => setDatosCaps(data), setCargando(false))
+   
   }, [])
 
   useEffect(() => {
-    if(cargando === false & focus !== undefined & datosCaps !== []) {
-      document.getElementById(focus).scrollIntoView();
-    }
-  
     
-  }, [cargando])
+  if(document.getElementById(focus) !== null) {
+    document.getElementById(focus).scrollIntoView()
+  }
+    
+  }, [document.getElementById(focus)])
 
   
 
