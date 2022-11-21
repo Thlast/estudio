@@ -100,13 +100,13 @@ export function Curso() {
                 class="show boton-curso" 
                 id={"mostrar"+num} 
                 onClick={() => most(num)}>
-                    Expandir curso
+                    Expandir
                 </button>
                 <button 
                 class="hide boton-curso" 
                 id={"ocultar"+num}
                 onClick={() => ocultar(num)}>
-                    Ocultar curso
+                    Ocultar
                 </button>
             </div>
             <ul 

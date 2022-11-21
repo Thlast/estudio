@@ -18,6 +18,8 @@ code {
   animation-fill-mode: both;
   /*le indicas que animacion quieres aplicarle, animacion hecha por ti en un keyframe*/
   animation-name: fadeIn;
+  max-width: 100%;
+  overflow: auto;
 }
 
 @keyframes fadeIn {
