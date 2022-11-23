@@ -8,6 +8,7 @@ import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
 import style from '../../components/modulos css/impcaps.module.css'
 import Swal from 'sweetalert2'
+import { Buscador } from "../../components/buscador";
 
 export function Impcaps() {
 
@@ -22,7 +23,6 @@ export function Impcaps() {
   const [datos, setDatos] = useState([]) 
   const curso = materia
   const [cargandoconsola, setCargandoConsola] = useState(false);
-
   
   const cargarPagina = async ({ signal }) => {
     await obtenerDatosSeccion(curso, seccion, titulo, { signal })
@@ -104,8 +104,10 @@ clickCode()
   //mostrar pregunta
   const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
   const [edit, setEdit] = useState(false)
+  const [buscador, setBuscador] = useState(false)
   const [botoneditar, setBotonEditar] = useState("botonnomostrar")
   const [botonmostrar, setBotonMostrar] = useState("botonnomostrar")
+  const [botonbuscador, setBotonBuscador] = useState("botonnomostrar")
 
   const editar =  () => {
     if(edit === true) {
@@ -113,6 +115,10 @@ clickCode()
     } else if (edit === false) {
       setBotonEditar("botonmostrar")
     }
+    if(buscador) {
+      mostrarbuscador()
+    }
+    
     setEdit(!edit)
   }
 
@@ -170,7 +176,14 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
     `
   })
 }    
-
+const mostrarbuscador = () => {
+  if(buscador === true) {
+    setBotonBuscador("nada")
+  } else if (buscador === false) {
+    setBotonBuscador("botonmostrar")
+  }
+  setBuscador(!buscador)
+}
 
     return (
       <div>
@@ -223,12 +236,24 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
             Editar
         </button>    
         <button
+           id={botonbuscador}
+            className="cursos-as editarcurso"
+            onClick={() => mostrarbuscador()}>
+            Buscador
+        </button>   
+        <button
           id={botonmostrar}
           className="cursos-as mostrarpreg"
           onClick={() => mostrar()}>
             Mostrar preguntas
           </button>
           </div>
+          <hr></hr>
+          {buscador ? 
+          <Buscador 
+          cursoBuscador={curso}
+          />
+          : null}
           <hr></hr>
           <Consola 
             cargando={cargandoconsola}
@@ -246,6 +271,10 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
             agregar={edit} 
             edit={edit} 
             mostrarPreguntas={mostrarPreguntas} />      
+
+         
+            
+
 
       </div>
     </div>

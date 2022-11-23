@@ -1,20 +1,22 @@
 import React, { useState, useContext } from "react"
 import { buscarFiltradoNuevo } from "./servicios/cursos/obtenerCurso";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Spinner } from "./Login/Spinner";
 import { MateriasContext } from "../context/MateriasContext";
 import remarkGfm from 'remark-gfm'
 
-export const Buscador = () => {
+export const Buscador = (props) => {
 
+const {cursoBuscador} = props
 const [valor, setValor] = useState(null);
 const [resultados, setResultados] = useState([]);
-const [curso, setCurso] = useState("impuestos");
+const [curso, setCurso] = useState(cursoBuscador || "impuestos");
 const {materias} = useContext(MateriasContext);
 const [cargando, setCargando] = useState(false);
 const [valorBuscado, setValorBuscado] = useState("")
 
+const navigate = useNavigate()
 
 const find = async (valor, e) => {
   e.preventDefault()
@@ -35,13 +37,14 @@ return (
       <div
       className="buscador">
         <div>
+        {cursoBuscador ? null :
        <select 
         onChange={(e) => cambiarCurso(e.target.value)} 
         class="boton home-boton" 
         value={curso}
         for="materias">
-
-    {materias.map(a => {
+{
+    materias.map(a => {
           return (
       <option 
       key={"materia-"+a.id}
@@ -51,6 +54,7 @@ return (
        )
       })}
    </select>
+}
       </div>
       <form
       onSubmit={(e) => find(valor, e)}
@@ -82,11 +86,16 @@ return (
         return (
           <div
           key={resultado.titulo+resultado.seccion+num}>
+            {cursoBuscador ? 
+            <a href={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
+              {resultado.seccion}
+            </a>
+            :
             <Link 
             to={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
             {resultado.seccion}
             </Link>
-            
+      }
           <div
           className="cuadro">
             <ReactMarkdown 

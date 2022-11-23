@@ -83,23 +83,23 @@ return (
           {secciones[indiceSeccion-1]}
          </p>
           </Link>   
-}
-{secciones.length === indiceSeccion+1 ? 
-proximo ?
- <Link 
-  to={"/cursos/"+curso+"/"+proximo+"/"+siguienteSeccion}
- onClick={() => ingresarSeccion(proximo, siguienteSeccion, false)}
- className={style.cambioseccion}>
- <p
- className={style.siguiente}>Siguiente Capitulo {" >"}</p>
- <p
-          className={style.blockellipsis}>
-  {proximo}
-          </p>
-   </Link>
-   : <div>
+          }
+          {secciones.length === indiceSeccion+1 ? 
+          proximo ?
+          <Link 
+            to={"/cursos/"+curso+"/"+proximo+"/"+siguienteSeccion}
+          onClick={() => ingresarSeccion(proximo, siguienteSeccion, false)}
+          className={style.cambioseccion}>
+          <p
+          className={style.siguiente}>Siguiente Capitulo {" >"}</p>
+          <p
+                    className={style.blockellipsis}>
+            {proximo}
+                    </p>
+            </Link>
+            : <div>
 
-   </div>
+            </div>
           :
           <Link 
           to={"/cursos/"+curso+"/"+titulo+"/"+secciones[indiceSeccion+1]}
