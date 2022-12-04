@@ -14,7 +14,7 @@ export function TextoCurso(props) {
     </h1>
     <br></br>
         <div>
-      {enunciado === undefined || enunciado[0].enunciado === undefined || enunciado[0].enunciado.length === 0 ? "" :
+      {enunciado === undefined || enunciado[0].enunciado === undefined || enunciado[0].enunciado.length === 0 ? null :
       enunciado[0].enunciado.map((e, num) => {
         
           return (

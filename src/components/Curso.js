@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import { obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
 import { obtenerDatosTitulos } from './servicios/cursos/obtenerSeccion';
 import { Spinner } from './Login/Spinner';
-import style from './modulos css/Curso.module.css'
+import style from './modulos-css/Curso.module.css'
 
 export function Curso() {
 

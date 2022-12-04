@@ -17,6 +17,9 @@ import { HomeMongo } from './components/HomeMongo';
 import { DataProvider } from './context/MateriasContext';
 import { HistorialProvider } from './context/Resueltas';
 import { Prestamos } from './components/calcPrestamos';
+import { EdeResultados } from './components/estados contables/EdeResultados';
+import { ModelosRT9 } from './components/estados contables/modelosRT9';
+import { TransformarTabla } from './components/transformarTabla';
 
 function App() {
 
@@ -108,6 +111,30 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route 
+          path="/estados-contables" 
+          element={
+            <ProtectedRoute> 
+              <ModelosRT9 />
+            </ProtectedRoute>
+          } 
+        />
+           <Route 
+          path="/estados-contables/estado-de-resultados" 
+          element={
+            <ProtectedRoute> 
+              <EdeResultados />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/texto-a-tabla" 
+          element={
+            <ProtectedRoute> 
+              <TransformarTabla />
+            </ProtectedRoute>
+          } 
+        />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           </Routes>

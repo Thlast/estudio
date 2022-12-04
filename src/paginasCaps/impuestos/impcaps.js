@@ -6,9 +6,10 @@ import { Consola } from "../consola";
 import { obtenerDatosConsola, obtenerDatosSeccion } from "../../components/servicios/cursos/obtenerSeccion";
 import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
-import style from '../../components/modulos css/impcaps.module.css'
+import style from '../../components/modulos-css/impcaps.module.css'
 import Swal from 'sweetalert2'
 import { Buscador } from "../../components/buscador";
+import { LinkExamen } from "./linkExamen";
 
 export function Impcaps() {
 
@@ -263,7 +264,8 @@ const mostrarbuscador = () => {
             eliminarDelHistorial={eliminarDelHistorial} 
             limpiarHistorial={limpiarHistorial} />          
           <hr></hr>
-
+          {edit ? <><LinkExamen /> <hr></hr></>: null}
+          
             <MostrarPregunta 
             titulo={titulo}
             curso={curso} 
@@ -271,9 +273,6 @@ const mostrarbuscador = () => {
             agregar={edit} 
             edit={edit} 
             mostrarPreguntas={mostrarPreguntas} />      
-
-         
-            
 
 
       </div>

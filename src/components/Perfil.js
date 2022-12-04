@@ -44,69 +44,76 @@ export function Perfil() {
       <div className="App">
         <main className="perfil">
         <div className='menuperfil'>
-            <nav >
-              <ul>
-                <li>
-              <Link 
+          <nav >
+            <ul>
+              <li>
+            <Link 
+            className='perfil-boton'
+            to="/examenes">Examenes
+            </Link>
+            </li>
+              <hr></hr>
+              <li>
+              <button 
               className='perfil-boton'
-              to="/examenes">Examenes
-              </Link>
+              onClick={() => most()}>
+                  Mis preguntas
+              </button>
               </li>
-                <hr></hr>
-                <li>
-                <button 
-                className='perfil-boton'
-                onClick={() => most()}>
-                   Mis preguntas
-                </button>
-                </li>
-                <hr></hr>
-                <li>
-                <button
-                className='perfil-boton'
-                onClick={() => agregarPregunta()}
-                >
-                   Agregar Pregunta
-                </button>
-                </li>
-                <hr></hr>
-                <li>
-                <button
-                className='perfil-boton'
-                onClick={() => buscarPregunta()}
-                >
-                   Buscador
-                </button>
-                </li>
-                <hr></hr>
-                <li>
-                <button
-                className='perfil-boton'
-                onClick={() => limpiarHistorialUsuario()}
-                > Borrar historial
-                </button>
-                </li>
-                <hr></hr>
-                <li>
-                <button
-                className='perfil-boton'
-                onClick={() => navigate("/calculadora-prestamos")}
-                > Calculadora prestamos
-                </button>
-                </li>
-              </ul>
-            </nav>
-            </div>
-            <div>
-            {buscador &&
-            <Buscador />
-            }     
-            <MostrarPregunta 
-            perfil={true}
-            agregar={agregar} 
-            edit={true} 
-            mostrarPreguntas={mostrarPreguntas} /> 
-            </div>
+              <hr></hr>
+              <li>
+              <button
+              className='perfil-boton'
+              onClick={() => agregarPregunta()}
+              >
+                  Agregar Pregunta
+              </button>
+              </li>
+              <hr></hr>
+              <li>
+              <button
+              className='perfil-boton'
+              onClick={() => buscarPregunta()}
+              >
+                  Buscador
+              </button>
+              </li>
+              <hr></hr>
+              <li>
+              <button
+              className='perfil-boton'
+              onClick={() => limpiarHistorialUsuario()}
+              > Borrar historial
+              </button>
+              </li>
+              <hr></hr>
+              <li>
+              <button
+              className='perfil-boton'
+              onClick={() => navigate("/calculadora-prestamos")}
+              > Calculadora prestamos
+              </button>
+              </li>
+              <hr></hr>
+              <li>
+            <Link 
+            className='perfil-boton'
+            to="/estados-contables">Estados contables
+            </Link>
+            </li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+          {buscador &&
+          <Buscador />
+          }     
+          <MostrarPregunta 
+          perfil={true}
+          agregar={agregar} 
+          edit={true} 
+          mostrarPreguntas={mostrarPreguntas} /> 
+        </div>
       </main>
       </div>
     );

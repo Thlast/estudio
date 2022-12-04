@@ -3,6 +3,7 @@ import { usePreguntaForm } from './usePregunta';
 import { MateriasContext } from '../../context/MateriasContext';
 import { useAuth } from '../../context/AuthContext';
 import { FormVof } from './VoF';
+import { TextoaTabla } from './texto-a-tabla';
 
 export function FormAgregarPregunta(props) {
 
@@ -37,6 +38,7 @@ export function FormAgregarPregunta(props) {
     return (
       <div
       style={{"padding": "10px"}}>
+        <TextoaTabla />
         <div
         style={{"textAlign": "center"}}>
         <select required 

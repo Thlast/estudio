@@ -3,7 +3,7 @@
   import { useAuth } from '../context/AuthContext';
   import { getAuth, updateProfile } from "firebase/auth";
   import {signOut} from "firebase/auth";
-  import style from './modulos css/navbarr.module.scss'
+  import style from './modulos-css/navbarr.module.scss'
 
 export function Nav() {
   
