@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { alertainfo, alertasuccess, alertafail } from '../alertas';
 import {Link} from "react-router-dom";
 import { alertaquitar } from '../alertas';
 import { ResueltasContext } from '../../context/Resueltas'

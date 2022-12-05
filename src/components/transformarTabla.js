@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import ReactMarkdown from 'https://esm.sh/react-markdown@7'
+import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import style from './modulos-css/transformarTabla.module.css'
 
