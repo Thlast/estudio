@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { alertareiniciarTabla } from "./alertas";
 import style from './modulos-css/transformarTabla.module.css'
 
 export function TransformarTabla() {
@@ -57,6 +58,14 @@ const handleOnRemove = index => {
     setRows(copyRows);
   };
 
+  const handleOnReiniciar = () => {
+    const reinciar = () => {
+        setRows(["columna 1"])
+    }
+    alertareiniciarTabla(reinciar)
+  };
+   
+
 return (
   <div className={style.contenedorTabla}>
     <h4>Transformar a tabla:</h4>
@@ -73,7 +82,13 @@ return (
     max="50"
     min="1"></input>
     </label>
-  <button>Transformar</button>
+  <button
+//   className="btn btn-primary"
+  >Transformar</button>
+  <button
+//   className="btn btn-danger"
+  onClick={() => handleOnReiniciar()}
+  >Reiniciar</button>
   </form>
   <p>"Enter" (salto de linea) para separar las filas</p>
   <div 
@@ -96,6 +111,7 @@ return (
   })}
 
   <button
+  className={style.botonagregar}
   onClick={() => handleOnAdd()}
   >
     Agregar columna

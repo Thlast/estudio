@@ -157,3 +157,34 @@ export const alertalimpiarHistorialUsuario = (funcion) => {
   })
 
 }
+
+export const alertareiniciarTabla = (funcionreiniciar) => {
+
+  swalWithBootstrapButtons.fire({
+    title: 'Reiniciar?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Si, reiniciar!',
+    cancelButtonText: 'No, cancelar!',
+    reverseButtons: true
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      funcionreiniciar();
+      swalWithBootstrapButtons.fire(
+        'Reiniciado!',
+        '',
+        'success'
+      )
+    } else if (
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        '',
+        'error'
+      )
+    }
+  })
+
+}

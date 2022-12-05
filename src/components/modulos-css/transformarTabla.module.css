@@ -2,6 +2,15 @@
     width: 300px;
     height: 300px;
 }
+.botonagregar {
+    width: 300px;
+    background-color: var(--container-color);
+    color: var(--text-color);
+}
+.botonagregar:hover {
+    background-color: var(--text-color);
+    color: var(--container-color);
+}
 
 .contenedorinput {
     display: flex;
@@ -15,8 +24,18 @@
 .contenedorRows {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .contenedorcolumna {
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 350px) {
+    .contenedorcolumna{
+        width: 100%;
+    } .contenedorTabla textarea {
+        width: 100%;
+    }
+
 }
