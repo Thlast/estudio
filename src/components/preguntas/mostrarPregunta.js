@@ -50,7 +50,7 @@ export function MostrarPregunta(props) {
       obtenerExamen(examenid)
       .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else if (perfil) {
-      obtenerUsuario(curso, user.uid)
+      obtenerUsuario(user.uid)
       .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else {
       obtenerPregunta(curso)

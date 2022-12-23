@@ -49,9 +49,9 @@ export const obtenerAnexadas = async (examenid) => {
 
 }
 
-export const obtenerUsuario = async (mat, usuarioid) => {
+export const obtenerUsuario = async (usuarioid) => {
   
-  const data = await fetch(`${urlserver}/preguntas/usuario/${usuarioid}/${mat}`)
+  const data = await fetch(`${urlserver}/preguntas/usuario/${usuarioid}`)
   return data.json()
 
 }
