@@ -115,10 +115,10 @@ export function Curso() {
             {datosCaps ? 
             datosCaps.map((s) => {
               if(s.titulo === c) {
-                return (s.secciones.map(sec => {
+                return (s.secciones.map((sec, num) => {
                   return (
                     <Link
-                    key={'capitulo-'+sec}
+                    key={'capitulo-'+sec+num}
                     className={style.seccion}
                       to={"/cursos/"+curso+"/"+c+"/"+sec}>
                       {sec}

@@ -215,7 +215,6 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
                 agregar={most} 
                 edit={most} 
                 mostrarPreguntas={true} />
-          <hr></hr>
           </div>
                 </div>}
             </div>

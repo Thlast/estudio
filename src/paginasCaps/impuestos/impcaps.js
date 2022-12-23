@@ -264,7 +264,7 @@ const mostrarbuscador = () => {
             eliminarDelHistorial={eliminarDelHistorial} 
             limpiarHistorial={limpiarHistorial} />          
           <hr></hr>
-          {edit ? <><LinkExamen /> <hr></hr></>: null}
+          {/* {edit ? <><LinkExamen /> <hr></hr></>: null} */}
           
             <MostrarPregunta 
             titulo={titulo}

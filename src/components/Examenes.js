@@ -208,6 +208,8 @@ className="examen-agregar">
         name="curso"
         for="materias">
           <option
+          value=""
+          disabled
           selected="selected">
             Selecciona un curso
           </option>

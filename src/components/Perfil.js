@@ -5,6 +5,8 @@ import { Buscador } from './buscador';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { alertalimpiarHistorialUsuario } from './alertas';
 import { ResueltasContext } from '../context/Resueltas'
+import { MateriasContext } from '../context/MateriasContext';
+
 
 export function Perfil() {
 
@@ -14,6 +16,9 @@ export function Perfil() {
     const [agregar, setAgregar] = useState(false);
     const [buscador, setBuscador] = useState(false);
     const navigate = useNavigate();
+    const {matPreferida} = useContext(MateriasContext);
+    const {materias} = useContext(MateriasContext);
+    const {preferenciaMateria} = useContext(MateriasContext);
 
     const agregarPregunta = () => {
       setMostrarPreguntas(false);
@@ -46,6 +51,26 @@ export function Perfil() {
         <div className='menuperfil'>
           <nav >
             <ul>
+            <li>
+      <select 
+        onChange={(e) => preferenciaMateria(e.target.value)} 
+        class="boton home-boton" 
+        value={matPreferida}
+        name="curso"
+        for="materias">
+{
+    materias.map(a => {
+          return (
+      <option 
+      key={"materia-"+a.id}
+      value={a.id}>
+        {a.nombre}
+      </option>      
+       )
+      })}
+   </select>
+     </li>  
+     <hr></hr>
               <li>
             <Link 
             className='perfil-boton'
@@ -109,6 +134,8 @@ export function Perfil() {
           <Buscador />
           }     
           <MostrarPregunta 
+          filtro={matPreferida}
+          curso={matPreferida}
           perfil={true}
           agregar={agregar} 
           edit={true} 

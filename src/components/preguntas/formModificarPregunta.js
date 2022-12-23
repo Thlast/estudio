@@ -1,4 +1,5 @@
 import React from 'react';
+import { AsignarSeccion } from './asignarSeccion';
 import { usePreguntaForm } from './usePregunta';
 
 
@@ -23,8 +24,8 @@ export function FormModificarPregunta(props) {
       c: preguntaModificar.opciones.c,
       d: preguntaModificar.opciones.d,
     correcta: preguntaModificar.correcta,
-    titulo: titulo,
-    seccion: seccion,
+    titulo: preguntaModificar.titulo,
+    seccion: preguntaModificar.seccion,
   })
 
 return (
@@ -34,7 +35,8 @@ return (
   className='form-container'
   onSubmit={
     (event) => modificarPregunta(datosmodificar.datosPregunta, indice, id, event)}>
-    <div>
+    <div
+    className='form-pregunta-datos'>
     <select required 
     onChange={datosmodificar.handleChangeTipo} 
     class="home-boton" 
@@ -48,6 +50,9 @@ return (
             Multiple
           </option>
       </select>
+      <AsignarSeccion 
+      datos={datosmodificar}
+      />
     </div>
       <div className="pyr-container">
       <label className="form-pyr" for="pregunta">
@@ -169,10 +174,10 @@ return (
         Modificar
       </button>    
       <button
-            className='btn btn-danger form-cancelar'
-            onClick={() => cancelar()}
-            > X
-            </button>
+          className='btn btn-danger form-cancelar'
+          onClick={() => cancelar()}
+          > X
+      </button>
       </form>
 </div>
     );

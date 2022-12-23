@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { usePreguntaForm } from './usePregunta';
 import { MateriasContext } from '../../context/MateriasContext';
 import { useAuth } from '../../context/AuthContext';
@@ -7,22 +7,24 @@ import { TextoaTabla } from './texto-a-tabla';
 
 export function FormAgregarPregunta(props) {
 
-    const {titulo} = props;
-    const {crearPreguntas} = props;
-    const {seccion} = props;
-    const {curso} = props;
-    const {examenid} = props;
-    const {materias} = useContext(MateriasContext)
-    const {user} = useAuth();
-    const {crearPreguntasVoF} = props
-    
-   const preguntaCrear = usePreguntaForm({
+  const {titulo} = props;
+  const {crearPreguntas} = props;
+  const {seccion} = props;
+  const {curso} = props;
+  const {examenid} = props;
+  const {matPreferida} = useContext(MateriasContext)
+  const {materias} = useContext(MateriasContext)
+  const {user} = useAuth();
+  const {crearPreguntasVoF} = props
+  const inicialcurso =  curso || matPreferida
+
+  const preguntaCrear = usePreguntaForm({
     preg: "",
     resp: "",
     resultado: "",
     tipo: "Normal",
     // id: "",
-    curso: curso,
+    curso: inicialcurso,
     //opciones:
       a: "",
       b: "",
@@ -81,7 +83,7 @@ export function FormAgregarPregunta(props) {
         // preguntaCrear.handleSubmit
       }
         >
-          {curso !== undefined ? "" :
+          {curso !== undefined ? <p>{curso}</p> :
           <div>
       <select 
         required
@@ -91,7 +93,9 @@ export function FormAgregarPregunta(props) {
         name="curso"
         for="materias">
           <option
-          selected="selected">
+          value=""
+          disabled
+          selected>
             Selecciona un curso
           </option>
     {materias.map(a => {

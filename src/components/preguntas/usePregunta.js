@@ -44,7 +44,7 @@ export const usePreguntaForm = (inicial) => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    setDatosPregunta(initialValues)
+    //setDatosPregunta(initialValues)
     console.log(datosPregunta, initialValues)
   }
   

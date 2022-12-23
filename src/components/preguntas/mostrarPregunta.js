@@ -34,6 +34,7 @@ export function MostrarPregunta(props) {
   const {eliminarExamen} = props
   const {perfil} = props
   const [datosVof, setDatosVof] = useState()
+  const {filtro} = props
 
   useEffect(() => {
      // Creamos el controlador para abortar la petición
@@ -49,7 +50,7 @@ export function MostrarPregunta(props) {
       obtenerExamen(examenid)
       .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else if (perfil) {
-      obtenerUsuario(user.uid)
+      obtenerUsuario(curso, user.uid)
       .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else {
       obtenerPregunta(curso)
@@ -94,10 +95,10 @@ export function MostrarPregunta(props) {
     } 
   }
 //vof
-  const modificarPreguntasVoF = async (user, enunciado, rows, id, indice, event) => {
+  const modificarPreguntasVoF = async (user, enunciado, rows, id, indice, titulo, seccion, event) => {
     try {
       let preguntamodif = null
-      await serverModificarVof(user, enunciado, rows, id, event).then(response =>
+      await serverModificarVof(user, enunciado, rows, id, titulo, seccion, event).then(response =>
           preguntamodif = {...response, id: id}
         );
       preguntas.splice(indice, 1, preguntamodif)
@@ -134,7 +135,7 @@ export function MostrarPregunta(props) {
     const irModificarVof = (p, num) => {
       setModificarVof(!modificarVof)
       setPreguntaModificar(p.arrayPreguntas)
-      setDatosVof({id: p.id, enunciado: p.pregunta, indice: num})
+      setDatosVof({...p, id: p.id, enunciado: p.pregunta, indice: num})
       console.log(p.id, p.pregunta)
     }
 
@@ -163,23 +164,27 @@ export function MostrarPregunta(props) {
           : ""
 }
 </div>
+{/* con filtro */}
           {preguntas.length !== 0 ?
             preguntas.map((p, num) => {
-							return (
-                <div
-                key={'mostrar-'+p.id}>
-                <Preguntas 
-                irModificarVof={irModificarVof}
-                edit={edit}
-                irModificarPregunta={irModificarPregunta}
-                eliminar={eliminar}
-                p={p}
-                num={num}
-                integral={true}
-                />
-                <hr></hr>
-                </div>
-							)
+              if(filtro === p.curso || filtro === undefined) {
+                return (
+                  <div
+                  key={'mostrar-'+p.id}>
+                  <Preguntas 
+                  irModificarVof={irModificarVof}
+                  edit={edit}
+                  irModificarPregunta={irModificarPregunta}
+                  eliminar={eliminar}
+                  p={p}
+                  num={num}
+                  integral={true}
+                  />
+                  <hr></hr>
+                  </div>
+                )
+              } 
+							
 							})        
             : <p>No hay preguntas</p>
 } {anexadas &&
@@ -192,7 +197,7 @@ export function MostrarPregunta(props) {
             </div>
             : ""
 }
-
+<hr></hr>
             {agregar & !modificar & !modificarVof ?
             <FormAgregarPregunta 
               crearPreguntasVoF={crearPreguntasVoF}
@@ -221,7 +226,7 @@ export function MostrarPregunta(props) {
             <FormVof
               modificarPreguntasVoF={modificarPreguntasVoF}
               cancelar={cancelar}
-              datospregunta={datosVof}
+              datospreguntas={datosVof}
               vofModificar={preguntaModificar}
               />
             </div>

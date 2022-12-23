@@ -1,9 +1,9 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
-export const obtenerPregunta = async () => {
+export const obtenerPregunta = async (mat) => {
   
-  const data = await fetch(`${urlserver}/preguntas/`)
+  const data = await fetch(`${urlserver}/preguntas/${mat}`)
   return data.json()
 
 }
@@ -19,8 +19,12 @@ export const obtenerSeccion = async (materia, seccion, { signal }) => {
 export const obtenerPreguntaMateria = async (materia) => {
   const mat = materia.toLowerCase().replace(/[-º°`'".,]/g, '');
 
+  //try {
   const data = await fetch(`${urlserver}/preguntas/${mat}`)
   return data.json()
+  // } catch(error) {
+  //   return []
+  // }
 
 }
 
@@ -45,9 +49,9 @@ export const obtenerAnexadas = async (examenid) => {
 
 }
 
-export const obtenerUsuario = async (usuarioid) => {
+export const obtenerUsuario = async (mat, usuarioid) => {
   
-  const data = await fetch(`${urlserver}/preguntas/usuario/${usuarioid}`)
+  const data = await fetch(`${urlserver}/preguntas/usuario/${usuarioid}/${mat}`)
   return data.json()
 
 }

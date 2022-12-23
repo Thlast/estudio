@@ -14,21 +14,28 @@ import { VoF } from './preguntas/formVoF';
 
 
 export function HomeMongo() {
- 
+  
+  const {matPreferida} = useContext(MateriasContext);
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
-  const [curso, setCurso] = useState("impuestos");
+  const [curso, setCurso] = useState(matPreferida);
   const [cargando, setCargando] = useState(true);
   const {materias} = useContext(MateriasContext);
   const {cargandoMaterias} = useContext(MateriasContext);
+  
+  const {preferenciaMateria} = useContext(MateriasContext);
   const {loading} = useAuth()
   const [numeroBuscar, setNumeroBuscar] = useState(1)
 
   useEffect(() => {
-    obtenerPreguntaMateria(curso)
-    .then(data => (setPreguntas(data), setCargando(false)));
     
+    obtenerPreguntaMateria(curso)
+    .then(
+        data =>
+        setPreguntas(data)
+    );
+    setCargando(false)
   }, [curso])
 
 
@@ -97,6 +104,7 @@ export function HomeMongo() {
   const cambiarCurso = async (e) => {
     setCurso(e);
     await identificarCurso(e).then(resp => setCurrent(resp.historial[resp.historial.length-1]))
+    preferenciaMateria(e)
   }
 
   const buscarPregunta = async (event, numeroBuscar) => {
@@ -196,7 +204,7 @@ export function HomeMongo() {
             <h1>
               Pregunta Nº {num+1}:
             </h1>
-            {p.titulo ?
+            {p.seccion ?
             <div>
             <span>De la seccion: {" "}</span>
             <Link

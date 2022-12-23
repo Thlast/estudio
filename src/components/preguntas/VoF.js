@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useAuth } from '../../context/AuthContext';
+import { AsignarSeccion } from "./asignarSeccion";
 
 
   const defaultState = {
-    pregunta: "",
-    vof: "",
-    respuesta: ""
+    pregunta: null,
+    vof: null,
+    respuesta: null
   };
 
   //renderiza las preguntas del vof para modificar o agregar
@@ -19,6 +20,8 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
       className="vof-enunciado">
       <p>Pregunta: {indice+1}</p>
       <textarea
+        required
+        minlength="5"
         style={{"width": "100%"}}
         value={pregunta}
         onChange={e => onChange("pregunta", e.target.value)}
@@ -27,6 +30,7 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
       </div>
       <div>
       <input
+      required
         id={`verdadero${indice}`}
         name={`vof${indice}`}
         type="radio"
@@ -37,6 +41,7 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
         Verdadero
       </label>
       <input
+      required
         id={`falso${indice}`}
         name={`vof${indice}`}
         type="radio"
@@ -71,16 +76,22 @@ export function FormVof(props) {
   const {seccion} = props
   const {curso} = props
   const {cancelar} = props
-  const {datospregunta} = props
+  const {datospreguntas} = props
   const {vofModificar} = props
   const {user} = useAuth();
   const [mat, setMat] = useState(curso)
   const {crearPreguntasVoF} = props
   const {modificarPreguntasVoF} = props
 
-
+  const [datospregunta, setDatosPregunta] = useState(datospreguntas)
+  const vofhandleChange = ({ target }) => {
+    setDatosPregunta({
+      ...datospregunta,
+      [target.name]: target.value
+    })
+  }
     const [rows, setRows] = useState(vofModificar || [defaultState]);
-    const [enunciado, setEnunciado] = useState(datospregunta ? datospregunta.enunciado : "");
+    const [enunciado, setEnunciado] = useState(datospregunta ? datospregunta.enunciado : null);
     const handleOnChange = (index, name, value) => {
       const copyRows = [...rows];
       copyRows[index] = {
@@ -100,27 +111,30 @@ export function FormVof(props) {
       setRows(copyRows);
     };
   
+    console.log(mat)
   return (
     <div>
       <form
+      onSubmit={(event) => crearPreguntasVoF(user.uid, enunciado, rows, mat, seccion, titulo, examenid, event)}
       style={{"position": "relative"}}
       className="form-vof"
       >
-        {curso ? "" :
+        <div style={{"textAlign": "center"}}>
+        {curso ? <p>{curso}</p> :
         <div>
-        {materias ?
-          
-          <div
-          style={{"textAlign": "center"}}>
+        {materias ?  
+          <div>
       <select 
         required
         onChange={(e) => setMat(e.target.value)} 
         class="boton home-boton" 
-        value={curso}
+        value={mat}
         name="curso"
         for="materias">
           <option
-          selected="selected">
+          value=""
+          disabled
+          selected>
             Selecciona un curso
           </option>
     {materias.map(a => {
@@ -138,7 +152,15 @@ export function FormVof(props) {
      : null
      }</div>
      }  
+     </div>
       <div className="form-vof">
+        {datospregunta ? 
+        <AsignarSeccion 
+        cursoVof={datospregunta.curso}
+        vofhandleChange={vofhandleChange}
+        datos={datospregunta}/>
+        : null
+}
       <p>Verdadero o Falso:</p>
       <label className="" for="enunciado">
       <textarea 
@@ -149,8 +171,8 @@ export function FormVof(props) {
       placeholder="Escribe una consigna" 
       name="consigna" 
       type="text" 
-      >
-      </textarea>
+      minlength="3"
+      ></textarea>
     </label>
     </div>
       {rows.map((row, index) => (
@@ -174,7 +196,7 @@ export function FormVof(props) {
       <div
       style={{"text-align": "center"}}>
         <button
-      onClick={(e) => modificarPreguntasVoF(user.uid, enunciado, rows, datospregunta.id, datospregunta.indice, e)}
+      onClick={(e) => modificarPreguntasVoF(user.uid, enunciado, rows, datospregunta.id, datospregunta.indice, datospregunta.titulo, datospregunta.seccion, e)}
       className="home-boton btn-primary"
       type="submit">
         Modificar
@@ -191,7 +213,6 @@ export function FormVof(props) {
       </button>
       </div>
       :  <button
-      onClick={(event) => crearPreguntasVoF(user.uid, enunciado, rows, mat, seccion, titulo, examenid, event)}
       className="home-boton"
       type="submit">
         Confirmar

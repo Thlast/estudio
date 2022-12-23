@@ -131,7 +131,8 @@ return (
             </div>
           )
           })        
-        : <p>No hay preguntas</p>}
+        : null
+        }
         </div>  
 );
 }

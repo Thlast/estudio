@@ -38,7 +38,7 @@ while (x < filas) {
 }
 respuesta.splice(columnas, 0, " Salto " +"| --- ".repeat(columnas))
 setResultado1(respuesta.join(" | ").replaceAll("Salto", `\\n`))
-setResultado2(respuesta.join(" | ").replaceAll("Salto", `\n`))
+setResultado2(respuesta.join(" | ").replaceAll("Salto", `\n`).replaceAll("*", ""))
 setResultadoTabla(respuesta.join(" | ").replaceAll("Salto", "\n"))  
 }
 
@@ -79,7 +79,7 @@ return (
     onChange={(e) => setFilas(e.target.value)}
     value={filas}
     type="number"
-    max="50"
+    max="100"
     min="1"></input>
     </label>
   <button

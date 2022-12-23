@@ -7,6 +7,7 @@ export function DataProvider ({ children }) {
 
   const [materias, setMaterias] = useState({})
   const [cargandoMaterias, setCargandoMaterias] = useState(true)
+  const [matPreferida, setMatPreferida] = useState("impuestos")
 
   useEffect(() => {
     obtenerMaterias()
@@ -14,8 +15,14 @@ export function DataProvider ({ children }) {
     
   }, [])
 
+  const preferenciaMateria = (mat) => {
+    setMatPreferida(mat)
+  }
+
 return (
     <MateriasContext.Provider value={{
+      matPreferida,
+      preferenciaMateria,
       materias,
       cargandoMaterias
     }}>
