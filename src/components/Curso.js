@@ -17,20 +17,34 @@ export function Curso() {
 
   useEffect(() => {
             
+    setCargando(true)
     obtenerDetalleCurso(materia)
     .then(data => setCurs(data));
     obtenerDatosTitulos(materia)
-    .then(data => setDatosCaps(data), setCargando(false))
+    .then(data => 
+        setDatosCaps(data),
+        setCargando(false)
+      )
+
+    
    
   }, [])
 
+  const asd = () => {
+    setTimeout(() => {
+      if(document.getElementById(focus)) {
+        document.getElementById(focus).scrollIntoView()
+      }
+    }, 200)
+  }
+  
+
   useEffect(() => {
     
-  if(document.getElementById(focus) !== null) {
-    document.getElementById(focus).scrollIntoView()
-  }
+    asd()
+ 
     
-  }, [document.getElementById(focus)])
+  }, [document.getElementById(focus)], cargando)
 
   
 

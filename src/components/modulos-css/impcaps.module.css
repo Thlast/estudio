@@ -18,3 +18,9 @@
     flex-direction: row;
     padding-top: 10px;
 }
+
+@media screen and (max-width: 500px)  {
+    .cursointeraccion button {
+        font-size: 15px;
+    }
+}

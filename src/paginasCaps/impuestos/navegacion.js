@@ -53,7 +53,8 @@ useEffect(() => {
 }, [titulo])
 
 return (
-  <div>{
+  <>
+    {
   cargando ? <Spinner></Spinner> :
 <div class="cursos-botones">
 {
@@ -116,7 +117,7 @@ return (
 }
 </div>
 
-}</div>
+}</>
 )
 
 }

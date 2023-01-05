@@ -416,9 +416,9 @@ h5 {
 
 }
 
-#botonmostrar {
-  background-color: var(--text-color);
-  color: var(--body-color);
+.botonmostrar {
+  background-color: var(--text-color) !important;
+  color: var(--body-color) !important;
 }
 
                                             /* //consola// */
@@ -1076,7 +1076,7 @@ display: none;
   color: var(--text-color);
   padding: 15px;
   font-size: 20px;
-  
+  height: 100%;
 }
 .seccion {
   padding: 5px;
@@ -1127,7 +1127,6 @@ circle {
   } .secciones {
     font-size: 16px;
     padding: 5px;
-    min-height: 500px;
   } .HomeMongo p {
     font-size: 18px;
   }

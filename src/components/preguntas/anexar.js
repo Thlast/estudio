@@ -70,6 +70,7 @@ export function Anexar(props) {
           elegir examen
         </option>
         {misExamenes.map((exa, num) => {
+          if(exa.materia === p.curso)
           return (
       <option
       id={`anexo-${num}`+exa.id}

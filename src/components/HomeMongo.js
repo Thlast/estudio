@@ -29,13 +29,13 @@ export function HomeMongo() {
   const [numeroBuscar, setNumeroBuscar] = useState(1)
 
   useEffect(() => {
-    
+  
     obtenerPreguntaMateria(curso)
     .then(
         data =>
         setPreguntas(data)
-    );
-    setCargando(false)
+    ).then(() => setCargando(false))
+    
   }, [curso])
 
 

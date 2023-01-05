@@ -24,21 +24,17 @@ export const Prestamos = () => {
       e.preventDefault()
       let montoCalcular = inicial
       let interesCalcular = interes
-      let cuotasRestantes = cuotas
   
       for (let i = 1; i <= cuotas; i++) {
         await calcularValorCuota(montoCalcular, interesCalcular, iva, i ).then(res => montoCalcular = res)
     
       }
-      console.log(columns)
       setCuadro(columns)
       setAbonadoTotal(aTotal)
       setInteresTotal(iTotal)
       setIvaTotal(ivaAcumulado)
-      console.log(irr(flujos))
       setCostoFinanciero(irr(flujos))
-      console.log(flujos)
-      // console.log(columnsB)
+
     }
   
     const calcularValorCuota = async (inicial, interes, iva, cuota) => {

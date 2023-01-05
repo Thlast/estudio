@@ -35,6 +35,7 @@ export function MostrarPregunta(props) {
   const {perfil} = props
   const [datosVof, setDatosVof] = useState()
   const {filtro} = props
+  const [filtroUser, setFiltroUser] = useState(false)
 
   useEffect(() => {
      // Creamos el controlador para abortar la petición
@@ -128,9 +129,6 @@ export function MostrarPregunta(props) {
       setModificar(!modificar)
       setPreguntaModificar({...p, indice: num})
     }
-    const filtrarMisPreguntas = () => {
-      setPreguntas(preguntas.filter(p => (p.user === user.uid)))
-    }
 
     const irModificarVof = (p, num) => {
       setModificarVof(!modificarVof)
@@ -139,6 +137,10 @@ export function MostrarPregunta(props) {
       console.log(p.id, p.pregunta)
     }
 
+
+    const filtrarUser = () => {
+      setFiltroUser(!filtroUser)
+    }
 
     return (
       <div>
@@ -151,7 +153,7 @@ export function MostrarPregunta(props) {
           {seccion &&
           <button
           className='home-boton'
-          onClick={() => filtrarMisPreguntas()}>
+          onClick={() => filtrarUser()}>
             Mostrar solo mis preguntas
           </button>
 }
@@ -166,26 +168,47 @@ export function MostrarPregunta(props) {
 </div>
 {/* con filtro */}
           {preguntas.length !== 0 ?
-            preguntas.map((p, num) => {
-              if(filtro === p.curso || filtro === undefined) {
-                return (
-                  <div
-                  key={'mostrar-'+p.id}>
-                  <Preguntas 
-                  irModificarVof={irModificarVof}
-                  edit={edit}
-                  irModificarPregunta={irModificarPregunta}
-                  eliminar={eliminar}
-                  p={p}
-                  num={num}
-                  integral={true}
-                  />
-                  <hr></hr>
-                  </div>
-                )
+            filtroUser ?  preguntas.map((p, num) => {
+              if((user.uid === p.user )) {
+                  return (
+                    <div
+                    key={'mostrar-'+p.id}>
+                    <Preguntas 
+                    irModificarVof={irModificarVof}
+                    edit={edit}
+                    irModificarPregunta={irModificarPregunta}
+                    eliminar={eliminar}
+                    p={p}
+                    num={num}
+                    integral={true}
+                    />
+                    <hr></hr>
+                    </div>
+                  )
+
               } 
-							
-							})        
+							})  : 
+            preguntas.map((p, num) => {
+              if((filtro === p.curso || filtro === undefined)) {
+                  return (
+                    <div
+                    key={'mostrar-'+p.id}>
+                    <Preguntas 
+                    irModificarVof={irModificarVof}
+                    edit={edit}
+                    irModificarPregunta={irModificarPregunta}
+                    eliminar={eliminar}
+                    p={p}
+                    num={num}
+                    integral={true}
+                    />
+                    <hr></hr>
+                    </div>
+                  )
+
+              } 
+							}) 
+                   
             : <p>No hay preguntas</p>
 } {anexadas &&
               <AnexadasExamen 

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { buscarFiltradoNuevo } from "./servicios/cursos/obtenerCurso";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Spinner } from "./Login/Spinner";
 import { MateriasContext } from "../context/MateriasContext";
@@ -16,14 +16,13 @@ const {materias} = useContext(MateriasContext);
 const [cargando, setCargando] = useState(false);
 const [valorBuscado, setValorBuscado] = useState("")
 
-const navigate = useNavigate()
-
 const find = async (valor, e) => {
   e.preventDefault()
   setValorBuscado(valor)
   setCargando(true)
   await buscarFiltradoNuevo(curso, valor).then(data => setResultados(data));
   setCargando(false)
+  
 }
 
 
