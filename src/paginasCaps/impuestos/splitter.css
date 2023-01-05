@@ -1,9 +1,10 @@
 /* Split the screen */
 .split {
-    height: 100%;
+    height: calc(100% - 101px);
     position: fixed;
     top: 101px;
     overflow-x: hidden;
+    
   }
   
   /* Control the left side */
