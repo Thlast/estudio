@@ -132,12 +132,15 @@ clickCode()
   const [info, setInfo] = useState(true)
   const [mostrarConsola, setMostrarConsola] = useState(false)
   
-const cambiarBoton = () => {
+const cambiarBoton = (editar) => {
 
+  if(!editar) {
+    setMostrarPreguntas(false)
+  }
+console.log(editar)
     setBuscador(false)
     setEdit(false)
     setInfo(false)
-    setMostrarPreguntas(false)
     setMostrarConsola(false)
  }
  
@@ -204,30 +207,30 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
       <div
       className={style.cursointeraccion}>
       <button
-      onClick={() => (cambiarBoton(), setInfo(true))}
+      onClick={() => (cambiarBoton(), setInfo(!info))}
       className={`${info && "botonmostrar"} cursos-as editarcurso`}>
         Info
     </button> 
     <button
-    onClick={() => (cambiarBoton(), setMostrarConsola(true))}
+    onClick={() => (cambiarBoton(), setMostrarConsola(!mostrarConsola))}
     className={`${mostrarConsola && "botonmostrar"} cursos-as editarcurso`}>
         Consola
     </button> 
     <button
         className={`${edit && "botonmostrar"} cursos-as editarcurso`}
-        onClick={() => (cambiarBoton(), setEdit(true))}
+        onClick={() => (cambiarBoton(true), setEdit(!edit))}
         >
         Editar
     </button>    
     <button
         className={`${buscador && "botonmostrar"} cursos-as editarcurso`}
-        onClick={() => (cambiarBoton(), setBuscador(true))}
+        onClick={() => (cambiarBoton(), setBuscador(!buscador))}
         >
         Buscar
     </button>   
     <button
       className={`${mostrarPreguntas && "botonmostrar"} cursos-as mostrarpreg`}
-      onClick={() => (cambiarBoton(), setMostrarPreguntas(true))}
+      onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
       >
         Preguntas
       </button>
@@ -298,7 +301,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
           {titulo}
           </Link>     
           </div>   
-      <hr></hr>
+
       <NavegacionCursos 
       curso={curso}
       cargando={cargando}
@@ -306,7 +309,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
       seccion={seccion} 
       ingresar={ingresar} 
       titulo={titulo} />
-      <hr></hr>
+   
      
       </div>
 
@@ -328,30 +331,30 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
     </button>
     <button
         className={`${edit && "botonmostrar"} cursos-as editarcurso`}
-        onClick={() => (cambiarBoton(), setEdit(true))}
+        onClick={() => (cambiarBoton(true), setEdit(!edit))}
         >
         Editar
     </button>    
     <button
        className={`${buscador && "botonmostrar"} cursos-as editarcurso`}
-       onClick={() => (cambiarBoton(), setBuscador(true))}
+       onClick={() => (cambiarBoton(), setBuscador(!buscador))}
        >
         Buscador
     </button>   
     <button
       className={`${mostrarPreguntas && "botonmostrar"} cursos-as editarcurso`}
-      onClick={() => (cambiarBoton(), setMostrarPreguntas(true))}
+      onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
       >
         Mostrar preguntas
       </button>
       </div>
-      <hr></hr>
+     <hr></hr>
       {buscador ? 
       <Buscador 
-      cursoBuscador={curso}
+        cursoBuscador={curso}
       />
       : null}
-      <hr></hr>
+      
       <Consola 
         cargando={cargandoconsola}
         datos={datos}
@@ -360,8 +363,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
         eliminarDelHistorial={eliminarDelHistorial} 
         limpiarHistorial={limpiarHistorial} />          
       <hr></hr>
-
-        <MostrarPregunta 
+      <MostrarPregunta 
         titulo={titulo}
         curso={curso} 
         seccion={seccion} 

@@ -683,7 +683,6 @@ li {
   gap: 20px;
   padding: 20px;
   overflow: scroll;
-  min-height: fit-content;
   max-height: 1000px;
   overflow-x: hidden;
 }
@@ -1135,6 +1134,7 @@ circle {
 .cursos-botones {
   display: flex;
   justify-content: space-between;
+  padding-top: 5px;
 }
 
 .cursos-as {

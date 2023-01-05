@@ -143,18 +143,21 @@ export function MostrarPregunta(props) {
     }
 
     return (
-      <div>
+      <>
         {mostrarPreguntas & !modificar & !modificarVof ?
         cargandoPreguntas ? <Spinner></Spinner> :
         <div 
+        style={{minHeight: preguntas.length > 0 ? 600 : 200}}
         className={"contenedorpreguntas"}>
           <div
+          style={{alignSelf: "center"}}
           className='botonespreguntas'>
           {seccion &&
           <button
+          
           className='home-boton'
           onClick={() => filtrarUser()}>
-            Mostrar solo mis preguntas
+            {filtroUser ? "✓ filtrar mis preguntas" : "✘ filtrar mis preguntas"}
           </button>
 }
           {edit & examenid !== undefined ?
@@ -220,7 +223,7 @@ export function MostrarPregunta(props) {
             </div>
             : ""
 }
-<hr></hr>
+
             {agregar & !modificar & !modificarVof ?
             <FormAgregarPregunta 
               crearPreguntasVoF={crearPreguntasVoF}
@@ -254,7 +257,7 @@ export function MostrarPregunta(props) {
               />
             </div>
             }
-            </div>
+            </>
 						
     );
   }
