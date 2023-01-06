@@ -202,7 +202,7 @@ export function HomeMongo() {
           <div
           key={p.id}>
             <h1>
-              Pregunta Nº {num+1}:
+              Pregunta Nº {num+1} de {preguntas.length}:
             </h1>
             {p.seccion ?
             <div>

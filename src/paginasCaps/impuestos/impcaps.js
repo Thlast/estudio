@@ -185,6 +185,12 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
   })
 }    
 
+const [qpreguntas, setQpreguntas] = useState(0)
+
+const obtenerQpreguntas = (q) => {
+  setQpreguntas(q)
+}
+
     return (
       <>
       {mobile <= 500 ?  
@@ -232,7 +238,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
       className={`${mostrarPreguntas && "botonmostrar"} cursos-as mostrarpreg`}
       onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
       >
-        Preguntas
+        Preguntas ({qpreguntas})
       </button>
       </div>
 
@@ -265,6 +271,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
         limpiarHistorial={limpiarHistorial} />
 </div>
       <MostrarPregunta 
+        obtenerQpreguntas={obtenerQpreguntas}
         titulo={titulo}
         curso={curso} 
         seccion={seccion} 
@@ -345,7 +352,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
       className={`${mostrarPreguntas && "botonmostrar"} cursos-as editarcurso`}
       onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
       >
-        Mostrar preguntas
+        Mostrar preguntas ({qpreguntas})
       </button>
       </div>
      <hr></hr>
@@ -364,6 +371,7 @@ const ingresarSeccion = (proximo, navegarSeccion, volver) => {
         limpiarHistorial={limpiarHistorial} />          
       <hr></hr>
       <MostrarPregunta 
+        obtenerQpreguntas={obtenerQpreguntas}
         titulo={titulo}
         curso={curso} 
         seccion={seccion} 

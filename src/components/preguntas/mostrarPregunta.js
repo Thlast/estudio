@@ -36,7 +36,15 @@ export function MostrarPregunta(props) {
   const [datosVof, setDatosVof] = useState()
   const {filtro} = props
   const [filtroUser, setFiltroUser] = useState(false)
+  const {obtenerQpreguntas} = props;
 
+  useEffect(() => {
+    if(seccion) {
+      obtenerQpreguntas(preguntas.length)
+    }
+    
+
+  }, [preguntas])
   useEffect(() => {
      // Creamos el controlador para abortar la petición
      const controller = new AbortController()
@@ -45,7 +53,7 @@ export function MostrarPregunta(props) {
      // Hacemos la petición a la API y le pasamos como options la señal
     if(seccion) {
       obtenerSeccion(curso, seccion, { signal })
-      .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
+      .then(data => (setPreguntas(data), setCargandoPreguntas(false), obtenerQpreguntas(data.length)));
       return () => controller.abort()
     } else if (examenid) {
       obtenerExamen(examenid)
