@@ -15,27 +15,43 @@ import { VoF } from './preguntas/formVoF';
 
 export function HomeMongo() {
   
-  const {matPreferida} = useContext(MateriasContext);
+  const {cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida} = useContext(MateriasContext);
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
   const [curso, setCurso] = useState(matPreferida);
   const [cargando, setCargando] = useState(true);
-  const {materias} = useContext(MateriasContext);
-  const {cargandoMaterias} = useContext(MateriasContext);
   
-  const {preferenciaMateria} = useContext(MateriasContext);
+
   const {loading} = useAuth()
   const [numeroBuscar, setNumeroBuscar] = useState(1)
+  const [recargar, setRecargar] = useState(false)
+
+  const cargarHome = () => {
+    setRecargar(false)
+    setCargando(true)
+
+    if(!materias.length) {
+      cargarMaterias()
+    }
+
+    obtenerPreguntaMateria(curso)
+    .then(data => {
+      if(data !== "error del servidor") {
+        setCargando(false)
+        setPreguntas(data)
+      } else {
+        setCargando(false)
+        setRecargar(true)
+      } 
+    } 
+  )
+  }
 
   useEffect(() => {
-  
-    obtenerPreguntaMateria(curso)
-    .then(
-        data =>
-        setPreguntas(data)
-    ).then(() => setCargando(false))
-    
+
+    cargarHome()
+
   }, [curso])
 
 
@@ -196,7 +212,10 @@ export function HomeMongo() {
           </button>
           </div>
           {cargando ? <Spinner></Spinner> : 
+          <>
+          {!recargar ?
         preguntas.map((p, num) => {
+          
           if (preguntas.indexOf(p) === current){
           return (
           <div
@@ -280,7 +299,23 @@ export function HomeMongo() {
             </div>
           )  
         }
-        })}</div>}
+        }
+        
+      ) : <div
+      style={{paddingTop: 20}}>
+
+      <button
+      className='home-boton'
+        onClick={() => cargarHome()}>
+        Recargar
+      </button>
+      </div>
+    }
+  </>
+}
+        
+        </div>}
+
       </main>
       
     </div>

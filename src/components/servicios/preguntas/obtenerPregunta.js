@@ -19,9 +19,13 @@ export const obtenerSeccion = async (materia, seccion, { signal }) => {
 export const obtenerPreguntaMateria = async (materia) => {
   const mat = materia.toLowerCase().replace(/[-º°`'".,]/g, '');
 
- 
+ try {
   const data = await fetch(`${urlserver}/preguntas/${mat}`)
   return data.json()
+ } catch(error) {
+  return "error del servidor"
+ }
+
    
 }
 

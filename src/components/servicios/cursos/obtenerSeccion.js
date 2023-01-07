@@ -31,3 +31,15 @@ export const obtenerDatosConsola = async (materia, seccion) => {
   return data.json()
   
 }
+
+export const obtenerResumen = async (materia) => {
+
+  try {
+    const data = await fetch(`${urlserver}/app/imprimirResumen/${materia}`)
+    return data.json()
+  } catch(error) {
+    return "error del servidor"
+  }
+
+  
+}
