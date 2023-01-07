@@ -1257,9 +1257,21 @@ iframe {
   position: absolute;
   top: 0;
   background-color: white;
+  color: #1b1b32;
   padding: 30px;
   padding-top: 50px;
   width: 100%;
+}
+.imprimirResumen em {
+  background-color: #d0d0d5;
+  color: #1b1b32;
+}
+.imprimirResumen code {
+  background-color: #d0d0d5;
+  color: #1b1b32 !important;
+}
+.imprimirResumen strong {
+  background-color: #e9e9e9;
 }
 svg {
   fill: var(--text-color);
