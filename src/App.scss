@@ -571,6 +571,7 @@ li {
 
 @media screen and (max-width: 800px) {
 	.perfil {
+    text-align: center;
     display: flex;
     flex-direction: column;
   }
@@ -1245,4 +1246,24 @@ em {
   flex-direction: column;
   gap: 10px;
   width: 50%;
+}
+
+iframe {
+  border: 0;
+  width: 100%;
+  height: 100vh;
+}
+.imprimirResumen {
+  position: absolute;
+  top: 0;
+  background-color: white;
+  padding: 30px;
+  padding-top: 50px;
+  width: 100%;
+}
+svg {
+  fill: var(--text-color);
+}
+a:hover > svg {
+  fill: var(--body-color);
 }

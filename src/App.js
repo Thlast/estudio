@@ -20,6 +20,7 @@ import { Prestamos } from './components/calcPrestamos';
 import { EdeResultados } from './components/estados contables/EdeResultados';
 import { ModelosRT9 } from './components/estados contables/modelosRT9';
 import { TransformarTabla } from './components/transformarTabla';
+import { ImprimirHTML, ImprimirResumen } from './components/imprimirResumen';
 
 function App() {
 
@@ -132,6 +133,14 @@ function App() {
           element={
             <ProtectedRoute> 
               <TransformarTabla />
+            </ProtectedRoute>
+          } 
+        />
+           <Route 
+          path="/imprimirResumen/:curso" 
+          element={
+            <ProtectedRoute> 
+              <ImprimirHTML />
             </ProtectedRoute>
           } 
         />
