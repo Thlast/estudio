@@ -123,6 +123,7 @@ export function Examenes() {
         name="curso"
         for="materias">
           <option
+          disabled
           value={""}
           selected="selected">
             Selecciona un curso

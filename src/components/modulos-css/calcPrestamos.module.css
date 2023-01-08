@@ -1,5 +1,7 @@
 .contenedorprestamos {
   padding: 20px;
+  width: 100%;
+  overflow: scroll;
 }
 .prestamoshead {
   background-color: var(--secundario);
