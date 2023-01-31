@@ -59,16 +59,7 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
           alertafail(`error: ${error}`)
         }
       }
-      const modMateria = async(materia) => {
-        alertainfo("La opcion de modificar la materia de un examen se encuentra deshabilitada")
-        // try {
-        // await modificarMateria(materia)
-        // alertasuccess("materia modificada")
-        // }
-        // catch(error) {
-        //   alertafail(`error: ${error}`)
-        // }
-      }
+
       const modDescripcion = async(descripcion) => {
         try {
         await modificarDescripcion(descripcion)
@@ -162,11 +153,6 @@ import { desanexarExamen } from './servicios/preguntas/modificarPregunta';
                     class="boton" 
                     placeholder={examen.materia}>
                   </input> 
-                    <button 
-                    onClick={() => modMateria(materia)}
-                    class="boton btn-primary">
-                      ✓
-                    </button>
                     </div>
                   : 
                   <span>

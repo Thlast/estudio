@@ -43,7 +43,6 @@ export function MostrarPregunta(props) {
       obtenerQpreguntas(preguntas.length)
     }
     
-
   }, [preguntas])
   useEffect(() => {
      // Creamos el controlador para abortar la petición

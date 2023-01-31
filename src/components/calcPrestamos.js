@@ -76,6 +76,8 @@ export const Prestamos = () => {
             <form
             className={style.contenedorinput}
             onSubmit={(e) => calcularCuadro(monto, interes, qcuotas, iva, e)}>
+              <label>
+              <span>Sistema: </span>
               <select
               onChange={(e) => setSistema(e.target.value)}
               value={sistema}>
@@ -89,6 +91,7 @@ export const Prestamos = () => {
                   Alemán
                 </option>
               </select>
+              </label>
               <label>
              
                 Monto inicial:  

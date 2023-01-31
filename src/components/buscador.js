@@ -22,9 +22,7 @@ const find = async (valor, e) => {
   setCargando(true)
   await buscarFiltradoNuevo(curso, valor).then(data => setResultados(data));
   setCargando(false)
-  
 }
-
 
 const cambiarCurso = (e) => {
   setResultados([]);

@@ -1,7 +1,6 @@
 .contenedorprestamos {
   padding: 20px;
   width: 100%;
-  overflow: scroll;
 }
 .prestamoshead {
   background-color: var(--secundario);
@@ -71,3 +70,21 @@
 
     padding-top: 10px;
   }
+  .contenedorinput select {
+    width: fit-content;
+  }
+
+  @media screen and (max-width: 600px) {
+    .contenedorprestamos {
+      overflow: scroll;
+      font-size: 10px;
+    }  .contenedorinput {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 15px;
+    }
+  }
+  .contenedorprestamos::-webkit-scrollbar {
+    display: none;
+}
