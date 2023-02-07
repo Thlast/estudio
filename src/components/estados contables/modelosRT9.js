@@ -7,6 +7,7 @@ export function ModelosRT9() {
 
 return (
   <>
+  <div className='contenedorRT'>
   <h1>Modelos de estados contables segun RT9</h1>
   <ul>
     <li>
@@ -18,6 +19,7 @@ return (
   <hr></hr>
 
   </ul>
+  </div>
   </>
 
     );

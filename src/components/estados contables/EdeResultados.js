@@ -7,7 +7,8 @@ export function EdeResultados() {
 
 
 return (
-  <div>
+  <>
+  <div className="contenedorRT">
     <Link
     className='volver'
     to={"/estados-contables"}>{"< "}Modelos contables</Link>
@@ -60,7 +61,8 @@ return (
     <p id="section5">5) Debe discriminarse el impuesto a las ganancias relacionado con estos conceptos.</p>
     <p id="section6">6) Pueden exponerse en una línea, neto del impuesto a las ganancias, con referencia a la información complementaria, o exponerse detalladamente en el cuerpo del estado, discriminando el impuesto a las ganancias correspondiente.</p>
     </div>
-  </div>
+    </div>
+  </>
 
     );
   }

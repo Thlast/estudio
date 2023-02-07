@@ -42,12 +42,21 @@ export function ImprimirHTML() {
       
       {
       secciones.map(sec => 
-        sec.map(cap => {
+        {return (
+          <>
+          <h1 style={{paddingTop:"50px"}}>{sec.titulo}</h1>
+          <hr></hr>
+          {sec.desarrollo.map(cap => {
           return (
-            //console.log(cap)
-            <TextoCurso seccion={cap.nombre} enunciado={[cap]}/>
+            <>
+            
+            <TextoCurso seccion={cap.nombre} enunciado={[cap]} />
+            </>
           )
-        })
+        })}
+          </>
+        )}
+       
       )
       
       }

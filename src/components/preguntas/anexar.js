@@ -65,6 +65,7 @@ export function Anexar(props) {
       name='anexar'
       value={null}>
         <option
+        disabled
         value={null}
         selected="selected">
           elegir examen

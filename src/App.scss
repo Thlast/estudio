@@ -65,7 +65,7 @@ table td {
 textarea::placeholder {
   color: var(--textarea-placeholder);
 }
-textarea {
+textarea, input{
   color: var(--text-color);
   background-color: var(--textarea-color);
   border-color: var(--border-color);
@@ -95,6 +95,12 @@ textarea {
 }
 .contendedor-pregunta-respuesta::-webkit-scrollbar {
   display: none;
+}
+.contenedorRT {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
 }
 
 .contenedorbuscador {
@@ -397,9 +403,9 @@ textarea {
 h1 {
   font-family: 'Times New Roman', Times, serif;
 }
-p {
-  font-family: Lato,sans-serif;
-}
+// p {
+//   font-family: Lato,sans-serif;
+// }
 h2 {
   text-align: center;
   padding: 5px;
@@ -472,6 +478,7 @@ blockquote {
 }
 
 code {
+  text-decoration: underline;
   padding: 1px 5px 3px 5px;
   background-color: var(--codes);
   color: var(--text-color) !important;
