@@ -6,7 +6,7 @@ import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { alertalimpiarHistorialUsuario } from './alertas';
 import { ResueltasContext } from '../context/Resueltas'
 import { MateriasContext } from '../context/MateriasContext';
-
+import { MostrarNotas } from './notes/mostrarNotas';
 
 export function Perfil() {
 
@@ -19,15 +19,25 @@ export function Perfil() {
     const {matPreferida} = useContext(MateriasContext);
     const {materias} = useContext(MateriasContext);
     const {preferenciaMateria} = useContext(MateriasContext);
+    const [mostrarNotas, setMostrarNotas] = useState(false);
 
     const agregarPregunta = () => {
       setMostrarPreguntas(false);
       setAgregar(!agregar);
       setBuscador(false)
+      setMostrarNotas(false)
     }
 
     const most = () => {
       setMostrarPreguntas(!mostrarPreguntas);
+      setMostrarNotas(false)
+      setAgregar(false);
+      setBuscador(false)
+    }
+
+    const mostNotas = () => {
+      setMostrarNotas(!mostrarNotas)
+      setMostrarPreguntas(false);
       setAgregar(false);
       setBuscador(false)
     }
@@ -36,6 +46,7 @@ export function Perfil() {
       setBuscador(!buscador)
       setAgregar(false)
       setMostrarPreguntas(false)
+      setMostrarNotas(false)
     }
     const limpiarHistorialUsuario = () => {
 
@@ -87,6 +98,14 @@ export function Perfil() {
               </li>
               <hr></hr>
               <li>
+              <button 
+              className='perfil-boton'
+              onClick={() => mostNotas()}>
+                  Mis notas
+              </button>
+              </li>
+              <hr></hr>
+              <li>
               <button
               className='perfil-boton'
               onClick={() => agregarPregunta()}
@@ -130,6 +149,12 @@ export function Perfil() {
           </nav>
           </div>
           <div>
+          {
+            mostrarNotas &&
+            <MostrarNotas 
+            curso={matPreferida}
+            />
+          }
           {buscador &&
           <Buscador />
           }     
