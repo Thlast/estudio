@@ -80,7 +80,7 @@ export function MostrarNotas(props) {
 
     }
 
-  }, [curso])
+  }, [curso, seccion])
 
   const irModificarNota = (n, i) => {
     setModificar(!modificar)
