@@ -96,20 +96,20 @@ export const Prestamos = () => {
              
                 Monto inicial:  
                 <span className={style.inputprestamo}>
-              <input required onChange={(e) => setMonto(e.target.value)} value={monto} type="number" />
+              <input required onChange={(e) => setMonto(e.target.value)} min={0} value={monto} type="number" />
               $</span>
               </label>
               <label>
                 
                   Tasa (TNA): 
                   <span className={style.inputprestamo}>
-              <input required onChange={(e) => setInteres(e.target.value)} value={interes} type="number" step="any" />
+              <input required onChange={(e) => setInteres(e.target.value)} min={0} value={interes} type="number" step="any" />
               %</span>
               </label>
               <label>
               <span>Cuotas: </span>
               <span className={style.inputprestamo}>
-              <input required max={600} onChange={(e) => setQcuotas(e.target.value)} value={qcuotas} type="number" />
+              <input required max={600} onChange={(e) => setQcuotas(e.target.value)} min={0} value={qcuotas} type="number" />
               </span>
               </label>
               <label>

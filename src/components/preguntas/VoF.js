@@ -30,6 +30,7 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
       </div>
       <div>
       <input
+      checked={vof == "true"}
       required
         id={`verdadero${indice}`}
         name={`vof${indice}`}
@@ -41,6 +42,7 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
         Verdadero
       </label>
       <input
+      checked={vof == "false"}
       required
         id={`falso${indice}`}
         name={`vof${indice}`}

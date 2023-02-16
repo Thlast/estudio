@@ -1257,7 +1257,7 @@ em {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 50%;
+  max-width: 90%;
 }
 
 iframe {
@@ -1290,4 +1290,11 @@ svg {
 }
 a:hover > svg {
   fill: var(--body-color);
+}
+
+.misnotas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
 }
