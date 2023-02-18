@@ -519,7 +519,7 @@ code:hover {
   min-height: 100vh;
   display: grid;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+  font-size: 20px;
   color: var(--text-color);
 }
 
@@ -929,6 +929,17 @@ li {
 
 /* //cursos// */
 
+.curso-capitulos-contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.curso-capitulos-contenedor ul {
+  -webkit-padding-start: 0;
+  margin-bottom: 0;
+  padding-inline-start: 0;
+}
+
 .cursos {
   margin-right: auto;
   margin-left: auto;
@@ -1023,12 +1034,6 @@ display: none;
   } .cursos-container {
     padding: 0;
   } 
-}
-
-.block ul {
-  -webkit-padding-start: 0;
-  margin-bottom: 0;
-  padding-inline-start: 0;
 }
 
 .tema {
