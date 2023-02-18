@@ -7,10 +7,10 @@ const initialValues = {
   // id: "",
   curso: "",
   //opciones:
-    a: "",
-    b: "",
-    c: "",
-    d: "",
+  a: "",
+  b: "",
+  c: "",
+  d: "",
   correcta: "a",
   titulo: "",
   seccion: "",
@@ -27,9 +27,17 @@ export const usePreguntaForm = (inicial) => {
       ...datosPregunta,
       [target.name]: target.value
     })
+    if (target.name == "titulo") {
+      setDatosPregunta({
+        ...datosPregunta,
+        [target.name]: target.value,
+        seccion: ""
+      })
+    }
+
   }
-  
-  const handleChangeTipo = ({target}) => {
+
+  const handleChangeTipo = ({ target }) => {
     setDatosPregunta({
       ...datosPregunta,
       [target.name]: target.value
@@ -41,18 +49,18 @@ export const usePreguntaForm = (inicial) => {
       setHabilitarMultiple(false)
     }
   }
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     //setDatosPregunta(initialValues)
     console.log(datosPregunta, initialValues)
   }
-  
+
   return {
-      datosPregunta,
-      habilitarMultiple,
-      handleChangeTipo,
-      handleChange,
-      handleSubmit
+    datosPregunta,
+    habilitarMultiple,
+    handleChangeTipo,
+    handleChange,
+    handleSubmit
   }
 }

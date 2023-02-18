@@ -65,16 +65,19 @@ export function FormModificarPregunta(props) {
               value={datosmodificar.datosPregunta.pregunta}>
             </textarea>
           </label>
+          {datosmodificar.datosPregunta.tipo === "Normal" ? 
           <div>
-            Resultado:
-            <input
-              style={{ "width": "100%" }}
-              onChange={datosmodificar.handleChange}
-              placeholder="Escribe un resultado (opcional)"
-              name="resultado"
-              type="number"
-              value={datosmodificar.datosPregunta.resultado} />
-          </div>
+          Resultado:
+          <input
+            style={{ "width": "100%" }}
+            onChange={datosmodificar.handleChange}
+            placeholder="Escribe un resultado (opcional)"
+            name="resultado"
+            type="number"
+            value={datosmodificar.datosPregunta.resultado} />
+        </div>
+          : null}
+          
         </div>
         {datosmodificar.datosPregunta.tipo === "Multiple" &&
           <div>

@@ -16,7 +16,7 @@ export function FormAgregarPregunta(props) {
   const { materias } = useContext(MateriasContext)
   const { user } = useAuth();
   const { crearPreguntasVoF } = props
-  const inicialcurso = curso || matPreferida
+
 
   const preguntaCrear = usePreguntaForm({
     preg: "",
@@ -24,7 +24,7 @@ export function FormAgregarPregunta(props) {
     resultado: "",
     tipo: "Normal",
     // id: "",
-    curso: inicialcurso,
+    curso: curso,
     //opciones:
     a: "",
     b: "",
@@ -36,6 +36,8 @@ export function FormAgregarPregunta(props) {
     examen: examenid,
     user: user.uid
   })
+
+  console.log(preguntaCrear)
 
   return (
     <div
@@ -83,7 +85,7 @@ export function FormAgregarPregunta(props) {
               // preguntaCrear.handleSubmit
             }
           >
-            {curso !== undefined ? <p>{curso}</p> :
+            {seccion ? null :
               <div>
                 <select
                   required
@@ -91,7 +93,7 @@ export function FormAgregarPregunta(props) {
                   class="boton home-boton"
                   value={preguntaCrear.curso}
                   name="curso"
-                  for="materias">
+                  for="curso">
                   <option
                     value=""
                     disabled
@@ -101,7 +103,7 @@ export function FormAgregarPregunta(props) {
                   {materias.map(a => {
                     return (
                       <option
-                        key={"materia-" + a.id}
+                        key={"curso-" + a.id}
                         value={a.id}>
                         {a.nombre}
                       </option>

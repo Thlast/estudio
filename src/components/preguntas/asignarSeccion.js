@@ -41,7 +41,9 @@ console.log(cursoVof)
       onChange={datos.handleChange} 
       name="seccion"
       className='home-boton'>
-        <option disabled selected>
+        <option 
+        value=""
+        disabled selected>
           Seleccione una seccion
         </option>
         {titulos?.map(tit => {

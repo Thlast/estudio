@@ -63,11 +63,11 @@ export function Anexar(props) {
       <select
       onChange={(e) => anexar(e.target.value, p, e)}
       name='anexar'
-      value={null}>
+      value="">
         <option
         disabled
-        value={null}
-        selected="selected">
+        value=""
+        selected>
           elegir examen
         </option>
         {misExamenes.map((exa, num) => {
