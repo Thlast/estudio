@@ -96,7 +96,7 @@ export function MostrarNotas(props) {
   return (
     <>
       <div className="misnotas">
-        <h1>Mis anotaciones de: {curso}</h1>
+        <h1>Anotaciones de: {curso}</h1>
         {modificar ? null :
         <>
         <CrearNota

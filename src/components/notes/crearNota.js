@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { AsignarSeccionNota } from './asignarSeccionNota';
+import { useNote } from './useNote';
 
 export function CrearNota(props) {
 
@@ -15,92 +17,101 @@ export function CrearNota(props) {
   const [privateStatus, setPrivateStatus] = useState(notaModificar ? notaModificar.privateStatus : "true")
   const { cancelarModificar } = props;
 
+  //estados para modificar curso, seccion, capitulo(titulo)
+  const notaInicial = useNote(notaModificar);
 
+  console.log(notaInicial)
   return (
     <>
       <form
         className='form-container'
-        //onSubmit={(event) => console.log(privateStatus, curso, titulo, seccion, contenido, notaName, user.uid, event)}
+      //onSubmit={(event) => console.log(privateStatus, curso, titulo, seccion, contenido, notaName, user.uid, event)}
       >
         <div
           style={{ paddingBottom: "20px" }}
           className='form-pregunta-datos'>
           {notaModificar ?
             <button
-            className='btn btn-danger form-cancelar'
+              className='btn btn-danger form-cancelar'
               onClick={() => cancelarModificar()}
             >X</button>
             : null
           }
-          <h3 style={{textAlign: "center"}}>
-          {notaModificar ? "Modificar nota:" : "Nueva nota:"}
+          {notaModificar ?
+            <AsignarSeccionNota
+
+              notaInicial={notaInicial}
+            />
+            : null}
+          <h3 style={{ textAlign: "center" }}>
+            {notaModificar ? "Modificar nota:" : "Nueva nota:"}
           </h3>
-              <div
-                      className='vof-inputs'>
-                      <div
-                        className='vof-vf'>
-                        <input
-                        checked={privateStatus == "true"}
-                        required
-                        onChange={e => setPrivateStatus("true")}
-                          id={notaModificar ? "privadoTrue"+notaModificar.id : "privadoTrue"}
-                          value={true}
-                          name={notaModificar ? `private`+notaModificar.id : "private"}
-                          type="radio" />
-                          
-                        <label for={notaModificar ? "privadoTrue"+notaModificar.id : "privadoTrue"}>
-                          {"  "}Privado
-                        </label>
-                      </div>
-                      <div
-                        className='vof-vf'>
-                        <input
-                        checked={privateStatus == "false"}
-                        id={notaModificar ? "privadoFalse"+notaModificar.id : "privadoFalse"}
-                        onChange={e => setPrivateStatus("false")}
-                          value={false}
-                          name={notaModificar ? `private`+notaModificar.id : "private"}
-                          type="radio" />
-                        <label for={notaModificar ? "privadoFalse"+notaModificar.id : "privadoFalse"}>
-                          {"  "}Publico
-                        </label>
-                      </div>
-                    </div>
-                                            {/* por ahora cancelado por que no se permite modificar */}
-          <div style={{display:"none"}}>
-          {/* Curso: */}
-          <select
-            className='home-boton'
-          >
-            <option
-              selected
-              value={curso}
+          <div
+            className='vof-inputs'>
+            <div
+              className='vof-vf'>
+              <input
+                checked={privateStatus == "true"}
+                required
+                onChange={e => setPrivateStatus("true")}
+                id={notaModificar ? "privadoTrue" + notaModificar.id : "privadoTrue"}
+                value={true}
+                name={notaModificar ? `private` + notaModificar.id : "private"}
+                type="radio" />
+
+              <label for={notaModificar ? "privadoTrue" + notaModificar.id : "privadoTrue"}>
+                {"  "}Privado
+              </label>
+            </div>
+            <div
+              className='vof-vf'>
+              <input
+                checked={privateStatus == "false"}
+                id={notaModificar ? "privadoFalse" + notaModificar.id : "privadoFalse"}
+                onChange={e => setPrivateStatus("false")}
+                value={false}
+                name={notaModificar ? `private` + notaModificar.id : "private"}
+                type="radio" />
+              <label for={notaModificar ? "privadoFalse" + notaModificar.id : "privadoFalse"}>
+                {"  "}Publico
+              </label>
+            </div>
+          </div>
+          {/* por ahora cancelado por que no se permite modificar */}
+          <div style={{ display: "none" }}>
+            {/* Curso: */}
+            <select
+              className='home-boton'
             >
-              {curso}
-            </option>
-          </select>
+              <option
+                selected
+                value={curso}
+              >
+                {curso}
+              </option>
+            </select>
 
 
-          {/* Capitulo: */}
-          <select
-            className='home-boton'
-          >
-            <option
-              selected
-              value={titulo}
-            >{titulo}</option>
-          </select>
+            {/* Capitulo: */}
+            <select
+              className='home-boton'
+            >
+              <option
+                selected
+                value={titulo}
+              >{titulo}</option>
+            </select>
 
 
-          {/* Seccion: */}
-          <select
-            className='home-boton'
-          >
-            <option
-              selected
-              value={seccion}
-            >{seccion}</option>
-          </select>
+            {/* Seccion: */}
+            <select
+              className='home-boton'
+            >
+              <option
+                selected
+                value={seccion}
+              >{seccion}</option>
+            </select>
           </div>
         </div>
         {/* Nombre de la nota: */}
@@ -125,7 +136,17 @@ export function CrearNota(props) {
           notaModificar ?
             <button
               className='home-boton'
-              onClick={(e) => notaModificada(privateStatus, user.uid, curso, notaName, titulo, seccion, contenido, notaModificar.id, notaModificar.indice, e)}
+              onClick={(e) => notaModificada(
+                notaInicial.datosNota.privateStatus,
+                user.uid,
+                notaInicial.datosNota.curso,
+                notaInicial.datosNota.name,
+                notaInicial.datosNota.capitulo,
+                notaInicial.datosNota.seccion,
+                notaInicial.datosNota.contenido,
+                notaInicial.datosNota.id,
+                notaInicial.datosNota.indice,
+                e)}
               type='submit'
             >
               Modificar nota
