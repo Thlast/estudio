@@ -85,7 +85,7 @@ export function FormAgregarPregunta(props) {
               // preguntaCrear.handleSubmit
             }
           >
-            {seccion ? null :
+            {seccion || examenid ? null :
               <div>
                 <select
                   required
