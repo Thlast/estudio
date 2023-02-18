@@ -14,7 +14,7 @@ fetch(url, {
   })
   .then(res => res.text())
   .catch(error => {console.error('Error:', error)})
-  .then(data => console.log('Nota eliminada', data), alertafail("Pregunta eliminada")
+  .then(data => console.log('Nota eliminada', data), alertafail("Nota eliminada")
   
   );
 }
