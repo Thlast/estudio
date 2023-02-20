@@ -279,6 +279,7 @@ export function Impcaps() {
               style={{ display: `${mostrarConsola ? "block" : "none"}` }}
             >
               <Consola
+                curso={curso}
                 cargando={cargandoconsola}
                 datos={datos}
                 dic={dic}
@@ -402,6 +403,7 @@ export function Impcaps() {
                 : null}
 
               <Consola
+                curso={curso}
                 cargando={cargandoconsola}
                 datos={datos}
                 dic={dic}

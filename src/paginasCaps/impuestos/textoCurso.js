@@ -5,7 +5,6 @@ export function TextoCurso(props) {
 
   const {seccion} = props;
   const {enunciado} = props
-
  
   return (
     <div>
