@@ -71,14 +71,16 @@ export function Consola(props) {
               )
             })
             }
+            <br></br>
             <blockquote>Link a la sección:
-              <code>
+              <em
+              style={{textDecoration: "underline"}}>
               <a 
               target="_blank"
               href={`${url}/cursos/${datos[0].curso}/${datos[0].capitulo}/${datos[0].seccion.nombre}`}>
                 {" "}{datos[0].seccion.nombre}
               </a>
-              </code>
+              </em>
             </blockquote>
           </>
           : null}
