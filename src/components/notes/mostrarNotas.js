@@ -66,14 +66,14 @@ export function MostrarNotas(props) {
   useEffect(() => {
     if (seccion) {
       getSeccionNotes(seccion, user.uid).then(data => {
-        console.log(data)
+        //console.log(data)
         setNotes(data)
         obtenerQnotes(data.length)
       })
 
     } else {
       getNotes(curso, user.uid).then(data => {
-        console.log(data)
+        //console.log(data)
         setNotes(data)
         //obtenerQnotes(data.length)
       })

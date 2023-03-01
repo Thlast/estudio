@@ -21,6 +21,7 @@ import { EdeResultados } from './components/estados contables/EdeResultados';
 import { ModelosRT9 } from './components/estados contables/modelosRT9';
 import { TransformarTabla } from './components/transformarTabla';
 import { ImprimirHTML } from './components/imprimirResumen';
+import { InformeAuditor } from './components/informeAuditor';
 
 function App() {
 
@@ -53,6 +54,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Perfil />
+              </ProtectedRoute>
+            }
+          />
+        <Route 
+          path="/informeAuditor" 
+            element={
+              <ProtectedRoute>
+                <InformeAuditor />
               </ProtectedRoute>
             }
           />

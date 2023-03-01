@@ -20,7 +20,6 @@ export function CrearNota(props) {
   //estados para modificar curso, seccion, capitulo(titulo)
   const notaInicial = useNote(notaModificar);
 
-  console.log(notaInicial)
   return (
     <>
       <form

@@ -1,8 +1,8 @@
 /* Split the screen */
 .split {
-    height: calc(100% - 101px);
+    height: calc(100% - 67px);
     position: fixed;
-    top: 101px;
+    top: 67px;
     overflow-x: hidden;
     
   }
