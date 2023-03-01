@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { InformeAuditor } from '../components/informeAuditor';
 import { Spinner } from '../components/Login/Spinner';
 
 export function Consola(props) {
@@ -14,6 +15,7 @@ export function Consola(props) {
   const { cargando } = props;
   const url = process.env.REACT_APP_PROYECT_PRODUCTION_URL || process.env.REACT_APP_PROYECT_LOCAL_URL
 
+  const [informeAuditor, setInformeAuditor] = useState(false)
   return (
     <div>
       <div
@@ -55,6 +57,11 @@ export function Consola(props) {
       </div>
       <div
         className="consola">
+          {curso == "auditoria" || curso == "rts" ? 
+          <button onClick={() => setInformeAuditor(!informeAuditor)}>Informes de auditor</button>
+          : null}
+          {informeAuditor ? <InformeAuditor /> : null}
+          
         {datos[0] ? 
         datos[0].seccion.enunciado.length == 0 || dic === "" ? "no hay datos" :
           <>
