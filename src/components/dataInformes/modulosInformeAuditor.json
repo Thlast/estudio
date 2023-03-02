@@ -285,16 +285,32 @@
 
                     },
                     {
-                        "numero": 3,
+                        "numero": 5,
                         "descripcion": "CC. Incorrección significativa en período anterior no ajustada. No significativa en período actual. Afecta comparabilidad. Caso 12.",
-                        "informacion": "CC. Incorrección significativa en período anterior no ajustada. No significativa en período actual. Afecta comparabilidad. Caso 12.",
+                        "informacion": "<strong>CC. Incorrección significativa en período anterior no ajustada. No significativa en período actual. Afecta comparabilidad. Caso 12.</strong>",
                         "opinion": {
-                            "titulo": "asd",
-                            "texto": "ASDaa"
+                            "titulo": "Opinión con salvedades",
+                            "texto": "<p>He auditado los estados contables adjuntos de ABCD, que comprenden el estado de situación patrimonial al… de... de 20X1, el estado de resultados, el estado de evolución del patrimonio neto y el estado de flujo de efectivo correspondientes al ejercicio finalizado en dicha fecha, así como la información explicativa de los estados contables, expuesta en las notas … a …, que incluye un resumen de las políticas contables significativas … y los anexos... a...</p><p>En mi opinión, excepto por los efectos sobre las cifras correspondientes de períodos anteriores del hecho descripto en el párrafo “Fundamento de la opinión con salvedades”, los estados contables adjuntos presentan razonablemente, en todos sus aspectos significativos, la situación patrimonial de ABCD al … de... de 20X1, así como sus resultados, la evolución de su patrimonio neto y el flujo de su efectivo correspondientes al ejercicio finalizado en esa fecha, de conformidad con las normas contables profesionales argentinas.</p>"
                         },
                         "fundamento": {
-                            "titulo": "asd",
-                            "texto": "fasd"
+                            "titulo": "Fundamento de la opinión con salvedades",
+                            "texto": "<p>La entidad expuso en los estados contables del período anterior los bienes de uso que se habían desafectado, y que contaban con expectativas de venta en el corto plazo, en el rubro Bienes de uso del Activo no corriente, y correspondía que fueran expuestos en el Activo corriente en el rubro “Otros activos”. La situación descripta representa un incumplimiento de las normas contables profesionales argentinas, en consecuencia, mi opinión de auditoría sobre los estados contables correspondientes al ejercicio finalizado el … de… de 20X0 fue una opinión modificada, por la incorreción significativa en la exposición de los citados bienes. Mi opinión sobre los estados contables del período actual también es una opinión modificada debido al efecto de este hecho sobre la comparabilidad entre los datos del período actual y las cifras correspondientes del período anterior.</p><p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión con salvedades.</p>"
+                        },
+                        "opinionX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "opinionX1": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX1": {
+                            "titulo":"",
+                            "texto": ""
                         }
                     }
                 ]
@@ -391,7 +407,7 @@
                 "casos": [
                     {
                         "numero": 1,
-                        "descripcion": "Casos que justifican la emisión de un informe con salvedades por incorrecciones (caso 9)",
+                        "descripcion": "Casos que justifican la emisión de un informe con abstención (caso 9)",
                         "informacion": "<table><th>Información comparativa: <span id='infoComparativa'></span></th><th>Ejercicio corriente </th><th>Ejercicio anterior</th><tr><td>Limitaciones significativas al alcance del trabajo</td><td>Si, de efecto potencialmente generalizado</td><td>No</td></tr><tr><td>Incorrecciones significativas</td><td>No</td><td>No</td></tr><tr><td>Otras circunstancias especiales</td><td>No</td><td>No</td></tr> <tr><td>Marco de información contable aplicable</td><td>Normas contables profesionales argentinas</td><td>Normas contables profesionales argentinas</td></tr></table>",
                         "opinion": {
                             "titulo": "Abstención de opinión",
@@ -421,7 +437,7 @@
                     },
                     {
                         "numero": 2,
-                        "descripcion": "Casos que justifican la emisión de un informe con salvedades por incorrecciones (caso 10)",
+                        "descripcion": "Casos que justifican la emisión de un informe con abstención (caso 10)",
                         "informacion": "<table><th>Información comparativa: <span id='infoComparativa'></span></th><th>Ejercicio corriente </th><th>Ejercicio anterior</th><tr><td>Limitaciones significativas al alcance del trabajo</td><td>Si, de efecto potencialmente generalizado</td><td>No</td></tr><tr><td>Incorrecciones significativas</td><td>No</td><td>No</td></tr><tr><td>Otras circunstancias especiales</td><td>No</td><td>No</td></tr> <tr><td>Marco de información contable aplicable</td><td>Normas contables profesionales argentinas</td><td>Normas contables profesionales argentinas</td></tr></table>",
                         "opinion": {
                             "titulo": "Abstención de opinión",
@@ -446,6 +462,36 @@
                         "fundamentoX1": {
                             "titulo": "Fundamento de la abstención de opinión sobre los estados contables correspondientes al ejercicio finalizado el ….. de …………… de 20X1",
                             "texto": "<p>Por limitaciones al alcance impuestas por el contratante luego de iniciada la auditoría, no he podido presenciar el inventario físico de bienes de cambio al cierre del ejercicio finalizado el … de ………………… de 20X1, el cual constituye el 40% del total de los activos. Tampoco he podido satisfacerme de dicha afirmación por medio de procedimientos alternativos. Por lo tanto, no he podido determinar si estos importes deben ser ajustados.</p><p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE.</p>"
+                        }
+    
+                    },
+                    {
+                        "numero": 3,
+                        "descripcion": "Casos que justifican la emisión de un informe con abstención (caso 11)",
+                        "informacion": "<p>Primera auditoría, caso que justifica opinión modificada sobre los resultados, flujo de efectivo y evolución del patrimonio neto. (agregado)</p><strong><em>CASO 11. Resolución Técnica N° 37 III.A.ii.18.</em> Encargo inicial de auditoría, el auditor no presenció el recuento físico de existencias al inicio y no pudo obtener elementos de juicio suficientes y apropiados con relación a los saldos de inicio. Los posibles efectos se consideran significativos, pero no generalizados en los estados de resultados, de evolución de patrimonio neto y de flujo de efectivo. Se presentan cifras correspondientes y los estados contables correspondientes al periodo anterior fueron auditados por un auditor predecesor</strong>",
+                        "opinion": {
+                            "titulo": "Opinión",
+                            "texto": "<p>He auditado los estados contables de ABCD, que comprenden el estado de situación patrimonial al … de … de 20X2, los estados de resultados, de evolución del patrimonio neto y de flujo de efectivo correspondientes al ejercicio finalizado en dicha fecha, así como la información explicativa de los estados contables, expuesta en las notas … a …, que incluye un resumen de las políticas contables significativas, y los anexos … a...</p><p>Opinión con salvedades sobre los estados de resultados, de evolución del patrimonio neto y de flujo de efectivo. {puede corresponder abstención}</p><p>En mi opinión, excepto por los posibles efectos de la cuestión descripta en la sección Fundamentos de la opinión con salvedades los estados de resultados, evolución del patrimonio neto y flujo de efectivo que se adjuntan, presentan razonablemente, en todos los aspectos significativos, los resultados, la evolución patrimonial y los flujos de efectivo de ABCD al … de … de 20X2, de conformidad con las normas contables profesionales argentinas.</p><h1>Opinión sobre la situación patrimonial.</h1><p>En mi opinión, el estado de situación patrimonial que se adjunta, presenta razonablemente en todos sus aspectos significativos la situación patrimonial de ABCD al …..de …………………de 20X2 de conformidad con las normas contables argentinas.</p>"
+                        },
+                        "fundamento": {
+                            "titulo": "Fundamento de las opiniones, incluido el Fundamento de la opinión con salvedades {abstención} de los estados de resultados, de evolución de patrimonio neto y de flujo de efectivo",
+                            "texto": "<p>Fui nombrado auditor de ABCD el ….de………….de 20X2 y, por lo tanto, no he podido presenciar el recuento físico de las existencias al inicio del ejercicio. No podido satisfacerme por medios alternativos sobre de las existencias al 31 de diciembre de 20X1. Puesto que las existencias iniciales influyen en la determinación del resultado y por ende en los flujos de efectivo y la evolución del patrimonio neto, no he podido determinar si hubiese sido necesario realizar ajustes en los estados mencionados.</p><p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión de auditoría con salvedades sobre el estado de resultados, el estado de evolución del patrimonio neto y el estado de flujo de efectivo, correspondientes al ejercicio finalizado en esa fecha.</p>"
+                        },
+                        "opinionX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "opinionX1": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX1": {
+                            "titulo":"",
+                            "texto": ""
                         }
     
                     }
