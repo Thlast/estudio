@@ -13,7 +13,70 @@
                         "titulo": "Fundamento de la opinión",
                         "texto": "<p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión.</p>"
                     }
-                }
+                },
+                "casos": [
+                    {
+                        "numero": 1,
+                        "descripcion": "Ejemplos de situaciones que ameritan modificar el informe (caso 13)",
+                        "informacion": "<strong>CC. Incorrección significativa en el período anterior, los estados contables de ese período no se han modificado y el informe de auditoría no ha sido emitido nuevamente pero sí ha sido ajustada y expuesta debidamente en la información comparativa. Caso 13</strong>",
+                        "opinion": {
+                            "titulo": "Opinión",
+                            "texto": "<p>He auditado los estados contables de ABCD, que comprenden el estado de situación patrimonial al … de … de 20X1, los estados de resultados, de evolución del patrimonio neto y de flujo de efectivo correspondientes al ejercicio finalizado en dicha fecha, así como la información explicativa de los estados contables, expuesta en las notas … a …, que incluye un resumen de las políticas contables significativas, y los anexos … a...</p><p>En mi opinión, los estados contables adjuntos presentan razonablemente, en todos los aspectos significativos, la situación patrimonial de ABCD al … de … de 20X1, así como sus resultados, la evolución de su patrimonio neto y el flujo de su efectivo correspondientes al ejercicio finalizado en esa fecha, de conformidad con las normas contables profesionales argentinas.</p>"
+                        },
+                        "fundamento": {
+                            "titulo": "Fundamento de la opinión",
+                            "texto": "<p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión.</p><h1>Énfasis sobre exposición de activos</h1><p>Sin modificar mi opinión, llamo la atención respecto de la Nota … de los estados contables adjuntos, que describe el ajuste en la exposición de las cifras correspondientes del rubro bienes de cambio del período 20X0 y las circunstancias que dieron origen a la incorrecta exposición en el estado de Situación Patrimonial al … de … 20X0 de los Bienes de cambio que por error habían sido considerados No corrientes, debiendo exponerse la totalidad de ellos como Corrientes. En la exposición de las cifras correspondientes del período 20X1 esta situación ha sido debidamente corregida y expuesta.</p>"
+                        },
+                        "opinionX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "opinionX1": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX1": {
+                            "titulo":"",
+                            "texto": ""
+                        }
+
+                    },
+                    {
+                        "numero": 2,
+                        "descripcion": "Ejemplos de situaciones que ameritan modificar el informe (caso 14)",
+                        "informacion": "<strong>ECC. Opinión sobre el período anterior que difiere de la que expresó en oportunidad de auditarlo en el período anterior. Caso 14</strong>",
+                        "opinion": {
+                            "titulo": "Opinión",
+                            "texto": "<p>He auditado los estados contables de ABCD, que comprenden el estado de situación patrimonial al … de … de 20X1, los estados de resultados, de evolución del patrimonio neto y de flujo de efectivo correspondientes al ejercicio finalizado en dicha fecha, así como la información explicativa de los estados contables, expuesta en las notas … a …, que incluye un resumen de las políticas contables significativas, y los anexos … a...</p><p>En mi opinión, los estados contables adjuntos presentan razonablemente, en todos los aspectos significativos, la situación patrimonial de ABCD al … de … de 20X1, así como sus resultados, la evolución de su patrimonio neto y el flujo de su efectivo correspondientes al ejercicio finalizado en esa fecha, de conformidad con las normas contables profesionales argentinas.</p>"
+                        },
+                        "fundamento": {
+                            "titulo": "Fundamento de la opinión",
+                            "texto": "<p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión.</p>"
+                        },
+                        "otrascuestiones": "<h1>Otras Cuestiones</h1><p>Con fecha.... de… de 20X1, he emitido un informe de auditoría con opinión modificada sobre los estados contables de ABCD al.... de … de 20X0, debido a que a esa fecha se había contabilizado en forma errónea la amortización de las franquicias que posee la entidad. Con posterioridad a la fecha de emisión de dicho informe, la entidad corrigió la situación señalada, tal como se describe en la Nota … sobre ajustes de resultados de ejercicios anteriores. Como resultado de esta resolución, mi opinión actual sobre los estados contables del ejercicio terminado el.... de... de 20X1, ha dejado de ser modificada.</p>",
+                        "opinionX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "opinionX1": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX0": {
+                            "titulo":"",
+                            "texto": ""
+                        },
+                        "fundamentoX1": {
+                            "titulo":"",
+                            "texto": ""
+                        }
+
+                    }
+                ]
             },
             {
                 "modelo": "informe con salvedades por limitaciones al alcance",

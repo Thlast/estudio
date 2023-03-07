@@ -13,6 +13,7 @@ import { LinkExamen } from "./linkExamen";
 import { WindowSplitter } from "./splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
 import { CrearNota } from "../../components/notes/crearNota";
+import { FormCrearDef } from "../../components/definiciones/crearDef";
 
 export function Impcaps() {
 
@@ -304,6 +305,7 @@ export function Impcaps() {
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
+                  <FormCrearDef curso={curso} />
                 {/* <CrearNota
                   titulo={titulo}
                   curso={curso}
@@ -428,6 +430,7 @@ export function Impcaps() {
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
+                  <FormCrearDef curso={curso} />
                 {/* <CrearNota
                   titulo={titulo}
                   curso={curso}

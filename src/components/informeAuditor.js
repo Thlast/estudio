@@ -53,7 +53,18 @@ export function InformeAuditor() {
 
           setCasosModelo(i.casos)
           //casos especificos
+          if(i.casos[casoSeleccionado - 1]?.otrascuestiones) {
+            //si tiene parrafo lo renderizo
+            document.getElementById('otrascuestiones').innerHTML = i.casos[casoSeleccionado - 1].otrascuestiones
+          } else {
+            //si no tiene vuelvo al modelo base
+            document.getElementById('otrascuestiones').innerHTML = trabajo.otrascuestiones
+          }
+         
           if (i.casos && casoSeleccionado !== "Modelo Base") {
+            // Object.keys(i.casos[casoSeleccionado-1]).map(a => {
+            //   console.log(i.casos[casoSeleccionado-1][a])
+            // })
             document.getElementById('casosModelo').innerHTML = i.casos[casoSeleccionado - 1].informacion
             document.getElementById('opinionTitulo').innerHTML = i.casos[casoSeleccionado - 1].opinion.titulo
             document.getElementById('opinionTexto').innerHTML = i.casos[casoSeleccionado - 1].opinion.texto
@@ -179,35 +190,36 @@ export function InformeAuditor() {
         </select>
 
         <div>
+        <label for="tipoCC">
           <input
             id='tipoCC'
             value={tipoInfo}
             onChange={(e) => setTipoInfo("CC")}
             name='tipoInfo'
             type="radio" />
-          <label for="tipoCC">
+          
             Cifras Correspondientes
           </label>
 
-          {noHay !== "ECC" ?
-            <>
-              <input
-                id='tipoECC'
-                value={tipoInfo}
-                onChange={(e) => setTipoInfo("ECC")}
-                name='tipoInfo'
-                type="radio" />
-              <label for="tipoECC">
-                Estados Contables Comparativos
-              </label>
-            </>
-            : null
-          }
-          <div
+          <>
+          <label for="tipoECC">
+            <input
+              id='tipoECC'
+              value={tipoInfo}
+              onChange={(e) => setTipoInfo("ECC")}
+              name='tipoInfo'
+              type="radio" />
+           
+              Estados Contables Comparativos
+            </label>
+          </>
+
+
+        </div>
+        <div
             id='casosModelo'>
 
           </div>
-        </div>
         <div className='informeAuditoria'>
           <div id='titulo'>
           </div>

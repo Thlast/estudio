@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { InformeAuditor } from '../../components/informeAuditor';
 
 export function TextoCurso(props) {
 
@@ -11,6 +12,10 @@ export function TextoCurso(props) {
     <h1>
       {seccion}    
     </h1>
+    {
+      seccion == "Informes de auditor" ? <InformeAuditor /> : null
+    }
+    
     <br></br>
         <div>
       {enunciado === undefined || enunciado[0].enunciado === undefined || enunciado[0].enunciado.length === 0 ? null :
