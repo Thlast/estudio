@@ -13,8 +13,8 @@ export const modificarDef = async (nombreConcepto, definicion, curso, fuente, id
     body: JSON.stringify({
         nombreConcepto: nombreConcepto,
         definicion: definicion,
-        curso: curso,
-        fuente: fuente
+        fuente: fuente,
+        curso: curso
     }),
     headers: {
       'Content-Type': 'application/json'

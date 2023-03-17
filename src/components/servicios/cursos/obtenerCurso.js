@@ -20,8 +20,8 @@ export const buscarFiltrado = async (curso) => {
   
 }
 
-export const buscarFiltradoNuevo = async (curso, valor) => {
-    const data = await fetch(`${urlserver}/filtrar/${curso}/${valor}`)
+export const buscarFiltradoNuevo = async (curso, valor, page, limit) => {
+    const data = await fetch(`${urlserver}/filtrar/${curso}/${page}/${limit}/${valor}`)
     return data.json()
   
 }

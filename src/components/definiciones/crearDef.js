@@ -13,8 +13,6 @@ export function FormCrearDef(props) {
   const { curso } = props;
 
 
-  console.log(def? typeof def.id : null)
-
   return (
     <>
       <form

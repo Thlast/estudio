@@ -433,6 +433,12 @@ h5 {
   background-color: var(--container-color);
   padding: 10px;
 }
+.consola a {
+  text-decoration: underline !important;
+}
+.consola a:hover {
+  color: var(--link-hover) !important;
+}
 .navconsola {
   background-color: var(--container-color);
   padding: 10px;

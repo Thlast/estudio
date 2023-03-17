@@ -77,7 +77,7 @@ export function Consola(props) {
         className="consola">
 
         {/* si existen definiciones se renderizan: */}
-        {datosDef[0] ?
+        {datosDef[0] && dic !== "" ?
           <>
           <MostrarDef 
           mostrarForm={mostrarForm}

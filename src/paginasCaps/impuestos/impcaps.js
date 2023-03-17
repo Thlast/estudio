@@ -200,6 +200,10 @@ export function Impcaps() {
     setQnotes(q)
   }
 
+  const limpiarConsola = () => {
+    setDic("")
+    
+  }
 
   return (
     <>
@@ -369,7 +373,7 @@ export function Impcaps() {
                 className={style.cursointeraccion}>
                 <button
                   className="cursos-as"
-                  onClick={() => setDic("")}>
+                  onClick={() => limpiarConsola()}>
                   Limpiar consola
                 </button>
                 <button
