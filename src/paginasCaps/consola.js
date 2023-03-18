@@ -17,21 +17,16 @@ export function Consola(props) {
   const { enconsola } = props;
   const { cargando } = props;
   const [datosDef, setDatosDef] = useState([]);
-  const [habilitarAgregarDef, setHabilitarAgregarDef] = useState(false);
 
   const url = process.env.REACT_APP_PROYECT_PRODUCTION_URL || process.env.REACT_APP_PROYECT_LOCAL_URL
 
   useEffect(() => {
-    setHabilitarAgregarDef(false)
     getDef(dic).then(data => {
-      setDatosDef(data)
+      setDatosDef(data[0])
     })
 
   }, [dic])
 
-  const mostrarForm = () => {
-    setHabilitarAgregarDef(!habilitarAgregarDef)
-  }
 
   const [informeAuditor, setInformeAuditor] = useState(false)
   return (
@@ -77,34 +72,19 @@ export function Consola(props) {
         className="consola">
 
         {/* si existen definiciones se renderizan: */}
-        {datosDef[0] && dic !== "" ?
+        {dic !== "" ?
           <>
-          <MostrarDef 
-          mostrarForm={mostrarForm}
-          def={datosDef[0]} />
-            <hr></hr>
+            <MostrarDef
+              curso={curso}
+              dic={dic}
+              def={datosDef} />
+              <hr></hr>
           </>
+          :
+          null
+        }
 
-          : 
-          <>
-          No existe la definición:{" "}
-          <button
-          className='home-boton'
-          onClick={() => mostrarForm()}>
-            ¿Agregar?
-            </button>
-            <hr></hr>
-            </>
-            }
-          {
-            habilitarAgregarDef && <FormCrearDef curso={curso} dic={dic} def={datosDef[0]} />
-          }
         {/* si existen definiciones se renderizan: */}
-
-        {curso == "auditoria" || curso == "rts" ?
-          <button onClick={() => setInformeAuditor(!informeAuditor)}>Informes de auditor</button>
-          : null}
-        {informeAuditor ? <InformeAuditor /> : null}
 
         {datos[0] ?
           datos[0].seccion.enunciado.length == 0 || dic === "" ? "no hay datos" :
@@ -133,9 +113,20 @@ export function Consola(props) {
                   </a>
                 </em>
               </blockquote>
+              <hr></hr>
             </>
           : null}
-
+         
+        {curso == "auditoria" || curso == "rts" ?
+        <>
+        
+          <button 
+          className='home-boton'
+          onClick={() => setInformeAuditor(!informeAuditor)}>Ver modelos de informes de auditor</button>
+          <hr></hr>
+          </>
+          : null}
+        {informeAuditor ? <InformeAuditor /> : null}
 
 
       </div>

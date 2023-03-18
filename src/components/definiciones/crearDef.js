@@ -17,10 +17,11 @@ export function FormCrearDef(props) {
     <>
       <form
         className="form-container"
-      //onSubmit={(e) => crearDef(concepto, definicion, curso, fuente, e)}
+        onSubmit={(e) => crearDef(concepto, definicion, curso, fuente, e)}
       >
         Concepto:
         <input
+        required
           style={{ width: "90%" }}
           placeholder="Escribe el concepto"
           onChange={(e) => setConcepto(e.target.value)}
@@ -30,7 +31,8 @@ export function FormCrearDef(props) {
         </input>
         Definicion:
         <textarea
-          style={{ width: "90%" }}
+        required
+          style={{ width: "90%", height: "300px" }}
           placeholder="Escribe la definición"
           onChange={(e) => setDefinicion(e.target.value)}
           value={definicion}>
@@ -47,19 +49,18 @@ export function FormCrearDef(props) {
         </input>
         {def ?
           <button
-            onClick={(e) => modificarDef(concepto, definicion, curso, fuente, def.id, e)}
+            onClick={(e) => modificarDef(concepto, definicion, def.curso, fuente, def.id, e)}
             type="submit">
             Modificar
           </button>
           :
           <button
-            onClick={(e) => crearDef(concepto, definicion, curso, fuente, e)}
+            className="home-boton"
             type="submit">
             Crear
           </button>
         }
       </form>
-      <hr></hr>
     </>
   )
 }
