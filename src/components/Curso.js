@@ -23,8 +23,10 @@ export function Curso() {
       .then(data => setCurs(data));
     obtenerDatosTitulos(materia)
       .then(data =>
+      (
         setDatosCaps(data),
         setCargando(false)
+      )
       )
 
 
@@ -66,6 +68,7 @@ export function Curso() {
 
   return (
     <div className="App">
+
       <div className={style.cursolistado}>
         <Link
           className={style.volver}
@@ -94,7 +97,7 @@ export function Curso() {
               return (
                 <div
                   key={"curso-descripcion-" + t.nombre + num}>
-                  
+
                   <h1>
                     {t.nombre}
                   </h1>
@@ -108,91 +111,77 @@ export function Curso() {
             }
 
             )}
-            <div class='curso-capitulos-contenedor'>
-            {datosCaps ?
-                datosCaps.map((s, num) => {
-                  
-                  return (
-                          <div 
-                          key={num+"-"+s.titulo}
-                          id={s.titulo}
-                          class="cuadro-curso">
-                          <div class="bloque-curso">
-                            <h3>
-                              {s.titulo}
-                            </h3>
-                          </div>
-                          <div class="bloque-descripcion">
-                            <p>{s.descripcion}</p>
-                            <p>Bibliografia:</p>
-                            <ul>
-                            {s.bibliografia.map((b, i) => {
-                              return <li
-                              key={i+"-"+s.titulo+"-bib"}>
-                                  {b}
-                              </li>
-                            })}
-                            </ul>
-                          </div>
+            {cargando ? <Spinner /> :
+              <div class='curso-capitulos-contenedor'>
+                {datosCaps ?
+                  datosCaps.map((s, num) => {
 
-                          
-                          
-                          <div class="boton-curso">
-                            <button
-                              class="show boton-curso"
-                              id={"mostrar" + num}
-                              onClick={() => most(num)}>
-                              Expandir
-                            </button>
-                            <button
-                              class="hide boton-curso"
-                              id={"ocultar" + num}
-                              onClick={() => ocultar(num)}>
-                              Ocultar
-                            </button>
-                          </div>
-                          <ul
-                            className={style.contenedor}
-                            id={"capitulo" + num}>
-                           {s.secciones.map((sec, num) => {
-                      return (
-                        <Link
-                          key={'capitulo-' + sec + num}
-                          className={style.seccion}
-                          to={"/cursos/" + curso + "/" + s.titulo + "/" + sec}>
-                          {sec}
-                        </Link>
-                      )
-                    })}
-                          </ul>
-                        </div>
-                    
-                  )
-                      
-
-                  
-
-                }
-                ) : null
-              }
-              {/* {cargando ? <Spinner></Spinner> :
-                curs.map(t =>
-                  t.capitulo.map((c, num) => {
                     return (
                       <div
-                        id={c}
-                        key={"curso-" + c.nombre + num}>
-                  
-                        <div class="spacer">
-                          <br></br>
+                        key={num + "-" + s.titulo}
+                        id={s.titulo}
+                        class="cuadro-curso">
+                        <div class="bloque-curso">
+                          <h3>
+                            {s.titulo}
+                          </h3>
                         </div>
+                        <div class="bloque-descripcion">
+                          <p>{s.descripcion}</p>
+                          <p>Bibliografia:</p>
+                          <ul>
+                            {s.bibliografia.map((b, i) => {
+                              return <li
+                                key={i + "-" + s.titulo + "-bib"}>
+                                {b}
+                              </li>
+                            })}
+                          </ul>
+                        </div>
+
+
+
+                        <div class="boton-curso">
+                          <button
+                            class="show boton-curso"
+                            id={"mostrar" + num}
+                            onClick={() => most(num)}>
+                            Expandir
+                          </button>
+                          <button
+                            class="hide boton-curso"
+                            id={"ocultar" + num}
+                            onClick={() => ocultar(num)}>
+                            Ocultar
+                          </button>
+                        </div>
+                        <ul
+                          className={style.contenedor}
+                          id={"capitulo" + num}>
+                          {s.secciones.map((sec, num) => {
+                            return (
+                              <Link
+                                key={'capitulo-' + sec + num}
+                                className={style.seccion}
+                                to={"/cursos/" + curso + "/" + s.titulo + "/" + sec}>
+                                {sec}
+                              </Link>
+                            )
+                          })}
+                        </ul>
                       </div>
+
                     )
-                  })
 
-                )} */}
 
-            </div>
+
+
+                  }
+                  ) : null
+                }
+
+              </div>
+            }
           </div>
         </div>
 
