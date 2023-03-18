@@ -8,16 +8,18 @@ import remarkGfm from 'remark-gfm'
 
 export const Buscador = (props) => {
 
+  const { materias } = useContext(MateriasContext);
+  const { matPreferida } = useContext(MateriasContext);
   const { cursoBuscador } = props
   const [valor, setValor] = useState(null);
   const [resultados, setResultados] = useState([]);
-  const [curso, setCurso] = useState(cursoBuscador || "impuestos");
-  const { materias } = useContext(MateriasContext);
+  const [curso, setCurso] = useState(cursoBuscador || matPreferida);
   const [cargando, setCargando] = useState(false);
   const [valorBuscado, setValorBuscado] = useState("")
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(50)
   const [totalResultados, setTotalResultados] = useState(0)
+  const [limitEnv, setLimitEnv] = useState(0)
 
   useEffect(() => {
     setPage(1)
@@ -25,19 +27,18 @@ export const Buscador = (props) => {
 
   const find = async (valor, e) => {
     e.preventDefault()
-    
+    setCargando(true)
     if (e.target.value == "Siguiente página") {
       setPage(page + 1)
-      await buscarFiltradoNuevo(curso, valor, page+1, limit).then(data => (setResultados(data.datos), setTotalResultados(data.total)));
+      await buscarFiltradoNuevo(curso, valor, page+1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
     } else if (e.target.value == "Anterior página") {
       setPage(page - 1)
-      await buscarFiltradoNuevo(curso, valor, page-1, limit).then(data => (setResultados(data.datos), setTotalResultados(data.total)));
+      await buscarFiltradoNuevo(curso, valor, page-1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
     } else {
-      await buscarFiltradoNuevo(curso, valor, 1, limit).then(data => (setResultados(data.datos), setTotalResultados(data.total)));
+      await buscarFiltradoNuevo(curso, valor, 1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
     }
 
     setValorBuscado(valor)
-    setCargando(true)
     setCargando(false)
 
   }
@@ -47,13 +48,13 @@ export const Buscador = (props) => {
     setCurso(e)
   }
 
-  console.log(resultados)
   return (
     <div>
       <div
         className="buscador">
         <div>
           {cursoBuscador ? null :
+          <>
             <select
               onChange={(e) => cambiarCurso(e.target.value)}
               class="boton home-boton"
@@ -70,6 +71,17 @@ export const Buscador = (props) => {
                   )
                 })}
             </select>
+            <select
+            onChange={(e) => setLimit(e.target.value)}
+            class="boton home-boton">
+              <option>
+                50
+              </option>
+              <option>
+                100
+              </option>
+            </select>
+            </>
           }
         </div>
         <form
@@ -78,6 +90,7 @@ export const Buscador = (props) => {
         >
           {page > 1 &&
             <button
+            className="boton-buscar"
               value="Anterior página"
               onClick={(e) => find(valor, e)}>
               Anterior página</button>
@@ -97,6 +110,7 @@ export const Buscador = (props) => {
           </button>
           {resultados.length == limit &&
             <button
+            className="boton-buscar"
               value="Siguiente página"
               onClick={(e) => find(valor, e)}>
               Siguiente página</button>
@@ -104,10 +118,10 @@ export const Buscador = (props) => {
         </form>
       </div>
       {resultados.length !== 0 &&
-        <p>Mostrando resultados: {(page-1) * limit}-{page * limit < totalResultados ? page * limit : totalResultados} de un total de {totalResultados}</p>
+        <p>Mostrando resultados: {(page-1) * limitEnv}-{page * limitEnv < totalResultados ? page * limitEnv : totalResultados} de un total de {totalResultados}</p>
       }
 
-
+{cargando ? <Spinner /> :
       <div
         className="contenedorbuscador">
         {cargando ? <Spinner></Spinner> :
@@ -139,6 +153,7 @@ export const Buscador = (props) => {
             : `${valorBuscado}: sin resultados`
         }
       </div>
+}
     </div>
   )
 }
