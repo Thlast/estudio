@@ -5,41 +5,51 @@ import informeAuditor from './dataInformes/informeAuditor.json'
 import modulosinformeAuditor from './dataInformes/modulosInformeAuditor.json'
 import style from './modulos-css/informeAuditor.module.css'
 
-export function InformeAuditor() {
+export function InformeAuditor(props) {
 
   const [opciones, setOpciones] = useState();
   const [informe, setInforme] = useState();
   const [tipoInfo, setTipoInfo] = useState("CC");
   const [indice, setIndice] = useState(0);
-  const [trabajo, setTrabajo] = useState(informeAuditor[0]);
-  const [modelo, setModelo] = useState(modulosinformeAuditor[0])
+  const [trabajo, setTrabajo] = useState(informeAuditor[indice]);
+  const [modelo, setModelo] = useState(modulosinformeAuditor)
   const [casosModelo, setCasosModelo] = useState()
   const [casoSeleccionado, setCasoSeleccionado] = useState("Modelo Base")
   const [noHay, setNoHay] = useState("")
+  const {recargarFuncionClickcode} = props;
 
   //inicial
   useEffect(() => {
-    setOpciones(modulosinformeAuditor[0])
 
-    document.getElementById('titulo').innerHTML = trabajo.titulo
-    document.getElementById('destinatarioEncabezado').innerHTML = trabajo.destinatario.encabezado
-    document.getElementById('destinatarioCuit').innerHTML = trabajo.destinatario.cuit
-    document.getElementById('destinatarioDomicilio').innerHTML = trabajo.destinatario.domicilio
-    document.getElementById('enfuncionamiento').innerHTML = trabajo.enfuncionamiento
-    document.getElementById('enfasis').innerHTML = trabajo.enfasis
-    document.getElementById('otrainfo').innerHTML = trabajo.otrainfo
-    document.getElementById('otrascuestiones').innerHTML = trabajo.otrascuestiones
-    document.getElementById('responsabilidadesDir').innerHTML = trabajo.responsabilidadesDir
-    document.getElementById('responsabilidadesAuditor').innerHTML = trabajo.responsabilidadesAuditor
-    document.getElementById('informeRequerimientos').innerHTML = trabajo.informeRequerimientos
-    document.getElementById('lugarFecha').innerHTML = trabajo.lugarFecha
-    document.getElementById('idAuditor').innerHTML = trabajo.idAuditor
+    cambiarInforme("")
+    setOpciones(modulosinformeAuditor[indice])
+    setTrabajo(informeAuditor[indice]);
 
-  }, [])
+    document.getElementById('opinionTitulo').innerHTML = informeAuditor[indice].opinion
+    document.getElementById('fundamentoTitulo').innerHTML = informeAuditor[indice].fundamento
+    document.getElementById('opinionTexto').innerHTML = ""
+    document.getElementById('fundamentoTexto').innerHTML = ""
+
+    document.getElementById('titulo').innerHTML = informeAuditor[indice].titulo
+    document.getElementById('destinatarioEncabezado').innerHTML = informeAuditor[indice].destinatario.encabezado
+    document.getElementById('destinatarioCuit').innerHTML = informeAuditor[indice].destinatario.cuit
+    document.getElementById('destinatarioDomicilio').innerHTML = informeAuditor[indice].destinatario.domicilio
+    document.getElementById('enfuncionamiento').innerHTML = informeAuditor[indice].enfuncionamiento
+    document.getElementById('enfasis').innerHTML = informeAuditor[indice].enfasis
+    document.getElementById('otrainfo').innerHTML = informeAuditor[indice].otrainfo
+    document.getElementById('otrascuestiones').innerHTML = informeAuditor[indice].otrascuestiones
+    document.getElementById('responsabilidadesDir').innerHTML = informeAuditor[indice].responsabilidadesDir
+    document.getElementById('responsabilidadesAuditor').innerHTML = informeAuditor[indice].responsabilidadesAuditor
+    document.getElementById('informeRequerimientos').innerHTML = informeAuditor[indice].informeRequerimientos
+    document.getElementById('lugarFecha').innerHTML = informeAuditor[indice].lugarFecha
+    document.getElementById('idAuditor').innerHTML = informeAuditor[indice].idAuditor
+
+    recargarFuncionClickcode()
+  }, [indice])
 
   useEffect(() => {
 
-    modelo.caso.map(i => {
+    modelo[indice].caso.map(i => {
       if (i.modelo == informe) {
         if (tipoInfo == "CC" || informe == "informe favorable" || (i.casos[casoSeleccionado - 1]?.opinionX0.titulo == "")) {
 
@@ -137,14 +147,18 @@ export function InformeAuditor() {
     document.getElementById('casosModelo').style.display = "none";
   }
 
+  console.log(informe)
   return (
     <>
 
       <div className={style.contenedor}>
-        <select>
+        <select
+        onChange={(e) => setIndice(e.target.value)}>
           {informeAuditor?.map(t => {
             return (
-              <option>
+              <option
+              value={t.indice}
+              >
                 {t.seccion}: {t.modelo}
               </option>
             )
@@ -152,16 +166,17 @@ export function InformeAuditor() {
           }
         </select>
 
-        <p>Seccion {informeAuditor[0].seccion} - {informeAuditor[0].modelo}</p>
+        <p>Seccion {informeAuditor[indice].seccion} - {informeAuditor[indice].modelo}</p>
         <select
           onChange={(e) => cambiarInforme(e.target.value)}
         >
           <option
-            disabled
-            selected
+            //disabled
+            selected={informe == "" ? true : false}
             value={""}>
             Elegir informe
           </option>
+          {/* tipos de opinion */}
           {opciones?.caso.map(m => {
             return (
               <option>
@@ -178,6 +193,7 @@ export function InformeAuditor() {
             selected>
             Modelo Base
           </option>
+          {/* casos dentro del mismo tipo de opinion */}
           {casosModelo?.map((c) => {
             return (
               <option
