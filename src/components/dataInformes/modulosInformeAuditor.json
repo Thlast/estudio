@@ -561,5 +561,58 @@
                 ]
             }
         ]
+    },
+    {
+        "auditoria": "Auditoría de estados contables preparados de conformidad con un marco de información con fines específicos",
+        "caso": [
+            {
+                "modelo": "informe favorable",
+                "contenido": {
+                    "opinion": {
+                        "titulo": "Opinión",
+                        "texto": "<p>He auditado los estados contables de ABCD, que comprenden el estado de situación patrimonial al ….de.................................................................................de 20X1, el estado de resultados, el estado de evolución del patrimonio neto y el estado de flujo de efectivo correspondientes al ejercicio económico terminado en dicha fecha, así como la información explicativa de los estados contables incluida en las notas … a…. que incluye un resumen de las políticas contables significativas y los anexos …. a ……..</p><p>Los estados contables han sido preparados por la dirección de ABCD para……………………………, aplicando criterios de contabilización basados en……</p><p>En mi opinión, los estados contables adjuntos de ABCD correspondiente al ejercicio económico terminado el … de ……… de 20X1 han sido preparados en todos los aspectos significativos, de conformidad con…………………………………………..</p>"
+                    },
+                    "fundamento": {
+                        "titulo": "Fundamento de la opinión",
+                        "texto": "<p>Fundamento de la opinión: He llevado a cabo la auditoría de conformidad con las normas de auditoría de estados contables </p><p>preparados de conformidad con un marco de información con fines específicos establecidas en la sección III.B de la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mi responsabilidad de acuerdo con dichas normas se describe más adelante en la sección Responsabilidad del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE..</p><p>Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y apropiada para mi opinión.</p>"
+                    }
+                },
+                "casos": [
+                    
+                ]
+            },
+            {
+                "modelo": "Aplicando disposiciones sobre información contable establecida en un contrato de franquicia",
+                "contenido": {
+                    "opinion": {
+                        "titulo": "Opinión con salvedades",
+                        "texto": "<p>He auditado los estados contables de ABCD, que comprenden el estado de situación patrimonial al … de … de 20X1, los estados de resultados, de evolución del patrimonio neto y de flujo de efectivo correspondientes al ejercicio finalizado en dicha fecha, así como la información explicativa de los estados contables, expuesta en las notas … a …, que incluye un resumen de las políticas contables significativas, y los anexos … a...</p><p>En mi opinión, excepto por los posibles efectos que podrían derivarse de la limitación descripta en la sección Fundamento de la opinión con salvedades, los estados contables adjuntos presentan razonablemente, en todos los aspectos significativos, la situación patrimonial de ABCD al … de … de 20X1, así como sus resultados, la evolución de su patrimonio neto y el flujo de su efectivo correspondientes al ejercicio finalizado en esa fecha, de conformidad con las normas contables profesionales argentinas.</p>"
+                    },
+                    "fundamento": {
+                        "titulo": "Fundamento de la opinión con salvedades",
+                        "texto": "<p>Tal como se señala en la nota ….. a los estados contables adjuntos, (referenciar o describir brevemente la información contenida en los estados contables sobre la que no se han podido obtener elementos de juicio válidos y suficientes y sobre los cuáles se considera que las posibles incorrecciones, si las hubiera, tendrían efectos significativos pero no generalizados). Por lo tanto, no he podido determinar si estos importes deben ser ajustados.</p><p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión con salvedades.</p>"
+                    },
+                    "opinionX0": {
+                        "titulo": "Opinión sobre los estados contables correspondientes al ejercicio finalizado el... de... de 20X0",
+                        "texto": "En mi opinión, los estados contables adjuntos presentan razonablemente, en todos sus aspectos significativos, la situación patrimonial de ABCD al... de … de 20X0, así como sus resultados, la evolución de su patrimonio neto y el flujo de su efectivo correspondientes al ejercicio finalizado en esa fecha, de conformidad con las normas contables profesionales argentinas."
+                    },
+                    "opinionX1": {
+                        "titulo": "Opinión con salvedades sobre los estados contables correspondientes al ejercicio finalizado el ….. de …………… de 20X1",
+                        "texto": "<p>He auditado los estados contables de ABCD, que comprenden el estado de situación patrimonial al … de … de 20X1 y 20X0, los estados de resultados, de evolución del patrimonio neto y de flujo de efectivo correspondientes a los ejercicios finalizados en dichas fechas, así como la información explicativa de los estados contables, expuesta en las notas … a …, que incluye un resumen de las políticas contables significativas, y los anexos … a...</p><p>En mi opinión, excepto por los posibles efectos que podrían derivarse de la limitación descripta en la sección Fundamento de la opinión con salvedades, los estados contables adjuntos presentan razonablemente, en todos los aspectos significativos, la situación patrimonial de ABCD al … de … de 20X1, así como sus resultados, la evolución de su patrimonio neto y el flujo de su efectivo correspondientes al ejercicio finalizado en esa fecha, de conformidad con las normas contables profesionales argentinas.</p>"
+                    },
+                    "fundamentoX0": {
+                        "titulo": "Fundamento de la opinión sobre los estados contables correspondientes al ejercicio finalizado el... de... de 20X0",
+                        "texto": "He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión."
+                    },
+                    "fundamentoX1": {
+                        "titulo": "Fundamento de la opinión con salvedades sobre los estados contables correspondientes al ejercicio finalizado el ….. de …………… de 20X1",
+                        "texto": "<p>Tal como se señala en la nota ….. a los estados contables adjuntos, (referenciar o describir brevemente la información contenida en los estados contables sobre la que no se han podido obtener elementos de juicio válidos y suficientes y sobre los cuáles se considera que las posibles incorrecciones, si las hubiera, tendrían efectos significativos pero no generalizados). Por lo tanto, no he podido determinar si estos importes deben ser ajustados.</p><p>He llevado a cabo mi auditoría de conformidad con las normas de auditoría establecidas en la Resolución Técnica N° 37 de la Federación Argentina de Consejos Profesionales de Ciencias Económicas. Mis responsabilidades de acuerdo con dichas normas se describen más adelante en la sección Responsabilidades del auditor en relación con la auditoría de los estados contables de mi informe. Soy independiente de ABCD y he cumplido las demás responsabilidades de ética de conformidad con los requerimientos del Código de Ética del Consejo Profesional de Ciencias Económicas de…………………………………………..y de la Resolución Técnica N° 37 de la FACPCE. Considero que los elementos de juicio que he obtenido proporcionan una base suficiente y adecuada para mi opinión con salvedades.</p>"
+                    }
+                },
+                "casos": [
+                    
+                ]
+            }
+        ]
     }
 ]
