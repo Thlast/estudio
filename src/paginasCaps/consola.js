@@ -16,6 +16,7 @@ export function Consola(props) {
   const { limpiarHistorial } = props;
   const { enconsola } = props;
   const { cargando } = props;
+  const { recargarFuncionClickcode } = props;
   const [datosDef, setDatosDef] = useState([]);
 
   const url = process.env.REACT_APP_PROYECT_PRODUCTION_URL || process.env.REACT_APP_PROYECT_LOCAL_URL
@@ -75,6 +76,7 @@ export function Consola(props) {
         {dic !== "" ?
           <>
             <MostrarDef
+            recargarFuncionClickcode={recargarFuncionClickcode}
               curso={curso}
               dic={dic}
               def={datosDef} />

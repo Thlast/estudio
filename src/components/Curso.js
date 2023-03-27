@@ -5,6 +5,7 @@ import { obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
 import { obtenerDatosTitulos } from './servicios/cursos/obtenerSeccion';
 import { Spinner } from './Login/Spinner';
 import style from './modulos-css/Curso.module.css'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export function Curso() {
 
@@ -127,7 +128,7 @@ export function Curso() {
                           </h3>
                         </div>
                         <div class="bloque-descripcion">
-                          <p>{s.descripcion}</p>
+                          <ReactMarkdown>{s.descripcion}</ReactMarkdown>
                           <p>Bibliografia:</p>
                           <ul>
                             {s.bibliografia.map((b, i) => {

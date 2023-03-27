@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { InformeAuditor } from '../../components/informeAuditor';
@@ -6,14 +7,19 @@ export function TextoCurso(props) {
 
   const {seccion} = props;
   const {enunciado} = props
+  const {recargarFuncionClickcode} = props
  
+  // useEffect(() => {
+  //   recargarFuncionClickcode()
+  // }, [])
+
   return (
     <div>
     <h1>
       {seccion}    
     </h1>
     {
-      seccion == "Informes de auditor" ? <InformeAuditor /> : null
+      seccion == "Informes de auditor" ? <InformeAuditor recargarFuncionClickcode={recargarFuncionClickcode} /> : null
     }
     
     <br></br>

@@ -30,6 +30,7 @@ export function Impcaps() {
   const [cargandoconsola, setCargandoConsola] = useState(false);
   const [mobile, setMobile] = useState(window.innerWidth)
 
+
   const cargarPagina = async ({ signal }) => {
     await obtenerDatosSeccion(curso, seccion, titulo, { signal })
       .then(data => (setEnunciado(data),
@@ -85,13 +86,18 @@ export function Impcaps() {
 
   }, [dic])
 
+  const recargarFuncionClickcode = () => {
+    setCodes(document.querySelectorAll('code'))
+  }
   useEffect(() => {
+
+    recargarFuncionClickcode()
 
     setTimeout(() => {
       clickCode()
     }, 2000)
 
-  }, [mobile, cargando])
+  }, [mobile, cargando, dic])
 
 
   const [enconsola, setEnConsola] = useState([]);
@@ -106,6 +112,7 @@ export function Impcaps() {
     // 
   }
 
+  //funcion que da funcionalidad a los codes
   const clickCode = () => {
 
     //console.log(codes)
@@ -118,7 +125,6 @@ export function Impcaps() {
         setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, ''));
         //setCodes(document.querySelectorAll('code'));
         //clickCode(codes)
-
       }
     }
 
@@ -126,7 +132,6 @@ export function Impcaps() {
 
   }
   clickCode()
-
 
   //mostrar pregunta
   const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
@@ -202,7 +207,7 @@ export function Impcaps() {
 
   const limpiarConsola = () => {
     setDic("")
-    
+
   }
 
   return (
@@ -268,6 +273,7 @@ export function Impcaps() {
             style={{ display: `${info ? "block" : "none"}` }}
             class="secciones">
             <TextoCurso
+              recargarFuncionClickcode={recargarFuncionClickcode}
               seccion={seccion}
               enunciado={enunciado} />
           </div>
@@ -276,6 +282,7 @@ export function Impcaps() {
 
             {buscador ?
               <Buscador
+              recargarFuncionClickcode={recargarFuncionClickcode}
                 cursoBuscador={curso}
               />
               : null}
@@ -284,6 +291,7 @@ export function Impcaps() {
               style={{ display: `${mostrarConsola ? "block" : "none"}` }}
             >
               <Consola
+                recargarFuncionClickcode={recargarFuncionClickcode}
                 curso={curso}
                 cargando={cargandoconsola}
                 datos={datos}
@@ -309,7 +317,7 @@ export function Impcaps() {
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
-                  <FormCrearDef curso={curso} />
+                <FormCrearDef curso={curso} />
                 {/* <CrearNota
                   titulo={titulo}
                   curso={curso}
@@ -362,6 +370,7 @@ export function Impcaps() {
 
               <div>
                 <TextoCurso
+                  recargarFuncionClickcode={recargarFuncionClickcode}
                   seccion={seccion}
                   enunciado={enunciado} />
                 <hr></hr>
@@ -404,11 +413,13 @@ export function Impcaps() {
               <hr></hr>
               {buscador ?
                 <Buscador
+                recargarFuncionClickcode={recargarFuncionClickcode}
                   cursoBuscador={curso}
                 />
                 : null}
 
               <Consola
+                recargarFuncionClickcode={recargarFuncionClickcode}
                 curso={curso}
                 cargando={cargandoconsola}
                 datos={datos}
@@ -434,7 +445,7 @@ export function Impcaps() {
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
-                  <FormCrearDef curso={curso} />
+                <FormCrearDef curso={curso} />
                 {/* <CrearNota
                   titulo={titulo}
                   curso={curso}

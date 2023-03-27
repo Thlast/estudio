@@ -23,6 +23,7 @@ export const Buscador = (props) => {
   const [totalResultados, setTotalResultados] = useState(0)
   const [limitEnv, setLimitEnv] = useState(0)
   const [def, setDef] = useState()
+  const { recargarFuncionClickcode } = props;
 
   useEffect(() => {
     setPage(1)
@@ -124,7 +125,7 @@ export const Buscador = (props) => {
           className="contenedorbuscador">
           {page == 1 &&
             <>
-              <MostrarDef def={def} dic={valor} curso={curso} />
+              <MostrarDef recargarFuncionClickcode={recargarFuncionClickcode} def={def} dic={valor} curso={curso} />
             </>
           }
           <hr></hr>
