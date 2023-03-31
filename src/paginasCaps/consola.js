@@ -128,7 +128,7 @@ export function Consola(props) {
           <hr></hr>
           </>
           : null}
-        {informeAuditor ? <InformeAuditor /> : null}
+        {informeAuditor ? <InformeAuditor recargarFuncionClickcode={recargarFuncionClickcode}/> : null}
 
 
       </div>

@@ -134,7 +134,7 @@ export const Buscador = (props) => {
             resultados.length !== 0 ?
               <>
                 <p>Aparece en las siguientes secciones:</p>
-                <p>Mostrando resultados: {(page - 1) * limitEnv}-{page * limitEnv < totalResultados ? page * limitEnv : totalResultados} de un total de {totalResultados}</p>
+                <p>Mostrando resultados: {(page - 1) * limitEnv}-{page * limitEnv < totalResultados? (page) * limitEnv : totalResultados} de un total de {totalResultados}</p>
                 {
                   resultados.map((resultado, num) => {
                     return (
