@@ -18,7 +18,7 @@ export function CrearNota(props) {
   const { cancelarModificar } = props;
 
   //estados para modificar curso, seccion, capitulo(titulo)
-  const notaInicial = useNote(notaModificar);
+  const notaInicial = useNote(notaModificar || null);
 
   return (
     <>
@@ -116,18 +116,20 @@ export function CrearNota(props) {
         {/* Nombre de la nota: */}
         <input
           placeholder='Escribe un título'
+          name='name'
           style={{ width: "90%" }}
-          onChange={(e) => setNotaName(e.target.value)}
-          value={notaName}
+          onChange={notaInicial?.handleChange}
+          value={notaInicial.datosNota?.name}
           type="text"
         >
         </input>
         {/* Nota: */}
         <textarea
+          name='contenido'
           placeholder='Escribe la anotación'
           style={{ width: "90%" }}
-          onChange={(e) => setContenido(e.target.value)}
-          value={contenido}
+          onChange={notaInicial?.handleChange}
+          value={notaInicial.datosNota?.contenido}
         >
 
         </textarea>
@@ -135,16 +137,17 @@ export function CrearNota(props) {
           notaModificar ?
             <button
               className='home-boton'
+              
               onClick={(e) => notaModificada(
-                notaInicial.datosNota.privateStatus,
+                notaInicial?.datosNota.privateStatus,
                 user.uid,
-                notaInicial.datosNota.curso,
-                notaInicial.datosNota.name,
-                notaInicial.datosNota.capitulo,
-                notaInicial.datosNota.seccion,
-                notaInicial.datosNota.contenido,
-                notaInicial.datosNota.id,
-                notaInicial.datosNota.indice,
+                notaInicial?.datosNota.curso,
+                notaInicial?.datosNota.name,
+                notaInicial?.datosNota.capitulo,
+                notaInicial?.datosNota.seccion,
+                notaInicial?.datosNota.contenido,
+                notaInicial?.datosNota.id,
+                notaInicial?.datosNota.indice,
                 e)}
               type='submit'
             >
@@ -154,7 +157,15 @@ export function CrearNota(props) {
             <button
               className='home-boton'
 
-              onClick={(e) => notaCreada(privateStatus, curso, titulo, seccion, contenido, notaName, user.uid, e)}
+              onClick={(e) => notaCreada(  
+                notaInicial?.datosNota.privateStatus,
+                curso,
+                titulo,
+                seccion,
+                notaInicial?.datosNota.contenido,
+                notaInicial?.datosNota.name,
+                user.uid,
+                e)}
               type='submit'
             >
               Agregar nota

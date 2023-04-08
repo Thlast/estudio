@@ -14,6 +14,8 @@ import { WindowSplitter } from "./splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
 import { CrearNota } from "../../components/notes/crearNota";
 import { FormCrearDef } from "../../components/definiciones/crearDef";
+import { Nota } from "../../components/notes/nota";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export function Impcaps() {
 
@@ -210,6 +212,12 @@ export function Impcaps() {
 
   }
 
+  const [notes, setNotes] = useState([]);
+
+  const obtenerContenidoNotas = (data) => {
+    setNotes(data)
+  }
+
   return (
     <>
       {mobile <= 500 ?
@@ -373,6 +381,20 @@ export function Impcaps() {
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   seccion={seccion}
                   enunciado={enunciado} />
+                  <>
+                  <hr></hr>
+                  <blockquote>
+                  Anotaciones:
+                  </blockquote>
+                  
+                  {notes?.map(n => {
+                    return (
+                      <ReactMarkdown key={"notaTexto-"+n.id}>
+                        {n.contenido}
+                      </ReactMarkdown>
+                    )
+                  })}
+                  </>
                 <hr></hr>
               </div>
             </div>
@@ -441,6 +463,7 @@ export function Impcaps() {
                 style={{ display: `${mostrarNotas ? "block" : "none"}` }}
               >
                 <MostrarNotas
+                obtenerContenidoNotas= {obtenerContenidoNotas}
                   seccion={seccion}
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}

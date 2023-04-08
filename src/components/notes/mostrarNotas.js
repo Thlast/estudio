@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../../context/AuthContext";
 import { getNotes, getSeccionNotes } from "../servicios/notas/service.obtenerNota";
-import { Link } from "react-router-dom";
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { CrearNota } from "./crearNota";
 import { Nota } from "./nota";
 import { eliminarNota } from "../servicios/notas/services.eliminarNota";
@@ -54,9 +51,9 @@ export function MostrarNotas(props) {
     event.preventDefault()
     try {
       agregarNota(privateStatus, curso, titulo, seccion, contenido, notaName, usuario, event)
-      .then(response =>
-        setNotes(notes.concat(response))
-      );
+        .then(response =>
+          setNotes(notes.concat(response))
+        );
 
     } catch (error) {
       console.log(error)
@@ -69,6 +66,7 @@ export function MostrarNotas(props) {
         //console.log(data)
         setNotes(data)
         obtenerQnotes(data.length)
+        obtenerContenidoNotas(data)
       })
 
     } else {
@@ -92,34 +90,14 @@ export function MostrarNotas(props) {
     setModificar(false)
 
   }
+  const {obtenerContenidoNotas} = props;
+
 
   return (
     <>
       <div className="misnotas">
         <h1>Anotaciones de: {curso}</h1>
-        {modificar ? null :
-        <>
-        <CrearNota
-          notaCreada={notaCreada}
-          titulo={titulo}
-          curso={curso}
-          seccion={seccion}
-        />
-        </>
-}
-        {modificar ?
-          <CrearNota
-            notaCreada={notaCreada}
-            notaModificada={notaModificada}
-            curso={notaModificar.curso}
-            seccion={notaModificar.seccion}
-            titulo={notaModificar.capitulo}
-            notaModificar={notaModificar}
-            cancelarModificar={cancelarModificar}
-          />
-          :
-          <>
-            {notes?.map((n, num) => {
+        {notes?.map((n, num) => {
               return (
                 <>
                   <Nota
@@ -132,6 +110,28 @@ export function MostrarNotas(props) {
               )
             }
             )}
+        {modificar ? null :
+          <>
+            <CrearNota
+              notaCreada={notaCreada}
+              titulo={titulo}
+              curso={curso}
+              seccion={seccion}
+            />
+          </>
+        }
+        {modificar ?
+          <CrearNota
+            notaCreada={notaCreada}
+            notaModificada={notaModificada}
+            curso={notaModificar.curso}
+            seccion={notaModificar.seccion}
+            titulo={notaModificar.capitulo}
+            notaModificar={notaModificar}
+            cancelarModificar={cancelarModificar}
+          />
+          :
+          <>
           </>
         }
       </div>

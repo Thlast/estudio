@@ -16,7 +16,7 @@ export function InformeAuditor(props) {
   const [casosModelo, setCasosModelo] = useState()
   const [casoSeleccionado, setCasoSeleccionado] = useState("Modelo Base")
   const [noHay, setNoHay] = useState("")
-  const {recargarFuncionClickcode} = props;
+  const { recargarFuncionClickcode } = props;
 
   //inicial
   useEffect(() => {
@@ -44,7 +44,10 @@ export function InformeAuditor(props) {
     document.getElementById('lugarFecha').innerHTML = informeAuditor[indice].lugarFecha
     document.getElementById('idAuditor').innerHTML = informeAuditor[indice].idAuditor
 
-    recargarFuncionClickcode()
+    if (recargarFuncionClickcode) {
+      recargarFuncionClickcode()
+    }
+
   }, [indice])
 
   useEffect(() => {
@@ -63,14 +66,14 @@ export function InformeAuditor(props) {
 
           setCasosModelo(i.casos)
           //casos especificos
-          if(i.casos[casoSeleccionado - 1]?.otrascuestiones) {
+          if (i.casos[casoSeleccionado - 1]?.otrascuestiones) {
             //si tiene parrafo lo renderizo
             document.getElementById('otrascuestiones').innerHTML = i.casos[casoSeleccionado - 1].otrascuestiones
           } else {
             //si no tiene vuelvo al modelo base
             document.getElementById('otrascuestiones').innerHTML = trabajo.otrascuestiones
           }
-         
+
           if (i.casos && casoSeleccionado !== "Modelo Base") {
             // Object.keys(i.casos[casoSeleccionado-1]).map(a => {
             //   console.log(i.casos[casoSeleccionado-1][a])
@@ -153,11 +156,11 @@ export function InformeAuditor(props) {
 
       <div className={style.contenedor}>
         <select
-        onChange={(e) => setIndice(e.target.value)}>
+          onChange={(e) => setIndice(e.target.value)}>
           {informeAuditor?.map(t => {
             return (
               <option
-              value={t.indice}
+                value={t.indice}
               >
                 {t.seccion}: {t.modelo}
               </option>
@@ -206,26 +209,26 @@ export function InformeAuditor(props) {
         </select>
 
         <div>
-        <label for="tipoCC">
-          <input
-            id='tipoCC'
-            value={tipoInfo}
-            onChange={(e) => setTipoInfo("CC")}
-            name='tipoInfo'
-            type="radio" />
-          
+          <label for="tipoCC">
+            <input
+              id='tipoCC'
+              value={tipoInfo}
+              onChange={(e) => setTipoInfo("CC")}
+              name='tipoInfo'
+              type="radio" />
+
             Cifras Correspondientes
           </label>
 
           <>
-          <label for="tipoECC">
-            <input
-              id='tipoECC'
-              value={tipoInfo}
-              onChange={(e) => setTipoInfo("ECC")}
-              name='tipoInfo'
-              type="radio" />
-           
+            <label for="tipoECC">
+              <input
+                id='tipoECC'
+                value={tipoInfo}
+                onChange={(e) => setTipoInfo("ECC")}
+                name='tipoInfo'
+                type="radio" />
+
               Estados Contables Comparativos
             </label>
           </>
@@ -233,9 +236,9 @@ export function InformeAuditor(props) {
 
         </div>
         <div
-            id='casosModelo'>
+          id='casosModelo'>
 
-          </div>
+        </div>
         <div className='informeAuditoria'>
           <div id='titulo'>
           </div>
