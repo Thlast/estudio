@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { TextoCurso } from "../paginasCaps/impuestos/textoCurso"
+import { TextoCurso } from "../paginasCaps/Secciones/textoCurso"
 import { useState, useEffect } from "react"
 import { obtenerResumen } from "./servicios/cursos/obtenerSeccion"
 import { Spinner } from "./Login/Spinner"
