@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import informeAuditor from './dataInformes/informeAuditor.json'
 import modulosinformeAuditor from './dataInformes/modulosInformeAuditor.json'
-import style from './modulos-css/informeAuditor.module.css'
+import style from '../modulos-css/informeAuditor.module.css'
 
 export function InformeAuditor(props) {
 

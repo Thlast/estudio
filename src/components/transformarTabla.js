@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { alertareiniciarTabla } from "./alertas";
-import style from './modulos-css/transformarTabla.module.css'
+import style from '../modulos-css/transformarTabla.module.css'
 
 export function TransformarTabla() {
 

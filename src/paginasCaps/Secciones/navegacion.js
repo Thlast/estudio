@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { Spinner } from "../../components/Login/Spinner";
 import { obtenerDatosCapitulos, obtenerDatosTitulos } from "../../components/servicios/cursos/obtenerSeccion"
-import style from '../../components/modulos-css/navegacion.module.css'
+import style from './navegacion.module.css'
 
 export function NavegacionCursos(props)  {
 

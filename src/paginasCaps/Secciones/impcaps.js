@@ -6,15 +6,12 @@ import { Consola } from "../consola";
 import { obtenerDatosConsola, obtenerDatosSeccion } from "../../components/servicios/cursos/obtenerSeccion";
 import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
-import style from '../../components/modulos-css/impcaps.module.css'
+import style from './impcaps.module.css'
 import Swal from 'sweetalert2'
 import { Buscador } from "../../components/buscador";
-import { LinkExamen } from "./linkExamen";
 import { WindowSplitter } from "./splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
-import { CrearNota } from "../../components/notes/crearNota";
 import { FormCrearDef } from "../../components/definiciones/crearDef";
-import { Nota } from "../../components/notes/nota";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export function Impcaps() {
@@ -215,7 +212,8 @@ export function Impcaps() {
   const [notes, setNotes] = useState([]);
 
   const obtenerContenidoNotas = (data) => {
-    setNotes(data)
+    setNotes(data);
+    recargarFuncionClickcode();
   }
 
   return (
@@ -284,13 +282,27 @@ export function Impcaps() {
               recargarFuncionClickcode={recargarFuncionClickcode}
               seccion={seccion}
               enunciado={enunciado} />
+            <>
+              <hr></hr>
+              <blockquote>
+                Anotaciones:
+              </blockquote>
+
+              {notes?.map(n => {
+                return (
+                  <ReactMarkdown key={"notaTextoM-" + n.id}>
+                    {n.contenido}
+                  </ReactMarkdown>
+                )
+              })}
+            </>
           </div>
 
           <div class="secciones">
 
             {buscador ?
               <Buscador
-              recargarFuncionClickcode={recargarFuncionClickcode}
+                recargarFuncionClickcode={recargarFuncionClickcode}
                 cursoBuscador={curso}
               />
               : null}
@@ -321,16 +333,12 @@ export function Impcaps() {
             >
               <>
                 <MostrarNotas
+                  obtenerContenidoNotas={obtenerContenidoNotas}
                   seccion={seccion}
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
                 <FormCrearDef curso={curso} />
-                {/* <CrearNota
-                  titulo={titulo}
-                  curso={curso}
-                  seccion={seccion}
-                /> */}
               </>
             </div>
 
@@ -381,20 +389,20 @@ export function Impcaps() {
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   seccion={seccion}
                   enunciado={enunciado} />
-                  <>
+                <>
                   <hr></hr>
                   <blockquote>
-                  Anotaciones:
+                    Anotaciones:
                   </blockquote>
-                  
+
                   {notes?.map(n => {
                     return (
-                      <ReactMarkdown key={"notaTexto-"+n.id}>
+                      <ReactMarkdown key={"notaTexto-" + n.id}>
                         {n.contenido}
                       </ReactMarkdown>
                     )
                   })}
-                  </>
+                </>
                 <hr></hr>
               </div>
             </div>
@@ -435,7 +443,7 @@ export function Impcaps() {
               <hr></hr>
               {buscador ?
                 <Buscador
-                recargarFuncionClickcode={recargarFuncionClickcode}
+                  recargarFuncionClickcode={recargarFuncionClickcode}
                   cursoBuscador={curso}
                 />
                 : null}
@@ -463,18 +471,12 @@ export function Impcaps() {
                 style={{ display: `${mostrarNotas ? "block" : "none"}` }}
               >
                 <MostrarNotas
-                obtenerContenidoNotas= {obtenerContenidoNotas}
+                  obtenerContenidoNotas={obtenerContenidoNotas}
                   seccion={seccion}
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
                 <FormCrearDef curso={curso} />
-                {/* <CrearNota
-                  titulo={titulo}
-                  curso={curso}
-                  seccion={seccion}
-                /> */}
-
               </div>
 
             </div>

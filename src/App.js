@@ -10,7 +10,7 @@ import {Examen} from './components/examen'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cursos } from './components/Cursos'
 import { Curso } from './components/Curso'
-import { Impcaps } from './paginasCaps/impuestos/impcaps';
+import { Impcaps } from './paginasCaps/Secciones/impcaps';
 // import { Impuestos } from './components/impuestos';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';

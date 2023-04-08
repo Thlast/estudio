@@ -1,7 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Link } from 'react-router-dom';
-import { eliminarNota } from '../servicios/notas/services.eliminarNota';
 import { useAuth } from '../../context/AuthContext';
 
 export function Nota(props) {
