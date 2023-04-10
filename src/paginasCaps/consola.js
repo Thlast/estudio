@@ -28,8 +28,6 @@ export function Consola(props) {
 
   }, [dic])
 
-
-  const [informeAuditor, setInformeAuditor] = useState(false)
   return (
     <div>
       <div
@@ -118,17 +116,6 @@ export function Consola(props) {
               <hr></hr>
             </>
           : null}
-         
-        {curso == "auditoria" || curso == "rts" ?
-        <>
-        
-          <button 
-          className='home-boton'
-          onClick={() => setInformeAuditor(!informeAuditor)}>Ver modelos de informes de auditor</button>
-          <hr></hr>
-          </>
-          : null}
-        {informeAuditor ? <InformeAuditor recargarFuncionClickcode={recargarFuncionClickcode}/> : null}
 
 
       </div>

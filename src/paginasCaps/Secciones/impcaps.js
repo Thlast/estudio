@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
-import { obtenerDatosConsola, obtenerDatosSeccion } from "../../components/servicios/cursos/obtenerSeccion";
+import { obtenerDatosConsola } from "../../components/servicios/cursos/obtenerSeccion";
 import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
 import style from './impcaps.module.css'
@@ -11,7 +11,6 @@ import Swal from 'sweetalert2'
 import { Buscador } from "../../components/buscador";
 import { WindowSplitter } from "./splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
-import { FormCrearDef } from "../../components/definiciones/crearDef";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export function Impcaps() {
@@ -22,97 +21,55 @@ export function Impcaps() {
   const { materia } = useParams();
   const [dic, setDic] = useState("");
   const [seccion, setSeccion] = useState(sec);
-  const [enunciado, setEnunciado] = useState()
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
   const [datos, setDatos] = useState([])
   const curso = materia
   const [cargandoconsola, setCargandoConsola] = useState(false);
   const [mobile, setMobile] = useState(window.innerWidth)
 
-
-  const cargarPagina = async ({ signal }) => {
-    await obtenerDatosSeccion(curso, seccion, titulo, { signal })
-      .then(data => (setEnunciado(data),
-        setCargando(false),
-        setCodes(document.querySelectorAll('code'))
-      )
-      );
-  }
-
+  //funcion para detectar si es mobile
   useEffect(() => {
     function handleResize() {
       setMobile(window.innerWidth);
     }
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  //seteamos la camara arriba del todo
   useEffect(() => {
     window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth'
     });
-    setEnunciado();
-    // Creamos el controlador para abortar la petición
-    const controller = new AbortController()
-    // Recuperamos la señal del controlador
-    const { signal } = controller
-    // Hacemos la petición a la API y le pasamos como options la señal
-    cargarPagina({ signal })
-    return () => controller.abort()
   }, [seccion])
 
-  const cargarConsola = async () => {
+  //cargar y actualizar consola
+  useEffect(() => {
 
     if (dic !== "") {
       cambiarBoton()
       setMostrarConsola(true)
       setCargandoConsola(true);
-      await obtenerDatosConsola(curso, dic)
+      obtenerDatosConsola(curso, dic)
         .then(data => (setDatos(data),
           setCodes(document.querySelectorAll('code')),
           setCargandoConsola(false)));
     }
-  }
-
-  useEffect(() => {
-
-
-    cargarConsola()
-
 
   }, [dic])
 
+  //funcion para actualizar los codes
   const recargarFuncionClickcode = () => {
     setCodes(document.querySelectorAll('code'))
   }
   useEffect(() => {
-
     recargarFuncionClickcode()
-
-    setTimeout(() => {
-      clickCode()
-    }, 2000)
-
   }, [mobile, cargando, dic])
 
-
-  const [enconsola, setEnConsola] = useState([]);
-
-  const eliminarDelHistorial = async (a) => {
-
-    setEnConsola(enconsola.filter(s => s !== a))
-  }
-
-  const limpiarHistorial = () => {
-    setEnConsola([])
-    // 
-  }
-
-  //funcion que da funcionalidad a los codes
-  const clickCode = () => {
+  useEffect(() => {
+    //funcion que da funcionalidad a los codes
 
     //console.log(codes)
     for (let i = 0; i < codes.length; i++) {
@@ -127,10 +84,20 @@ export function Impcaps() {
       }
     }
 
-    //console.log("funcion ejecutada")
+  }, [codes])
 
+  //historial de consola
+  const [enconsola, setEnConsola] = useState([]);
+  const eliminarDelHistorial = async (a) => {
+    setEnConsola(enconsola.filter(s => s !== a))
   }
-  clickCode()
+  const limpiarHistorial = () => {
+    setEnConsola([])
+  }
+  //borrar los datos actuales de la consola
+  const limpiarConsola = () => {
+    setDic("")
+  }
 
   //mostrar pregunta
   const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
@@ -145,7 +112,6 @@ export function Impcaps() {
     if (!editar) {
       setMostrarPreguntas(false)
     }
-    console.log(editar)
     setBuscador(false)
     setEdit(false)
     setInfo(false)
@@ -153,22 +119,17 @@ export function Impcaps() {
     setMostrarNotas(false)
   }
 
-
   const ingresar = (navegarSeccion) => {
-
     setDic("");
     setCodes(document.querySelectorAll('code'));
-    clickCode(codes);
     setSeccion(navegarSeccion);
     cambiarBoton();
     setInfo(true)
   }
+
   const ingresarSeccion = (proximo, navegarSeccion, volver) => {
     setDic("");
     setCodes(document.querySelectorAll('code'));
-    clickCode(codes);
-    // setBotonMostrar("nada");
-    // setMostrarPreguntas(false);
     setSeccion(navegarSeccion);
     setCargando(true)
     cambiarBoton();
@@ -193,7 +154,7 @@ export function Impcaps() {
     `
     })
   }
-
+  //obtenemos la cantidad de notas y preguntas para mostrar en el boton
   const [qpreguntas, setQpreguntas] = useState(0)
   const [qnotes, setQnotes] = useState(0)
 
@@ -204,13 +165,8 @@ export function Impcaps() {
     setQnotes(q)
   }
 
-  const limpiarConsola = () => {
-    setDic("")
-
-  }
-
+  //notas mostradas debajo de textoCurso
   const [notes, setNotes] = useState([]);
-
   const obtenerContenidoNotas = (data) => {
     setNotes(data);
     recargarFuncionClickcode();
@@ -219,9 +175,7 @@ export function Impcaps() {
   return (
     <>
       {mobile <= 500 ?
-
         <div>
-
           <div
             className={`${style.cursotitulo} secciones`}>
             <Link className="aa"
@@ -234,7 +188,6 @@ export function Impcaps() {
               {titulo}
             </Link>
           </div>
-
           <div
             className={style.cursointeraccion}>
             <button
@@ -271,23 +224,21 @@ export function Impcaps() {
             >
               Notas ({qnotes})
             </button>
-
           </div>
-
-
           <div
             style={{ display: `${info ? "block" : "none"}` }}
             class="secciones">
             <TextoCurso
               recargarFuncionClickcode={recargarFuncionClickcode}
               seccion={seccion}
-              enunciado={enunciado} />
+              curso={curso}
+              titulo={titulo}
+            />
             <>
               <hr></hr>
               <blockquote>
                 Anotaciones:
               </blockquote>
-
               {notes?.map(n => {
                 return (
                   <ReactMarkdown key={"notaTextoM-" + n.id}>
@@ -297,9 +248,7 @@ export function Impcaps() {
               })}
             </>
           </div>
-
           <div class="secciones">
-
             {buscador ?
               <Buscador
                 recargarFuncionClickcode={recargarFuncionClickcode}
@@ -338,26 +287,19 @@ export function Impcaps() {
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
-                <FormCrearDef curso={curso} />
               </>
             </div>
-
             <NavegacionCursos
               curso={curso}
-              cargando={cargando}
               ingresarSeccion={ingresarSeccion}
               seccion={seccion}
               ingresar={ingresar}
               titulo={titulo} />
-
-
           </div>
-
         </div>
         :
         <>
           <WindowSplitter Left={
-
             <div class="secciones">
               <div>
                 <div
@@ -372,29 +314,25 @@ export function Impcaps() {
                     {titulo}
                   </Link>
                 </div>
-
                 <NavegacionCursos
                   curso={curso}
-                  cargando={cargando}
                   ingresarSeccion={ingresarSeccion}
                   seccion={seccion}
                   ingresar={ingresar}
                   titulo={titulo} />
-
-
               </div>
-
               <div>
                 <TextoCurso
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   seccion={seccion}
-                  enunciado={enunciado} />
+                  curso={curso}
+                  titulo={titulo}
+                />
                 <>
                   <hr></hr>
                   <blockquote>
                     Anotaciones:
                   </blockquote>
-
                   {notes?.map(n => {
                     return (
                       <ReactMarkdown key={"notaTexto-" + n.id}>
@@ -447,7 +385,6 @@ export function Impcaps() {
                   cursoBuscador={curso}
                 />
                 : null}
-
               <Consola
                 recargarFuncionClickcode={recargarFuncionClickcode}
                 curso={curso}
@@ -466,21 +403,16 @@ export function Impcaps() {
                 agregar={edit}
                 edit={edit}
                 mostrarPreguntas={mostrarPreguntas} />
-
               <div
-                style={{ display: `${mostrarNotas ? "block" : "none"}` }}
-              >
+                style={{ display: `${mostrarNotas ? "block" : "none"}` }}>
                 <MostrarNotas
                   obtenerContenidoNotas={obtenerContenidoNotas}
                   seccion={seccion}
                   titulo={titulo}
                   obtenerQnotes={obtenerQnotes}
                   curso={curso} />
-                <FormCrearDef curso={curso} />
               </div>
-
             </div>
-
             }
 
           />

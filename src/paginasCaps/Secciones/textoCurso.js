@@ -1,17 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { InformeAuditor } from '../../components/informeAuditor';
+import { obtenerDatosSeccion } from '../../components/servicios/cursos/obtenerSeccion';
 
 export function TextoCurso(props) {
 
   const {seccion} = props;
-  const {enunciado} = props
+  const {curso} = props;
+  const {titulo} = props;
+  const [enunciado, setEnunciado] = useState()
   const {recargarFuncionClickcode} = props
  
-  // useEffect(() => {
-  //   recargarFuncionClickcode()
-  // }, [])
+  const cargarPagina = async ({ signal }) => {
+    
+    await obtenerDatosSeccion(curso, seccion, titulo, { signal })
+      .then(data => (setEnunciado(data)
+        //setCargando(false)
+      )
+      );
+
+  }
+
+   useEffect(() => {
+    setEnunciado();
+          // Creamos el controlador para abortar la petición
+          const controller = new AbortController()
+          // Recuperamos la señal del controlador
+          const { signal } = controller
+          // Hacemos la petición a la API y le pasamos como options la señal
+          cargarPagina({ signal })
+          return () => controller.abort()
+   }, [])
+
 
   return (
     <div>
