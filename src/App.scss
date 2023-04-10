@@ -344,6 +344,7 @@ textarea, input {
   display: flex;
   flex-direction: row;
   gap: 20px;
+  justify-content: center;
 }
 
 .vof-vf {
@@ -1481,5 +1482,10 @@ a:hover>svg {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+}
+.def-contenedor {
+  padding: 10px;
+  border: 2px solid var(--text-color);
 
 }

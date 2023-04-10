@@ -20,8 +20,9 @@ export function MostrarDef(props) {
   
   return (
     <>
-      {def ?
-        <>
+      {def && dic ?
+
+        <div className='def-contenedor'>
           Definición:
           <h1>
             {def.nombreConcepto}
@@ -42,9 +43,12 @@ export function MostrarDef(props) {
             <FormCrearDef dic={dic} curso={curso} def={def} />
             : null
           }
-        </>
+        </div>
         :
         <>
+        {
+          dic && def ?
+          <>
           No existe la definición:{" "}
           <button
             className='home-boton'
@@ -56,6 +60,10 @@ export function MostrarDef(props) {
             <FormCrearDef dic={dic} curso={curso} def={def} />
             : null
           }
+          </> 
+          :
+          <></>
+        }
         </>
       }
 
