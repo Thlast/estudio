@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
-import { obtenerDatosConsola } from "../../components/servicios/cursos/obtenerSeccion";
 import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
 import style from './impcaps.module.css'
@@ -22,9 +21,7 @@ export function Impcaps() {
   const [dic, setDic] = useState("");
   const [seccion, setSeccion] = useState(sec);
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
-  const [datos, setDatos] = useState([])
   const curso = materia
-  const [cargandoconsola, setCargandoConsola] = useState(false);
   const [mobile, setMobile] = useState(window.innerWidth)
 
   //funcion para detectar si es mobile
@@ -51,11 +48,6 @@ export function Impcaps() {
     if (dic !== "") {
       cambiarBoton()
       setMostrarConsola(true)
-      setCargandoConsola(true);
-      obtenerDatosConsola(curso, dic)
-        .then(data => (setDatos(data),
-          setCodes(document.querySelectorAll('code')),
-          setCargandoConsola(false)));
     }
 
   }, [dic])
@@ -64,14 +56,13 @@ export function Impcaps() {
   const recargarFuncionClickcode = () => {
     setCodes(document.querySelectorAll('code'))
   }
+
   useEffect(() => {
     recargarFuncionClickcode()
-  }, [mobile, cargando, dic])
+  }, [mobile])
 
   useEffect(() => {
     //funcion que da funcionalidad a los codes
-
-    //console.log(codes)
     for (let i = 0; i < codes.length; i++) {
       codes[i].onclick = function (e) {
         if (enconsola.indexOf(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')) === -1) {
@@ -79,8 +70,6 @@ export function Impcaps() {
           document.getElementById("consol").scrollIntoView({ behavior: 'smooth' });
         }
         setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, ''));
-        //setCodes(document.querySelectorAll('code'));
-        //clickCode(codes)
       }
     }
 
@@ -120,7 +109,7 @@ export function Impcaps() {
   }
 
   const ingresar = (navegarSeccion) => {
-    setDic("");
+    //setDic("");
     setCodes(document.querySelectorAll('code'));
     setSeccion(navegarSeccion);
     cambiarBoton();
@@ -128,7 +117,7 @@ export function Impcaps() {
   }
 
   const ingresarSeccion = (proximo, navegarSeccion, volver) => {
-    setDic("");
+    //setDic("");
     setCodes(document.querySelectorAll('code'));
     setSeccion(navegarSeccion);
     setCargando(true)
@@ -262,8 +251,6 @@ export function Impcaps() {
               <Consola
                 recargarFuncionClickcode={recargarFuncionClickcode}
                 curso={curso}
-                cargando={cargandoconsola}
-                datos={datos}
                 dic={dic}
                 enconsola={enconsola}
                 eliminarDelHistorial={eliminarDelHistorial}
@@ -388,8 +375,6 @@ export function Impcaps() {
               <Consola
                 recargarFuncionClickcode={recargarFuncionClickcode}
                 curso={curso}
-                cargando={cargandoconsola}
-                datos={datos}
                 dic={dic}
                 enconsola={enconsola}
                 eliminarDelHistorial={eliminarDelHistorial}

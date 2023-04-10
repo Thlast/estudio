@@ -5,7 +5,6 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Spinner } from "./Login/Spinner";
 import { MateriasContext } from "../context/MateriasContext";
 import remarkGfm from 'remark-gfm'
-import { getDef } from "./servicios/definiciones/service.getDef";
 import { MostrarDef } from "./definiciones/mostrarDef";
 
 export const Buscador = (props) => {
@@ -14,15 +13,14 @@ export const Buscador = (props) => {
   const { matPreferida } = useContext(MateriasContext);
   const { cursoBuscador } = props
   const [valor, setValor] = useState(null);
+  const [valorEnviado, setValorEnviado] = useState();
   const [resultados, setResultados] = useState([]);
   const [curso, setCurso] = useState(cursoBuscador || matPreferida);
   const [cargando, setCargando] = useState(false);
-  const [valorBuscado, setValorBuscado] = useState("")
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(50)
   const [totalResultados, setTotalResultados] = useState(0)
   const [limitEnv, setLimitEnv] = useState(0)
-  const [def, setDef] = useState()
   const { recargarFuncionClickcode } = props;
 
   useEffect(() => {
@@ -41,8 +39,8 @@ export const Buscador = (props) => {
     } else {
       setPage(1)
       await buscarFiltradoNuevo(curso, valor, 1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
-      await getDef(valor).then(data => setDef(data[0]));
     }
+    setValorEnviado(valor)
     setCargando(false)
 
   }
@@ -125,7 +123,7 @@ export const Buscador = (props) => {
           className="contenedorbuscador">
           {page == 1 &&
             <>
-              <MostrarDef recargarFuncionClickcode={recargarFuncionClickcode} def={def} dic={valor} curso={curso} />
+              <MostrarDef recargarFuncionClickcode={recargarFuncionClickcode} dic={valorEnviado} curso={curso} />
             </>
           }
           <hr></hr>
@@ -162,7 +160,7 @@ export const Buscador = (props) => {
                   })
                 }
               </>
-              : `${valorBuscado}: sin resultados`
+              : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>
           }
         </div>
       }

@@ -24,10 +24,10 @@ export const obtenerDatosTitulos = async (materia) => {
   
 }
 
-export const obtenerDatosConsola = async (materia, seccion) => {
+export const obtenerDatosConsola = async (materia, seccion, { signal }) => {
   const mat = materia.toLowerCase().replace(/[-º°`'".,]/g, '');
   const sec = seccion.toLowerCase().replace(/[-º°`'".,]/g, '');
-  const data = await fetch(`${urlserver}/app/${mat}/secciones/${sec}`)
+  const data = await fetch(`${urlserver}/app/${mat}/secciones/${sec}`, { signal })
   return data.json()
   
 }

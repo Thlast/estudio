@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import { Spinner } from "../../components/Login/Spinner";
 import { obtenerDatosCapitulos, obtenerDatosTitulos } from "../../components/servicios/cursos/obtenerSeccion"
 import style from './navegacion.module.css'
 
 export function NavegacionCursos(props)  {
 
 const {curso} = props;
-const {cargando} = props;
 const [indiceSeccion, setIndiceSeccion] = useState()
 const [secciones, setSecciones] = useState([])
+const [cargando, setCargando] = useState(false)
 const {ingresar} = props
 const {seccion} = props
 const {titulo} = props
-const [titulos, setTitulos] = useState([])
 const {ingresarSeccion} = props
 const [proximo, setProximo] = useState("")
 const [anterior, setAnterior] = useState("")
@@ -27,12 +25,14 @@ useEffect(() => {
 
 
 useEffect(() => {
+  setCargando(true)
   obtenerDatosCapitulos(curso, titulo)
   .then(data => (
     setIndiceSeccion(data.caps.indexOf(seccion)),
-    setSecciones(data.caps)));
+    setSecciones(data.caps))
+    );
   obtenerDatosTitulos(curso)
-  .then(data => (setTitulos(data), 
+  .then(data => (
   data.map((t, num)=> {
     switch (t.titulo){
       case titulo: if(data.length !== num+1) {
@@ -49,13 +49,16 @@ useEffect(() => {
         setAnterior(undefined)
       }; break
     }
-  })))
+  }),
+  setCargando(false)
+  
+  ))
 }, [titulo])
 
 return (
   <>
     {
-  cargando ? <Spinner></Spinner> :
+  cargando ? null :
 <div class="cursos-botones">
 {
         indiceSeccion === 0 ?

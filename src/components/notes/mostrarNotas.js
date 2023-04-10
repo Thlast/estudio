@@ -97,7 +97,8 @@ export function MostrarNotas(props) {
     <>
       <div className="misnotas">
         <h1>Anotaciones de: {curso}</h1>
-        {notes?.map((n, num) => {
+        {notes?.length > 0 ?
+        notes?.map((n, num) => {
               return (
                 <>
                   <Nota
@@ -109,7 +110,10 @@ export function MostrarNotas(props) {
                 </>
               )
             }
-            )}
+            )
+            :
+            "No hay notas en esta sección"
+          }
         {modificar ? null :
           <>
             <CrearNota

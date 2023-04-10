@@ -139,7 +139,7 @@ export function CrearNota(props) {
               className='home-boton'
               
               onClick={(e) => notaModificada(
-                notaInicial?.datosNota.privateStatus,
+                privateStatus,
                 user.uid,
                 notaInicial?.datosNota.curso,
                 notaInicial?.datosNota.name,
@@ -158,7 +158,7 @@ export function CrearNota(props) {
               className='home-boton'
 
               onClick={(e) => notaCreada(  
-                notaInicial?.datosNota.privateStatus,
+                privateStatus,
                 curso,
                 titulo,
                 seccion,

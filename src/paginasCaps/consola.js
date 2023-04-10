@@ -1,32 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { FormCrearDef } from '../components/definiciones/crearDef';
 import { MostrarDef } from '../components/definiciones/mostrarDef';
-import { InformeAuditor } from '../components/informeAuditor';
-import { Spinner } from '../components/Login/Spinner';
-import { getDef } from '../components/servicios/definiciones/service.getDef';
+import { obtenerDatosConsola } from '../components/servicios/cursos/obtenerSeccion';
 
 export function Consola(props) {
 
-  const { datos } = props;
+  const [datos, setDatos] = useState()
   const { curso } = props;
   const { dic } = props;
   const { eliminarDelHistorial } = props;
   const { limpiarHistorial } = props;
   const { enconsola } = props;
-  const { cargando } = props;
+  const [cargando, setCargando] = useState(false)
   const { recargarFuncionClickcode } = props;
-  const [datosDef, setDatosDef] = useState([]);
 
   const url = process.env.REACT_APP_PROYECT_PRODUCTION_URL || process.env.REACT_APP_PROYECT_LOCAL_URL
 
   useEffect(() => {
-    getDef(dic).then(data => {
-      setDatosDef(data[0])
-    })
 
+    // Creamos el controlador para abortar la petición
+    const controller = new AbortController()
+    // Recuperamos la señal del controlador
+    const { signal } = controller
+    // Hacemos la petición a la API y le pasamos como options la señal
+    if (dic) {
+      setDatos()
+      setCargando(true)
+    }
+
+    obtenerDatosConsola(curso, dic, { signal })
+      .then(data => (setDatos(data),
+        setCargando(false),
+        recargarFuncionClickcode()
+      ));
+
+    //setCargando(false)
+    return () => controller.abort()
   }, [dic])
+
+  useEffect(() => {
+    document.getElementById("consol").scrollIntoView({ behavior: 'smooth' });
+  }, [datos, dic])
 
   return (
     <div>
@@ -34,12 +49,13 @@ export function Consola(props) {
         id="consol"
         className="navconsola">
         <p>
-          {cargando ?
+          {/* {cargando ?
             <div className='consolacargando'>
               <Spinner></Spinner>
             </div>
-            : <div></div>
-          }
+            :
+            null
+          } */}
           <button
             className="botonhistorial"
             onClick={() => limpiarHistorial()}
@@ -70,53 +86,51 @@ export function Consola(props) {
       <div
         className="consola">
 
-        {/* si existen definiciones se renderizan: */}
-        {dic !== "" ?
+        <>
+          {/* si existen definiciones se renderizan: */}
+
           <>
             <MostrarDef
-            recargarFuncionClickcode={recargarFuncionClickcode}
+              recargarFuncionClickcode={recargarFuncionClickcode}
               curso={curso}
-              dic={dic}
-              def={datosDef} />
-              <hr></hr>
+              dic={dic} />
+            <hr></hr>
           </>
-          :
-          null
-        }
 
-        {/* si existen definiciones se renderizan: */}
+          {/*^^si existen definiciones se renderizan:^^*/}
+          {cargando ? null :
+            datos?.[0] ?
+              datos[0].seccion.enunciado.length == 0 || dic === "" ? null :
+                <>
+                  {datos[0].seccion.enunciado.map((b, num) => {
+                    return (
+                      <div
+                        key={"consola" + dic + num}
+                        class="show-element">
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}>
+                          {b}
+                        </ReactMarkdown>
+                      </div>
+                    )
+                  })
+                  }
+                  <br></br>
+                  <blockquote>Link a la sección:
+                    <em
+                      style={{ textDecoration: "underline" }}>
+                      <a
+                        target="_blank"
+                        href={`${url}/cursos/${datos[0].curso}/${datos[0].capitulo}/${datos[0].seccion.nombre}`}>
+                        {" "}{datos[0].seccion.nombre}
+                      </a>
+                    </em>
+                  </blockquote>
+                  <hr></hr>
+                </>
+              : null}
 
-        {datos[0] ?
-          datos[0].seccion.enunciado.length == 0 || dic === "" ? "no hay datos" :
-            <>
-              {datos[0].seccion.enunciado.map((b, num) => {
-                return (
-                  <div
-                    key={"consola" + dic + num}
-                    class="show-element">
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}>
-                      {b}
-                    </ReactMarkdown>
-                  </div>
-                )
-              })
-              }
-              <br></br>
-              <blockquote>Link a la sección:
-                <em
-                  style={{ textDecoration: "underline" }}>
-                  <a
-                    target="_blank"
-                    href={`${url}/cursos/${datos[0].curso}/${datos[0].capitulo}/${datos[0].seccion.nombre}`}>
-                    {" "}{datos[0].seccion.nombre}
-                  </a>
-                </em>
-              </blockquote>
-              <hr></hr>
-            </>
-          : null}
-
+        </>
 
       </div>
 

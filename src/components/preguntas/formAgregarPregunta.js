@@ -42,6 +42,7 @@ export function FormAgregarPregunta(props) {
   return (
     <div
       style={{ "padding": "10px" }}>
+      <p>Agregar Pregunta:</p>
       <TextoaTabla />
       <div
         style={{ "textAlign": "center" }}>
