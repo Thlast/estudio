@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cursos } from './components/Cursos'
 import { Curso } from './components/Curso'
 import { Impcaps } from './paginasCaps/Secciones/impcaps';
+import { Secciones } from './paginasCaps/SeccionesSQL/secciones';
 // import { Impuestos } from './components/impuestos';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
@@ -94,6 +95,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Impcaps />
+              </ProtectedRoute>
+            }
+          />
+          <Route 
+          path="/cursosSQL/:curso/:capituloId/:titulo/:id/" 
+            element={
+              <ProtectedRoute>
+                <Secciones />
               </ProtectedRoute>
             }
           />
