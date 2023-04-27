@@ -21,7 +21,7 @@ export function MostrarDef(props) {
       setCargando(true)
     }
 
-
+    if(dic !== ""){
     // Creamos el controlador para abortar la petición
     const controller = new AbortController()
     // Recuperamos la señal del controlador
@@ -35,6 +35,7 @@ export function MostrarDef(props) {
     ))
 
     return () => controller.abort()
+    }
   }, [dic])
 
   return (

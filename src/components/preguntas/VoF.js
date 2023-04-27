@@ -76,6 +76,7 @@ export function FormVof(props) {
   const { examenid } = props
   const { titulo } = props
   const { seccion } = props
+  const { seccionId, capituloId } = props
   const { curso } = props
   const { cancelar } = props
   const { datospreguntas } = props
@@ -116,7 +117,7 @@ export function FormVof(props) {
   return (
     <div>
       <form
-        onSubmit={(event) => crearPreguntasVoF(user.uid, enunciado, rows, mat, seccion, titulo, examenid, event)}
+        onSubmit={(event) => crearPreguntasVoF(user.uid, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event)}
         style={{ "position": "relative" }}
         className="form-vof"
       >
@@ -141,9 +142,9 @@ export function FormVof(props) {
                   {materias.map(a => {
                     return (
                       <option
-                        key={"materia-" + a.id}
-                        value={a.id}>
-                        {a.nombre}
+                        key={"materia-" + a.CursoId}
+                        value={a.CursoId}>
+                        {a.CursoNombre}
                       </option>
                     )
                   })}

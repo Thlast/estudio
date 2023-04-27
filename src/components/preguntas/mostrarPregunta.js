@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { eliminarPregunta } from '../servicios/preguntas/eliminarPregunta';
-import { obtenerExamen, obtenerPregunta, obtenerSeccion, obtenerUsuario } from '../servicios/preguntas/obtenerPregunta';
+import { obtenerExamen, obtenerPregunta, obtenerSeccion, obtenerUsuario, getPreguntaSeccionId } from '../servicios/preguntas/obtenerPregunta';
 import { FormAgregarPregunta } from './formAgregarPregunta';
 import { FormModificarPregunta } from './formModificarPregunta';
 import { modificarPregunta } from '../servicios/preguntas/modificarPregunta';
@@ -20,8 +20,10 @@ export function MostrarPregunta(props) {
   const { anexadas } = props;
   const { examenid } = props
   const { titulo } = props;
-  const { user } = useAuth();
+  //puede agregarse a una seccion(nombre) o a la seccionId(uno viene de archivos fijos y otro de la base de datos)
   const { seccion } = props;
+  const { seccionId, capituloId } = props;
+  const { user } = useAuth();
   const { curso } = props;
   let edit = props.edit;
   const mostrarPreguntas = props.mostrarPreguntas
@@ -39,7 +41,7 @@ export function MostrarPregunta(props) {
   const { obtenerQpreguntas } = props;
 
   useEffect(() => {
-    if (seccion) {
+    if (seccion || seccionId) {
       obtenerQpreguntas(preguntas.length)
     }
 
@@ -60,11 +62,14 @@ export function MostrarPregunta(props) {
     } else if (perfil) {
       obtenerUsuario(user.uid)
         .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
+    } else if (seccionId) {
+      getPreguntaSeccionId(seccionId, {signal})
+        .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else {
       obtenerPregunta(curso)
         .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     }
-  }, [seccion])
+  }, [seccion, seccionId])
 
   const eliminar = async (idpregunta, usuario) => {
     if (usuario === user.uid) {
@@ -103,10 +108,10 @@ export function MostrarPregunta(props) {
     }
   }
   //vof
-  const modificarPreguntasVoF = async (user, enunciado, rows, id, indice, titulo, seccion, event) => {
+  const modificarPreguntasVoF = async (user, enunciado, rows, id, indice, titulo, seccion, seccionId, capituloId, event) => {
     try {
       let preguntamodif = null
-      await serverModificarVof(user, enunciado, rows, id, titulo, seccion, event).then(response =>
+      await serverModificarVof(user, enunciado, rows, id, titulo, seccion, seccionId, capituloId, event).then(response =>
         preguntamodif = { ...response, id: id }
       );
       preguntas.splice(indice, 1, preguntamodif)
@@ -116,10 +121,10 @@ export function MostrarPregunta(props) {
     setModificarVof(false)
   }
 
-  const crearPreguntasVoF = async (user, enunciado, rows, mat, seccion, titulo, examenid, event) => {
+  const crearPreguntasVoF = async (user, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event) => {
     event.preventDefault()
     try {
-      await crearVoF(user, enunciado, rows, mat, seccion, titulo, examenid, event).then(response =>
+      await crearVoF(user, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event).then(response =>
         setPreguntas(preguntas.concat(response))
       );
 
@@ -238,6 +243,8 @@ export function MostrarPregunta(props) {
           crearPreguntas={crearPreguntas}
           titulo={titulo}
           seccion={seccion}
+          seccionId={seccionId}
+          capituloId={capituloId}
           curso={curso}
         />
         : ""
@@ -249,6 +256,7 @@ export function MostrarPregunta(props) {
             cancelar={cancelar}
             titulo={titulo}
             seccion={seccion}
+            seccionId={seccionId}
             curso={curso}
             modificarPregunta={modificarPreguntas}
             preguntaModificar={preguntaModificar} />
@@ -260,6 +268,8 @@ export function MostrarPregunta(props) {
             modificarPreguntasVoF={modificarPreguntasVoF}
             cancelar={cancelar}
             datospreguntas={datosVof}
+            seccionId={seccionId}
+            capituloId={capituloId}
             vofModificar={preguntaModificar}
           />
         </div>

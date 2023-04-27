@@ -11,6 +11,7 @@ import { MateriasContext } from '../context/MateriasContext';
 import { Preguntas } from './preguntas/preguntas';
 import { Opciones } from './preguntas/opcionesMultiples';
 import { VoF } from './preguntas/formVoF';
+import { SelectMateria } from './selectMateria';
 
 
 export function HomeMongo() {
@@ -19,7 +20,7 @@ export function HomeMongo() {
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
-  const [curso, setCurso] = useState(matPreferida);
+  //const [curso, setCurso] = useState(matPreferida);
   const [cargando, setCargando] = useState(true);
   
 
@@ -35,7 +36,7 @@ export function HomeMongo() {
       cargarMaterias()
     }
 
-    obtenerPreguntaMateria(curso)
+    obtenerPreguntaMateria(matPreferida)
     .then(data => {
       if(data !== "error del servidor") {
         setCargando(false)
@@ -51,8 +52,8 @@ export function HomeMongo() {
   useEffect(() => {
 
     cargarHome()
-
-  }, [curso])
+    identificarCurso().then(resp => setCurrent(resp.historial[resp.historial.length-1]))
+  }, [matPreferida])
 
 
   const historialImp = useHistorial([0])
@@ -62,9 +63,9 @@ export function HomeMongo() {
   const historialAuditoria = useHistorial([0])
   const historialConta9 = useHistorial([0])
 
-  const identificarCurso = async (e) => {
-    let evaluar = e || curso;
-    switch (evaluar) {
+  const identificarCurso = async () => {
+    //let evaluar = e || curso;
+    switch (matPreferida) {
       case "impuestos": return historialImp; 
       case "conta7": return historialConta; 
       case "finanzas": return historialFinanzas; 
@@ -117,11 +118,10 @@ export function HomeMongo() {
     setShow(false);
   }
   
-  const cambiarCurso = async (e) => {
-    setCurso(e);
-    await identificarCurso(e).then(resp => setCurrent(resp.historial[resp.historial.length-1]))
-    preferenciaMateria(e)
-  }
+  // const cambiarCurso = async (e) => {
+   
+  //   preferenciaMateria(e)
+  // }
 
   const buscarPregunta = async (event, numeroBuscar) => {
     event.preventDefault();
@@ -174,23 +174,7 @@ export function HomeMongo() {
         </form>
         <br></br>
     <div>
-      <select 
-        onChange={(e) => cambiarCurso(e.target.value)} 
-        class="boton home-boton" 
-        value={curso}
-        name="curso"
-        for="materias">
-{cargandoMaterias ? <Spinner></Spinner> :
-    materias.map(a => {
-          return (
-      <option 
-      key={"materia-"+a.id}
-      value={a.id}>
-        {a.nombre}
-      </option>      
-       )
-      })}
-   </select>
+      <SelectMateria />
      </div>        
      <br></br>
       <div>
@@ -227,9 +211,20 @@ export function HomeMongo() {
             <div>
             <span>De la seccion: {" "}</span>
             <Link
-            to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion.replaceAll(" ", "%20")}`}
+            to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
             className='home-seccion'>
               {p.seccion}
+            </Link>
+              </div>
+              : ""
+              }
+            {p.seccionId ?
+            <div>
+            <span>De la seccion: {" "}</span>
+            <Link
+            to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
+            className='home-seccion'>
+              {`${p.seccionId}: ${p.titulo}`}
             </Link>
               </div>
               : ""

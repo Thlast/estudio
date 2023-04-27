@@ -6,7 +6,7 @@ import { useNote } from './useNote';
 export function CrearNota(props) {
 
   const { titulo } = props;
-  const { seccion } = props;
+  const { seccion, seccionId } = props;
   const { curso } = props;
   const { notaModificada } = props;
   const { notaModificar } = props;
@@ -145,6 +145,7 @@ export function CrearNota(props) {
                 notaInicial?.datosNota.name,
                 notaInicial?.datosNota.capitulo,
                 notaInicial?.datosNota.seccion,
+                notaInicial?.datosNota.seccionId,
                 notaInicial?.datosNota.contenido,
                 notaInicial?.datosNota.id,
                 notaInicial?.datosNota.indice,
@@ -162,6 +163,7 @@ export function CrearNota(props) {
                 curso,
                 titulo,
                 seccion,
+                seccionId,
                 notaInicial?.datosNota.contenido,
                 notaInicial?.datosNota.name,
                 user.uid,

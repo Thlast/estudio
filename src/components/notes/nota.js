@@ -7,67 +7,75 @@ export function Nota(props) {
 
   const { n } = props;
   const { indice } = props;
-  const { seccion } = props;
+  const { seccion, seccionId } = props;
   const { irModificarNota } = props;
   const { notaEliminada } = props;
-  const {user} = useAuth()
- 
+  const { user } = useAuth()
+
 
 
   return (
     <div
       key={"nota-" + n.id}
     >
-{seccion ? null :
-      <span>{n.capitulo + " → "}
-        <Link
-          style={{ textDecoration: "underline" }}
-          to={`/cursos/${n.curso}/${n.capitulo}/${n.seccion}`}>
-          {n.seccion}
-        </Link>
+      {seccion || seccionId ? null :
+        <span>{n.capitulo + " → "}
+          {n.seccion ?
+            <Link
+              style={{ textDecoration: "underline" }}
+              to={`/cursos/${n.curso}/${n.capitulo}/${n.seccion}`}>
+              {n.seccion}
+            </Link>
+            :
+            <Link
+              style={{ textDecoration: "underline" }}
+              to={`/cursosSQL/${n.curso}/${n.capitulo}/${n.seccionId}`}>
+              {n.seccionId}
+            </Link>
+          }
         </span>
-}
+      }
       <div
         className="cuadro cuadro-pregunta"
         style={{ padding: "20px" }}
       >
-         <span
+        <span
           style={{ textAlign: "left" }}
-          >{n.privateStatus == "true" ? "🔐" : "🔓"} Nota: {indice +1}</span>
-          
+        >{n.privateStatus == "true" ? "🔐" : "🔓"} Nota: {indice + 1}</span>
+
         <h3
           style={{ textAlign: "center", textDecoration: "underline" }}
         >
           <ReactMarkdown
-           remarkPlugins={[remarkGfm]}>
+            remarkPlugins={[remarkGfm]}>
             {n.name}
           </ReactMarkdown>
-          </h3>
+        </h3>
 
         <div>
           <ReactMarkdown
-           remarkPlugins={[remarkGfm]}>
+            remarkPlugins={[remarkGfm]}>
             {n.contenido}
           </ReactMarkdown>
 
         </div>
         <div
           className='botones-editar'>
-            {n.user_id == user.uid ?
-              <div>
-          <button
-            onClick={() => irModificarNota(n, indice)}
-            className='btn btn-primary'>
-            Modificar
-          </button>
-          <button
-            onClick={() => notaEliminada(n.id, n.user_id)}
-            className='btn btn-danger'>
-            Eliminar
-          </button>
-          </div>
-          : null
-}
+          {n.user_id == user.uid ?
+            <div>
+              <button
+                onClick={() => irModificarNota(n, indice)}
+                className='btn btn-primary'>
+                Modificar
+              </button>
+              <button
+                onClick={() => notaEliminada(n.id, n.user_id)}
+                className='btn btn-danger'>
+                Eliminar
+              </button>
+            </div>
+            : null
+          }
         </div>
       </div>
       <hr></hr>

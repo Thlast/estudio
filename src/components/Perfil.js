@@ -5,8 +5,9 @@ import { Buscador } from './buscador';
 import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { alertalimpiarHistorialUsuario } from './alertas';
 import { ResueltasContext } from '../context/Resueltas'
-import { MateriasContext } from '../context/MateriasContext';
 import { MostrarNotas } from './notes/mostrarNotas';
+import { MateriasContext } from '../context/MateriasContext';
+import { SelectMateria } from './selectMateria';
 
 export function Perfil() {
 
@@ -16,9 +17,12 @@ export function Perfil() {
     const [agregar, setAgregar] = useState(false);
     const [buscador, setBuscador] = useState(false);
     const navigate = useNavigate();
+
     const {matPreferida} = useContext(MateriasContext);
     const {materias} = useContext(MateriasContext);
     const {preferenciaMateria} = useContext(MateriasContext);
+  
+
     const [mostrarNotas, setMostrarNotas] = useState(false);
 
     const agregarPregunta = () => {
@@ -63,7 +67,8 @@ export function Perfil() {
           <nav >
             <ul>
             <li>
-      <select 
+              <SelectMateria />
+      {/* <select 
         onChange={(e) => preferenciaMateria(e.target.value)} 
         class="boton home-boton" 
         value={matPreferida}
@@ -73,13 +78,13 @@ export function Perfil() {
     materias.map(a => {
           return (
       <option 
-      key={"materia-"+a.id}
-      value={a.id}>
-        {a.nombre}
+      key={"materia-"+a.CursoId}
+      value={a.CursoId}>
+        {a.CursoNombre}
       </option>      
        )
       })}
-   </select>
+   </select> */}
      </li>  
      <hr></hr>
               <li>

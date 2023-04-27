@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, {useContext} from 'react';
 import { usePreguntaForm } from './usePregunta';
 import { MateriasContext } from '../../context/MateriasContext';
 import { useAuth } from '../../context/AuthContext';
@@ -10,6 +10,7 @@ export function FormAgregarPregunta(props) {
   const { titulo } = props;
   const { crearPreguntas } = props;
   const { seccion } = props;
+  const { seccionId, capituloId } = props;
   const { curso } = props;
   const { examenid } = props;
   const { matPreferida } = useContext(MateriasContext)
@@ -33,11 +34,12 @@ export function FormAgregarPregunta(props) {
     correcta: "a",
     titulo: titulo,
     seccion: seccion,
+    seccionId: seccionId,
+    capituloId: capituloId,
     examen: examenid,
     user: user.uid
   })
 
-  console.log(preguntaCrear)
 
   return (
     <div
@@ -73,6 +75,8 @@ export function FormAgregarPregunta(props) {
           examenid={examenid}
           titulo={titulo}
           seccion={seccion}
+          seccionId={seccionId}
+          capituloId={capituloId}
           curso={curso}
         />
         :
@@ -86,7 +90,7 @@ export function FormAgregarPregunta(props) {
               // preguntaCrear.handleSubmit
             }
           >
-            {seccion || examenid ? null :
+            {seccion || examenid || seccionId ? null :
               <div>
                 <select
                   required
@@ -104,9 +108,9 @@ export function FormAgregarPregunta(props) {
                   {materias.map(a => {
                     return (
                       <option
-                        key={"curso-" + a.id}
-                        value={a.id}>
-                        {a.nombre}
+                        key={"curso-" + a.CursoId}
+                        value={a.CursoId}>
+                        {a.CursoNombre}
                       </option>
                     )
                   })}
