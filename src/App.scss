@@ -68,14 +68,16 @@ table td {
 textarea::placeholder {
   color: var(--textarea-placeholder);
 }
+
 input::placeholder {
   color: var(--textarea-placeholder);
 }
 
-textarea, input {
+textarea,
+input {
   color: var(--text-color);
   background-color: var(--textarea-color);
-  border-color: var(--border-color);
+  border: var(--border-color) solid 2px;
 }
 
 .switchTema {
@@ -862,7 +864,7 @@ li {
   background-color: var(--secundario);
   background-clip: border-box;
   border-radius: 0.25rem;
-  padding: 25px;
+  padding: 15px;
   text-decoration: none;
   box-shadow: 0px 0px 3px 1px var(--secundario);
 }
@@ -1430,7 +1432,7 @@ em {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 90%;
+  width: 80%;
 }
 
 iframe {
@@ -1484,8 +1486,40 @@ a:hover>svg {
   gap: 20px;
 
 }
+
 .def-contenedor {
   padding: 10px;
   border: 2px solid var(--text-color);
+
+}
+
+//ayuda editor
+
+.ayudaContenedor {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+
+}
+
+.editorContenido {
+  height: 800px;
+}
+
+.buscadorBotones {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.buscadorBotones button {
+
+  width: 100%;
+}
+
+.botones-EditorSeccion {
+  display: flex;
+  justify-content: space-between;
 
 }
