@@ -1,35 +1,32 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
+import { Link, useParams } from "react-router-dom";
+import { getCapitulos, obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
 import { obtenerDatosTitulos } from './servicios/cursos/obtenerSeccion';
 import { Spinner } from './Login/Spinner';
 import style from '../modulos-css/Curso.module.css'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import {Secciones} from './listarSecciones';
 
 export function Curso() {
 
   const [cargando, setCargando] = useState(true)
   const { curso } = useParams();
   const [curs, setCurs] = useState([]);
-  const materia = curso;
   const { focus } = useParams();
   const [datosCaps, setDatosCaps] = useState([]);
-  const navigate = useNavigate()
 
   useEffect(() => {
 
     setCargando(true)
-    obtenerDetalleCurso(materia)
-      .then(data => setCurs(data));
-    obtenerDatosTitulos(materia)
-      .then(data =>
-      (
+    obtenerDetalleCurso(curso)
+      .then(data => (setCurs(data)));
+    obtenerDatosTitulos(curso)
+      .then(data =>(
         setDatosCaps(data),
         setCargando(false)
+        )
       )
-      )
-
 
 
   }, [])
@@ -42,35 +39,28 @@ export function Curso() {
     }, 200)
   }
 
-
   useEffect(() => {
 
     asd()
 
-
   }, [document.getElementById(focus)], cargando)
-
-
 
   const most = (e) => {
     document.getElementById("capitulo" + e).style.display = 'block';
     document.getElementById("mostrar" + e).style.display = 'none';
     document.getElementById("ocultar" + e).style.display = 'block';
-
   }
   const ocultar = (e) => {
     document.getElementById("capitulo" + e).style.display = 'none';
     document.getElementById("mostrar" + e).style.display = 'block';
     document.getElementById("ocultar" + e).style.display = 'none';
-
   }
-
-
 
   return (
     <div className="App">
 
       <div className={style.cursolistado}>
+        
         <Link
           className={style.volver}
           to={"/cursos"}>
@@ -78,14 +68,12 @@ export function Curso() {
         </Link>
         <div class="cursos-container">
           <div class='cursos-descripcion'>
-
             <a
               rel="noopener noreferrer"
               href={`/imprimirResumen/${curso}`}
               target="_blank"
               className='home-boton'
-              style={{ display: "flex", gap: 10, justifyContent: "center" }}
-            >
+              style={{ display: "flex", gap: 10, justifyContent: "center" }}>
               <svg
                 style={{ width: 24 }}
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,6 +82,7 @@ export function Curso() {
               </svg>
               Imprimir resumen
             </a>
+            
             {curs.map((t, num) => {
               return (
                 <div
@@ -110,10 +99,10 @@ export function Curso() {
                 </div>
               )
             }
-
             )}
             {cargando ? <Spinner /> :
               <div class='curso-capitulos-contenedor'>
+                   
                 {datosCaps ?
                   datosCaps.map((s, num) => {
 
@@ -139,8 +128,6 @@ export function Curso() {
                             })}
                           </ul>
                         </div>
-
-
 
                         <div class="boton-curso">
                           <button
@@ -174,16 +161,15 @@ export function Curso() {
 
                     )
 
-
-
-
                   }
                   ) : null
                 }
 
               </div>
             }
+                    <Secciones />
           </div>
+          
         </div>
 
       </div>

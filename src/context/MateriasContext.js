@@ -1,30 +1,33 @@
-import React, {useState, useEffect} from "react";
-import { obtenerMaterias } from "../components/servicios/cursos/obtenerCurso";
+import React, { useState, useEffect } from "react";
+import { obtenerMaterias, getCursos } from "../components/servicios/cursos/obtenerCurso";
 
 export const MateriasContext = React.createContext({})
 
-export function DataProvider ({ children }) {
+export function DataProvider({ children }) {
 
   const [materias, setMaterias] = useState({})
   const [cargandoMaterias, setCargandoMaterias] = useState(true)
   const [matPreferida, setMatPreferida] = useState("impuestos")
 
-  const cargarMaterias = () => {
+  const cargarMaterias = async () => {
     setCargandoMaterias(true)
-    obtenerMaterias()
-    .then(data => (setMaterias(data), setCargandoMaterias(false)));
-  }
+    getCursos().then(data => (setMaterias(data), setCargandoMaterias(false)));
 
+    // obtenerMaterias()
+    //   .then(data => (setMaterias( data), setCargandoMaterias(false)));
+    
+  }
+  
   useEffect(() => {
     cargarMaterias()
-    
+
   }, [])
 
   const preferenciaMateria = (mat) => {
     setMatPreferida(mat)
   }
 
-return (
+  return (
     <MateriasContext.Provider value={{
       matPreferida,
       cargarMaterias,
@@ -32,7 +35,7 @@ return (
       materias,
       cargandoMaterias
     }}>
-      { children }
+      {children}
     </MateriasContext.Provider>
-)
+  )
 }
