@@ -15,16 +15,15 @@ import { SelectMateria } from './selectMateria';
 
 
 export function HomeMongo() {
-  
-  const {cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida} = useContext(MateriasContext);
+
+  const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida } = useContext(MateriasContext);
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
-  //const [curso, setCurso] = useState(matPreferida);
   const [cargando, setCargando] = useState(true);
-  
 
-  const {loading} = useAuth()
+
+  const { loading } = useAuth()
   const [numeroBuscar, setNumeroBuscar] = useState(1)
   const [recargar, setRecargar] = useState(false)
 
@@ -32,112 +31,95 @@ export function HomeMongo() {
     setRecargar(false)
     setCargando(true)
 
-    if(!materias.length) {
+    if (!materias.length) {
       cargarMaterias()
     }
 
     obtenerPreguntaMateria(matPreferida)
-    .then(data => {
-      if(data !== "error del servidor") {
-        setCargando(false)
-        setPreguntas(data)
-      } else {
-        setCargando(false)
-        setRecargar(true)
-      } 
-    } 
-  )
+      .then(data => {
+        if (data !== "error del servidor") {
+          setCargando(false)
+          setPreguntas(data)
+        } else {
+          setCargando(false)
+          setRecargar(true)
+        }
+      }
+      )
   }
 
+  const materiasIndices =(materias?.map(mat => mat.CursoId))
+  const historiales = useHistorial(materias?.map(mat => [0]))
   useEffect(() => {
 
     cargarHome()
-    identificarCurso().then(resp => setCurrent(resp.historial[resp.historial.length-1]))
+    identificarCurso().then(resp => setCurrent(historiales?.historial[resp].length - 1))
   }, [matPreferida])
 
 
-  const historialImp = useHistorial([0])
-  const historialConta = useHistorial([0])
-  const historialFinanzas = useHistorial([0])
-  const historialJudicial = useHistorial([0])
-  const historialAuditoria = useHistorial([0])
-  const historialConta9 = useHistorial([0])
-
   const identificarCurso = async () => {
-    //let evaluar = e || curso;
-    switch (matPreferida) {
-      case "impuestos": return historialImp; 
-      case "conta7": return historialConta; 
-      case "finanzas": return historialFinanzas; 
-      case "judicial": return historialJudicial; 
-      case "auditoria": return historialAuditoria; 
-      case "conta9": return historialConta9;
-    }
-  }
+    return materiasIndices?.indexOf(matPreferida);
+  };
 
   const funcionreiniciar = async () => {
-    await identificarCurso().then(resp => resp.reiniciarh(current))
+    await identificarCurso().then(resp => historiales.reiniciarh(current, resp))
   }
 
   const reiniciar = () => {
     alertareiniciar(funcionreiniciar)
   }
- 
+
   const random = async () => {
     const indice = Math.floor(Math.random() * preguntas.length)
     await identificarCurso().then(resp => {
-
-      if (resp.historial.indexOf(indice) === -1 && preguntas.length !== resp.historial.length) {
-        resp.agregar(indice)
+      console.log(historiales.historial[resp])
+      if (historiales.historial[resp].indexOf(indice) === -1 && preguntas.length !== historiales.historial[resp].length) {
+        historiales.agregar(indice, resp)
         setCurrent(indice)
-      } else if (resp.historial.indexOf(indice) !== -1 && preguntas.length !== resp.historial.length) {
+      } else if (historiales.historial[resp].indexOf(indice) !== -1 && preguntas.length !== historiales.historial[resp].length) {
         random()
-      } else if (preguntas.length === resp.historial.length) {
+      } else if (preguntas.length === historiales.historial[resp].length) {
         reiniciar()
-      }})
-    } 
+      }
+    })
+  }
 
   const siguiente = async () => {
     const indice = current + 1
-    if(indice !== preguntas.length) {
-      await identificarCurso().then(resp => resp.agregar(indice));
+    if (indice !== preguntas.length) {
+      await identificarCurso().then(resp => historiales.agregar(indice, resp));
       setCurrent(indice);
-    } else if(indice >= preguntas.length) {
+    } else if (indice >= preguntas.length) {
       alertainfo("No hay mas preguntas")
-    } 
-    setShow(false);   
+    }
+    setShow(false);
   }
   const anterior = async () => {
     const indice = current - 1
-    if(indice !== -1) {
-      await identificarCurso().then(resp => resp.agregar(indice));
+    if (indice !== -1) {
+      await identificarCurso().then(resp => historiales.agregar(indice, resp));
       setCurrent(indice);
-    } else if(indice <= 0) { 
+    } else if (indice <= 0) {
 
-    } 
+    }
     setShow(false);
   }
-  
-  // const cambiarCurso = async (e) => {
-   
-  //   preferenciaMateria(e)
-  // }
 
   const buscarPregunta = async (event, numeroBuscar) => {
     event.preventDefault();
     const indice = parseInt(numeroBuscar) - 1
-    if(indice < preguntas.length & indice >= 0) {
-      await identificarCurso().then(resp => resp.agregar(indice));
+    if (indice < preguntas.length & indice >= 0) {
+      await identificarCurso().then(resp => historiales.agregar(indice, resp));
       setCurrent(indice);
-    } else if(indice >= preguntas.length) {
-      alertainfo("No existe la pregunta número "+ numeroBuscar + ", número máximo "+ preguntas.length)
-    } 
-    setShow(false);   
+    } else if (indice >= preguntas.length) {
+      alertainfo("No existe la pregunta número " + numeroBuscar + ", número máximo " + preguntas.length)
+    }
+    setShow(false);
   }
   const mostrarRespuesta = (id) => {
     let estado = document.getElementById(`respuesta-${id}`).style.display
 
-    if(estado === 'block') {
+    if (estado === 'block') {
       document.getElementById(`respuesta-${id}`).style.display = 'none'
       setShow(false)
     } else {
@@ -146,173 +128,173 @@ export function HomeMongo() {
     }
   }
 
-    return (
+  return (
     <div className="App">
       <main className="HomeMongo">
-          {loading ? <Spinner></Spinner>
-      :
-      <div>
-        <form
-        className='homebuscar'>
+        {loading ? <Spinner></Spinner>
+          :
           <div>
-            <span>
-              Buscar por Nº {" "}
-            </span>
-        <input
-        min={1}
-        max={preguntas.length}
-        onChange={(e) => setNumeroBuscar(e.target.value)}
-        value={numeroBuscar}
-        type="number">
-        </input>
-        <button
-        className='home-botonbuscar'
-        onClick={(event) => buscarPregunta(event, numeroBuscar)}>
-          🔎
-        </button>
-        </div>
-        </form>
-        <br></br>
-    <div>
-      <SelectMateria />
-     </div>        
-     <br></br>
-      <div>
-          <button 
-          class="boton home-boton" 
-          onClick={() => anterior()}>
-            {"< "}Anterior
-          </button>  
-          <button 
-          class="boton home-boton" 
-          onClick={() => (random(), setShow(false))}>
-            ⚄ Aleatoria ⚄
-          </button>
-          <button 
-          class="boton home-boton" 
-          onClick={() => siguiente()
-          }>
-            <span>Siguiente{" >"}</span>
-          </button>
-          </div>
-          {cargando ? <Spinner></Spinner> : 
-          <>
-          {!recargar ?
-        preguntas.map((p, num) => {
-          
-          if (preguntas.indexOf(p) === current){
-          return (
-          <div
-          key={p.id}>
-            <h1>
-              Pregunta Nº {num+1} de {preguntas.length}:
-            </h1>
-            {p.seccion ?
-            <div>
-            <span>De la seccion: {" "}</span>
-            <Link
-            to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
-            className='home-seccion'>
-              {p.seccion}
-            </Link>
+            <form
+              className='homebuscar'>
+              <div>
+                <span>
+                  Buscar por Nº {" "}
+                </span>
+                <input
+                  min={1}
+                  max={preguntas.length}
+                  onChange={(e) => setNumeroBuscar(e.target.value)}
+                  value={numeroBuscar}
+                  type="number">
+                </input>
+                <button
+                  className='home-botonbuscar'
+                  onClick={(event) => buscarPregunta(event, numeroBuscar)}>
+                  🔎
+                </button>
               </div>
-              : ""
-              }
-            {p.seccionId ?
-            <div>
-            <span>De la seccion: {" "}</span>
-            <Link
-            to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
-            className='home-seccion'>
-              {`${p.seccionId}: ${p.titulo}`}
-            </Link>
-              </div>
-              : ""
-              }
-              {p.examen ?
-            <div>
-            <Link
-            to={`/examenes/${p.examen}`}
-            className='home-seccion'>
-              Examen
-            </Link>
-              </div>
-              : ""
-              }
-              <div
-              style={{"text-align": "-webkit-center"}}>
-              <Preguntas 
-              edit={false}
-              p={p}
-              num={num}
-              />
-              </div>
-            <div>                   
+            </form>
             <br></br>
-            {p.tipo === "Normal" &&
-            <button
-            className='boton home-boton'
-            onClick={() => mostrarRespuesta(p.id)}>
-              {show ? "Ocultar Respuesta" : "Mostrar Respuesta" }
-            </button>}   
-            <hr></hr> 
-            </div>
-            {p.tipo === "Multiple" &&
-            <div
-            className="home-multiple cuadro">
-              <Opciones 
-              p={p}
-              num={num}/>            
-            </div>}
-            {p.tipo === "vof" &&
-            <div
-            style={{"text-align": "left"}}
-            className="home-multiple cuadro">
-              <VoF 
-              p={p}
-              num={num}/>            
-            </div>}
-          
-          <div
-          className='hide'
-          id={"respuesta-"+p.id}>
             <div>
-            <p style={{"color": "green"}} className='hide' id={`correcto-${p.id}`}>✓</p>
-            <p>
-            La respuesta correcta es: {p.correcta || p.resultado}
-          </p>
-          </div>
-          <div
-          className="show-element cuadro contendedor-pregunta-respuesta">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}>
-            {p.respuesta}             
-          </ReactMarkdown>
-          </div>
-          </div>
-      
+              <SelectMateria />
             </div>
-          )  
-        }
-        }
-        
-      ) : <div
-      style={{paddingTop: 20}}>
+            <br></br>
+            <div>
+              <button
+                class="boton home-boton"
+                onClick={() => anterior()}>
+                {"< "}Anterior
+              </button>
+              <button
+                class="boton home-boton"
+                onClick={() => (random(), setShow(false))}>
+                ⚄ Aleatoria ⚄
+              </button>
+              <button
+                class="boton home-boton"
+                onClick={() => siguiente()
+                }>
+                <span>Siguiente{" >"}</span>
+              </button>
+            </div>
+            {cargando ? <Spinner></Spinner> :
+              <>
+                {!recargar ?
+                  preguntas.map((p, num) => {
 
-      <button
-      className='home-boton'
-        onClick={() => cargarHome()}>
-        Recargar
-      </button>
-      </div>
-    }
-  </>
-}
-        
-        </div>}
+                    if (preguntas.indexOf(p) === current) {
+                      return (
+                        <div
+                          key={p.id}>
+                          <h1>
+                            Pregunta Nº {num + 1} de {preguntas.length}:
+                          </h1>
+                          {p.seccion ?
+                            <div>
+                              <span>De la seccion: {" "}</span>
+                              <Link
+                                to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
+                                className='home-seccion'>
+                                {p.seccion}
+                              </Link>
+                            </div>
+                            : ""
+                          }
+                          {p.seccionId ?
+                            <div>
+                              <span>De la seccion: {" "}</span>
+                              <Link
+                                to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
+                                className='home-seccion'>
+                                {`${p.seccionId}: ${p.titulo}`}
+                              </Link>
+                            </div>
+                            : ""
+                          }
+                          {p.examen ?
+                            <div>
+                              <Link
+                                to={`/examenes/${p.examen}`}
+                                className='home-seccion'>
+                                Examen
+                              </Link>
+                            </div>
+                            : ""
+                          }
+                          <div
+                            style={{ "text-align": "-webkit-center" }}>
+                            <Preguntas
+                              edit={false}
+                              p={p}
+                              num={num}
+                            />
+                          </div>
+                          <div>
+                            <br></br>
+                            {p.tipo === "Normal" &&
+                              <button
+                                className='boton home-boton'
+                                onClick={() => mostrarRespuesta(p.id)}>
+                                {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
+                              </button>}
+                            <hr></hr>
+                          </div>
+                          {p.tipo === "Multiple" &&
+                            <div
+                              className="home-multiple cuadro">
+                              <Opciones
+                                p={p}
+                                num={num} />
+                            </div>}
+                          {p.tipo === "vof" &&
+                            <div
+                              style={{ "text-align": "left" }}
+                              className="home-multiple cuadro">
+                              <VoF
+                                p={p}
+                                num={num} />
+                            </div>}
+
+                          <div
+                            className='hide'
+                            id={"respuesta-" + p.id}>
+                            <div>
+                              <p style={{ "color": "green" }} className='hide' id={`correcto-${p.id}`}>✓</p>
+                              <p>
+                                La respuesta correcta es: {p.correcta || p.resultado}
+                              </p>
+                            </div>
+                            <div
+                              className="show-element cuadro contendedor-pregunta-respuesta">
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}>
+                                {p.respuesta}
+                              </ReactMarkdown>
+                            </div>
+                          </div>
+
+                        </div>
+                      )
+                    }
+                  }
+
+                  ) : <div
+                    style={{ paddingTop: 20 }}>
+
+                    <button
+                      className='home-boton'
+                      onClick={() => cargarHome()}>
+                      Recargar
+                    </button>
+                  </div>
+                }
+              </>
+            }
+
+          </div>}
 
       </main>
-      
+
     </div>
-    );
-  }
+  );
+}
