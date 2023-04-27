@@ -3,7 +3,7 @@ import { alertasuccess } from "../../alertas";
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
-export const serverModificarVof = async (user, enunciado, datosPregunta, id, titulo, seccion, event) => {
+export const serverModificarVof = async (user, enunciado, datosPregunta, id, titulo, seccion, seccionId, capituloId, event) => {
   const url = `${urlserver}/preguntas/${id}`;
   event.preventDefault();
   let respuesta = {}
@@ -14,7 +14,9 @@ export const serverModificarVof = async (user, enunciado, datosPregunta, id, tit
       arrayPreguntas: datosPregunta,
       user: user,
       titulo: titulo,
-      seccion: seccion
+      seccion: seccion,
+      seccionId: seccionId,
+      capituloId: capituloId
 
   };
     // console.log(preguntaModificada, typeof id)

@@ -27,6 +27,8 @@ export const modificarPregunta = async (datosPregunta, id, event) => {
     },
       correcta: datosPregunta.correcta,
       seccion: datosPregunta.seccion,
+      seccionId: datosPregunta.seccionId,
+      capituloId: datosPregunta.capituloId,
       curso: datosPregunta.curso,
       materia: datosPregunta.mat,
       titulo: datosPregunta.titulo

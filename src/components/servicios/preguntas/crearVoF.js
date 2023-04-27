@@ -5,7 +5,7 @@ import { alertasuccess } from "../../alertas";
 
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
 
-export const crearVoF = async (user, enunciado, preguntaCrear, curso, seccion, titulo, examenid, event) => {
+export const crearVoF = async (user, enunciado, preguntaCrear, curso, seccion, seccionId, capituloId, titulo, examenid, event) => {
     const url = `${urlserver}/preguntas`;
     event.preventDefault();
 let respuesta = {}
@@ -16,6 +16,8 @@ tipo: "vof",
 arrayPreguntas: preguntaCrear,
 curso: curso,
 seccion: seccion,
+seccionId: seccionId,
+capituloId: capituloId,
 titulo: titulo,
 examen: examenid,
 user: user
