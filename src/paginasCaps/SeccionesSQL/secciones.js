@@ -102,7 +102,7 @@ export function Secciones() {
       }
     }
 
-  }, [codes])
+  }, [codes, id])
 
   //historial de consola
   const [enconsola, setEnConsola] = useState([]);

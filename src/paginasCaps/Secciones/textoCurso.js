@@ -19,7 +19,8 @@ export function TextoCurso(props) {
     await obtenerDatosSeccion(curso, seccion, titulo, { signal })
       .then(data => (
         setEnunciado(data),
-        setCargando(false)
+        setCargando(false),
+        recargarFuncionClickcode()
       )
       );
 
