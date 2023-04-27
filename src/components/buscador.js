@@ -6,6 +6,7 @@ import { Spinner } from "./Login/Spinner";
 import { MateriasContext } from "../context/MateriasContext";
 import remarkGfm from 'remark-gfm'
 import { MostrarDef } from "./definiciones/mostrarDef";
+import { buscarValorSQL } from "./servicios/cursos/cursosSQL/buscarSeccion";
 
 export const Buscador = (props) => {
 
@@ -21,6 +22,8 @@ export const Buscador = (props) => {
   const [limit, setLimit] = useState(50)
   const [totalResultados, setTotalResultados] = useState(0)
   const [limitEnv, setLimitEnv] = useState(0)
+  const [verSQL, setVerSQL] = useState(false)
+  const [resultadosSQL, setResultadosSQL] = useState([])
   const { recargarFuncionClickcode } = props;
 
   useEffect(() => {
@@ -40,6 +43,7 @@ export const Buscador = (props) => {
       setPage(1)
       await buscarFiltradoNuevo(curso, valor, 1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
     }
+    await buscarValorSQL(curso, valor).then(data => setResultadosSQL(data))
     setValorEnviado(valor)
     setCargando(false)
 
@@ -65,9 +69,9 @@ export const Buscador = (props) => {
                   materias.map(a => {
                     return (
                       <option
-                        key={"materia-" + a.id}
-                        value={a.id}>
-                        {a.nombre}
+                        key={"materia-" + a.CursoId}
+                        value={a.CursoId}>
+                        {a.CursoNombre}
                       </option>
                     )
                   })}
@@ -108,7 +112,7 @@ export const Buscador = (props) => {
             className="boton-buscar">
             Buscar
           </button>
-          {resultados.length == limit &&
+          {resultados?.length == limit &&
             <button
               className="boton-buscar"
               value="Siguiente página"
@@ -127,40 +131,90 @@ export const Buscador = (props) => {
             </>
           }
           <hr></hr>
+          <div className="buscadorBotones">
+            <button
+              onClick={() => setVerSQL(false)}
+              className={`${verSQL ? null : "botonmostrar"} home-boton editarcurso`}>
+              Del archivo fijo
+            </button>
+            <button
+              onClick={() => setVerSQL(true)}
+              className={`${verSQL && "botonmostrar"} home-boton editarcurso`}>
+              De la base de datos
+            </button>
+          </div>
           {cargando ? <Spinner></Spinner> :
+            <>
 
-            resultados.length !== 0 ?
-              <>
-                <p>Aparece en las siguientes secciones:</p>
-                <p>Mostrando resultados: {(page - 1) * limitEnv}-{page * limitEnv < totalResultados? (page) * limitEnv : totalResultados} de un total de {totalResultados}</p>
+              {verSQL ? <>
                 {
-                  resultados.map((resultado, num) => {
-                    return (
-                      <div
-                        key={resultado.titulo + resultado.seccion + num}>
-                        {cursoBuscador ?
-                          <a href={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
-                            {resultado.seccion}
-                          </a>
-                          :
-                          <Link
-                            to={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
-                            {resultado.seccion}
-                          </Link>
-                        }
-                        <div
-                          className="cuadro">
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}>
-                            {resultado.enunciado}
-                          </ReactMarkdown>
-                        </div>
-                      </div>
-                    )
-                  })
-                }
-              </>
-              : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>
+                  resultadosSQL?.length !== 0 ?
+                    <>{
+                      resultadosSQL?.map((res, num) => {
+                        return (
+                          <div
+                            key={res.CapituloId + res.SeccionId + num}>
+                            {cursoBuscador ?
+                              <a href={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
+                                {res.SeccionNombre}
+                              </a>
+                              :
+                              <Link
+                                to={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
+                                {res.SeccionNombre}
+                              </Link>
+                            }
+                            <div
+                              className="cuadro">
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}>
+                                {res.SeccionContenido}
+                              </ReactMarkdown>
+                            </div>
+                          </div>
+                        )
+                      })
+
+
+                    }
+                    </> : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>}
+              </> :
+                <>
+                  <p>Aparece en las siguientes secciones:</p>
+                  <p>Mostrando resultados: {(page - 1) * limitEnv}-{page * limitEnv < totalResultados ? (page) * limitEnv : totalResultados} de un total de {totalResultados}</p>
+                  {resultados?.length !== 0 ?
+                    <>
+                      {
+                        resultados?.map((resultado, num) => {
+                          return (
+                            <div
+                              key={resultado.titulo + resultado.seccion + num}>
+                              {cursoBuscador ?
+                                <a href={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
+                                  {resultado.seccion}
+                                </a>
+                                :
+                                <Link
+                                  to={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
+                                  {resultado.seccion}
+                                </Link>
+                              }
+                              <div
+                                className="cuadro">
+                                <ReactMarkdown
+                                  remarkPlugins={[remarkGfm]}>
+                                  {resultado.enunciado}
+                                </ReactMarkdown>
+                              </div>
+                            </div>
+                          )
+                        })
+                      }
+                    </>
+                    : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>}
+                </>
+              }
+            </>
           }
         </div>
       }
