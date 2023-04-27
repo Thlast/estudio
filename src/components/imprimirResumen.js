@@ -3,6 +3,7 @@ import { TextoCurso } from "../paginasCaps/Secciones/textoCurso"
 import { useState, useEffect } from "react"
 import { obtenerResumen } from "./servicios/cursos/obtenerSeccion"
 import { Spinner } from "./Login/Spinner"
+import { TextoParaImprimir } from "../paginasCaps/Secciones/textoParaImprimir"
 
 export function ImprimirHTML() {
 
@@ -14,13 +15,13 @@ export function ImprimirHTML() {
   const imp = () => {
     setTimeout(() => {
       window.print()
-    }, 1200)
+    }, 2000)
   }
   useEffect(() => {
     obtenerResumen(curso).then(data => {
       if(data == "error del servidor"){
         setCargando2(true)
-        console.log(data)
+        //console.log(data)
       } else { 
         setSecciones(data) 
         setCargando(false) 
@@ -50,7 +51,7 @@ export function ImprimirHTML() {
           return (
             <>
             
-            <TextoCurso seccion={cap.nombre} enunciado={[cap]} />
+            <TextoParaImprimir seccion={cap.nombre} enunciado={[cap]} />
             </>
           )
         })}

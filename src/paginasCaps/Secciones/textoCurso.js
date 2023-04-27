@@ -27,7 +27,7 @@ export function TextoCurso(props) {
   }
 
   useEffect(() => {
-
+  
     setEnunciado();
     // Creamos el controlador para abortar la petición
     const controller = new AbortController()
