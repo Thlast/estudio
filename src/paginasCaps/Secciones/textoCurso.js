@@ -17,12 +17,12 @@ export function TextoCurso(props) {
   const cargarPagina = async ({ signal }) => {
     setCargando(true)
     await obtenerDatosSeccion(curso, seccion, titulo, { signal })
-      .then(data => (
-        setEnunciado(data),
-        setCargando(false),
-        recargarFuncionClickcode()
-      )
+      .then(data => {
+        setEnunciado(data)
+        setCargando(false)
+      }
       );
+    recargarFuncionClickcode()
 
   }
 

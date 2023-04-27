@@ -25,7 +25,7 @@ export function Secciones() {
   const { curso } = useParams();
   const [dic, setDic] = useState("");
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
-  const [mobile, setMobile] = useState(window.innerWidth)
+  const [mobile, setMobile] = useState(window.innerWidth <= 500)
   const [cargando, setCargando] = useState(false)
 
   const [contenidoSeccion, setContenidoSeccion] = useState()
@@ -41,7 +41,7 @@ export function Secciones() {
         setCargando(false)
       }
       );
-
+      recargarFuncionClickcode()
   }
   useEffect(() => {
     cargarPagina()
@@ -56,7 +56,7 @@ export function Secciones() {
   //funcion para detectar si es mobile
   useEffect(() => {
     function handleResize() {
-      setMobile(window.innerWidth);
+      setMobile(window.innerWidth <= 500);
     }
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -175,7 +175,7 @@ export function Secciones() {
   return (
     <>
       <>
-        {mobile <= 500 ?
+        {mobile ?
           <div>
             <div
               className={`${style.cursotitulo} secciones`}>
