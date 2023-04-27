@@ -16,7 +16,6 @@ export function Impcaps() {
 
   const { sec } = useParams();
   const { titulo } = useParams();
-  const [cargando, setCargando] = useState(true)
   const { materia } = useParams();
   const [dic, setDic] = useState("");
   const [seccion, setSeccion] = useState(sec);
@@ -120,14 +119,13 @@ export function Impcaps() {
     //setDic("");
     setCodes(document.querySelectorAll('code'));
     setSeccion(navegarSeccion);
-    setCargando(true)
     cambiarBoton();
     setInfo(true)
     let alert = "";
     if (volver === true) {
       alert = `Regresando a: ${proximo}`
     } else {
-      alert = `Has finalizado ${titulo}!, siguiente: ${proximo}`
+      alert = `¡Has finalizado ${titulo}! siguiente: ${proximo}`
     }
     Swal.fire({
       title: alert,

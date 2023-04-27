@@ -9,6 +9,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { alertainfo } from "../components/alertas";
 
 export const authContext = createContext();
 
@@ -35,6 +36,16 @@ export function AuthProvider({ children }) {
     return signInWithPopup(auth, googleProvider);
   };
 
+  const [editMode, setEditMode] = useState(false);
+
+  const changeEditMode = (rol) => {
+    if(rol == "admin") {
+      setEditMode(!editMode)
+    } else {
+      alertainfo("Sin permiso para editar")
+    }
+  }
+
   const logout = () => signOut(auth);
 
   const resetPassword = async (email) => sendPasswordResetEmail(auth, email);
@@ -50,6 +61,8 @@ export function AuthProvider({ children }) {
   return (
     <authContext.Provider
       value={{
+        editMode,
+        changeEditMode,
         signup,
         login,
         user,

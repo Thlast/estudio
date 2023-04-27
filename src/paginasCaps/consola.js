@@ -19,16 +19,17 @@ export function Consola(props) {
 
   useEffect(() => {
 
-    // Creamos el controlador para abortar la petición
-    const controller = new AbortController()
-    // Recuperamos la señal del controlador
-    const { signal } = controller
-    // Hacemos la petición a la API y le pasamos como options la señal
+
     if (dic) {
       setDatos()
       setCargando(true)
     }
-
+    if(dic !== "") {
+        // Creamos el controlador para abortar la petición
+        const controller = new AbortController()
+        // Recuperamos la señal del controlador
+        const { signal } = controller
+        // Hacemos la petición a la API y le pasamos como options la señal
     obtenerDatosConsola(curso, dic, { signal })
       .then(data => (setDatos(data),
         setCargando(false),
@@ -37,6 +38,7 @@ export function Consola(props) {
 
     //setCargando(false)
     return () => controller.abort()
+    }
   }, [dic])
 
   useEffect(() => {

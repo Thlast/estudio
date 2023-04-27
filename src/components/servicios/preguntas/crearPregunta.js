@@ -30,11 +30,13 @@ opciones: {
 correcta: preguntaCrear.correcta,
 curso: preguntaCrear.curso,
 seccion: preguntaCrear.seccion,
+seccionId: preguntaCrear.seccionId,
+capituloId: preguntaCrear.capituloId,
 titulo: preguntaCrear.titulo,
 examen: preguntaCrear.examen,
 user: preguntaCrear.user
 };
-console.log(data)
+
     await fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),

@@ -4,10 +4,13 @@ import { Spinner } from '../Spinner';
 import style from './SignUp.module.css';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../../context/AuthContext';
+import { db } from '../../../firebase';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 export const SignUp = () => {
-  const {signup} = useAuth()
-  
+  const { signup } = useAuth()
+  // Obtener la colección "users"
+  const usersRef = collection(db, "usuarios");
   const [userData, setUserData] = useState({
     name: '',
     lastName: '',
@@ -56,8 +59,26 @@ export const SignUp = () => {
         userData.email,
         userData.password,
         userData.name
-      );
+      ).then((auth) => {
+        // Recuperar el ID único del usuario
+        const userId = auth.user.uid;
+        setDoc(doc(usersRef, userId), { nombre: userData.name, email: userData.email, rol: "Usuario", id: userId })
+
+        .then((docRef) => {
+          console.log("Usuario registrado correctamente con ID: ", userId);
+        })
+        .catch((error) => {
+          console.error("Error al registrar usuario: ", error);
+        });
+      })
+        .catch((error) => {
+          console.error('Error al registrar al usuario:', error);
+        });
+
       setLoading(true);
+      // Agregar un nuevo usuario a la colección "users"
+
+
       setLoading(false);
       toast.success('Registro exitoso');
       navigate('/');
@@ -98,14 +119,14 @@ export const SignUp = () => {
 
   return (
     <div
-    className={style.contenedor}>
+      className={style.contenedor}>
       {loading ? (
         <Spinner />
       ) : (
         <div className={style.contenedorFormulario}>
           <h1 className={style.titleOutsideForm}>Registrarse</h1>
           <form onSubmit={handleSubmit}>
-            <div className={style.filaArriba}>
+            {/* <div className={style.filaArriba}> */}
               <div className={style.contenedorInput}>
                 <label className={style.label}>
                   Nombre <span className={style.req}>*</span>
@@ -122,7 +143,7 @@ export const SignUp = () => {
                 ></input>
               </div>
 
-              <div className={style.contenedorInput}>
+              {/* <div className={style.contenedorInput}>
                 <label className={style.label}>
                   Apellido <span className={style.req}>*</span>
                 </label>
@@ -137,7 +158,7 @@ export const SignUp = () => {
                   required
                 ></input>
               </div>
-            </div>
+            </div> */}
 
             <div className={style.contenedorInput}>
               <label className={style.label}>
