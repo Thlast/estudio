@@ -75,7 +75,7 @@ export function NavegacionCursosSQL(props) {
               : <div className={style.cambioseccionEmpty}></div>
             }
 
-            {/* {mobile <= 500 ? null :
+            {/* {mobile ? null :
               <p className={style.cambioseccionEmpty}></p>
             } */}
 

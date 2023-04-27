@@ -17,7 +17,7 @@ export function TextoCursoSQL(props) {
     <>
       {cargando ? <Spinner></Spinner> :
         <div>
-          {/* {mobile <= 500 ? */}
+          {/* {mobile ? */}
             <h1>
               {contenidoSeccion?.SeccionNombre}
             </h1> 

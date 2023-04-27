@@ -21,12 +21,12 @@ export function Impcaps() {
   const [seccion, setSeccion] = useState(sec);
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
   const curso = materia
-  const [mobile, setMobile] = useState(window.innerWidth)
+  const [mobile, setMobile] = useState(window.innerWidth <= 500)
 
   //funcion para detectar si es mobile
   useEffect(() => {
     function handleResize() {
-      setMobile(window.innerWidth);
+      setMobile(window.innerWidth <= 500);
     }
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -161,7 +161,7 @@ export function Impcaps() {
 
   return (
     <>
-      {mobile <= 500 ?
+      {mobile ?
         <div>
           <div
             className={`${style.cursotitulo} secciones`}>
