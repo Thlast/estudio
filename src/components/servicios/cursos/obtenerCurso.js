@@ -1,5 +1,6 @@
 // const urlserver = process.env.REACT_APP_SERVER_LOCAL_URL
 const urlserver = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REACT_APP_SERVER_LOCAL_URL
+const urlserverSQL = process.env.REACT_APP_SERVERSQL_PRODUCTION_URL || process.env.REACT_APP_SERVERSQL_LOCAL_URL
 
 export const obtenerCursos = async (materia) => {
     const data = await fetch(`${urlserver}/app/${materia}`)
@@ -28,6 +29,26 @@ export const buscarFiltradoNuevo = async (curso, valor, page, limit) => {
 
 export const obtenerDetalleCurso = async (materia) => {
     const data = await fetch(`${urlserver}/app/${materia}/detalle`)
+    return data.json()
+  
+}
+//desde la base de datos SQL
+export const getCursos = async () => {
+    const data = await fetch(`${urlserverSQL}/cursos`)
+    return data.json()
+  
+}
+
+export const getCapitulos = async (curso) => {
+    
+    const data = await fetch(`${urlserverSQL}/capitulos/${curso}`)
+    return data.json()
+  
+}
+
+export const getSecciones = async (curso) => {
+    
+    const data = await fetch(`${urlserverSQL}/secciones/${curso}`)
     return data.json()
   
 }
