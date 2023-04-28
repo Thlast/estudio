@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { obtenerMaterias, getCursos } from "../components/servicios/cursos/obtenerCurso";
+import { getCursos } from "../components/servicios/cursos/obtenerCurso";
+import { useHistorial } from '../components/useHistorial';
 
 export const MateriasContext = React.createContext({})
 
 export function DataProvider({ children }) {
 
-  const [materias, setMaterias] = useState({})
+  const [materias, setMaterias] = useState([])
   const [cargandoMaterias, setCargandoMaterias] = useState(true)
   const [matPreferida, setMatPreferida] = useState("impuestos")
 
+  const [materiasIndices, setMateriasIndices] = useState()
+  const historiales = useHistorial(materias)
+ 
+
   const cargarMaterias = async () => {
     setCargandoMaterias(true)
-    getCursos().then(data => (setMaterias(data), setCargandoMaterias(false)));
+    let h = {}
+    await getCursos().then(data => {
+      setMaterias(data) 
+      setMateriasIndices(data?.map(mat => mat.CursoId))
+      setCargandoMaterias(false)
+    });
 
-    // obtenerMaterias()
-    //   .then(data => (setMaterias( data), setCargandoMaterias(false)));
-    
   }
   
   useEffect(() => {
@@ -33,6 +40,8 @@ export function DataProvider({ children }) {
       cargarMaterias,
       preferenciaMateria,
       materias,
+      historiales,
+      materiasIndices,
       cargandoMaterias
     }}>
       {children}

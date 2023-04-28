@@ -1,8 +1,18 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export const useHistorial = (materias) => {
 
-  const [historial, setHistorial] = useState(materias);
+
+  const [historial, setHistorial] = useState((materias?.map(mat => [0])));
+
+  useEffect(() => {
+    const h = []
+    materias?.map(mat => {
+      h.push([0])
+    })
+    setHistorial(h)
+
+  }, [materias])
 
   const agregar = (i, indiceMateria) => { 
     if(historial[indiceMateria].indexOf(i) === -1) {

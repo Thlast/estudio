@@ -6,7 +6,6 @@ import { obtenerPreguntaMateria } from './servicios/preguntas/obtenerPregunta';
 import { Spinner } from './Login/Spinner';
 import { Link } from 'react-router-dom';
 import { alertainfo, alertareiniciar } from './alertas';
-import { useHistorial } from './useHistorial';
 import { MateriasContext } from '../context/MateriasContext';
 import { Preguntas } from './preguntas/preguntas';
 import { Opciones } from './preguntas/opcionesMultiples';
@@ -16,7 +15,7 @@ import { SelectMateria } from './selectMateria';
 
 export function HomeMongo() {
 
-  const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida } = useContext(MateriasContext);
+  const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida, historiales, materiasIndices } = useContext(MateriasContext);
   const [preguntas, setPreguntas] = useState([]);
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
@@ -48,8 +47,7 @@ export function HomeMongo() {
       )
   }
 
-  const materiasIndices =(materias?.map(mat => mat.CursoId))
-  const historiales = useHistorial(materias?.map(mat => [0]))
+
   useEffect(() => {
 
     cargarHome()
@@ -72,7 +70,7 @@ export function HomeMongo() {
   const random = async () => {
     const indice = Math.floor(Math.random() * preguntas.length)
     await identificarCurso().then(resp => {
-      console.log(historiales.historial[resp])
+      //console.log(historiales.historial[resp])
       if (historiales.historial[resp].indexOf(indice) === -1 && preguntas.length !== historiales.historial[resp].length) {
         historiales.agregar(indice, resp)
         setCurrent(indice)
@@ -180,7 +178,7 @@ export function HomeMongo() {
             {cargando ? <Spinner></Spinner> :
               <>
                 {!recargar ?
-                  preguntas.map((p, num) => {
+                  preguntas?.map((p, num) => {
 
                     if (preguntas.indexOf(p) === current) {
                       return (
