@@ -51,7 +51,7 @@ export function HomeMongo() {
   useEffect(() => {
 
     cargarHome()
-    identificarCurso().then(resp => setCurrent(historiales?.historial[resp].length - 1))
+    identificarCurso().then(resp => setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1]))
   }, [matPreferida])
 
 
