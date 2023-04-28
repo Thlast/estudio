@@ -26,6 +26,8 @@ export function FormModificarPregunta(props) {
     correcta: preguntaModificar.correcta,
     titulo: preguntaModificar.titulo,
     seccion: preguntaModificar.seccion,
+    SeccionId: preguntaModificar.seccionId,
+    CapituloId: preguntaModificar.capituloId ?? ""
   })
 
   return (

@@ -1,19 +1,40 @@
 import { useEffect, useState } from 'react';
 import { obtenerDatosTitulos } from '../servicios/cursos/obtenerSeccion';
+import { getCapitulos, getSecciones } from '../servicios/cursos/obtenerCurso';
 
 export function AsignarSeccion(props) {
 
   const { datos } = props;
   const { vofhandleChange } = props;
   const [titulos, setTitulos] = useState([])
+  const [capitulosSQL, setCapitulosSQL] = useState([])
+  const [seccionesSQL, setSeccionesSQL] = useState([])
   const [verSQL, setVerSQL] = useState(false)
   const { cursoVof } = props;
   const curso = cursoVof || datos.datosPregunta.curso
+
   useEffect(() => {
     obtenerDatosTitulos(curso).then(data => setTitulos(data))
+
   }, [])
 
+  useEffect(() => {
 
+    //setCargando(true)
+    getCapitulos(curso)
+      .then(data => {
+        setCapitulosSQL(data)
+
+      });
+    getSecciones(curso)
+      .then(data => {
+        setSeccionesSQL(data)
+      }
+      )
+
+  }, [])
+
+// console.log(datos.datosPregunta.CapituloId )
   return (
     <>
       <div className="buscadorBotones">
@@ -30,110 +51,168 @@ export function AsignarSeccion(props) {
           De la base de datos
         </button>
       </div>
+
       {
-        verSQL ? <>
-        
-        </> :
-        <>
-        {
-        datos.datosPregunta ?
+        verSQL ?
           <>
-            <select
-              value={datos.datosPregunta.titulo}
-              onChange={datos.handleChange}
-              name="titulo"
-              className='home-boton'>
-              <option
-                disabled selected>
-                Seleccione un capitulo
-              </option>
-              {titulos?.map(tit => {
-                return (
-                  <option>
-                    {tit.titulo}
+            {capitulosSQL?.length > 0 ?
+              <>
+                <select
+                  value={datos.datosPregunta.CapituloId}
+                  onChange={datos.handleChange}
+                  name="CapituloId"
+                  className='home-boton'>
+                  <option
+                    value=""
+                    disabled
+                    selected>
+                    Seleccione un capitulo
                   </option>
-                )
-              })
-              }
-            </select>
-            {datos.datosPregunta.titulo ?
-              <select
-                value={datos.datosPregunta.seccion}
-                onChange={datos.handleChange}
-                name="seccion"
-                className='home-boton'>
-                <option
-                  value=""
-                  disabled selected>
-                  Seleccione una seccion
-                </option>
-                {titulos?.map(tit => {
-                  if (tit.titulo === datos.datosPregunta.titulo) {
+                  {capitulosSQL?.map(cap => {
                     return (
-                      tit.secciones.map(s => {
+                      <option
+                        key={"capituloSQL-" + cap.CapituloId}
+                        value={cap.CapituloId}
+                      >
+                        {cap.CapituloNombre}
+                      </option>
+                    )
+                  })
+                  }
+                </select>
+                {datos.datosPregunta.CapituloId ?
+                  <select
+                    value={datos.datosPregunta.SeccionId}
+                    onChange={datos.handleChange}
+                    name="SeccionId"
+                    className='home-boton'>
+                    <option
+                      disabled selected>
+                      Seleccione una seccion
+                    </option>
+                    {seccionesSQL?.map(sec => {
+                      if (sec.CapituloId == datos.datosPregunta.CapituloId) {
                         return (
                           <option
-                            value={s}>
-                            {s}
+                            key={"seccionSQL" + sec.SeccionId}
+                            value={sec.SeccionId}>
+                            {sec.SeccionNombre}
                           </option>
+
                         )
-                      })
-                    )
-                  }
-                })
+                      }
+                    })
+                    }
+                  </select>
+                  : null
                 }
-              </select>
+              </>
               : null
             }
           </>
-          : <>
-            <select
-              value={datos.titulo}
-              onChange={vofhandleChange}
-              name="titulo"
-              className='home-boton'>
-              <option
-                disabled selected>
-                Seleccione un capitulo
-              </option>
-              {titulos?.map(tit => {
-                return (
-                  <option>
-                    {tit.titulo}
-                  </option>
-                )
-              })
-              }
-            </select>
-            {datos.titulo ?
-              <select
-                value={datos.seccion}
-                onChange={vofhandleChange}
-                name="seccion"
-                className='home-boton'>
-                <option disabled selected>
-                  Seleccione una seccion
-                </option>
-                {titulos?.map(tit => {
-                  if (tit.titulo === datos.titulo) {
-                    return (
-                      tit.secciones.map(s => {
-                        return (
-                          <option
-                            value={s}>
-                            {s}
-                          </option>
-                        )
+
+          :
+          <>
+
+            {
+              datos.datosPregunta ?
+                <>
+                  <select
+                    value={datos.datosPregunta.titulo}
+                    onChange={datos.handleChange}
+                    name="titulo"
+                    className='home-boton'>
+                    <option
+                      disabled selected>
+                      Seleccione un capitulo
+                    </option>
+                    {titulos?.map(tit => {
+                      return (
+                        <option>
+                          {tit.titulo}
+                        </option>
+                      )
+                    })
+                    }
+                  </select>
+                  {datos.datosPregunta.titulo ?
+                    <select
+                      value={datos.datosPregunta.seccion}
+                      onChange={datos.handleChange}
+                      name="seccion"
+                      className='home-boton'>
+                      <option
+                        value=""
+                        disabled selected>
+                        Seleccione una seccion
+                      </option>
+                      {titulos?.map(tit => {
+                        if (tit.titulo === datos.datosPregunta.titulo) {
+                          return (
+                            tit.secciones.map(s => {
+                              return (
+                                <option
+                                  value={s}>
+                                  {s}
+                                </option>
+                              )
+                            })
+                          )
+                        }
                       })
-                    )
+                      }
+                    </select>
+                    : null
                   }
-                })
-                }
-              </select>
-              : null
+                </>
+                : <>
+                  <select
+                    value={datos.titulo}
+                    onChange={vofhandleChange}
+                    name="titulo"
+                    className='home-boton'>
+                    <option
+                      disabled selected>
+                      Seleccione un capitulo
+                    </option>
+                    {titulos?.map(tit => {
+                      return (
+                        <option>
+                          {tit.titulo}
+                        </option>
+                      )
+                    })
+                    }
+                  </select>
+                  {datos.titulo ?
+                    <select
+                      value={datos.seccion}
+                      onChange={vofhandleChange}
+                      name="seccion"
+                      className='home-boton'>
+                      <option disabled selected>
+                        Seleccione una seccion
+                      </option>
+                      {titulos?.map(tit => {
+                        if (tit.titulo === datos.titulo) {
+                          return (
+                            tit.secciones.map(s => {
+                              return (
+                                <option
+                                  value={s}>
+                                  {s}
+                                </option>
+                              )
+                            })
+                          )
+                        }
+                      })
+                      }
+                    </select>
+                    : null
+                  }
+                </>
             }
-            </>
-}
           </>
       }
     </>

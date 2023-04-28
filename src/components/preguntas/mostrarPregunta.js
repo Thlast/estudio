@@ -92,7 +92,7 @@ export function MostrarPregunta(props) {
         preguntamodif = { ...response, id: idmodif }
       );
       preguntas.splice(indice, 1, preguntamodif)
-      document.getElementById(idmodif).scrollIntoView()
+      //document.getElementById(idmodif).scrollIntoView()
     } catch (error) {
       console.log(error)
     }
