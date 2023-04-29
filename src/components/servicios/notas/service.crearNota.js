@@ -2,9 +2,9 @@ import { alertasuccess } from "../../alertas";
 
 const urlserver = process.env.REACT_APP_SERVERSQL_PRODUCTION_URL || process.env.REACT_APP_SERVERSQL_LOCAL_URL
 
-export const agregarNota = async (privateStatus, curso, titulo, seccion, seccionId, contenido, notaName, usuario, event) => {
-  const url = `${urlserver}/crearNota`;
+export const agregarNota = async (privateStatus, curso, titulo, seccion, seccionId, capituloId, contenido, notaName, usuario, event) => {
   event.preventDefault();
+  const url = `${urlserver}/crearNota`;
 
   let respuesta = {};
 
@@ -17,6 +17,7 @@ export const agregarNota = async (privateStatus, curso, titulo, seccion, seccion
       capitulo: titulo,
       seccion: seccion,
       seccionId: seccionId,
+      capituloId: capituloId,
       contenido: contenido,
       name: notaName
     }),

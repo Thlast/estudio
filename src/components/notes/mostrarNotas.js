@@ -14,16 +14,16 @@ export function MostrarNotas(props) {
   const [notes, setNotes] = useState();
   const { curso } = props;
   const { seccion } = props;
-  const { seccionId } = props;
+  const { seccionId, capituloId } = props;
   const { titulo } = props;
   const { obtenerQnotes } = props;
   const [modificar, setModificar] = useState(false);
   const [notaModificar, setNotaModificar] = useState()
 
-  const notaModificada = async (privateStatus, usuario, curso, notaName, titulo, seccion, seccionId, contenido, idNotaModificar, indice, e) => {
+  const notaModificada = async (privateStatus, usuario, curso, notaName, titulo, seccion, seccionId, capituloId, contenido, idNotaModificar, indice, e) => {
     try {
       let notaModif = null
-      await modificarNota(privateStatus, usuario, curso, notaName, titulo, seccion, seccionId, contenido, idNotaModificar, e).then(response =>
+      await modificarNota(privateStatus, usuario, curso, notaName, titulo, seccion, seccionId, capituloId, contenido, idNotaModificar, e).then(response =>
         notaModif = { ...response, id: idNotaModificar }
       );
       notes.splice(indice, 1, notaModif)
@@ -48,11 +48,12 @@ export function MostrarNotas(props) {
     }
   }
 
-  const notaCreada = async (privateStatus, curso, titulo, seccion, seccionId, contenido, notaName, usuario, event) => {
+  const notaCreada = async (privateStatus, curso, titulo, seccion, seccionId, capituloId, contenido, notaName, usuario, event) => {
     event.preventDefault()
-    console.log(privateStatus, curso, titulo, seccion, seccionId, contenido, notaName, usuario)
+    //console.log(privateStatus, curso, titulo, seccion, seccionId, contenido, capituloId, notaName, usuario)
     try {
-      agregarNota(privateStatus, curso, titulo, seccion, seccionId, contenido, notaName, usuario, event)
+      
+      agregarNota(privateStatus, curso, titulo, seccion, seccionId, capituloId, contenido, notaName, usuario, event)
         .then(response =>
           setNotes(notes.concat(response))
         );
@@ -133,6 +134,7 @@ export function MostrarNotas(props) {
               curso={curso}
               seccion={seccion}
               seccionId={seccionId}
+              capituloId={capituloId}
             />
           </>
         }
@@ -143,6 +145,7 @@ export function MostrarNotas(props) {
             curso={notaModificar.curso}
             seccion={notaModificar.seccion}
             seccionId={notaModificar.seccionId}
+            capituloId={notaModificar.capituloId}
             titulo={notaModificar.capitulo}
             notaModificar={notaModificar}
             cancelarModificar={cancelarModificar}

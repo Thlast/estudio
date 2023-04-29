@@ -12,28 +12,42 @@ export function Nota(props) {
   const { notaEliminada } = props;
   const { user } = useAuth()
 
-
-
   return (
     <div
       key={"nota-" + n.id}
     >
       {seccion || seccionId ? null :
-        <span>{n.capitulo + " → "}
-          {n.seccion ?
-            <Link
-              style={{ textDecoration: "underline" }}
-              to={`/cursos/${n.curso}/${n.capitulo}/${n.seccion}`}>
-              {n.seccion}
-            </Link>
-            :
-            <Link
-              style={{ textDecoration: "underline" }}
-              to={`/cursosSQL/${n.curso}/${n.capitulo}/${n.seccionId}`}>
-              {n.seccionId}
-            </Link>
+      <>
+      <div>
+        <span>
+          {n.seccion &&
+            <>
+              {n.capitulo + " → "}
+
+              <Link
+                style={{ textDecoration: "underline" }}
+                to={`/cursos/${n.curso}/${n.capitulo}/${n.seccion}`}>
+                {n.seccion}
+              </Link>
+            </>
           }
-        </span>
+           </span>
+           </div>
+           <div>
+           <span>
+          {n.SeccionId &&
+            <>
+              {n.CapituloId + " → "}
+              <Link
+                style={{ textDecoration: "underline" }}
+                to={`/cursosSQL/${n.curso}/${n.CapituloId}/${n.capitulo}/${n.SeccionId}`}>
+                Ir a la seccion: {n.SeccionId}
+              </Link>
+            </>
+          }
+       </span>
+       </div>
+       </>
       }
       <div
         className="cuadro cuadro-pregunta"
