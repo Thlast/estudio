@@ -41,7 +41,7 @@ export function Secciones() {
         setCargando(false)
       }
       );
-      recargarFuncionClickcode()
+    recargarFuncionClickcode()
   }
   useEffect(() => {
     cargarPagina()
@@ -159,11 +159,11 @@ export function Secciones() {
     e.preventDefault()
     if (nombreSeccion.length >= 3) {
       try {
-  
+
         await modificarSeccion(nombreSeccion, contenido, SeccionId, e).then(response =>
           setContenidoSeccion(response)
         );
-      
+
       } catch (error) {
         console.log(error)
       }
@@ -229,22 +229,22 @@ export function Secciones() {
             <div
               style={{ display: `${info ? "block" : "none"}` }}
               class="secciones">
-                {editMode ?
-                    <ModificarSeccion
-                      modificarActualizar={modificarActualizar}
-                      cargando={cargando}
-                      seccionModificar={contenidoSeccion}
-                      capituloId={capituloId}
-                      previsualizar={previsualizar} />
-                    :
-                    <TextoCursoSQL
-                      cargando={cargando}
-                      contenidoSeccion={contenidoSeccion}
-                      recargarFuncionClickcode={recargarFuncionClickcode}
-                      mobile={mobile}
-                      titulo={titulo}
-                    />
-                  }
+              {editMode ?
+                <ModificarSeccion
+                  modificarActualizar={modificarActualizar}
+                  cargando={cargando}
+                  seccionModificar={contenidoSeccion}
+                  capituloId={capituloId}
+                  previsualizar={previsualizar} />
+                :
+                <TextoCursoSQL
+                  cargando={cargando}
+                  contenidoSeccion={contenidoSeccion}
+                  recargarFuncionClickcode={recargarFuncionClickcode}
+                  mobile={mobile}
+                  titulo={titulo}
+                />
+              }
               <>
                 <hr></hr>
                 <blockquote>
@@ -260,13 +260,14 @@ export function Secciones() {
               </>
             </div>
             <div class="secciones">
-              {buscador ?
+              <div
+                style={{ display: `${buscador ? "block" : "none"}` }}
+              >
                 <Buscador
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   cursoBuscador={curso}
                 />
-                : null}
-
+              </div>
               <div
                 style={{ display: `${mostrarConsola ? "block" : "none"}` }}
               >
