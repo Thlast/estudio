@@ -33,6 +33,10 @@ export function Examenes() {
     getExamenes()
   }, [])
 
+  useEffect(() => {
+    setCurso(examenBuscar)
+  }, [examenBuscar])
+
   const [nombre, setNombre] = useState()
   const agregarExamen = async (nombre, user, usernombre, materia, fecha) => {
     const docRef = await addDoc(collection(db, 'examenes'), { nombre, user, usernombre, materia, fecha })
@@ -192,7 +196,6 @@ export function Examenes() {
                     </Link>
                   )
                 })}
-              {examenBuscar !== "" ? "" :
                 <form
                   onSubmit={(e) => agExa(e, curso)}
                   className="examen-agregar">
@@ -203,6 +206,7 @@ export function Examenes() {
                     placeholder='Introducir un nombre'
                     onChange={(e) => setNombre(e.target.value)}>
                   </input>
+
                   <select
                   className='home-boton'
                     required
@@ -226,6 +230,7 @@ export function Examenes() {
                       )
                     })}
                   </select>
+
                   <button
                     className='home-boton'
                   // onClick={() => agExa()}
@@ -233,7 +238,7 @@ export function Examenes() {
                     Agregar Exámen
                   </button>
                 </form>
-              }
+              
             </div>
           </div>
         }
