@@ -100,9 +100,11 @@ export function Curso() {
               )
             }
             )}
+               <Secciones />
             {cargando ? <Spinner /> :
               <div class='curso-capitulos-contenedor'>
-                   
+                <hr></hr>
+                   Del archivo fijo:
                 {datosCaps ?
                   datosCaps.map((s, num) => {
 
@@ -167,7 +169,7 @@ export function Curso() {
 
               </div>
             }
-                    <Secciones />
+                 
           </div>
           
         </div>
