@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Buscador } from './buscador';
@@ -11,64 +11,70 @@ import { SelectMateria } from './selectMateria';
 
 export function Perfil() {
 
-    const {reiniciarHistorial} = useContext(ResueltasContext)
-    const {loading} = useAuth();
-    const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
-    const [agregar, setAgregar] = useState(false);
-    const [buscador, setBuscador] = useState(false);
-    const navigate = useNavigate();
+  const { reiniciarHistorial } = useContext(ResueltasContext)
+  const { loading } = useAuth();
+  const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
+  const [agregar, setAgregar] = useState(false);
+  const [ocultarPreguntas, setOcultarPreguntas] = useState(false);
+  const [buscador, setBuscador] = useState(false);
+  const [mostrarNotas, setMostrarNotas] = useState(false);
+  const navigate = useNavigate();
 
-    const {matPreferida} = useContext(MateriasContext);
-    const {materias} = useContext(MateriasContext);
-    const {preferenciaMateria} = useContext(MateriasContext);
-  
+  const { matPreferida } = useContext(MateriasContext);
+  const { materias } = useContext(MateriasContext);
+  const { preferenciaMateria } = useContext(MateriasContext);
 
-    const [mostrarNotas, setMostrarNotas] = useState(false);
+  useEffect(() => {
 
-    const agregarPregunta = () => {
-      setMostrarPreguntas(false);
-      setAgregar(!agregar);
-      setBuscador(false)
-      setMostrarNotas(false)
-    }
+    setOcultarPreguntas(buscador || mostrarNotas)
 
-    const most = () => {
-      setMostrarPreguntas(!mostrarPreguntas);
-      setMostrarNotas(false)
-      setAgregar(false);
-      setBuscador(false)
-    }
+  }, [buscador, mostrarNotas])
 
-    const mostNotas = () => {
-      setMostrarNotas(!mostrarNotas)
-      setMostrarPreguntas(false);
-      setAgregar(false);
-      setBuscador(false)
-    }
 
-    const buscarPregunta = () => {
-      setBuscador(!buscador)
-      setAgregar(false)
-      setMostrarPreguntas(false)
-      setMostrarNotas(false)
-    }
-    const limpiarHistorialUsuario = () => {
+  const agregarPregunta = () => {
+    setMostrarPreguntas(false);
+    setAgregar(!agregar);
+    setBuscador(false)
+    setMostrarNotas(false)
+  }
 
-      alertalimpiarHistorialUsuario(reiniciarHistorial)
-    }
-    
+  const most = () => {
+    setMostrarPreguntas(!mostrarPreguntas);
+    setMostrarNotas(false)
+    setAgregar(false);
+    setBuscador(false)
+  }
 
-    if(loading) return <h1>Loading...</h1>
-  
-    return (
-      <div className="App">
-        <main className="perfil">
+  const mostNotas = () => {
+    setMostrarNotas(!mostrarNotas)
+    setMostrarPreguntas(false);
+    setAgregar(false);
+    setBuscador(false)
+  }
+
+  const buscarPregunta = () => {
+    setBuscador(!buscador)
+    setAgregar(false)
+    setMostrarPreguntas(false)
+    setMostrarNotas(false)
+  }
+  const limpiarHistorialUsuario = () => {
+
+    alertalimpiarHistorialUsuario(reiniciarHistorial)
+  }
+
+
+  if (loading) return <h1>Loading...</h1>
+
+  return (
+    <div className="App">
+      <main className="perfil">
         <div className='menuperfil'>
           <nav >
             <ul>
-            <li>
-              <SelectMateria />
-      {/* <select 
+              <li>
+                <SelectMateria />
+                {/* <select 
         onChange={(e) => preferenciaMateria(e.target.value)} 
         class="boton home-boton" 
         value={matPreferida}
@@ -85,93 +91,95 @@ export function Perfil() {
        )
       })}
    </select> */}
-     </li>  
-     <hr></hr>
-              <li>
-            <Link 
-            className='perfil-boton'
-            to="/examenes">Examenes
-            </Link>
-            </li>
+              </li>
               <hr></hr>
               <li>
-              <button 
-              className='perfil-boton'
-              onClick={() => most()}>
+                <Link
+                  className='perfil-boton'
+                  to="/examenes">Examenes
+                </Link>
+              </li>
+              <hr></hr>
+              <li>
+                <button
+                  className='perfil-boton'
+                  onClick={() => most()}>
                   Mis preguntas
-              </button>
+                </button>
               </li>
               <hr></hr>
               <li>
-              <button 
-              className='perfil-boton'
-              onClick={() => mostNotas()}>
+                <button
+                  className='perfil-boton'
+                  onClick={() => mostNotas()}>
                   Mis notas
-              </button>
+                </button>
               </li>
               <hr></hr>
               <li>
-              <button
-              className='perfil-boton'
-              onClick={() => agregarPregunta()}
-              >
+                <button
+                  className='perfil-boton'
+                  onClick={() => agregarPregunta()}
+                >
                   Agregar Pregunta
-              </button>
+                </button>
               </li>
               <hr></hr>
               <li>
-              <button
-              className='perfil-boton'
-              onClick={() => buscarPregunta()}
-              >
+                <button
+                  className='perfil-boton'
+                  onClick={() => buscarPregunta()}
+                >
                   Buscador
-              </button>
+                </button>
               </li>
               <hr></hr>
               <li>
-              <button
-              className='perfil-boton'
-              onClick={() => limpiarHistorialUsuario()}
-              > Borrar historial
-              </button>
+                <button
+                  className='perfil-boton'
+                  onClick={() => limpiarHistorialUsuario()}
+                > Borrar historial
+                </button>
               </li>
               <hr></hr>
               <li>
-              <button
-              className='perfil-boton'
-              onClick={() => navigate("/calculadora-prestamos")}
-              > Calculadora prestamos
-              </button>
+                <button
+                  className='perfil-boton'
+                  onClick={() => navigate("/calculadora-prestamos")}
+                > Calculadora prestamos
+                </button>
               </li>
               <hr></hr>
               <li>
-            <Link 
-            className='perfil-boton'
-            to="/estados-contables">Estados contables
-            </Link>
-            </li>
+                <Link
+                  className='perfil-boton'
+                  to="/estados-contables">Estados contables
+                </Link>
+              </li>
             </ul>
           </nav>
-          </div>
-          <div>
+        </div>
+        <div>
           {
             mostrarNotas &&
-            <MostrarNotas 
-            curso={matPreferida}
+            <MostrarNotas
+              curso={matPreferida}
             />
           }
           {buscador &&
-          <Buscador />
-          }     
-          <MostrarPregunta 
-          filtro={matPreferida}
-          curso={matPreferida}
-          perfil={true}
-          agregar={agregar} 
-          edit={true} 
-          mostrarPreguntas={mostrarPreguntas} /> 
+            <Buscador />
+          }
+          <div style={ocultarPreguntas ? { display: "none" } : { display: "block" }}>
+            <MostrarPregunta
+              filtro={matPreferida}
+              curso={matPreferida}
+              perfil={true}
+              agregar={agregar}
+              edit={true}
+              mostrarPreguntas={mostrarPreguntas} />
+          </div>
         </div>
       </main>
-      </div>
-    );
-  }
+    </div>
+  );
+}
