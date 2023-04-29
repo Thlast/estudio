@@ -21,8 +21,8 @@ export const crearSeccion = async (capituloId, nombreSeccion, contenido, event) 
   }).then(res => res.json())
     .catch(error => (console.error('Error:', error)))
     .then(response => (
-      console.log('Capitulo agregado:', response),
-      alertasuccess("Capitulo agregado"),
+      console.log('Seccion agregada:', response),
+      alertasuccess("Seccion agregada"),
       respuesta = response)
     )
   return respuesta
