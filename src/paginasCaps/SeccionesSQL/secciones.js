@@ -229,13 +229,22 @@ export function Secciones() {
             <div
               style={{ display: `${info ? "block" : "none"}` }}
               class="secciones">
-              <TextoCursoSQL
-                cargando={cargando}
-                contenidoSeccion={contenidoSeccion}
-                recargarFuncionClickcode={recargarFuncionClickcode}
-                mobile={mobile}
-                titulo={titulo}
-              />
+                {editMode ?
+                    <ModificarSeccion
+                      modificarActualizar={modificarActualizar}
+                      cargando={cargando}
+                      seccionModificar={contenidoSeccion}
+                      capituloId={capituloId}
+                      previsualizar={previsualizar} />
+                    :
+                    <TextoCursoSQL
+                      cargando={cargando}
+                      contenidoSeccion={contenidoSeccion}
+                      recargarFuncionClickcode={recargarFuncionClickcode}
+                      mobile={mobile}
+                      titulo={titulo}
+                    />
+                  }
               <>
                 <hr></hr>
                 <blockquote>
