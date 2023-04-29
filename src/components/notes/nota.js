@@ -37,11 +37,11 @@ export function Nota(props) {
            <span>
           {n.SeccionId &&
             <>
-              {n.CapituloId + " → "}
+              {n.CapituloNombre + " → "}
               <Link
                 style={{ textDecoration: "underline" }}
-                to={`/cursosSQL/${n.curso}/${n.CapituloId}/${n.capitulo}/${n.SeccionId}`}>
-                Ir a la seccion: {n.SeccionId}
+                to={`/cursosSQL/${n.curso}/${n.CapituloId}/${n.CapituloNombre}/${n.SeccionId}`}>
+                {n.SeccionNombre}
               </Link>
             </>
           }
