@@ -285,6 +285,7 @@ export function Secciones() {
                   <MostrarNotas
                     obtenerContenidoNotas={obtenerContenidoNotas}
                     seccionId={id}
+                    capituloId={capituloId}
                     titulo={titulo}
                     obtenerQnotes={obtenerQnotes}
                     curso={curso} />
@@ -423,6 +424,7 @@ export function Secciones() {
                         <MostrarNotas
                           obtenerContenidoNotas={obtenerContenidoNotas}
                           seccionId={id}
+                          capituloId={capituloId}
                           titulo={titulo}
                           obtenerQnotes={obtenerQnotes}
                           curso={curso} />
