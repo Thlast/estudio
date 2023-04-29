@@ -21,7 +21,7 @@ export function MostrarDef(props) {
       setCargando(true)
     }
 
-    if(dic !== ""){
+    if(dic !== "" && dic){
     // Creamos el controlador para abortar la petición
     const controller = new AbortController()
     // Recuperamos la señal del controlador
