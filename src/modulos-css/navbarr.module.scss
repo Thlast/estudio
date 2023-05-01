@@ -1,166 +1,185 @@
 .links {
-    background: var(--body-color);
-    color: var(--text-color);
-    font-size: 20px;
-    text-decoration: none;
-    border: none;
-    width: 100%;
-    height: 100%;
+  background: var(--body-color);
+  color: var(--text-color);
+  font-size: 17px;
+  text-decoration: none;
+  border: none;
+  width: 100%;
+  height: 100%;
 }
+
 .botonActivo {
-    background: var(--text-color);
-    color: var(--body-color);
-    font-size: 20px;
-    text-decoration: none;
-    border: none;
-    width: 100%;
-    height: 100%;
+  background: var(--text-color);
+  color: var(--body-color);
+  font-size: 17px;
+  text-decoration: none;
+  border: none;
+  width: 100%;
+  height: 100%;
 }
+
 .contenedor {
-    background-color: var(--secundario);
-    display: grid;
-    grid-template-columns: 40% 60%;
-    //grid-template-rows: 67px;
-    align-items: center;
-    color: var(--text-color);
-    width: 100%;
-    justify-content: flex-end;
-    font-size: 20px;
-    border-bottom: 1px solid var(--text-color);
+  background-color: var(--secundario);
+  display: grid;
+  grid-template-columns: 40% 60%;
+  //grid-template-rows: 67px;
+  align-items: center;
+  color: var(--text-color);
+  width: 100%;
+  justify-content: flex-end;
+  font-size: 17px;
+  border-bottom: 1px solid var(--text-color);
+}
+
+.contenedorMobile {
+  background-color: var(--secundario);
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  color: var(--text-color);
+  width: 100%;
+  justify-content: flex-end;
+  font-size: 20px;
+  border-bottom: 1px solid var(--text-color);
 }
 
 .contenedorlista {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    box-sizing: border-box;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+.elementolista {
+  display: flex;
+  color: var(--text-color);
+  border: var(--text-color) solid 1px;
+  background-color: none;
+  width: 100px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px 0.5px var(--text-color);
+}
+
+.elementolista button:hover {
+  background-color: var(--text-color);
+  color: var(--body-color) !important;
+
+}
+
+.links:hover {
+  background-color: var(--text-color);
+  color: var(--body-color);
+}
+
+.usuario {
+  padding: 0px 0px 0px 100px;
+  gap: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.botoneditar {
+  width: 30px;
+  background: none;
+  border: none;
+  color: var(--text-color);
+}
+
+.botonconfirmar {
+  background: none;
+  border: none;
+  font-size: 25px;
+}
+
+.botonconfirmar:hover {
+  color: #0fc956;
+}
+
+.botoncancelar {
+  background: none;
+  border: none;
+  font-size: 25px;
+}
+
+.botoncancelar:hover {
+  color: #b40a0a;
+}
+
+.usermodificar {
+  width: 100px;
+}
+
+.login {
+  text-align: right;
+  padding: 20px;
+}
+
+.loginlinks {
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  border: none;
+}
+
+.loginlinks:hover {
+  color: #61dafb;
+
+}
+
+.elementolista button:hover {
+  background-color: var(--text-color) !important;
+  border: none !important;
+  color: #ffffff;
+}
+
+// @media screen and (max-width: 1050px) {
+//   .links {
+
+//     font-size: 15px;
+//   } .botonActivo {
+
+//     font-size: 15px;
+//   }
+
+//   .contenedor {
+//       grid-template-columns: 28% 72%;
+//   } .usuario {
+//      display: flex;
+//      flex-direction: column;
+//       font-size: 15px;
+//     }.botonconfirmar {
+//       font-size: 15px;
+//     }.botoncancelar {
+//       font-size: 15px;
+//     } .usermodificar {
+//       width: 60px;
+//     }
+// }
+@media screen and (max-width: 500px) {
+  .links {
+    font-size: 15px;
   }
   .elementolista {
-    display: flex;
-    color: var(--text-color);
-    border: var(--text-color) solid 1px;
-    background-color: none;
-    width: 100px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 5px 0.5px var(--text-color);
+    width: 60px;
   }
-  .elementolista button:hover {
-    background-color: var(--text-color);
-    color: var(--body-color) !important;
-    
-  }
-  .links:hover {
-    background-color: var(--text-color);
-    color: var(--body-color);
-  }
-  .usuario {
-    padding: 0px 0px 0px 100px;
-    gap: 15px;
-    display: flex;
-    align-items: center;
-  }
-  .botoneditar {
-    width: 30px;
-    background: none;
-    border: none;
-    color: var(--text-color);
-  }
-  .botonconfirmar {
-    background: none;
-    border: none;
-    font-size: 25px;
-  }
-  .botonconfirmar:hover {
-    color: #0fc956;
-  }
-  .botoncancelar {
-    background: none;
-    border: none;
-    font-size: 25px;
-  }
-  .botoncancelar:hover {
-    color: #b40a0a;
-  }
-  .usermodificar {
-    width: 100px;
-  }
-  .login {
-    text-align: right;
-    padding: 20px;
-  }
-  .loginlinks {
-    font-size: 20px;
-    text-decoration: none;
-    color: var(--text-color);
-    border: none;
-  }
-  .loginlinks:hover {
-    color: #61dafb;
+}
 
-  }
+// @media screen and (max-width: 350px) {
+//   .elementolista {
+//       width: 80px;
+//   }
+//   .links {
 
-  .elementolista button:hover {
-    background-color: var(--text-color) !important;
-    border: none !important;
-    color: #ffffff;
-  }
-  
-  @media screen and (max-width: 1050px) {
-    .links {
-      
-      font-size: 15px;
-    } .botonActivo {
-      
-      font-size: 15px;
-    }
-    
-    .contenedor {
-        grid-template-columns: 28% 72%;
-    } .usuario {
-       display: flex;
-       flex-direction: column;
-        font-size: 15px;
-      }.botonconfirmar {
-        font-size: 15px;
-      }.botoncancelar {
-        font-size: 15px;
-      } .usermodificar {
-        width: 60px;
-      }
-  }
-  @media screen and (max-width: 500px) {
-    .contenedorlista {
-        padding-left: 5px;
-      display: grid;
-      grid-template-columns: 50% 50%;
-      gap: 5px;
-    } .contenedor {
-        grid-template-columns: 35% 65%;
-    } .usuario {
-        padding-left: 5px;
-       display: flex;
-       flex-direction: column;
-       font-size: 15px;
-      } .links {
-        font-size: 15px;
-      }
-  }
-  @media screen and (max-width: 350px) {
-    .elementolista {
-        width: 80px;
-    }
-    .links {
-        
-        font-size: 13px;
-      }.contenedor {
-        grid-template-columns: 40% 60%;
-    } .login {
-        display: flex;
-        text-align: left;
-        padding: 0;
-    }
-  }
+//       font-size: 13px;
+//     }.contenedor {
+//       grid-template-columns: 40% 60%;
+//   } .login {
+//       display: flex;
+//       text-align: left;
+//       padding: 0;
+//   }
+// }

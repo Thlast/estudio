@@ -13,6 +13,7 @@
 }
 
 .botonconfirmar {
+    color: var(--text-color);
     background: none;
     border: none;
     font-size: 25px;
@@ -23,6 +24,7 @@
 }
 
 .botoncancelar {
+    color: var(--text-color);
     background: none;
     border: none;
     font-size: 25px;
@@ -34,4 +36,24 @@
 
 .usermodificar {
     width: 100px;
+}
+
+.links {
+    background: var(--body-color);
+    color: var(--text-color);
+    font-size: 17px;
+    text-decoration: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.botonActivo {
+    background: var(--text-color);
+    color: var(--body-color);
+    font-size: 17px;
+    text-decoration: none;
+    border: none;
+    width: 100%;
+    height: 100%;
 }
