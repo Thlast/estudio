@@ -10,6 +10,9 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import { alertainfo } from "../components/alertas";
+import { db } from '../firebase';
+import { doc, setDoc, addDoc, getDoc } from 'firebase/firestore';
+
 
 export const authContext = createContext();
 
@@ -22,6 +25,28 @@ export const useAuth = () => {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+    //parte del usuario
+
+ 
+    const [datosUser, setDatosUser] = useState();
+  
+    const obtenerUser = async () => {
+      const dbUser = doc(db, "usuarios/"+user?.uid);
+      const document = await getDoc(dbUser); 
+  
+      if (!document.exists) {
+        console.log('No such document!');
+      } else {
+        setDatosUser(document.data())
+      }
+    }
+    
+    useEffect(() => {
+  
+      obtenerUser()
+    }, [user]
+    )
 
   const signup = (email, password, displayName) => {
     return createUserWithEmailAndPassword(auth, email, password, displayName);
@@ -62,6 +87,8 @@ export function AuthProvider({ children }) {
     <authContext.Provider
       value={{
         editMode,
+        datosUser,
+        obtenerUser,
         changeEditMode,
         signup,
         login,

@@ -1,0 +1,37 @@
+.usuario {
+    padding: 0px 0px 0px 20px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.botoneditar {
+    width: 30px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+}
+
+.botonconfirmar {
+    background: none;
+    border: none;
+    font-size: 25px;
+}
+
+.botonconfirmar:hover {
+    color: #0fc956;
+}
+
+.botoncancelar {
+    background: none;
+    border: none;
+    font-size: 25px;
+}
+
+.botoncancelar:hover {
+    color: #b40a0a;
+}
+
+.usermodificar {
+    width: 100px;
+}

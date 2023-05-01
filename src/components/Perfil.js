@@ -1,138 +1,164 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Buscador } from './buscador';
-import { MostrarPregunta } from './preguntas/mostrarPregunta';
 import { alertalimpiarHistorialUsuario } from './alertas';
 import { ResueltasContext } from '../context/Resueltas'
-import { MostrarNotas } from './notes/mostrarNotas';
-import { MateriasContext } from '../context/MateriasContext';
 import { SelectMateria } from './selectMateria';
-
+import { db } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { getAuth, updateProfile } from "firebase/auth";
+import style from '../modulos-css/Perfil.module.css'
 export function Perfil() {
 
   const { reiniciarHistorial } = useContext(ResueltasContext)
-  const { loading } = useAuth();
-  const [mostrarPreguntas, setMostrarPreguntas] = useState(false);
-  const [agregar, setAgregar] = useState(false);
-  const [ocultarPreguntas, setOcultarPreguntas] = useState(false);
-  const [buscador, setBuscador] = useState(false);
-  const [mostrarNotas, setMostrarNotas] = useState(false);
+  const { loading, datosUser, user, obtenerUser } = useAuth();
+  const auth = getAuth();
   const navigate = useNavigate();
+  const [editUser, setEditUser] = useState(false)
+  const [nombreUser, setNombreUser] = useState();
 
-  const { matPreferida } = useContext(MateriasContext);
-  const { materias } = useContext(MateriasContext);
-  const { preferenciaMateria } = useContext(MateriasContext);
+  const modNombre = async (nombreUser, e) => {
+    e.preventDefault()
+    if (nombreUser.length > 0){
+      await setDoc(doc(db, "usuarios/"+user.uid), { nombre: nombreUser}, {merge: true});
+      updateProfile(auth.currentUser, {
+        displayName: nombreUser
+      }).then(() => {
+        alert("Profile updated!")
+        getAuth()
+        obtenerUser()
+        setEditUser(false)
+      }).catch((error) => {
+        alert("An error occurred " + error)
 
-  useEffect(() => {
-
-    setOcultarPreguntas(buscador || mostrarNotas)
-
-  }, [buscador, mostrarNotas])
-
-
-  const agregarPregunta = () => {
-    setMostrarPreguntas(false);
-    setAgregar(!agregar);
-    setBuscador(false)
-    setMostrarNotas(false)
+      }); 
+    }
+    
+      else {
+      alert("Escribe un nombre")
+    }
   }
 
-  const most = () => {
-    setMostrarPreguntas(!mostrarPreguntas);
-    setMostrarNotas(false)
-    setAgregar(false);
-    setBuscador(false)
-  }
-
-  const mostNotas = () => {
-    setMostrarNotas(!mostrarNotas)
-    setMostrarPreguntas(false);
-    setAgregar(false);
-    setBuscador(false)
-  }
-
-  const buscarPregunta = () => {
-    setBuscador(!buscador)
-    setAgregar(false)
-    setMostrarPreguntas(false)
-    setMostrarNotas(false)
-  }
   const limpiarHistorialUsuario = () => {
 
     alertalimpiarHistorialUsuario(reiniciarHistorial)
   }
 
+  
 
   if (loading) return <h1>Loading...</h1>
 
   return (
-    <div className="App">
+    <div >
       <main className="perfil">
         <div className='menuperfil'>
           <nav >
             <ul>
               <li>
+              {editUser ?
+              <form>
+                <input
+                  className={style.usermodificar}
+                  placeholder={datosUser?.nombre}
+                  onChange={(e) => setNombreUser(e.target.value)}
+                >
+                </input>
+                <span>
+                  <button
+                    onClick={(e) => modNombre(nombreUser, e)}
+                    className={style.botonconfirmar}
+                    >
+                    ✓
+                  </button>
+                  <button
+                  type='button'
+                    onClick={() => setEditUser(false)}
+                    className={style.botoncancelar}
+                    >
+                    ✘
+                  </button>
+                </span>
+              </form>
+              : <div>
+                <span>
+                  {datosUser?.nombre}
+                </span>
+                <button
+                  onClick={() => setEditUser(true)}
+                  className={style.botoneditar}
+                  >
+                  &#9999;
+                </button>
+              </div>}
+              </li>
+              <hr></hr>
+              <li>
                 <SelectMateria />
-                {/* <select 
-        onChange={(e) => preferenciaMateria(e.target.value)} 
-        class="boton home-boton" 
-        value={matPreferida}
-        name="curso"
-        for="materias">
-{
-    materias.map(a => {
-          return (
-      <option 
-      key={"materia-"+a.CursoId}
-      value={a.CursoId}>
-        {a.CursoNombre}
-      </option>      
-       )
-      })}
-   </select> */}
               </li>
               <hr></hr>
               <li>
                 <Link
+                  draggable={false}
                   className='perfil-boton'
                   to="/examenes">Examenes
                 </Link>
               </li>
-              <hr></hr>
+              {/* <hr></hr>
               <li>
                 <button
                   className='perfil-boton'
                   onClick={() => most()}>
                   Mis preguntas
                 </button>
-              </li>
+              </li> */}
               <hr></hr>
+
               <li>
-                <button
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to={"/menu/mis-notas"}>
+                  Mis notas
+                </Link>
+              </li>
+              {/* <button
                   className='perfil-boton'
                   onClick={() => mostNotas()}>
                   Mis notas
-                </button>
-              </li>
+                </button> */}
+
               <hr></hr>
+
               <li>
-                <button
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to="/menu/mis-preguntas">Mis preguntas
+                </Link>
+              </li>
+              {/* <button
                   className='perfil-boton'
                   onClick={() => agregarPregunta()}
                 >
                   Agregar Pregunta
-                </button>
-              </li>
+                </button> */}
+
               <hr></hr>
+
               <li>
-                <button
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to="/menu/buscador">Buscador
+                </Link>
+              </li>
+              {/* <button
                   className='perfil-boton'
                   onClick={() => buscarPregunta()}
                 >
                   Buscador
-                </button>
-              </li>
+                </button> */}
+
               <hr></hr>
               <li>
                 <button
@@ -152,6 +178,7 @@ export function Perfil() {
               <hr></hr>
               <li>
                 <Link
+                  draggable={false}
                   className='perfil-boton'
                   to="/estados-contables">Estados contables
                 </Link>
@@ -159,7 +186,7 @@ export function Perfil() {
             </ul>
           </nav>
         </div>
-        <div>
+        {/* <div>
           {
             mostrarNotas &&
             <MostrarNotas
@@ -178,7 +205,7 @@ export function Perfil() {
               edit={true}
               mostrarPreguntas={mostrarPreguntas} />
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   );

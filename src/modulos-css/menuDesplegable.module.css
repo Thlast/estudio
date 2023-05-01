@@ -1,0 +1,80 @@
+.menu {
+    position: fixed;
+    top: 0;
+    left: -290px;
+    width: 300px;
+    max-height: 100%;
+    background-color: var(--secundario);
+    color: var(--text-color);
+    /* transition: all 0.5s ease-in-out; */
+    touch-action: none; /* Deshabilita la interacción táctil para evitar conflictos */
+    z-index: 2;
+    user-select: none;
+    border-right: 1px solid var(--border-cuadro);
+    box-shadow: 2px 3px 2px var(--secundario);
+  }
+  
+  .menuOpen {
+    position: fixed;
+    top: 0;
+    width: 300px;
+    max-height: 100%;
+    background-color: var(--secundario);
+    color: var(--text-color);
+    /* transition: all 0.5s ease-in-out; */
+    touch-action: none; /* Deshabilita la interacción táctil para evitar conflictos */
+    z-index: 2;
+    user-select: none;
+    border-right: 1px solid var(--border-cuadro);
+    box-shadow: 2px 3px 2px var(--secundario);
+    overflow-y: auto;
+  }
+  @media screen and (max-width: 500px) {
+    .menu {
+      left: -300px;
+    }
+    /* .menuOpen {
+      overflow-y: scroll;
+    } */
+  }
+  .abrirMenu {
+    position: fixed;
+    left: 10px;
+    top: 15px;
+    z-index: 2;
+    background: none;
+    border: none;
+    color: var(--text-color);
+  }
+  .cerrarMenu {
+    position: fixed;
+    left: 270px;
+    top: 15px;
+    z-index: 2;
+    background: none;
+    border: none;
+    color: var(--text-color);
+  }
+  /* .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0 0 0;
+    text-align: right;
+  }
+  
+  .menu li {
+    margin: 10px 0;
+    font-size: 24px;
+  }
+  
+  
+  .menu button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  } */
+  
+  .content {
+    padding: 50px;
+  }
+  
