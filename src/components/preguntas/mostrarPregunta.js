@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { eliminarPregunta } from '../servicios/preguntas/eliminarPregunta';
 import { obtenerExamen, obtenerPregunta, obtenerSeccion, obtenerUsuario, getPreguntaSeccionId } from '../servicios/preguntas/obtenerPregunta';
 import { FormAgregarPregunta } from './formAgregarPregunta';
@@ -13,7 +13,7 @@ import { FormVof } from './VoF';
 import { alertainfo } from '../alertas';
 import { serverModificarVof } from "../servicios/preguntas/modificarVof";
 import { crearVoF } from "../servicios/preguntas/crearVoF";
-
+import { MateriasContext } from '../../context/MateriasContext';
 export function MostrarPregunta(props) {
 
   const { quitar } = props;
@@ -24,7 +24,8 @@ export function MostrarPregunta(props) {
   const { seccion } = props;
   const { seccionId, capituloId } = props;
   const { user } = useAuth();
-  const { curso } = props;
+  const {matPreferida} = useContext(MateriasContext)
+  const curso = props?.curso || matPreferida;
   let edit = props.edit;
   const mostrarPreguntas = props.mostrarPreguntas
   const [modificar, setModificar] = useState(false)
@@ -36,9 +37,15 @@ export function MostrarPregunta(props) {
   const { eliminarExamen } = props
   const { perfil } = props
   const [datosVof, setDatosVof] = useState()
-  const { filtro } = props
+  const [filtro, setFiltro] = useState() 
   const [filtroUser, setFiltroUser] = useState(false)
   const { obtenerQpreguntas } = props;
+
+  useEffect(() => {
+    if (perfil) {
+      setFiltro(matPreferida)
+    }
+  }, [matPreferida])
 
   useEffect(() => {
     if (seccion || seccionId) {
@@ -156,6 +163,7 @@ export function MostrarPregunta(props) {
 
   return (
     <>
+    <div className={perfil ? 'menuContenedor' : ""}>
       {mostrarPreguntas & !modificar & !modificarVof ?
         cargandoPreguntas ? <Spinner></Spinner> :
           <div
@@ -274,7 +282,7 @@ export function MostrarPregunta(props) {
           />
         </div>
       }
+      </div>
     </>
-
   );
 }

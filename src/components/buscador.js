@@ -13,6 +13,7 @@ export const Buscador = (props) => {
   const { materias } = useContext(MateriasContext);
   const { matPreferida } = useContext(MateriasContext);
   const { cursoBuscador } = props
+  const { perfil } = props
   const [valor, setValor] = useState(null);
   const [valorEnviado, setValorEnviado] = useState();
   const [resultados, setResultados] = useState([]);
@@ -54,14 +55,15 @@ export const Buscador = (props) => {
   }
 
   return (
-    <div>
+    <div className={perfil ? "menuContenedor" : ""}>
       <div
         className="buscador">
-        <div>
+        <div style={{display:"flex", flexDirection:"column", gap:"15px", alignItems:"center"}}>
           {cursoBuscador ? null :
             <>
               <select
                 onChange={(e) => cambiarCurso(e.target.value)}
+                style={{width:"fit-content"}}
                 class="boton home-boton"
                 value={curso}
                 for="materias">
@@ -76,18 +78,22 @@ export const Buscador = (props) => {
                     )
                   })}
               </select>
-              <select
-                onChange={(e) => setLimit(e.target.value)}
-                class="boton home-boton">
-                <option>
-                  50
-                </option>
-                <option>
-                  100
-                </option>
-              </select>
+
             </>
           }
+          <div>
+          Limite de resultados: {" "}
+          <select
+            onChange={(e) => setLimit(e.target.value)}
+            class="boton home-boton">
+            <option>
+              50
+            </option>
+            <option>
+              100
+            </option>
+          </select>
+          </div>
         </div>
         <form
           onSubmit={(e) => find(valor, e)}
@@ -145,7 +151,6 @@ export const Buscador = (props) => {
           </div>
           {cargando ? <Spinner></Spinner> :
             <>
-
               {verSQL ? <>
                 {
                   resultadosSQL?.length !== 0 ?

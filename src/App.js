@@ -4,7 +4,6 @@ import { Login } from './components/Login/Login/Login';
 import { SignUp } from './components/Login/SignUp/SignUp';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/protectedRoute';
-import { Perfil } from './components/Perfil';
 import { Examenes } from './components/Examenes';
 import {Examen} from './components/examen'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,6 +22,10 @@ import { ModelosRT9 } from './components/estados contables/modelosRT9';
 import { TransformarTabla } from './components/transformarTabla';
 import { ImprimirHTML } from './components/imprimirResumen';
 import { InformeAuditor } from './components/informeAuditor';
+import { MenuDesplegable } from './components/menuDesplegable';
+import { MostrarPregunta } from './components/preguntas/mostrarPregunta';
+import { MostrarNotas } from './components/notes/mostrarNotas';
+import { Buscador } from './components/buscador';
 
 function App() {
 
@@ -33,6 +36,9 @@ function App() {
     <DataProvider>
     <AuthProvider>
       <Nav />
+      
+      <MenuDesplegable />
+  
       <Routes>
       <Route 
           path="/cursos" 
@@ -51,10 +57,28 @@ function App() {
           } 
         />
         <Route 
-          path="/menu" 
+          path="/menu/mis-preguntas" 
             element={
               <ProtectedRoute>
-                <Perfil />
+                <MostrarPregunta perfil={true} edit={true} mostrarPreguntas={true} filtroMaterias={true}/>
+              </ProtectedRoute>
+            }
+          />
+          
+        <Route 
+          path="/menu/mis-notas" 
+            element={
+              <ProtectedRoute>
+                <MostrarNotas perfil={true}/>
+              </ProtectedRoute>
+            }
+          />
+          
+        <Route 
+          path="/menu/buscador" 
+            element={
+              <ProtectedRoute>
+                <Buscador perfil={true}/>
               </ProtectedRoute>
             }
           />
