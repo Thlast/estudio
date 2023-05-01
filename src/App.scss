@@ -1,13 +1,15 @@
 // .App {
-//    --navbar: #e5e7e9;
-//   --iniback: #1b1b32;
-//   --target: #0a0a23;
-//   --console: #13132a;
-//   --hov: #f5f6f7;
-//   --links: #07c9ff;
-//   text-align: center;
-//   background-color: #dfdfe2; 
+//   padding: 20px 80px 10px 80px
 // }
+.menuContenedor {
+  padding-left: 300px;
+}
+@media screen and (max-width: 500px) {
+  .menuContenedor {
+    padding: 0;
+  }
+}
+
 :root {
   --main-color: #1083D6;
   --title-color: #2A3B47;
@@ -610,6 +612,7 @@ code:hover {
   flex-direction: column;
   font-size: 20px;
   color: var(--text-color);
+  overflow-y: auto;
 }
 
 .menuperfil {
@@ -617,16 +620,22 @@ code:hover {
   color: var(--text-color);
   padding: 5px;
   min-width: 200px;
-  position: relative;
-  top: 10px;
+  //position: relative;
+  //top: 10px;
 }
 
 .menuperfil ul {
+  width: 100%;
   padding: 16px 5px 5px 5px;
+}
+.menuperfil select {
+  max-width: 100%;
+ 
 }
 
 .menuperfil a {
   color: var(--text-color) !important;
+  
 }
 
 .menuperfil a:hover {
