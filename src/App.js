@@ -26,6 +26,7 @@ import { MenuDesplegable } from './components/menuDesplegable';
 import { MostrarPregunta } from './components/preguntas/mostrarPregunta';
 import { MostrarNotas } from './components/notes/mostrarNotas';
 import { Buscador } from './components/buscador';
+import { UserConfigProvider } from './context/UserConfig';
 
 function App() {
 
@@ -35,10 +36,9 @@ function App() {
     <HistorialProvider>
     <DataProvider>
     <AuthProvider>
+      <UserConfigProvider>
       <Nav />
-      
       <MenuDesplegable />
-  
       <Routes>
       <Route 
           path="/cursos" 
@@ -189,7 +189,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           </Routes>
-
+          </UserConfigProvider>
     </AuthProvider>
     </DataProvider>
     </HistorialProvider>
