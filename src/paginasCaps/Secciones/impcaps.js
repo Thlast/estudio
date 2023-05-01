@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
@@ -11,6 +11,7 @@ import { Buscador } from "../../components/buscador";
 import { WindowSplitter } from "./splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { UserConfig } from "../../context/UserConfig";
 
 export function Impcaps() {
 
@@ -21,16 +22,7 @@ export function Impcaps() {
   const [seccion, setSeccion] = useState(sec);
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
   const curso = materia
-  const [mobile, setMobile] = useState(window.innerWidth <= 500)
-
-  //funcion para detectar si es mobile
-  useEffect(() => {
-    function handleResize() {
-      setMobile(window.innerWidth <= 500);
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const { mobile } = useContext(UserConfig)
 
   //seteamos la camara arriba del todo
   useEffect(() => {

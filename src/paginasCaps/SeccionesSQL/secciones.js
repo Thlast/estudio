@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
@@ -16,6 +16,7 @@ import { getSeccionPorId } from "../../components/servicios/cursos/obtenerSeccio
 import { AyudaEditor } from "../../editor/ayudaEditor";
 import { modificarSeccion } from "../../components/servicios/cursos/cursosSQL/modifSeccion";
 import { alertainfo } from "../../components/alertas";
+import { UserConfig } from "../../context/UserConfig";
 
 export function Secciones() {
 
@@ -23,14 +24,12 @@ export function Secciones() {
   const { capituloId } = useParams();
   const [titulo, setTitulo] = useState();
   const { curso } = useParams();
+  const { mobile } = useContext(UserConfig);
   const [dic, setDic] = useState("");
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
-  const [mobile, setMobile] = useState(window.innerWidth <= 500)
   const [cargando, setCargando] = useState(false)
-
   const [contenidoSeccion, setContenidoSeccion] = useState()
   const [preview, setPreview] = useState()
-
   const cargarPagina = async () => {
 
     setCargando(true)
@@ -53,14 +52,6 @@ export function Secciones() {
   }
 
   const { editMode } = useAuth();
-  //funcion para detectar si es mobile
-  useEffect(() => {
-    function handleResize() {
-      setMobile(window.innerWidth <= 500);
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   //seteamos la camara arriba del todo
   useEffect(() => {
