@@ -101,11 +101,6 @@ export function Examenes() {
         {cargando ? <Spinner></Spinner> :
           <div>
             <div>
-              <Link
-                className='volver'
-                to={"/menu"}>
-                {"<"} menú
-              </Link>
               <div
                 className='examen-filtrar'>
                 <button
