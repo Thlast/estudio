@@ -77,11 +77,12 @@ export function Secciones() {
   //cargar y actualizar consola PARA MOBILE
   useEffect(() => {
 
-    if (dic !== "") {
-      cambiarBoton()
-      setMostrarConsola(true)
+    if (mobile) {
+      if (dic !== "" || buscarSeccionId) {
+        cambiarBoton()
+        setMostrarConsola(true)
+      }
     }
-
   }, [dic, buscarSeccionId])
 
   //funcion para actualizar los codes
@@ -217,12 +218,12 @@ export function Secciones() {
         {mobile ?
           <div>
             <div>
-            <button
-              className={style.pin}
-              onClick={() => (cambiarBoton(), setEsquema(!esquema))}
-            >
-              {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
-            </button>
+              <button
+                className={style.pin}
+                onClick={() => (cambiarBoton(), setEsquema(!esquema))}
+              >
+                {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
+              </button>
             </div>
             <div
               className={`${style.cursotitulo} secciones`}>
@@ -320,6 +321,7 @@ export function Secciones() {
                 style={{ display: `${mostrarConsola ? "block" : "none"}` }}
               >
                 <Consola
+                pasarSeccionId={pasarSeccionId}
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   curso={curso}
                   dic={dic}
@@ -329,14 +331,14 @@ export function Secciones() {
                   limpiarHistorial={limpiarHistorial} />
               </div>
               <div
-              ref={svgRef}
-              style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
-              <SVGZoomMobile
-                pasarSeccionId={pasarSeccionId}
-                esquema={titulo}
-                seccion={id}
-              />
-            </div>
+                ref={svgRef}
+                style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
+                <SVGZoomMobile
+                  pasarSeccionId={pasarSeccionId}
+                  esquema={titulo}
+                  seccion={id}
+                />
+              </div>
               <MostrarPregunta
                 obtenerQpreguntas={obtenerQpreguntas}
                 titulo={titulo}
@@ -500,6 +502,7 @@ export function Secciones() {
                       />
                       : null}
                     <Consola
+                      pasarSeccionId={pasarSeccionId}
                       recargarFuncionClickcode={recargarFuncionClickcode}
                       curso={curso}
                       dic={dic}

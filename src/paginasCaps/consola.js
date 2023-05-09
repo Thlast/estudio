@@ -12,7 +12,7 @@ export function Consola(props) {
   const [datosSeccion, setDatosSeccion] = useState()
   const { curso } = props;
   const { dic } = props;
-  const { buscarSeccionId } = props;
+  const { buscarSeccionId, pasarSeccionId } = props;
   const { eliminarDelHistorial } = props;
   const { limpiarHistorial } = props;
   const { enconsola } = props;
@@ -27,6 +27,7 @@ export function Consola(props) {
       setArticulo()
       setDatos()
       setDatosSeccion()
+      pasarSeccionId()
       setCargando(true)
     }
 
@@ -49,10 +50,18 @@ export function Consola(props) {
       setArticulo(dic)
     }
   }, [dic])
+  useEffect(() => {
+    if(!dic & !buscarSeccionId) {
+      setArticulo()
+    }
+    
+  }, [dic, buscarSeccionId])
 
   useEffect(() => {
     if (buscarSeccionId) {
-      setDatosSeccion()
+      setArticulo()
+      // setDatos()
+      // setDatosSeccion()
       setCargando(true)
     }
 
