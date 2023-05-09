@@ -27,6 +27,8 @@ import { MostrarPregunta } from './components/preguntas/mostrarPregunta';
 import { MostrarNotas } from './components/notes/mostrarNotas';
 import { Buscador } from './components/buscador';
 import { UserConfigProvider } from './context/UserConfig';
+import { SVGZoom } from './components/dataInformes/guia';
+import { Articulos } from './components/dataInformes/articulos';
 
 function App() {
 
@@ -45,6 +47,22 @@ function App() {
             element={
               <ProtectedRoute> 
                 <Cursos />
+              </ProtectedRoute>
+            } 
+          />
+      <Route 
+          path="/guia/:esquema/:seccion" 
+            element={
+              <ProtectedRoute> 
+                <SVGZoom />
+              </ProtectedRoute>
+            } 
+          />
+      <Route 
+          path="/articulos" 
+            element={
+              <ProtectedRoute> 
+                <Articulos />
               </ProtectedRoute>
             } 
           />
