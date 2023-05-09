@@ -194,7 +194,7 @@ export function Secciones() {
 
     let filtrarSeccion = secciones
       ?.map((sec, i) => ({ ...sec, index: i })) // Agregar el índice original a cada elemento
-      .filter((sec) => sec.CapituloId === capituloId) // Filtrar las secciones que cumplan la condición
+      .filter((sec) => sec.CapituloId == capituloId) // Filtrar las secciones que cumplan la condición
       .map((sec) => ({ ...sec, index: sec.index })); // Mantener el índice original en el nuevo array resultante
 
 
@@ -300,17 +300,17 @@ export function Secciones() {
       console.log(error)
     }
   }
-
+//console.log(secciones)
   const crearSeccionActualizar = async (capituloId, nombreSeccion, contenido, event) => {
     event.preventDefault()
     if (nombreSeccion.length >= 3) {
       let filtrarSeccion = secciones
         ?.map((sec, i) => ({ ...sec, index: i })) // Agregar el índice original a cada elemento
-        .filter((sec) => sec.CapituloId === capituloId) // Filtrar las secciones que cumplan la condición
+        .filter((sec) => sec.CapituloId == capituloId) // Filtrar las secciones que cumplan la condición
         .map((sec) => ({ ...sec, index: sec.index })); // Mantener el índice original en el nuevo array resultante
 
       let indice = (filtrarSeccion[filtrarSeccion.length - 1]?.index + 1)
-      //console.log(indice)
+      console.log(indice)
       try {
         const response = await crearSeccion(capituloId, nombreSeccion, contenido, event);
         const nuevasSecciones = [...secciones.slice(0, indice), response, ...secciones.slice(indice)];
