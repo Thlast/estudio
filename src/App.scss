@@ -10,6 +10,34 @@
   }
 }
 
+.encontrarSeccion {
+  /* Establece un borde alrededor de la sección */
+  border: 3px solid #f9ca24 !important;
+  /* Establece un efecto de destello */
+  animation: destello 1s ease-in-out infinite;
+}
+
+/* Animación de destello */
+@keyframes destello {
+  0% {
+    opacity: 0.5;
+    box-shadow: 0 0 10px #f9ca24;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: none;
+  }
+  100% {
+    opacity: 0.5;
+    box-shadow: 0 0 10px #f9ca24;
+  }
+}
+
+.remarcarSecciones:hover {
+  color: #07c9ff !important;
+  text-decoration: underline;
+}
+
 :root {
   --main-color: #1083D6;
   --title-color: #2A3B47;
@@ -258,7 +286,7 @@ input {
 
 .home-boton {
   text-decoration: none;
-  font-size: 20px;
+  font-size: 17px;
   padding: 8px;
   justify-content: space-around;
   background: var(--secundario);
