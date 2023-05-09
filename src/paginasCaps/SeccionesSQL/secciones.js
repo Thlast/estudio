@@ -18,6 +18,7 @@ import { modificarSeccion } from "../../components/servicios/cursos/cursosSQL/mo
 import { alertainfo } from "../../components/alertas";
 import { UserConfig } from "../../context/UserConfig";
 import { SVGZoom } from "../../components/dataInformes/guia";
+import { SVGZoomMobile } from "../../components/dataInformes/guiaMobile";
 
 export function Secciones() {
 
@@ -73,7 +74,7 @@ export function Secciones() {
     });
   }, [id])
 
-  //cargar y actualizar consola
+  //cargar y actualizar consola PARA MOBILE
   useEffect(() => {
 
     if (dic !== "") {
@@ -81,7 +82,7 @@ export function Secciones() {
       setMostrarConsola(true)
     }
 
-  }, [dic])
+  }, [dic, buscarSeccionId])
 
   //funcion para actualizar los codes
   const recargarFuncionClickcode = () => {
@@ -130,7 +131,6 @@ export function Secciones() {
   const [mostrarConsola, setMostrarConsola] = useState(false)
 
   const cambiarBoton = (editar) => {
-
     if (!editar) {
       setMostrarPreguntas(false)
     }
@@ -323,6 +323,7 @@ export function Secciones() {
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   curso={curso}
                   dic={dic}
+                  buscarSeccionId={buscarSeccionId}
                   enconsola={enconsola}
                   eliminarDelHistorial={eliminarDelHistorial}
                   limpiarHistorial={limpiarHistorial} />
@@ -330,7 +331,7 @@ export function Secciones() {
               <div
               ref={svgRef}
               style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
-              <SVGZoom
+              <SVGZoomMobile
                 pasarSeccionId={pasarSeccionId}
                 esquema={titulo}
                 seccion={id}

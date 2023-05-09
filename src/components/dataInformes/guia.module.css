@@ -13,15 +13,30 @@
   max-height: 100vh;
 }
 
-/* .botonCentrar {
+.contenedorZoom {
+  left: 15px;
+  top: 15px;
   position: absolute;
-  width: 30px;
-  height: 30px;
-  right: 0px;
-  align-items: center;
-  cursor: pointer;
+  height: 25px;
+  background: none;
+  width: fit-content;
   color: var(--text-color);
-} */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+.zoom {
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  border: 2px solid var(--text-color);
+  background: none;
+  color: var(--text-color);
+  display: flex;
+}
 .centericon {
   right: 15px;
   top: 15px;
