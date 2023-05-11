@@ -30,735 +30,735 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_7">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_7">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 7</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_8">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_8">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 8</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_9">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_9">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 9</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_10">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_10">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 10</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_11">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_11">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 11</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_12">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_12">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 12</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_13">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_13">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 13</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_14">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_14">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 14</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_15">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_15">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 15</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 16</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 16</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_17">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_17">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 17</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_18">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_18">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 18</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_19">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_19">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 19</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_20">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_20">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 20</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_22">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_22">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 22</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_23">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_23">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 23</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 24</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 24 (Países no cooperantes)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_25">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_25">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 25</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 26</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 26</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_27">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_27">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 27</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_28">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_28">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 28</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_29">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_29">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 29</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_30">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_30">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 30</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_31">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_31">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 31</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_32">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_32">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 32</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 33</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 33</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_34">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_34">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 34</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_36">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_36">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 36</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_42">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_42">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 42</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_43">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_43">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 43</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_47">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_47">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 47</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_48">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_48">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 48</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_49">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_49">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 49</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_50">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_50">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 50</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_51">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_51">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 51</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_52">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_52">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 52</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_54">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_54">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 54</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_55">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_55">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 55</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_56">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_56">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 56</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_58">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_58">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 58</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_59">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_59">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 59</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_60">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_60">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 60</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_61">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_61">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 61</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_62">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_62">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 62</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_63">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_63">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 63</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_64">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_64">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 64</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_65">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_65">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 65</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 67</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 67</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_68">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_68">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 68</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_69">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_69">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 69</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_74">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_74">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 74</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_75">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_75">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 75</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_76">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_76">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 76</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_77">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_77">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 77</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_79">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_79">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 79 (Inciso f))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_80">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_80">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 80 (Inciso f))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_81">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_81">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 81 (Inciso k))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_82">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_82">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 82 (Inciso l))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_83">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_83">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 83 (Inciso n))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_84">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_84">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 84 (Inciso q))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_85">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_85">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 85 (Inciso t))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_86">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_86">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 86 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_87">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_87">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 87 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_88">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_88">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 88 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_89">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_89">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 89 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_90">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_90">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 90 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 91 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 91</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 91</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_92">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_92">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 92 (Inciso x))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_93">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_93">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 93</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_94">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_94">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 94</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_95">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_95">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 95</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_96">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_96">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 96</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_97">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_97">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 97</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_98">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_98">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 98</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_99">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_99">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 99</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_100">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_100">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 100</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_101">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_101">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 101</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_102">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_102">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 102</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_103">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_103">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 103</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_104">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_104">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 104</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_105">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_105">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 105</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_106">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_106">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 106</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 107</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 107</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_108">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_108">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 108</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 109</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 109</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 109</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_110">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_110">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 110</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_111">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_111">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 111</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_112">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_112">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 112</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_113">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_113">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 113</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 115</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_117">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_117">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 117</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_119">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_119">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 119</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_120">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_120">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 120</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 115 (Rentas vitalicias)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 115</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 131</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_122">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_122">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 122</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_125">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_125">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 125</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 126</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 126</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_127">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_127">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 127</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_128">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_128">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 128</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_129">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_129">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 129</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_130">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_130">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 130</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 131</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_132">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_132">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 132</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_133">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_133">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 133</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_134">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_134">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 134</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_135">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_135">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 135</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_136">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_136">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 136</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 137</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 138</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 138</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 137</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_139">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_139">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 139</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_140">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_140">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 140</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_141">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_141">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 141</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_142">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_142">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 142</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_143">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_143">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 143</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_144">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_144">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 144</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_145">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_145">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 145</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_146">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_146">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 146</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_147">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_147">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 147</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_148">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_148">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 148</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 150</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 150</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 150</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_151">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_151">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 151</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_152">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_152">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 152</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_153">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_153">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 153</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_155">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_155">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 155</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_156">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_156">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 156</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_157">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_157">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 157</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_158">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_158">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 158</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_159">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_159">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 159</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_163">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_163">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 163</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_165">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_165">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 165</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_166">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_166">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 166</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_168">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_168">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 168</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_169">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_169">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 169</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_170">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_170">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 170</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_171">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_171">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 171</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_172">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_172">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 172</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_173">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_173">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 173</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_174">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_174">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 174</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_175">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_175">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 175</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_176">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_176">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 176</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_177">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_177">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 177</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_178">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_178">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 178</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_179">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_179">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 179</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_180">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_180">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 180</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_181">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_181">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 181</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_182">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_182">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 182</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_183">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_183">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 183</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 184</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 184</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 46 (Deducción para período fiscal 2019)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 46</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_47">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_47">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 47</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 48 (Modificación de la alícuota de los incisos a) y b).)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 48 (Modificación de alícuota)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027432_2017_12_27#articulo_2">Ley N° 27432</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027432_2017_12_27#articulo_2">Ley N° 27432</a><span class="acotacion_modificatoria">
         Articulo N° 2 (Se prorroga hasta el 31 de diciembre de 2022, inclusive, el plazo de vigencia de la Ley de Impuesto a las Ganancias.)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_11">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_11">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 11</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_10">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_10">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 10</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000620_2021_09_16#articulo_1">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000620_2021_09_16#articulo_1">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
         Articulo N° 1 (Se incrementa el monto de la remuneración y/o del haber bruto previsto en el inciso z) del artículo 26 a PESOS CIENTO SETENTA Y CINCO MIL ($175.000) mensuales.)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000620_2021_09_16#articulo_2">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000620_2021_09_16#articulo_2">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
         Articulo N° 2 (Se incrementan los montos previstos en el anteúltimo párrafo del inciso c) del artículo 30 a PESOS CIENTO SETENTA Y CINCO MIL ($175.000) y a PESOS DOSCIENTOS TRES MIL ($203.000) mensuales.)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000298_2022_06_06#articulo_1">Decreto N° 298/2022</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000298_2022_06_06#articulo_1">Decreto N° 298/2022</a><span class="acotacion_modificatoria">
         Articulo N° 1</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000714_2022_10_27#articulo_1">Decreto N° 714/2022</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000714_2022_10_27#articulo_1">Decreto N° 714/2022</a><span class="acotacion_modificatoria">
         Articulo N° 1 (Se incrementa el monto de la remuneración y/o del haber bruto, previsto en el inciso z) del art 26 a PESOS TRESCIENTOS TREINTA MIL ($330.000) mensuales, inclusive, entre otras cuestiones.)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027701_2022_11_16#articulo_118">Ley N° 27701</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027701_2022_11_16#articulo_118">Ley N° 27701</a><span class="acotacion_modificatoria">
         Articulo N° 118 (Se incorpora el artículo 195.)</span>
 </li>
 <br>
@@ -767,200 +767,200 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_27">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_27">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 27 (Sustituido)</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0194">Articulo 194</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_33">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_33">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 33 (Inciso h) sustituido.  Ultimo párrafo al inciso u) incorporado)</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0026">Articulo 26</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_1">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_1">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 1</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0026">Articulo 26</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_4">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_4">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 4</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0030">Articulo 30</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_8">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_8">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 8</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0082">Articulo 82</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_9">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_9">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 9</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0092">Articulo 92</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_10">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_10">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 10</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0111">Articulo 111</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_1">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_1">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 1</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0020">Articulo 20</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_2">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_2">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 2</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0073">Articulo 73</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_6">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_6">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 6</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0091">Articulo 91</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_7">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_7">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 7</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0097">Articulo 97</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_8">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_8">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 8</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0164">Articulo 164</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_9">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_9">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 9</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0193">Articulo 193</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027638_2021_07_15#articulo_1">Ley N° 27638</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027638_2021_07_15#articulo_1">Ley N° 27638</a><span class="acotacion_modificatoria">
         Articulo N° 1 (Modificación con aplicación a partir del período fiscal 2021 y siguientes.)</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0026">Articulo 26</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027676_2022_06_30#articulo_4">Ley N° 27676</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027676_2022_06_30#articulo_4">Ley N° 27676</a><span class="acotacion_modificatoria">
         Articulo N° 4</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0030">Articulo 30</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027701_2022_11_16#articulo_99">Ley N° 27701</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027701_2022_11_16#articulo_99">Ley N° 27701</a><span class="acotacion_modificatoria">
         Articulo N° 99</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0085">Articulo 85</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027701_2022_11_16#articulo_100">Ley N° 27701</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027701_2022_11_16#articulo_100">Ley N° 27701</a><span class="acotacion_modificatoria">
         Articulo N° 100</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0082">Articulo 82</a></b>
+
 </ul>
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027718_2023_04_19#articulo_1">Ley N° 27718</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027718_2023_04_19#articulo_1">Ley N° 27718</a><span class="acotacion_modificatoria">
         Articulo N° 1</span>
 </li>
 <br>
 <br>
 <br>
-<b><a class="ref_local" href="#articulo_0027">Articulo 27</a></b>
+
 </ul>
 </div>
 <hr>
@@ -1025,11 +1025,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_8">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_8">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 8</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_9">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_9">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 9</span>
 </li>
 <br>
@@ -1062,7 +1062,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_7">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_7">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 7</span>
 </li>
 <br>
@@ -1080,7 +1080,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_10">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_10">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 10</span>
 </li>
 <br>
@@ -1143,15 +1143,15 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_11">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_11">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 11</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 26</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_51">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_51">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 51</span>
 </li>
 <br>
@@ -1173,19 +1173,19 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_15">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_15">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 15</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 16</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_17">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_17">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 17</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <br>
@@ -1203,11 +1203,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_18">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_18">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 18</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <br>
@@ -1228,11 +1228,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_19">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_19">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 19</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <br>
@@ -1250,11 +1250,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_21">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 21</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_178">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_178">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 178</span>
 </li>
 <br>
@@ -1275,7 +1275,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_20">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_20">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 20</span>
 </li>
 <br>
@@ -1310,11 +1310,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_12">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_12">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 12</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_13">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_13">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 13</span>
 </li>
 <br>
@@ -1341,11 +1341,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_22">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_22">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 22</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 24</span>
 </li>
 <br>
@@ -1374,55 +1374,55 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_26">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 26</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_27">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_27">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 27</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_28">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_28">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 28</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_29">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_29">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 29</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_30">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_30">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 30</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_31">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_31">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 31</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 33</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_43">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_43">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 43</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_47">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_47">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 47</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_48">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_48">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 48</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_50">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_50">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 50</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_52">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_52">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 52</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_55">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_55">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 55</span>
 </li>
 <br>
@@ -1443,27 +1443,27 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_14">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_14">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 14</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_33">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 33</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_34">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_34">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 34</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_36">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_36">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 36</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_42">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_42">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 42</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_54">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_54">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 54</span>
 </li>
 <br>
@@ -1485,11 +1485,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_23">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_23">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 23</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_24">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 24 (Países no cooperantes)</span>
 </li>
 <br>
@@ -1508,7 +1508,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_1">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_1">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 1</span>
 </li>
 <br>
@@ -1526,7 +1526,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_25">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_25">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 25</span>
 </li>
 <br>
@@ -1544,7 +1544,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_56">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_56">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 56</span>
 </li>
 <br>
@@ -1588,31 +1588,31 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_58">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_58">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 58</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_59">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_59">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 59</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_60">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_60">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 60</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_61">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_61">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 61</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_62">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_62">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 62</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_63">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_63">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 63</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_64">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_64">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 64</span>
 </li>
 <br>
@@ -1638,7 +1638,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_111">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_111">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 111</span>
 </li>
 <br>
@@ -1692,19 +1692,19 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_65">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_65">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 65</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 67</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_68">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_68">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 68</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_69">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_69">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 69</span>
 </li>
 <br>
@@ -1750,11 +1750,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_75">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_75">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 75</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_76">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_76">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 76</span>
 </li>
 <br>
@@ -1865,7 +1865,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027638_2021_07_15#articulo_1">Ley N° 27638</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027638_2021_07_15#articulo_1">Ley N° 27638</a><span class="acotacion_modificatoria">
         Articulo N° 1 (Modificación con aplicación a partir del período fiscal 2021 y siguientes.)</span>
 </li>
 <br>
@@ -1976,7 +1976,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_1">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_1">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 1</span>
 </li>
 <br>
@@ -2082,7 +2082,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_33">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_33">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 33 (Inciso h) sustituido.  Ultimo párrafo al inciso u) incorporado)</span>
 </li>
 <br>
@@ -2182,75 +2182,75 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_77">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_77">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 77</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_79">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_79">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 79 (Inciso f))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_80">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_80">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 80 (Inciso f))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_81">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_81">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 81 (Inciso k))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_82">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_82">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 82 (Inciso l))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_83">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_83">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 83 (Inciso n))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_84">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_84">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 84 (Inciso q))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_85">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_85">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 85 (Inciso t))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_86">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_86">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 86 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_87">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_87">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 87 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_88">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_88">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 88 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_89">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_89">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 89 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_90">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_90">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 90 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 91 (Inciso u))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_92">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_92">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 92 (Inciso x))</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_94">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_94">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 94</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_95">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_95">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 95</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000620_2021_09_16#articulo_1">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000620_2021_09_16#articulo_1">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
         Articulo N° 1 (Se incrementa el monto de la remuneración y/o del haber bruto previsto en el inciso z) del artículo 26 a PESOS CIENTO SETENTA Y CINCO MIL ($175.000) mensuales.)</span>
 </li>
 <br>
@@ -2270,7 +2270,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027718_2023_04_19#articulo_1">Ley N° 27718</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027718_2023_04_19#articulo_1">Ley N° 27718</a><span class="acotacion_modificatoria">
         Articulo N° 1</span>
 </li>
 <br>
@@ -2305,7 +2305,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_96">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_96">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 96</span>
 </li>
 <br>
@@ -2323,11 +2323,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_32">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_32">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 32</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_97">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_97">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 97</span>
 </li>
 <br>
@@ -2385,7 +2385,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027676_2022_06_30#articulo_4">Ley N° 27676</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027676_2022_06_30#articulo_4">Ley N° 27676</a><span class="acotacion_modificatoria">
         Articulo N° 4</span>
 </li>
 <br>
@@ -2446,7 +2446,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_4">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_4">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 4</span>
 </li>
 <br>
@@ -2500,39 +2500,39 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_98">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_98">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 98</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_99">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_99">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 99</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_100">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_100">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 100</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_101">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_101">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 101</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_103">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_103">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 103</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_104">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_104">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 104</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 46 (Deducción para período fiscal 2019)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_11">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_11">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 11</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000620_2021_09_16#articulo_2">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000620_2021_09_16#articulo_2">Decreto N° 620/2021</a><span class="acotacion_modificatoria">
         Articulo N° 2 (Se incrementan los montos previstos en el anteúltimo párrafo del inciso c) del artículo 30 a PESOS CIENTO SETENTA Y CINCO MIL ($175.000) y a PESOS DOSCIENTOS TRES MIL ($203.000) mensuales.)</span>
 </li>
 <br>
@@ -2668,7 +2668,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_105">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_105">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 105</span>
 </li>
 <br>
@@ -2688,7 +2688,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_106">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_106">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 106</span>
 </li>
 <br>
@@ -2732,7 +2732,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_49">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_49">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 49</span>
 </li>
 <br>
@@ -2771,15 +2771,15 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 109</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_110">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_110">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 110</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_113">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_113">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 113</span>
 </li>
 <br>
@@ -2800,7 +2800,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 107</span>
 </li>
 <br>
@@ -2866,11 +2866,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_117">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_117">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 117</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 115 (Rentas vitalicias)</span>
 </li>
 <br>
@@ -2899,15 +2899,15 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 91</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 115</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_119">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_119">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 119</span>
 </li>
 <br>
@@ -2946,15 +2946,15 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_91">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 91</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_120">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_120">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 120</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 131</span>
 </li>
 <br>
@@ -2985,7 +2985,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_125">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_125">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 125</span>
 </li>
 <br>
@@ -3025,59 +3025,59 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_74">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_74">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 74</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 126</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_127">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_127">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 127</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_128">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_128">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 128</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_132">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_132">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 132</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_133">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_133">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 133</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_134">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_134">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 134</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 150</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_151">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_151">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 151</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_152">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_152">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 152</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_153">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_153">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 153</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_155">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_155">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 155</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_156">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_156">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 156</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_157">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_157">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 157</span>
 </li>
 <br>
@@ -3104,7 +3104,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_170">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_170">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 170</span>
 </li>
 <br>
@@ -3175,19 +3175,19 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_135">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_135">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 135</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_136">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_136">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 136</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_141">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_141">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 141</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_147">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_147">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 147</span>
 </li>
 <br>
@@ -3222,31 +3222,31 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 138</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 137</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_139">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_139">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 139</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_140">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_140">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 140</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_142">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_142">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 142</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_143">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_143">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 143</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_144">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_144">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 144</span>
 </li>
 <br>
@@ -3267,11 +3267,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_137">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 137</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_138">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 138</span>
 </li>
 <br>
@@ -3310,11 +3310,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_145">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_145">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 145</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 150</span>
 </li>
 <br>
@@ -3333,7 +3333,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_146">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_146">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 146</span>
 </li>
 <br>
@@ -3502,7 +3502,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 184</span>
 </li>
 <br>
@@ -3527,11 +3527,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_159">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_159">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 159</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_184">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 184</span>
 </li>
 <br>
@@ -3550,7 +3550,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_163">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_163">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 163</span>
 </li>
 <br>
@@ -3659,7 +3659,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_2">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_2">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 2</span>
 </li>
 <br>
@@ -3711,35 +3711,35 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_126">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 126</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_129">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_129">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 129</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_130">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_130">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 130</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_131">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 131</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_165">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_165">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 165</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_171">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_171">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 171</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 48 (Modificación de la alícuota de los incisos a) y b).)</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_10">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_10">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 10</span>
 </li>
 <br>
@@ -3765,11 +3765,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_166">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_166">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 166</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_168">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_168">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 168</span>
 </li>
 <br>
@@ -3808,7 +3808,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_169">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_169">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 169</span>
 </li>
 <br>
@@ -3863,7 +3863,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_148">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_148">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 148</span>
 </li>
 <br>
@@ -3917,19 +3917,19 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_172">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_172">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 172</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_174">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_174">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 174</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_175">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_175">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 175</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_176">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_176">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 176</span>
 </li>
 <br>
@@ -3976,7 +3976,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_173">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_173">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 173</span>
 </li>
 <br>
@@ -4030,7 +4030,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027701_2022_11_16#articulo_100">Ley N° 27701</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027701_2022_11_16#articulo_100">Ley N° 27701</a><span class="acotacion_modificatoria">
         Articulo N° 100</span>
 </li>
 <br>
@@ -4083,7 +4083,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_8">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_8">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 8</span>
 </li>
 <br>
@@ -4137,39 +4137,39 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_102">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_102">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 102</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_158">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_158">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 158</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_177">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_177">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 177</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_179">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_179">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 179</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_180">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_180">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 180</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_181">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_181">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 181</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_182">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_182">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 182</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_183">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_183">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 183</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_46">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 46</span>
 </li>
 <br>
@@ -4191,11 +4191,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_67">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 67</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_115">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 115</span>
 </li>
 <br>
@@ -4308,7 +4308,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027701_2022_11_16#articulo_99">Ley N° 27701</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027701_2022_11_16#articulo_99">Ley N° 27701</a><span class="acotacion_modificatoria">
         Articulo N° 99</span>
 </li>
 <br>
@@ -4470,7 +4470,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_112">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_112">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 112</span>
 </li>
 <br>
@@ -4566,7 +4566,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_6">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_6">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 6</span>
 </li>
 <br>
@@ -4663,7 +4663,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_9">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_9">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 9</span>
 </li>
 <br>
@@ -5096,7 +5096,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_93">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_93">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 93</span>
 </li>
 <br>
@@ -5167,7 +5167,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_7">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_7">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 7</span>
 </li>
 <br>
@@ -5193,11 +5193,11 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_122">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_122">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 122</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_48">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 48 (Modificación de alícuota)</span>
 </li>
 <br>
@@ -5239,7 +5239,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_47">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_47">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 47</span>
 </li>
 <br>
@@ -5266,7 +5266,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_150">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 150</span>
 </li>
 <br>
@@ -5315,7 +5315,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_16">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 16</span>
 </li>
 <br>
@@ -5466,7 +5466,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 109</span>
 </li>
 <br>
@@ -5517,7 +5517,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027617_2021_04_08#articulo_10">Ley N° 27617</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027617_2021_04_08#articulo_10">Ley N° 27617</a><span class="acotacion_modificatoria">
         Articulo N° 10</span>
 </li>
 <br>
@@ -5536,15 +5536,15 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Textos Relacionados:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_107">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 107</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_108">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_108">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 108</span>
 </li>
 <li>
-<a class="ref_xml" href="/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06#articulo_109">Decreto N° 862/2019</a><span class="acotacion_modificatoria">
         Articulo N° 109</span>
 </li>
 <br>
@@ -6165,7 +6165,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_8">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_8">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 8</span>
 </li>
 <br>
@@ -6448,7 +6448,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027630_2021_06_02#articulo_9">Ley N° 27630</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027630_2021_06_02#articulo_9">Ley N° 27630</a><span class="acotacion_modificatoria">
         Articulo N° 9</span>
 </li>
 <br>
@@ -6488,7 +6488,7 @@ export const articulosImpuestoALasGanancias = `
 <p class="titulo_referencias">Modificado por:</p>
 <ul>
 <li>
-<a class="ref_xml" href="/dcp/LEY_C_027541_2019_12_21#articulo_27">Ley N° 27541</a><span class="acotacion_modificatoria">
+<a class="ref_xml" target="_blank" href="http://biblioteca.afip.gob.ar/dcp/LEY_C_027541_2019_12_21#articulo_27">Ley N° 27541</a><span class="acotacion_modificatoria">
         Articulo N° 27 (Sustituido)</span>
 </li>
 <br>
@@ -6526,7 +6526,7 @@ export const articulosImpuestoALasGanancias = `
 </p>
 <div class="section" id="anexo01__" style="display: block">
 <p>
-<a class="ref_hd" href="/pdfp/anexo_5902309_2ley20628.pdf" target="_blank">Visualizar Anexo</a>
+<a class="ref_hd" target="_blank" href="/http://biblioteca.afip.gob.arpdfp/anexo_5902309_2ley20628.pdf" target="_blank">Visualizar Anexo</a>
 </p>
 </div>
 <hr>
