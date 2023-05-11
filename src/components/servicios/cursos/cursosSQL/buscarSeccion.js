@@ -7,3 +7,10 @@ export const buscarValorSQL = async (curso, valor, page, limit) => {
     return data.json()
   
 }
+
+export const buscarConsolaSQL = async (curso, valor) => {
+
+    const data = await fetch(`${urlserverSQL}/buscarseccionConsola/${curso}/${valor}`)
+    return data.json()
+  
+}

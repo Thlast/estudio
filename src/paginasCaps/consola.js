@@ -5,6 +5,7 @@ import { MostrarDef } from '../components/definiciones/mostrarDef';
 import { obtenerDatosConsola } from '../components/servicios/cursos/obtenerSeccion';
 import { getSeccionPorId } from '../components/servicios/cursos/obtenerSeccion';
 import { Articulos } from '../components/dataInformes/articulos';
+import { buscarConsolaSQL } from '../components/servicios/cursos/cursosSQL/buscarSeccion';
 
 export function Consola(props) {
 
@@ -32,7 +33,11 @@ export function Consola(props) {
     }
 
     if (dic !== "" & !(dic.includes("artículo") || dic.includes("articulo"))) {
-     
+      buscarConsolaSQL(curso, dic)
+        .then(data => {
+          setDatosSeccion(data)
+          recargarFuncionClickcode()
+        });
       // Creamos el controlador para abortar la petición
       const controller = new AbortController()
       // Recuperamos la señal del controlador
@@ -50,13 +55,17 @@ export function Consola(props) {
       setArticulo(dic)
     }
   }, [dic])
+
+  //esto es por si limipio la consola desde Secciones
   useEffect(() => {
-    if(!dic & !buscarSeccionId) {
+    if (!dic & !buscarSeccionId) {
       setArticulo()
+      setDatosSeccion()
     }
-    
+
   }, [dic, buscarSeccionId])
 
+  //cuando le paso directo el id del SVG
   useEffect(() => {
     if (buscarSeccionId) {
       setArticulo()
@@ -130,17 +139,17 @@ export function Consola(props) {
           {articulo ?
             <Articulos articulo={articulo} />
             :
-          <>
-            <MostrarDef
-              recargarFuncionClickcode={recargarFuncionClickcode}
-              curso={curso}
-              dic={dic} />
-            <hr></hr>
-          </>
+            <>
+              <MostrarDef
+                recargarFuncionClickcode={recargarFuncionClickcode}
+                curso={curso}
+                dic={dic} />
+              <hr></hr>
+            </>
           }
-         
+
           {
-            buscarSeccionId ? <>
+            datosSeccion ? <>
               {datosSeccion?.map(s => {
                 return (
                   <div

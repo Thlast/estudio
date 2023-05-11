@@ -23,6 +23,22 @@ export function Impcaps() {
   const [codes, setCodes] = useState(document.querySelectorAll('code'));
   const curso = materia
   const { mobile } = useContext(UserConfig)
+  const [buscarSeccionId, setBuscarSeccionId] = useState();
+  //cargar y actualizar consola PARA MOBILE
+  useEffect(() => {
+
+    if (mobile) {
+      if (dic !== "" || buscarSeccionId) {
+        cambiarBoton()
+        setMostrarConsola(true)
+      }
+    }
+  }, [dic, buscarSeccionId])
+
+  const pasarSeccionId = (seccionId) => {
+    setBuscarSeccionId(seccionId)
+  }
+
 
   //seteamos la camara arriba del todo
   useEffect(() => {
@@ -242,6 +258,8 @@ export function Impcaps() {
                 recargarFuncionClickcode={recargarFuncionClickcode}
                 curso={curso}
                 dic={dic}
+                pasarSeccionId={pasarSeccionId}
+                buscarSeccionId={buscarSeccionId}
                 enconsola={enconsola}
                 eliminarDelHistorial={eliminarDelHistorial}
                 limpiarHistorial={limpiarHistorial} />
@@ -366,6 +384,8 @@ export function Impcaps() {
                 recargarFuncionClickcode={recargarFuncionClickcode}
                 curso={curso}
                 dic={dic}
+                pasarSeccionId={pasarSeccionId}
+                buscarSeccionId={buscarSeccionId}
                 enconsola={enconsola}
                 eliminarDelHistorial={eliminarDelHistorial}
                 limpiarHistorial={limpiarHistorial} />

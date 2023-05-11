@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { impuestoGanancias } from './graf';
+import { impuestoGanancias, impuestoGananciasLink } from './graf';
 import style from './guia.module.css'
 import { useParams } from 'react-router-dom';
 
@@ -16,6 +16,7 @@ export function SVGZoom(props) {
   //const { esquema } = useParams()
   const { esquema, pasarSeccionId } = props;
   const [render, setRender] = useState()
+  const [linkEditar, setLinkEditar] = useState()
   const svgRef = useRef(null);
   const gRef = useRef(null);
 
@@ -35,8 +36,8 @@ export function SVGZoom(props) {
 
   const cambiarEsquema = () => {
     switch (esquema) {
-      case "Impuesto a las ganancias": setRender(impuestoGanancias); break;
-
+      case "Impuesto a las ganancias": { setRender(impuestoGanancias); setLinkEditar(impuestoGananciasLink) }; break;
+      default: setRender(); break;
     }
   }
 
@@ -49,7 +50,7 @@ export function SVGZoom(props) {
   const centrarEnSeccion = () => {
 
     if (document.getElementById(seccion)) {
-      setTranslate({ x: -document.getElementById(seccion)?.offsetLeft * scale +300, y: -document.getElementById(seccion)?.offsetTop * scale +200 })
+      setTranslate({ x: -document.getElementById(seccion)?.offsetLeft * scale + 300, y: -document.getElementById(seccion)?.offsetTop * scale + 200 })
     }
   }
 
@@ -64,9 +65,9 @@ export function SVGZoom(props) {
       //agrego clase a la nueva y centro la vista
       if (document.getElementById(seccion)) {
         elementToCenter?.classList.add("encontrarSeccion")
-       
+
       }
-      
+
     }, 100)
   }
 
@@ -102,13 +103,6 @@ export function SVGZoom(props) {
     }
 
   };
-  function handleZoomIn() {
-    setScale(scale * 1.2);
-  }
-
-  function handleZoomOut() {
-    setScale(scale / 1.2);
-  }
   //const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [isPanning, setIsPanning] = useState(false);
 
@@ -195,6 +189,25 @@ export function SVGZoom(props) {
       <div className={style.contenedorSVG}>
         {/* <button onClick={() => handleZoomIn()}>Zoom In</button>
         <button onClick={() => handleZoomOut()}>Zoom Out</button> */}
+        {render ?
+          <a
+          className='btn btn-primary'
+          style={{width:"fit-content"}}
+            target='_blank'
+            href={linkEditar}
+          >
+            Editar
+          </a>
+          :
+          <a
+          className='btn btn-primary'
+          style={{width:"fit-content"}}
+            target='_blank'
+            href="https://app.diagrams.net"
+          >
+            Crear
+          </a>
+        }
         <button
           className={style.centericon}
           onClick={() => centrarEnSeccion()}

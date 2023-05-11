@@ -321,10 +321,10 @@ export function Secciones() {
                 style={{ display: `${mostrarConsola ? "block" : "none"}` }}
               >
                 <Consola
-                pasarSeccionId={pasarSeccionId}
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   curso={curso}
                   dic={dic}
+                  pasarSeccionId={pasarSeccionId}
                   buscarSeccionId={buscarSeccionId}
                   enconsola={enconsola}
                   eliminarDelHistorial={eliminarDelHistorial}
