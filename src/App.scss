@@ -10,6 +10,10 @@
   }
 }
 
+.selectedChat {
+  background-color: var(--secundario);
+}
+
 .encontrarSeccion {
   /* Establece un borde alrededor de la sección */
   border: 3px solid #f9ca24 !important;
