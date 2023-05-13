@@ -29,6 +29,7 @@ import { Buscador } from './components/buscador';
 import { UserConfigProvider } from './context/UserConfig';
 import { SVGZoom } from './components/dataInformes/guia';
 import { Articulos } from './components/dataInformes/articulos';
+import { InteraccionIA } from './components/IA/interaccion';
 
 function App() {
 
@@ -51,10 +52,18 @@ function App() {
             } 
           />
       <Route 
-          path="/guia/:esquema/:seccion" 
+          path="/IA" 
             element={
               <ProtectedRoute> 
-                <SVGZoom />
+                <InteraccionIA />
+              </ProtectedRoute>
+            } 
+          />
+      <Route 
+          path="/guia/" 
+            element={
+              <ProtectedRoute> 
+                <SVGZoom esquema="Impuesto a las ganancias"/>
               </ProtectedRoute>
             } 
           />
