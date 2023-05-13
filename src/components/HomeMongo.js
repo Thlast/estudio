@@ -153,6 +153,13 @@ export function HomeMongo() {
               </div>
             </form>
             <br></br>
+            {matPreferida == "impuestos" ?
+              <Link to={"/IA"}>
+                Interactuar con la IA
+              </Link>
+              :
+              null
+            }
             <div>
               <SelectMateria />
             </div>

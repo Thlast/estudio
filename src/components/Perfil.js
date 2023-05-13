@@ -18,6 +18,27 @@ export function Perfil() {
   const navigate = useNavigate();
   const [editUser, setEditUser] = useState(false)
   const [nombreUser, setNombreUser] = useState();
+  const [editApiKey, setEditApiKey] = useState(false);
+  const [apiKey, setApiKey] = useState();
+
+  const añadirApiKey = async (e) => {
+    e.preventDefault();
+    if (apiKey.length > 45) {
+      await setDoc(doc(db, "usuarios/" + user.uid), { apiKey: apiKey }, { merge: true })
+      .then(() => {
+        alert("ApiKey updated!")
+        getAuth()
+        obtenerUser()
+        setEditApiKey(false)
+      }).catch((error) => {
+        alert("An error occurred " + error)
+      });
+    }
+
+    else {
+      alert("Escribe una apiKey Valida")
+    }
+  }
 
   const modNombre = async (nombreUser, e) => {
     e.preventDefault()
@@ -96,23 +117,57 @@ export function Perfil() {
               <hr></hr>
               {mobile &&
                 <>
-
                   <button
                     className={editMode ? style.botonActivo : style.links}
                     onClick={() => changeEditMode(datosUser?.rol)}
                   >
                     Editar:{editMode ? " on" : " off"}
                   </button>
-
                   <button
                     className="switchTema"
                     onClick={() => switchTema()}>
                   </button>
-
-                  <hr></hr>
-
                 </>
               }
+              <li>
+                apiKey: {datosUser?.apiKey ?
+                  "✓"
+                  :
+                  "✘"}
+                {editApiKey ?
+                    <form>
+                    <input
+                      placeholder='introduce la apiKey'
+                      onChange={(e) => setApiKey(e.target.value)}
+                      value={apiKey}
+                      type='text'>
+                    </input>
+                    <span>
+                    <button
+                        onClick={(e) => añadirApiKey(e)}
+                        className={style.botonconfirmar}
+                      >
+                        ✓
+                      </button>
+                    <button
+                      type='button'
+                      onClick={() => setEditApiKey(false)}
+                      className={style.botoncancelar}
+                    >
+                      ✘
+                    </button>
+                    </span>
+                    </form>
+                  :
+                  <button
+                    onClick={() => setEditApiKey(true)}
+                    className={style.botoneditar}
+                  >
+                    &#9999;
+                  </button>
+                }
+              </li>
+              <hr></hr>
               <li>
                 <SelectMateria />
               </li>
