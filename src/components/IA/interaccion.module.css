@@ -1,0 +1,123 @@
+.contenedor {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    height: calc(100vh - 63px);
+    position: relative;
+    overflow: hidden;
+}
+
+.contenedorDerecha {
+    position: relative;
+}
+
+.contenedorFormulario {
+    position: absolute;
+    bottom: 10px;
+    left: 50%; /* Coloca el elemento a la mitad de la anchura del contenedor */
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 70%;
+    box-shadow: 2px 2px var(--body-color);
+}
+
+.contenedorFormulario input {
+    width: 100%;
+}
+.esperandoRespuesta {
+    position: absolute;
+    top: 1px;
+    right: 55px;
+}
+
+.contenedorRespuestas {
+    max-height: calc(100vh - 100px);
+    height: 100%;
+    background-color: var(--secundario);
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    padding-bottom: 100px;
+}
+.respuestas {
+    padding: 20px;
+}
+.preguntasUser {
+    margin: 5px;
+    background-color: var(--body-color);
+    padding: 20px;
+}
+
+.new {
+    border: 2px solid var(--text-color);
+}
+
+.chatAcceder {
+    position: relative;
+}
+.chatNombre {
+    width: 100%;
+}
+.modificarChat {
+    position: absolute;
+    right: 1px;
+    top: 8px;
+    width: fit-content;
+    /* top: 50%; 
+    transform: translate(-50%, -50%); */
+}
+
+.contenedorChatsAnteriores {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.contenedorChatsAnteriores ul{
+    padding: 0;
+}
+.contenedorChatsAnteriores li{
+    padding: 10px;
+    cursor: pointer;
+}
+.contenedorChatsAnteriores li:hover{
+    background-color: var(--secundario);
+}
+
+
+.botoneditar {
+    width: 25px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-color);
+}
+
+.botonconfirmar {
+    width: 25px;
+    padding: 0;
+    color: var(--text-color);
+    background: none;
+    border: none;
+}
+
+.botonconfirmar:hover {
+    color: #0fc956;
+}
+
+.botoncancelar {
+    width: 25px;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.botoncancelar:hover {
+    color: #b40a0a;
+}
+
+.nohayapi {
+    width: 100%;
+    border: 2px solid var(--text-color);
+}
