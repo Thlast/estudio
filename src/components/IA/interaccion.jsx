@@ -8,6 +8,7 @@ import { guardarMessages } from '../servicios/serviciosIA/guardarChats';
 import { alertainfo } from '../alertas';
 import { agregarChat, modificarChat } from '../servicios/serviciosIA/crearChat';
 import { eliminarChat, eliminarMessages } from '../servicios/serviciosIA/eliminarChat';
+import ReactMarkdown from 'react-markdown'
 
 export function InteraccionIA() {
   const [nombreChat, setNombreChat] = useState("Nuevo chat");
@@ -22,7 +23,12 @@ export function InteraccionIA() {
 
   const preguntarGuardar = async (chat, pregunta, mensajes, e) => {
 
-    await preguntarIA(pregunta, mensajes, datosUser?.apiKey).then(data => {
+    let mensajesEnviar = []
+    mensajes?.map(m => {
+      mensajesEnviar.push({ role: "user", content: m.pregunta }, { role: "assistant", content: m.respuesta })
+    })
+
+    await preguntarIA(pregunta, mensajesEnviar, datosUser?.apiKey).then(data => {
       console.log(data)
       guardarMessages(chat, pregunta, data, e)
       if (messages) {
@@ -30,7 +36,6 @@ export function InteraccionIA() {
         nuevas.push({ pregunta: pregunta, respuesta: data })
         setMessages(nuevas)
       } else {
-
         let nuevas = [{ pregunta: pregunta, respuesta: data }]
         setMessages(nuevas)
       }
@@ -274,7 +279,9 @@ export function InteraccionIA() {
                 {m.respuesta ?
                   <div
                     className={style.respuestas}>
-                    {m.respuesta}
+                    <ReactMarkdown>
+                      {m.respuesta}
+                    </ReactMarkdown>
                   </div>
                   :
                   null
@@ -308,7 +315,7 @@ export function InteraccionIA() {
           <div className={style.contenedorFormulario}>
             <div className={style.nohayapi}>
               No hay apiKey.
-              </div>
+            </div>
           </div>
         }
       </div>

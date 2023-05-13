@@ -3,24 +3,25 @@ const urlserver = process.env.REACT_APP_SERVERSQL_PRODUCTION_URL || process.env.
 
 export const preguntarIA = async (prompt, messages, apiKey) => {
 
-  const messagesToSend = [
+  const messagesSystem = [
     {
       role: "system",
       content: "Eres un asistente muy útil especialista en impuestos de Argentina. Das respuestas concisas y referencias de la fuente para complementar el análisis."
     }
   ]
 
-  if(apiKey) {
-    if(messages) {
-    messagesToSend = [
-      ...messages, 
-      {
-        role: "system",
-        content: "Eres un asistente muy útil especialista en impuestos de Argentina. Das respuestas concisas y referencias de la fuente para complementar el análisis."
-      }
-    ]
-  }
-
+  if (apiKey) {
+    let messagesToSend = []
+    if (messages) {
+      messagesToSend = [
+        ...messages, ...messagesSystem
+      ]
+    } else {
+      messagesToSend = [
+        ...messagesSystem
+      ]
+    }
+    console.log(messagesToSend)
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -39,7 +40,8 @@ export const preguntarIA = async (prompt, messages, apiKey) => {
       const data = await response.json();
       console.log(data, data.choices[0])
       return data.choices[0].message.content;
-    } else {
-      alert("necesitas añadir una apiKey")
-    }
+  }
+  else {
+    alert("necesitas añadir una apiKey")
+  }
 }
