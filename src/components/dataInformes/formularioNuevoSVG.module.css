@@ -1,0 +1,18 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+}
+
+
+.contenedorLabel {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorLabel input {
+    width: 100%;
+}
