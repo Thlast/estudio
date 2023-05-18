@@ -219,7 +219,7 @@ export function Secciones() {
           <div>
             <div>
               <button
-                className={style.pin}
+                className={esquema ? style.pinSeleccionado : style.pin}
                 onClick={() => (cambiarBoton(), setEsquema(!esquema))}
               >
                 {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
@@ -335,7 +335,7 @@ export function Secciones() {
                 style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                 <SVGZoomMobile
                   pasarSeccionId={pasarSeccionId}
-                  esquema={titulo}
+                  capituloId={capituloId}
                   seccion={id}
                 />
               </div>
@@ -378,7 +378,7 @@ export function Secciones() {
                 <div>
                   <button
 
-                    className={style.pin}
+                    className={esquema ? style.pinSeleccionado : style.pin}
                     onClick={() => setEsquema(!esquema)}
                   >
                     {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
@@ -423,7 +423,7 @@ export function Secciones() {
                     style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                     <SVGZoom
                       pasarSeccionId={pasarSeccionId}
-                      esquema={titulo}
+                      capituloId={capituloId}
                       seccion={id}
                     />
                   </div>

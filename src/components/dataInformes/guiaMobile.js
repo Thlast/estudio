@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { impuestoGanancias } from './graf';
 import style from './guia.module.css'
-import { useParams } from 'react-router-dom';
+import { getSVGfromMongo } from '../servicios/SVGservicios/obtenerSVG';
 
 export function SVGZoomMobile(props) {
 
   const [scale, setScale] = useState(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
-  //const { seccion } = useParams()
   const { seccion } = props;
-  //const { esquema } = useParams()
-  const { esquema, pasarSeccionId } = props;
+  const { capituloId, pasarSeccionId } = props;
   const [render, setRender] = useState()
   const svgRef = useRef(null);
   const gRef = useRef(null);
@@ -30,18 +27,22 @@ export function SVGZoomMobile(props) {
 
   }, [render])
 
-  const cambiarEsquema = () => {
-    switch (esquema) {
-      case "Impuesto a las ganancias": setRender(impuestoGanancias); break;
-
-    }
-  }
-
   useEffect(() => {
 
-    cambiarEsquema()
+    getSVGfromMongo(capituloId).then(data => {
+      if (data[0]) {
+        // setIdDiagrama(data[0].id)
+        // setLinkEditar(data[0].linkEditar)
+        setRender(data[0].elementoG)
+      } else {
+        // setIdDiagrama()
+        // setLinkEditar()
+        setRender()
+      }
+    })
 
-  }, [esquema])
+  }, [capituloId])
+
 
   const centrarEnSeccion = () => {
 
@@ -165,7 +166,7 @@ export function SVGZoomMobile(props) {
           <g
             ref={gRef}
             transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
-            dangerouslySetInnerHTML={{ __html: `${render}` }}
+            dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
           />
 
 

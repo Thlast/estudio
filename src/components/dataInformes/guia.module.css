@@ -12,6 +12,11 @@
   max-width: 100%;
   max-height: 100vh;
 }
+.contenedorEditarSVG {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
 
 .contenedorZoom {
   left: 15px;

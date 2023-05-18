@@ -1,21 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { impuestoGanancias, impuestoGananciasLink } from './graf';
 import style from './guia.module.css'
-import { useParams } from 'react-router-dom';
+import { getSVGfromMongo, actualizarSVG } from '../servicios/SVGservicios/obtenerSVG';
+import { useAuth } from '../../context/AuthContext';
+import { SVGForm } from './formularioNuevoSVG';
 
 export function SVGZoom(props) {
 
+  const { datosUser } = useAuth()
   const [scale, setScale] = useState(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [offsetX, setOffsetX] = useState();
   const [offsetY, setOffsetY] = useState();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [initialValues, setInitialValues] = useState(translate);
-  //const { seccion } = useParams()
   const { seccion } = props;
-  //const { esquema } = useParams()
-  const { esquema, pasarSeccionId } = props;
+  const { capituloId, pasarSeccionId } = props;
   const [render, setRender] = useState()
+  const [idDiagrama, setIdDiagrama] = useState()
   const [linkEditar, setLinkEditar] = useState()
   const svgRef = useRef(null);
   const gRef = useRef(null);
@@ -34,18 +35,33 @@ export function SVGZoom(props) {
 
   }, [render])
 
-  const cambiarEsquema = () => {
-    switch (esquema) {
-      case "Impuesto a las ganancias": { setRender(impuestoGanancias); setLinkEditar(impuestoGananciasLink) }; break;
-      default: setRender(); break;
+  const actualizarEsquema = async (idCap, idDiagram, linkEdit) => {
+    //pedimos el ultimo
+    await actualizarSVG(idCap, idDiagram).then(data => {
+      setRender(data?.elementoG)
+    })
+
+    if(linkEdit) {
+      setIdDiagrama(idDiagram)
+      setLinkEditar(linkEdit)
     }
   }
 
   useEffect(() => {
 
-    cambiarEsquema()
+    getSVGfromMongo(capituloId).then(data => {
+      if (data[0]) {
+        setIdDiagrama(data[0].id)
+        setLinkEditar(data[0].linkEditar)
+        setRender(data[0].elementoG)
+      } else {
+        setIdDiagrama()
+        setLinkEditar()
+        setRender()
+      }
+    })
 
-  }, [esquema])
+  }, [capituloId])
 
   const centrarEnSeccion = () => {
 
@@ -183,31 +199,39 @@ export function SVGZoom(props) {
     setIsPanning(false);
   }
 
+
   return (
     <>
-
-      <div className={style.contenedorSVG}>
-        {/* <button onClick={() => handleZoomIn()}>Zoom In</button>
-        <button onClick={() => handleZoomOut()}>Zoom Out</button> */}
-        {render ?
+      {idDiagrama ?
+        <div className={style.contenedorEditarSVG}>
           <a
-          className='btn btn-primary'
-          style={{width:"fit-content"}}
+            className='btn btn-primary'
+            style={{ width: "fit-content" }}
             target='_blank'
             href={linkEditar}
           >
             Editar
           </a>
-          :
-          <a
-          className='btn btn-primary'
-          style={{width:"fit-content"}}
-            target='_blank'
-            href="https://app.diagrams.net"
-          >
-            Crear
-          </a>
-        }
+          {datosUser?.rol == "admin" ?
+            <button
+              className='btn btn-primary'
+              style={{ width: "fit-content" }}
+              onClick={() => actualizarEsquema(capituloId, idDiagrama)}
+            >
+              Sincronizar
+            </button>
+            : null
+          }
+        </div>
+        :
+        <>
+          <SVGForm actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
+        </>
+      }
+      <hr></hr>
+      <div className={style.contenedorSVG}>
+        {/* <button onClick={() => handleZoomIn()}>Zoom In</button>
+        <button onClick={() => handleZoomOut()}>Zoom Out</button> */}
         <button
           className={style.centericon}
           onClick={() => centrarEnSeccion()}
@@ -228,7 +252,7 @@ export function SVGZoom(props) {
           <g
             ref={gRef}
             transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
-            dangerouslySetInnerHTML={{ __html: `${render}` }}
+            dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
           />
 
 
