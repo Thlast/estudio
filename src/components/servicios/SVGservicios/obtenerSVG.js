@@ -13,7 +13,7 @@ export const getSVGfromMongo = async (capituloId) => {
 //con esta funcion obtenemos el diagrama desde Diagrams
 export const getSVGfromDiagrams = async (capituloId) => {
 
-    const data = await fetch(`${urlserver}/diagrams/${capituloId}`)
+    const data = await fetch(`${urlmongo}/elementoG/${capituloId}`)
     return data.text();
 }
 
