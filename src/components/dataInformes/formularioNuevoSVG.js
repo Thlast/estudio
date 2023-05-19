@@ -3,6 +3,7 @@ import style from './formularioNuevoSVG.module.css'
 import { crearSVG } from '../servicios/SVGservicios/crearSVG'
 import { actualizarSVG } from '../servicios/SVGservicios/obtenerSVG'
 import { Spinner } from '../Login/Spinner'
+import { precargarSVG } from '../servicios/SVGservicios/precargarSVG'
 
 export function SVGForm(props) {
 
@@ -16,6 +17,7 @@ export function SVGForm(props) {
     setCargando(true)
     await crearSVG(link, linkEditar, capituloId).then(async data => {
       //console.log(data.id)
+      await precargarSVG(link)
       await actualizarEsquema(capituloId, data.id, data.linkEditar)
       setCargando(false)
     })
