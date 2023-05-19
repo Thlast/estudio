@@ -18,9 +18,9 @@ export const getSVGfromDiagrams = async (capituloId) => {
 }
 
 //obtengo el SVG actualizado
-export const actualizarSVG = async (capituloId, diagramsId) => {
+export const actualizarSVG = async (capituloId, diagramsId, nuevaData) => {
 
-    const nuevaData = await getSVGfromDiagrams(capituloId)
+    //const nuevaData = await getSVGfromDiagrams(capituloId)
     const url = `${urlmongo}/actualizarSVG/${diagramsId}`;
 
     let resp = {};

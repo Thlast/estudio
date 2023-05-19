@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './guia.module.css'
-import { getSVGfromMongo, actualizarSVG } from '../servicios/SVGservicios/obtenerSVG';
+import { getSVGfromMongo, actualizarSVG, getSVGfromDiagrams } from '../servicios/SVGservicios/obtenerSVG';
 import { useAuth } from '../../context/AuthContext';
 import { SVGForm } from './formularioNuevoSVG';
 
@@ -20,6 +20,7 @@ export function SVGZoom(props) {
   const [linkEditar, setLinkEditar] = useState()
   const svgRef = useRef(null);
   const gRef = useRef(null);
+  const [cargando, setCargando] = useState(false)
 
   //funcion que da funcionalidad a las id de las secciones
   useEffect(() => {
@@ -37,14 +38,20 @@ export function SVGZoom(props) {
 
   const actualizarEsquema = async (idCap, idDiagram, linkEdit) => {
     //pedimos el ultimo
-    await actualizarSVG(idCap, idDiagram).then(data => {
-      setRender(data?.elementoG)
+    setCargando(true)
+
+    await getSVGfromDiagrams(capituloId).then(async elemento => {
+      await actualizarSVG(idCap, idDiagram, elemento).then(data => {
+        setRender(data?.elementoG)
+        setCargando(false)
+      })
     })
 
-    if(linkEdit) {
+    if (linkEdit) {
       setIdDiagrama(idDiagram)
       setLinkEditar(linkEdit)
     }
+
   }
 
   useEffect(() => {
