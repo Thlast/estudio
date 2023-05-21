@@ -30,6 +30,7 @@ import { UserConfigProvider } from './context/UserConfig';
 import { SVGZoom } from './components/dataInformes/guia';
 import { Articulos } from './components/dataInformes/articulos';
 import { InteraccionIA } from './components/IA/interaccion';
+import { Error404 } from './components/Error404';
 
 function App() {
 
@@ -154,6 +155,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Secciones />
+              </ProtectedRoute>
+            }
+          />
+          <Route 
+          path="/Error404" 
+            element={
+              <ProtectedRoute>
+                <Error404 />
               </ProtectedRoute>
             }
           />
