@@ -53,8 +53,12 @@ export function HomeMongo() {
     obtenerPreguntaMateriaPorIndice(matPreferida, current)
       .then(data => {
         if (data !== "error del servidor") {
-          setCargando(false)
-          setPreguntas([data])
+          if (data.error) {
+            alertainfo(data.error)
+          } else {
+            setCargando(false)
+            setPreguntas([data])
+          }
         } else {
           setCargando(false)
           setRecargar(true)
@@ -65,8 +69,13 @@ export function HomeMongo() {
 
   useEffect(() => {
     obtenerLongitudPreguntas(matPreferida).then(data => {
-      console.log(data)
-      setLongitudPreguntas(data)
+      if (data !== "error del servidor") {
+
+        setLongitudPreguntas(data)
+      } else {
+
+        setRecargar(true)
+      }
     })
     cargarHome()
     identificarCurso().then(resp => setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1]))
@@ -86,39 +95,53 @@ export function HomeMongo() {
   }
 
   const random = async () => {
-    const indice = Math.floor(Math.random() * longitudPreguntas)
-    await identificarCurso().then(resp => {
-      //console.log(historiales.historial[resp])
-      if (historiales.historial[resp].indexOf(indice) === -1 && longitudPreguntas !== historiales.historial[resp].length) {
-        historiales.agregar(indice, resp)
-        setCurrent(indice)
-      } else if (historiales.historial[resp].indexOf(indice) !== -1 && longitudPreguntas !== historiales.historial[resp].length) {
-        random()
-      } else if (longitudPreguntas === historiales.historial[resp].length) {
-        reiniciar()
-      }
-    })
+    if (longitudPreguntas > 0) {
+
+      const indice = Math.floor(Math.random() * longitudPreguntas)
+      await identificarCurso().then(resp => {
+        //console.log(historiales.historial[resp])
+        if (historiales.historial[resp].indexOf(indice) === -1 && longitudPreguntas !== historiales.historial[resp].length) {
+          historiales.agregar(indice, resp)
+          setCurrent(indice)
+        } else if (historiales.historial[resp].indexOf(indice) !== -1 && longitudPreguntas !== historiales.historial[resp].length) {
+          random()
+        } else if (longitudPreguntas === historiales.historial[resp].length) {
+          reiniciar()
+        }
+      })
+    } else {
+      alertainfo("No hay preguntas")
+    }
   }
 
   const siguiente = async () => {
-    const indice = current + 1
-    if (indice !== longitudPreguntas) {
-      await identificarCurso().then(resp => historiales.agregar(indice, resp));
-      setCurrent(indice);
-    } else if (indice >= longitudPreguntas) {
-      alertainfo("No hay mas preguntas")
+    if (longitudPreguntas > 0) {
+      const indice = current + 1
+      if (indice !== longitudPreguntas) {
+        await identificarCurso().then(resp => historiales.agregar(indice, resp));
+        setCurrent(indice);
+      } else if (indice >= longitudPreguntas) {
+        alertainfo("No hay mas preguntas")
+      }
+      setShow(false);
+    } else {
+      alertainfo("No hay preguntas")
     }
-    setShow(false);
   }
   const anterior = async () => {
-    const indice = current - 1
-    if (indice !== -1) {
-      await identificarCurso().then(resp => historiales.agregar(indice, resp));
-      setCurrent(indice);
-    } else if (indice <= 0) {
+    if (longitudPreguntas > 0) {
+      const indice = current - 1
+      if (indice !== -1) {
+        await identificarCurso().then(resp => historiales.agregar(indice, resp));
+        setCurrent(indice);
+      } else if (indice <= 0) {
 
+      }
+      setShow(false);
     }
-    setShow(false);
+    else {
+      alertainfo("No hay preguntas")
+    }
   }
 
   const buscarPregunta = async (event, numeroBuscar) => {
@@ -143,7 +166,6 @@ export function HomeMongo() {
       setShow(true)
     }
   }
-  console.log(longitudPreguntas)
 
   return (
     <div className="App">
@@ -172,21 +194,21 @@ export function HomeMongo() {
               </div>
             </form>
             <br></br>
-            <div 
-            className='contenedorMateriaIa'
+            <div
+              className='contenedorMateriaIa'
             >
-            {matPreferida == "impuestos" ?
-              <Link 
-              className='boton home-boton'
-              to={"/IA"}>
-                Interactuar con la IA
-              </Link>
-              :
-              null
-            }
-            <div>
-              <SelectMateria />
-            </div>
+              {matPreferida == "impuestos" ?
+                <Link
+                  className='boton home-boton'
+                  to={"/IA"}>
+                  Interactuar con la IA
+                </Link>
+                :
+                null
+              }
+              <div>
+                <SelectMateria />
+              </div>
             </div>
             <br></br>
             <div>
@@ -210,6 +232,9 @@ export function HomeMongo() {
             {cargando ? <Spinner></Spinner> :
               <>
                 {!recargar ?
+                longitudPreguntas > 0 ? 
+                  <> 
+                  {
                   preguntas?.map(p => {
                     return (
                       <div
@@ -306,7 +331,12 @@ export function HomeMongo() {
 
                   }
 
-                  ) : <div
+                  ) 
+                }
+                </>
+                 : null
+              
+                  : <div
                     style={{ paddingTop: 20 }}>
 
                     <button
