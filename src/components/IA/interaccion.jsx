@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { preguntarIA } from '../servicios/serviciosIA/consultas'; // asumiendo que tienes un archivo separado para tus funciones
 import style from './interaccion.module.css'
 import { Spinner } from '../Login/Spinner.js'
@@ -9,6 +9,7 @@ import { alertainfo } from '../alertas';
 import { agregarChat, modificarChat } from '../servicios/serviciosIA/crearChat';
 import { eliminarChat, eliminarMessages } from '../servicios/serviciosIA/eliminarChat';
 import ReactMarkdown from 'react-markdown'
+import { UserConfig } from '../../context/UserConfig';
 
 export function InteraccionIA() {
   const [nombreChat, setNombreChat] = useState("Nuevo chat");
@@ -18,9 +19,7 @@ export function InteraccionIA() {
   const [prompt, setPrompt] = useState();
   const [cargando, setCargando] = useState(false);
   const { datosUser, user } = useAuth();
-
-  const [confirmarAccion, setConfirmarAccion] = useState()
-
+  const { mobile } = useContext(UserConfig);
   const preguntarGuardar = async (chat, pregunta, mensajes, e) => {
 
     let mensajesEnviar = []
@@ -159,13 +158,15 @@ export function InteraccionIA() {
       <div
         id='menuChats'
         className={style.contenedorChatsAnteriores}>
-        <button
-          style={{textAlign: "left"}}
-          className={style.botonDesplegar}
-          onClick={() => ocultarChats()}
-        >
-           {"<"}
-        </button>
+        {mobile &&
+          <button
+            style={{ textAlign: "left" }}
+            className={style.botonDesplegar}
+            onClick={() => ocultarChats()}
+          >
+            {"<"}
+          </button>
+        }
         <h1>
           Chats
         </h1>
@@ -274,12 +275,14 @@ export function InteraccionIA() {
       </div>
 
       <div className={style.contenedorDerecha}>
-        <button
-          className={style.botonDesplegar}
-          onClick={() => desplegarChats()}
-        >
-          {">"}
-        </button>
+        {mobile &&
+          <button
+            className={style.botonDesplegar}
+            onClick={() => desplegarChats()}
+          >
+            {">"}
+          </button>
+        }
         <div className={style.contenedorRespuestas}>
           <div className={style.esperandoRespuesta}>
             {cargando && <Spinner></Spinner>}

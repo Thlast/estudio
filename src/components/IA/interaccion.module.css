@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 770px) {
     .contenedor {
         padding: 0;
     }
@@ -15,6 +15,7 @@
 
 .contenedorDerecha {
     position: relative;
+    width: 100%;
 }
 
 .contenedorFormulario {
@@ -98,7 +99,7 @@
     background-color: var(--secundario);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 770px) {
     .contenedor {
         display: flex;
         flex-direction: row;
