@@ -54,10 +54,19 @@ export const getSiguienteSeccion = async (curso, seccion) => {
   }
 }
 
-export const getSeccionPorId = async (seccionId) => {
+export const getSeccionPorId = async (seccionId, capituloId) => {
 
   try {
-    const data = await fetch(`${urlserverSQL}/seccion/id/${seccionId}`)
+    const data = await fetch(`${urlserverSQL}/seccion/id/${capituloId}/${seccionId}`)
+    return data.json()
+  } catch(error) {
+    return "error del servidor"
+  }
+}
+export const getSeccionConsola = async (seccionId) => {
+
+  try {
+    const data = await fetch(`${urlserverSQL}/seccionConsola/id/${seccionId}`)
     return data.json()
   } catch(error) {
     return "error del servidor"

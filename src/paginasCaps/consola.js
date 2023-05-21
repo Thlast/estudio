@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { MostrarDef } from '../components/definiciones/mostrarDef';
-import { obtenerDatosConsola } from '../components/servicios/cursos/obtenerSeccion';
+import { getSeccionConsola, obtenerDatosConsola } from '../components/servicios/cursos/obtenerSeccion';
 import { getSeccionPorId } from '../components/servicios/cursos/obtenerSeccion';
 import { Articulos } from '../components/dataInformes/articulos';
 import { buscarConsolaSQL } from '../components/servicios/cursos/cursosSQL/buscarSeccion';
@@ -32,6 +32,7 @@ export function Consola(props) {
       setCargando(true)
     }
 
+
     if (dic !== "" & !(dic.includes("artículo") || dic.includes("articulo"))) {
       buscarConsolaSQL(curso, dic)
         .then(data => {
@@ -51,7 +52,9 @@ export function Consola(props) {
 
       //setCargando(false)
       return () => controller.abort()
-    } else if (dic.includes("artículo") || dic.includes("articulo")) {
+    } 
+    //buscar articulos si el curso=impuestos
+    else if (curso == "impuestos" & (dic.includes("artículo") || dic.includes("articulo"))) {
       setArticulo(dic)
     }
   }, [dic])
@@ -77,7 +80,7 @@ export function Consola(props) {
     if (buscarSeccionId) {
       // const controller = new AbortController()
       // const { signal } = controller
-      getSeccionPorId(buscarSeccionId)
+      getSeccionConsola(buscarSeccionId)
         .then(data => (setDatosSeccion(data),
           setCargando(false),
           recargarFuncionClickcode()

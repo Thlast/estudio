@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
@@ -33,6 +33,7 @@ export function Secciones() {
   const [contenidoSeccion, setContenidoSeccion] = useState()
   const [preview, setPreview] = useState()
   const [esquema, setEsquema] = useState(false)
+  const navigate = useNavigate()
 
   //para el svg del esquema
   const containerRef = useRef(null);
@@ -45,13 +46,21 @@ export function Secciones() {
   const cargarPagina = async () => {
 
     setCargando(true)
-    await getSeccionPorId(id)
+    await getSeccionPorId(id, capituloId)
       .then(data => {
-        setContenidoSeccion(data[0])
-        setTitulo(data[0]?.CapituloNombre)
-        setCargando(false)
+        if (data[0]) {
+          setContenidoSeccion(data[0])
+          setTitulo(data[0]?.CapituloNombre)
+          setCargando(false)
+          console.log(data)
+        }
+        else {
+          navigate("/Error404", { state: { mensaje: `La sección Nº${id} no existe, o no pertenece al capítulo ${capituloId} de ${curso}` } });
+        }
       }
       );
+
+
     recargarFuncionClickcode()
   }
   useEffect(() => {
@@ -456,7 +465,7 @@ export function Secciones() {
               Right={
                 <>
                   <div style={{ display: `${editMode ? "block" : "none"}` }}>
-                    <AyudaEditor preview={preview} />
+                    <AyudaEditor curso={curso} preview={preview} />
                   </div>
                   <div
                     style={{ display: `${editMode ? "none" : "block"}` }}
