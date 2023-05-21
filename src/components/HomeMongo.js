@@ -34,7 +34,10 @@ export function HomeMongo() {
     if (!materias.length) {
       cargarMaterias()
     }
+   
+  }
 
+  useEffect(() => {
     obtenerPreguntaMateriaPorIndice(matPreferida, current)
       .then(data => {
         if (data !== "error del servidor") {
@@ -51,7 +54,7 @@ export function HomeMongo() {
         }
       }
       )
-  }
+  }, [current, matPreferida])
 
   useEffect(() => {
     obtenerLongitudPreguntas(matPreferida).then(data => {
@@ -69,7 +72,7 @@ export function HomeMongo() {
     cargarHome()
     identificarCurso().then(resp => setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1]))
 
-  }, [matPreferida, current])
+  }, [matPreferida])
 
 
   const identificarCurso = async () => {
