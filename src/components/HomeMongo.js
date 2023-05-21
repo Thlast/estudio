@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { obtenerPreguntaMateria } from './servicios/preguntas/obtenerPregunta';
+import { obtenerLongitudPreguntas, obtenerPreguntaMateria, obtenerPreguntaMateriaPorIndice } from './servicios/preguntas/obtenerPregunta';
 import { Spinner } from './Login/Spinner';
 import { Link } from 'react-router-dom';
 import { alertainfo, alertareiniciar } from './alertas';
@@ -17,6 +17,7 @@ export function HomeMongo() {
 
   const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida, historiales, materiasIndices } = useContext(MateriasContext);
   const [preguntas, setPreguntas] = useState([]);
+  const [longitudPreguntas, setLongitudPreguntas] = useState();
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
   const [cargando, setCargando] = useState(true);
@@ -34,11 +35,11 @@ export function HomeMongo() {
       cargarMaterias()
     }
 
-    obtenerPreguntaMateria(matPreferida)
+    obtenerPreguntaMateriaPorIndice(matPreferida, current)
       .then(data => {
         if (data !== "error del servidor") {
           setCargando(false)
-          setPreguntas(data)
+          setPreguntas([data])
         } else {
           setCargando(false)
           setRecargar(true)
@@ -47,9 +48,26 @@ export function HomeMongo() {
       )
   }
 
-
   useEffect(() => {
 
+    obtenerPreguntaMateriaPorIndice(matPreferida, current)
+      .then(data => {
+        if (data !== "error del servidor") {
+          setCargando(false)
+          setPreguntas([data])
+        } else {
+          setCargando(false)
+          setRecargar(true)
+        }
+      }
+      )
+  }, [current])
+
+  useEffect(() => {
+    obtenerLongitudPreguntas(matPreferida).then(data => {
+      console.log(data)
+      setLongitudPreguntas(data)
+    })
     cargarHome()
     identificarCurso().then(resp => setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1]))
   }, [matPreferida])
@@ -68,15 +86,15 @@ export function HomeMongo() {
   }
 
   const random = async () => {
-    const indice = Math.floor(Math.random() * preguntas.length)
+    const indice = Math.floor(Math.random() * longitudPreguntas)
     await identificarCurso().then(resp => {
       //console.log(historiales.historial[resp])
-      if (historiales.historial[resp].indexOf(indice) === -1 && preguntas.length !== historiales.historial[resp].length) {
+      if (historiales.historial[resp].indexOf(indice) === -1 && longitudPreguntas !== historiales.historial[resp].length) {
         historiales.agregar(indice, resp)
         setCurrent(indice)
-      } else if (historiales.historial[resp].indexOf(indice) !== -1 && preguntas.length !== historiales.historial[resp].length) {
+      } else if (historiales.historial[resp].indexOf(indice) !== -1 && longitudPreguntas !== historiales.historial[resp].length) {
         random()
-      } else if (preguntas.length === historiales.historial[resp].length) {
+      } else if (longitudPreguntas === historiales.historial[resp].length) {
         reiniciar()
       }
     })
@@ -84,10 +102,10 @@ export function HomeMongo() {
 
   const siguiente = async () => {
     const indice = current + 1
-    if (indice !== preguntas.length) {
+    if (indice !== longitudPreguntas) {
       await identificarCurso().then(resp => historiales.agregar(indice, resp));
       setCurrent(indice);
-    } else if (indice >= preguntas.length) {
+    } else if (indice >= longitudPreguntas) {
       alertainfo("No hay mas preguntas")
     }
     setShow(false);
@@ -106,11 +124,11 @@ export function HomeMongo() {
   const buscarPregunta = async (event, numeroBuscar) => {
     event.preventDefault();
     const indice = parseInt(numeroBuscar) - 1
-    if (indice < preguntas.length & indice >= 0) {
+    if (indice < longitudPreguntas & indice >= 0) {
       await identificarCurso().then(resp => historiales.agregar(indice, resp));
       setCurrent(indice);
-    } else if (indice >= preguntas.length) {
-      alertainfo("No existe la pregunta número " + numeroBuscar + ", número máximo " + preguntas.length)
+    } else if (indice >= longitudPreguntas) {
+      alertainfo("No existe la pregunta número " + numeroBuscar + ", número máximo " + longitudPreguntas)
     }
     setShow(false);
   }
@@ -125,6 +143,7 @@ export function HomeMongo() {
       setShow(true)
     }
   }
+  console.log(longitudPreguntas)
 
   return (
     <div className="App">
@@ -140,7 +159,7 @@ export function HomeMongo() {
                 </span>
                 <input
                   min={1}
-                  max={preguntas.length}
+                  max={longitudPreguntas}
                   onChange={(e) => setNumeroBuscar(e.target.value)}
                   value={numeroBuscar}
                   type="number">
@@ -153,8 +172,13 @@ export function HomeMongo() {
               </div>
             </form>
             <br></br>
+            <div 
+            className='contenedorMateriaIa'
+            >
             {matPreferida == "impuestos" ?
-              <Link to={"/IA"}>
+              <Link 
+              className='boton home-boton'
+              to={"/IA"}>
                 Interactuar con la IA
               </Link>
               :
@@ -162,6 +186,7 @@ export function HomeMongo() {
             }
             <div>
               <SelectMateria />
+            </div>
             </div>
             <br></br>
             <div>
@@ -185,102 +210,100 @@ export function HomeMongo() {
             {cargando ? <Spinner></Spinner> :
               <>
                 {!recargar ?
-                  preguntas?.map((p, num) => {
-
-                    if (preguntas.indexOf(p) === current) {
-                      return (
-                        <div
-                          key={p.id}>
-                          <h1>
-                            Pregunta Nº {num + 1} de {preguntas.length}:
-                          </h1>
-                          {p.seccion ?
-                            <div>
-                              <span>De la seccion: {" "}</span>
-                              <Link
-                                to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
-                                className='home-seccion'>
-                                {p.seccion}
-                              </Link>
-                            </div>
-                            : ""
-                          }
-                          {p.seccionId ?
-                            <div>
-                              <span>De la seccion: {" "}</span>
-                              <Link
-                                to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
-                                className='home-seccion'>
-                                {`${p.seccionId}: ${p.titulo}`}
-                              </Link>
-                            </div>
-                            : ""
-                          }
-                          {p.examen ?
-                            <div>
-                              <Link
-                                to={`/examenes/${p.examen}`}
-                                className='home-seccion'>
-                                Examen
-                              </Link>
-                            </div>
-                            : ""
-                          }
-                          <div
-                            style={{ "text-align": "-webkit-center" }}>
-                            <Preguntas
-                              edit={false}
-                              p={p}
-                              num={num}
-                            />
-                          </div>
+                  preguntas?.map(p => {
+                    return (
+                      <div
+                        key={p.id}>
+                        <h1>
+                          Pregunta Nº {current + 1} de {longitudPreguntas}:
+                        </h1>
+                        {p.seccion ?
                           <div>
-                            <br></br>
-                            {p.tipo === "Normal" &&
-                              <button
-                                className='boton home-boton'
-                                onClick={() => mostrarRespuesta(p.id)}>
-                                {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
-                              </button>}
-                            <hr></hr>
+                            <span>De la seccion: {" "}</span>
+                            <Link
+                              to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
+                              className='home-seccion'>
+                              {p.seccion}
+                            </Link>
                           </div>
-                          {p.tipo === "Multiple" &&
-                            <div
-                              className="home-multiple cuadro">
-                              <Opciones
-                                p={p}
-                                num={num} />
-                            </div>}
-                          {p.tipo === "vof" &&
-                            <div
-                              style={{ "text-align": "left" }}
-                              className="home-multiple cuadro">
-                              <VoF
-                                p={p}
-                                num={num} />
-                            </div>}
-
-                          <div
-                            className='hide'
-                            id={"respuesta-" + p.id}>
-                            <div>
-                              <p style={{ "color": "green" }} className='hide' id={`correcto-${p.id}`}>✓</p>
-                              <p>
-                                La respuesta correcta es: {p.correcta || p.resultado}
-                              </p>
-                            </div>
-                            <div
-                              className="show-element cuadro contendedor-pregunta-respuesta">
-                              <ReactMarkdown
-                                remarkPlugins={[remarkGfm]}>
-                                {p.respuesta}
-                              </ReactMarkdown>
-                            </div>
+                          : ""
+                        }
+                        {p.seccionId ?
+                          <div>
+                            <span>De la seccion: {" "}</span>
+                            <Link
+                              to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
+                              className='home-seccion'>
+                              {`${p.seccionId}: ${p.titulo}`}
+                            </Link>
                           </div>
-
+                          : ""
+                        }
+                        {p.examen ?
+                          <div>
+                            <Link
+                              to={`/examenes/${p.examen}`}
+                              className='home-seccion'>
+                              Examen
+                            </Link>
+                          </div>
+                          : ""
+                        }
+                        <div
+                          style={{ "text-align": "-webkit-center" }}>
+                          <Preguntas
+                            edit={false}
+                            p={p}
+                            num={current}
+                          />
                         </div>
-                      )
-                    }
+                        <div>
+                          <br></br>
+                          {p.tipo === "Normal" &&
+                            <button
+                              className='boton home-boton'
+                              onClick={() => mostrarRespuesta(p.id)}>
+                              {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
+                            </button>}
+                          <hr></hr>
+                        </div>
+                        {p.tipo === "Multiple" &&
+                          <div
+                            className="home-multiple cuadro">
+                            <Opciones
+                              p={p}
+                              num={current} />
+                          </div>}
+                        {p.tipo === "vof" &&
+                          <div
+                            style={{ "text-align": "left" }}
+                            className="home-multiple cuadro">
+                            <VoF
+                              p={p}
+                              num={current} />
+                          </div>}
+
+                        <div
+                          className='hide'
+                          id={"respuesta-" + p.id}>
+                          <div>
+                            <p style={{ "color": "green" }} className='hide' id={`correcto-${p.id}`}>✓</p>
+                            <p>
+                              La respuesta correcta es: {p.correcta || p.resultado}
+                            </p>
+                          </div>
+                          <div
+                            className="show-element cuadro contendedor-pregunta-respuesta">
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}>
+                              {p.respuesta}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+
+                      </div>
+                    )
+
                   }
 
                   ) : <div

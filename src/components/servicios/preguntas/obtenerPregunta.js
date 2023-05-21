@@ -35,6 +35,29 @@ export const obtenerPreguntaMateria = async (materia) => {
 
    
 }
+//optimizado para home - busca por indice
+export const obtenerPreguntaMateriaPorIndice = async (curso, indice) => {
+
+ try {
+  const data = await fetch(`${urlserver}/preguntasPorIndice/${curso}/${indice}`)
+  return data.json()
+ } catch(error) {
+  return "error del servidor"
+ }
+
+   
+}
+export const obtenerLongitudPreguntas = async (curso) => {
+
+  try {
+   const data = await fetch(`${urlserver}/longitudPreguntas/${curso}`)
+   return data.json()
+  } catch(error) {
+   return "error del servidor"
+  }
+ 
+    
+ }
 
 export const filtrarPregunta = async (filtro) => {
   
