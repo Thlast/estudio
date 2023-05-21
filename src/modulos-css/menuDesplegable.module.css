@@ -8,7 +8,7 @@
     color: var(--text-color);
     /* transition: all 0.5s ease-in-out; */
     touch-action: none; /* Deshabilita la interacción táctil para evitar conflictos */
-    z-index: 2;
+    z-index: 3;
     user-select: none;
     border-right: 1px solid var(--border-cuadro);
     box-shadow: 2px 3px 2px var(--secundario);
@@ -23,7 +23,7 @@
     color: var(--text-color);
     /* transition: all 0.5s ease-in-out; */
     touch-action: none; /* Deshabilita la interacción táctil para evitar conflictos */
-    z-index: 2;
+    z-index: 3;
     user-select: none;
     border-right: 1px solid var(--border-cuadro);
     box-shadow: 2px 3px 2px var(--secundario);
@@ -41,7 +41,7 @@
     position: fixed;
     left: 10px;
     top: 15px;
-    z-index: 2;
+    z-index: 3;
     background: none;
     border: none;
     color: var(--text-color);
@@ -50,7 +50,7 @@
     position: fixed;
     left: 270px;
     top: 15px;
-    z-index: 2;
+    z-index: 3;
     background: none;
     border: none;
     color: var(--text-color);
