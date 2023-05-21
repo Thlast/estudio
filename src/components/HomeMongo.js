@@ -29,7 +29,6 @@ export function HomeMongo() {
 
   const cargarHome = () => {
     setRecargar(false)
-    setCargando(true)
 
     if (!materias.length) {
       cargarMaterias()
@@ -37,8 +36,8 @@ export function HomeMongo() {
    
   }
 
-  useEffect(() => {
-    obtenerPreguntaMateriaPorIndice(matPreferida, current)
+const obtenerPreguntaPorIndice = async (mat, c) => {
+    await obtenerPreguntaMateriaPorIndice(mat, c)
       .then(data => {
         if (data !== "error del servidor") {
           if (data.error) {
@@ -54,7 +53,7 @@ export function HomeMongo() {
         }
       }
       )
-  }, [current, matPreferida])
+  }
 
   useEffect(() => {
     obtenerLongitudPreguntas(matPreferida).then(data => {
@@ -70,7 +69,11 @@ export function HomeMongo() {
   useEffect(() => {
 
     cargarHome()
-    identificarCurso().then(resp => setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1]))
+    identificarCurso().then(resp => {
+        setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1])
+        obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp].length - 1])
+      }
+      )
 
   }, [matPreferida])
 
@@ -96,6 +99,7 @@ export function HomeMongo() {
         if (historiales.historial[resp].indexOf(indice) === -1 && longitudPreguntas !== historiales.historial[resp].length) {
           historiales.agregar(indice, resp)
           setCurrent(indice)
+          obtenerPreguntaPorIndice(matPreferida, indice)
         } else if (historiales.historial[resp].indexOf(indice) !== -1 && longitudPreguntas !== historiales.historial[resp].length) {
           random()
         } else if (longitudPreguntas === historiales.historial[resp].length) {
@@ -113,6 +117,7 @@ export function HomeMongo() {
       if (indice !== longitudPreguntas) {
         await identificarCurso().then(resp => historiales.agregar(indice, resp));
         setCurrent(indice);
+        obtenerPreguntaPorIndice(matPreferida, indice)
       } else if (indice >= longitudPreguntas) {
         alertainfo("No hay mas preguntas")
       }
@@ -127,6 +132,7 @@ export function HomeMongo() {
       if (indice !== -1) {
         await identificarCurso().then(resp => historiales.agregar(indice, resp));
         setCurrent(indice);
+        obtenerPreguntaPorIndice(matPreferida, indice)
       } else if (indice <= 0) {
 
       }
@@ -143,6 +149,7 @@ export function HomeMongo() {
     if (indice < longitudPreguntas & indice >= 0) {
       await identificarCurso().then(resp => historiales.agregar(indice, resp));
       setCurrent(indice);
+      obtenerPreguntaPorIndice(matPreferida, indice)
     } else if (indice >= longitudPreguntas) {
       alertainfo("No existe la pregunta número " + numeroBuscar + ", número máximo " + longitudPreguntas)
     }
