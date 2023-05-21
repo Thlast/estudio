@@ -1,8 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import style from '../modulos-css/menuDesplegable.module.css'
 import { Perfil } from "./Perfil";
 import { useAuth } from "../context/AuthContext";
+
 export function MenuDesplegable() {
+
   const { user } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false);
   const [startX, setStartX] = useState(null);
@@ -45,8 +47,11 @@ export function MenuDesplegable() {
     setStartX(null);
     setCurrentX(null);
     setOffsetX(0);
+    if (menuOpen) {
+      menuCerrarRef.current.style.transform = "";
+    }
     menuRef.current.style.transform = "";
-    menuCerrarRef.current.style.transform = "";
+
     //menuAbrirRef.current.style.transform = "";
   };
 
@@ -73,7 +78,7 @@ export function MenuDesplegable() {
             </button>
             :
             <button
-            //ref={menuAbrirRef}
+              //ref={menuAbrirRef}
               className={style.abrirMenu}
               onClick={toggleMenu}>{">"}
             </button>
