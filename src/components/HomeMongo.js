@@ -38,22 +38,8 @@ export function HomeMongo() {
     obtenerPreguntaMateriaPorIndice(matPreferida, current)
       .then(data => {
         if (data !== "error del servidor") {
-          setCargando(false)
-          setPreguntas([data])
-        } else {
-          setCargando(false)
-          setRecargar(true)
-        }
-      }
-      )
-  }
-
-  useEffect(() => {
-
-    obtenerPreguntaMateriaPorIndice(matPreferida, current)
-      .then(data => {
-        if (data !== "error del servidor") {
           if (data.error) {
+            setCargando(false)
             alertainfo(data.error)
           } else {
             setCargando(false)
@@ -65,21 +51,25 @@ export function HomeMongo() {
         }
       }
       )
-  }, [current])
+  }
 
   useEffect(() => {
     obtenerLongitudPreguntas(matPreferida).then(data => {
       if (data !== "error del servidor") {
-
         setLongitudPreguntas(data)
       } else {
-
         setRecargar(true)
       }
     })
+   
+  }, [matPreferida])
+
+  useEffect(() => {
+
     cargarHome()
     identificarCurso().then(resp => setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1]))
-  }, [matPreferida])
+
+  }, [matPreferida, current])
 
 
   const identificarCurso = async () => {
