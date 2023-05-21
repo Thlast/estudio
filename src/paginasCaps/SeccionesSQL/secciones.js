@@ -436,7 +436,7 @@ export function Secciones() {
                       seccion={id}
                     />
                   </div>
-                  <div style={{ display: `${(esquema && !editMode) ? "none" : "block"}` }}>
+                  <div style={{ display: `${(esquema || editMode) ? "none" : "block"}` }}>
                     <TextoCursoSQL
                       cargando={cargando}
                       contenidoSeccion={contenidoSeccion}
