@@ -147,15 +147,29 @@ export function InteraccionIA() {
     document.getElementById(`modificarNombreChat-${id}`).style.display = "none"
     document.getElementById(`nombreChat-${id}`).style.display = "block"
   }
+  const desplegarChats = () => {
+    document.getElementById("menuChats").style.left = 0;
+  }
+  const ocultarChats = () => {
+    document.getElementById("menuChats").style.left = "-300px";
+  }
 
   return (
     <div className={style.contenedor}>
-      <div className={style.contenedorChatsAnteriores}>
+      <div
+        id='menuChats'
+        className={style.contenedorChatsAnteriores}>
+        <button
+          style={{textAlign: "left"}}
+          className={style.botonDesplegar}
+          onClick={() => ocultarChats()}
+        >
+           {"<"}
+        </button>
         <h1>
           Chats
         </h1>
         <ul
-
         >
           <li
             className={style.new}
@@ -260,7 +274,12 @@ export function InteraccionIA() {
       </div>
 
       <div className={style.contenedorDerecha}>
-
+        <button
+          className={style.botonDesplegar}
+          onClick={() => desplegarChats()}
+        >
+          {">"}
+        </button>
         <div className={style.contenedorRespuestas}>
           <div className={style.esperandoRespuesta}>
             {cargando && <Spinner></Spinner>}
