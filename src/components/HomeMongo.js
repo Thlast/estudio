@@ -54,7 +54,11 @@ export function HomeMongo() {
           if (data.error) {
             setCargando(false)
             alertainfo(data.error)
-          } else {
+          } else if (data.length == 0) {
+            setCargando(false)
+            setRecargar(true)
+          }
+          else {
             setCargando(false)
             setPreguntas([data])
           }
