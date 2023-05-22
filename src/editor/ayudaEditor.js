@@ -16,13 +16,13 @@ export function AyudaEditor(props) {
     const elemento = document.getElementById(`ayuda${num}`);
     for (let i = 0; i < ejemplos.length; i++) {
       if(i !== num){
-        document.getElementById(`boton${i}`).classList.remove("botonmostrar")
+        document.getElementById(`boton${i}`)?.classList.remove("botonmostrar")
       }
     }
-    if (!document.getElementById(`boton${num}`).classList.contains("botonmostrar")) {
-      document.getElementById(`boton${num}`).classList.add("botonmostrar");
+    if (!document.getElementById(`boton${num}`)?.classList.contains("botonmostrar")) {
+      document.getElementById(`boton${num}`)?.classList.add("botonmostrar");
     } else {
-      document.getElementById(`boton${num}`).classList.remove("botonmostrar");
+      document.getElementById(`boton${num}`)?.classList.remove("botonmostrar");
     }
     
 
@@ -43,8 +43,8 @@ export function AyudaEditor(props) {
       document.querySelector(".RemarcarAyudaEditor")?.classList.remove("RemarcarAyudaEditor")
       document.querySelector(".RemarcarAyudaEditor")?.classList.remove("RemarcarAyudaEditor")
     }
-    document.getElementById(`demostracion-${numE}${num}`).classList.add("RemarcarAyudaEditor")
-    document.getElementById(`input-${numE}${num}`).classList.add("RemarcarAyudaEditor")
+    document.getElementById(`demostracion-${numE}${num}`)?.classList.add("RemarcarAyudaEditor")
+    document.getElementById(`input-${numE}${num}`)?.classList.add("RemarcarAyudaEditor")
   }
 
   return (
