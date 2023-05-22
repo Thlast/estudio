@@ -1,0 +1,12 @@
+.botonCompartir {
+    background-color: #F2931E;
+    border-color: #F08705;
+    color: #000000;
+    border: 1px solid #F2931E;
+    border-radius: 4px;
+}
+.imgCompartir {
+    margin-right: 4px;
+    margin-top: -3px;
+    filter: invert(100%);
+}
