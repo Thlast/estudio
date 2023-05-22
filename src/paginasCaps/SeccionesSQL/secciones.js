@@ -187,40 +187,18 @@ export function Secciones() {
     }
   }
 
-  const svgRef = useRef(null);
-
-  useEffect(() => {
-    const handleEnter = (event) => {
-
-      event.preventDefault();
-      const container = containerRef.current;
-
-      if (container) {
+  const isZooming = (valor) => {
+    const container = containerRef.current;
+    if (container) {
+      if(valor) {
         container.style.overflowY = 'hidden';
       }
-
-    };
-    const handleLeave = (event) => {
-
-      event.preventDefault();
-      const container = containerRef.current;
-
-      if (container) {
+      else {
         container.style.overflowY = 'scroll';
       }
-
-    };
-
-
-    svgRef.current?.addEventListener('mouseenter', handleEnter);
-    svgRef.current?.addEventListener('mouseleave', handleLeave);
-
-    return () => {
-      svgRef.current?.removeEventListener('mouseenter', handleEnter);
-      svgRef.current?.removeEventListener('mouseleave', handleLeave);
-    };
-  }, []);
-
+    }
+  }
+  
   return (
     <>
       <>
@@ -340,7 +318,6 @@ export function Secciones() {
                   limpiarHistorial={limpiarHistorial} />
               </div>
               <div
-                ref={svgRef}
                 style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                 <SVGZoomMobile
                   pasarSeccionId={pasarSeccionId}
@@ -428,9 +405,9 @@ export function Secciones() {
                       previsualizar={previsualizar} />
                   </div>
                   <div
-                    ref={svgRef}
                     style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                     <SVGZoom
+                      isZooming={isZooming}
                       pasarSeccionId={pasarSeccionId}
                       capituloId={capituloId}
                       seccion={id}

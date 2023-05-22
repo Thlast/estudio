@@ -3,6 +3,8 @@ import style from './guia.module.css'
 import { getSVGfromMongo, actualizarSVG, getSVGfromDiagrams } from '../servicios/SVGservicios/obtenerSVG';
 import { useAuth } from '../../context/AuthContext';
 import { SVGForm } from './formularioNuevoSVG';
+import { ComoCrearSVG } from './comoCrearSVG';
+import { CambiarSVG } from './cambiarSVG';
 
 export function SVGZoom(props) {
 
@@ -13,7 +15,7 @@ export function SVGZoom(props) {
   const [offsetY, setOffsetY] = useState();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [initialValues, setInitialValues] = useState(translate);
-  const { seccion } = props;
+  const { seccion, isZooming } = props;
   const { capituloId, pasarSeccionId } = props;
   const [render, setRender] = useState()
   const [idDiagrama, setIdDiagrama] = useState()
@@ -21,19 +23,23 @@ export function SVGZoom(props) {
   const svgRef = useRef(null);
   const gRef = useRef(null);
   const [cargando, setCargando] = useState(false)
+  const [modificar, setModificar] = useState(false)
 
   //funcion que da funcionalidad a las id de las secciones
   useEffect(() => {
-    const gElement = gRef.current;
-    const elements = gElement.querySelectorAll('[id]');
+    if (render) {
 
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].classList.add("remarcarSecciones")
-      elements[i].onclick = function () {
-        pasarSeccionId(elements[i].id);
+      const gElement = gRef.current;
+      const elements = gElement.querySelectorAll('[id]');
+
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].classList.add("remarcarSecciones")
+        elements[i].onclick = function () {
+          pasarSeccionId(elements[i].id);
+        }
       }
-    }
 
+    }
   }, [render])
 
   const actualizarEsquema = async (idCap, idDiagram, linkEdit) => {
@@ -200,15 +206,25 @@ export function SVGZoom(props) {
 
   function handleMouseUp(event) {
     setIsPanning(false);
+    isZooming(true)
+  }
+  function handleMouseEnter(event) {
+    isZooming(true)
   }
 
   function handleMouseLeave(event) {
     setIsPanning(false);
+    isZooming(false)
   }
 
 
   return (
     <>
+      {modificar ?
+        <CambiarSVG actualizarEsquema={actualizarEsquema} idDiagrama={idDiagrama} />
+        :
+        null
+      }
       {idDiagrama ?
         <div className={style.contenedorEditarSVG}>
           <a
@@ -217,22 +233,32 @@ export function SVGZoom(props) {
             target='_blank'
             href={linkEditar}
           >
-            Editar
+            Editar en diagrams
           </a>
           {datosUser?.rol == "admin" ?
-            <button
-              className='btn btn-primary'
-              style={{ width: "fit-content" }}
-              onClick={() => actualizarEsquema(capituloId, idDiagrama)}
-            >
-              Sincronizar
-            </button>
+            <>
+              <button
+                className='btn btn-primary'
+                style={{ width: "fit-content" }}
+                onClick={() => actualizarEsquema(capituloId, idDiagrama)}
+              >
+                Sincronizar
+              </button>
+              <button
+                className={modificar ? 'btn btn-danger' : 'btn btn-primary'}
+                style={{ width: "fit-content" }}
+                onClick={() => setModificar(!modificar)}
+              >
+                {modificar ? "Cancelar" :  "Modificar enlace" }
+              </button>
+            </>
             : null
           }
         </div>
         :
         <>
           <SVGForm actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
+          <ComoCrearSVG />
         </>
       }
       <hr></hr>
@@ -254,6 +280,7 @@ export function SVGZoom(props) {
           onMouseDown={(event) => handleMouseDown(event)}
           onMouseMove={(event) => handleMouseMove(event)}
           onMouseUp={(event) => handleMouseUp(event)}
+          onMouseEnter={(event) => handleMouseEnter(event)}
           onMouseLeave={(event) => handleMouseLeave(event)}
         >
           <g
@@ -261,9 +288,6 @@ export function SVGZoom(props) {
             transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
             dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
           />
-
-
-
         </svg>
       </div>
     </>
