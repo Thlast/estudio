@@ -38,10 +38,8 @@ export function HomeMongo() {
     obtenerLongitudPreguntas(matPreferida).then(data => {
       if (data !== "error del servidor") {
         setLongitudPreguntas(data)
-        setCargando(false)
       } else {
         setRecargar(true)
-        setCargando(false)
       }
     })
   }
