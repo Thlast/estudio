@@ -67,11 +67,12 @@ export function HomeMongo() {
   }
 
   useEffect(() => {
-
+    setCargando(true)
     cargarHome()
-    identificarCurso().then(resp => {
+    identificarCurso().then(async resp => {
       setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1])
-      obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp].length - 1])
+      await obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp].length - 1])
+      setCargando(false)
     }
     )
 
