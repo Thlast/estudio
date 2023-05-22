@@ -20,7 +20,7 @@ export function HomeMongo() {
   const [longitudPreguntas, setLongitudPreguntas] = useState();
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
-  const [cargando, setCargando] = useState(true);
+  const [cargando, setCargando] = useState(false);
 
 
   const { loading } = useAuth()
@@ -28,6 +28,7 @@ export function HomeMongo() {
   const [recargar, setRecargar] = useState(false)
 
   const cargarHome = async () => {
+    setCargando(true)
     setRecargar(false)
 
     if (!materias.length) {
@@ -37,13 +38,16 @@ export function HomeMongo() {
     obtenerLongitudPreguntas(matPreferida).then(data => {
       if (data !== "error del servidor") {
         setLongitudPreguntas(data)
+        setCargando(false)
       } else {
         setRecargar(true)
+        setCargando(false)
       }
     })
   }
 
-const obtenerPreguntaPorIndice = async (mat, c) => {
+  const obtenerPreguntaPorIndice = async (mat, c) => {
+    setCargando(true)
     await obtenerPreguntaMateriaPorIndice(mat, c)
       .then(data => {
         if (data !== "error del servidor") {
@@ -66,10 +70,10 @@ const obtenerPreguntaPorIndice = async (mat, c) => {
 
     cargarHome()
     identificarCurso().then(resp => {
-        setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1])
-        obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp].length - 1])
-      }
-      )
+      setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1])
+      obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp].length - 1])
+    }
+    )
 
   }, [matPreferida])
 
@@ -228,110 +232,110 @@ const obtenerPreguntaPorIndice = async (mat, c) => {
             {cargando ? <Spinner></Spinner> :
               <>
                 {!recargar ?
-                longitudPreguntas > 0 ? 
-                  <> 
-                  {
-                  preguntas?.map(p => {
-                    return (
-                      <div
-                        key={p.id}>
-                        <h1>
-                          Pregunta Nº {current + 1} de {longitudPreguntas}:
-                        </h1>
-                        {p.seccion ?
-                          <div>
-                            <span>De la seccion: {" "}</span>
-                            <Link
-                              to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
-                              className='home-seccion'>
-                              {p.seccion}
-                            </Link>
-                          </div>
-                          : ""
+                  longitudPreguntas > 0 ?
+                    <>
+                      {
+                        preguntas?.map(p => {
+                          return (
+                            <div
+                              key={p.id}>
+                              <h1>
+                                Pregunta Nº {current + 1} de {longitudPreguntas}:
+                              </h1>
+                              {p.seccion ?
+                                <div>
+                                  <span>De la seccion: {" "}</span>
+                                  <Link
+                                    to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
+                                    className='home-seccion'>
+                                    {p.seccion}
+                                  </Link>
+                                </div>
+                                : ""
+                              }
+                              {p.seccionId ?
+                                <div>
+                                  <span>De la seccion: {" "}</span>
+                                  <Link
+                                    to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
+                                    className='home-seccion'>
+                                    {`${p.seccionId}: ${p.titulo}`}
+                                  </Link>
+                                </div>
+                                : ""
+                              }
+                              {p.examen ?
+                                <div>
+                                  <Link
+                                    to={`/examenes/${p.examen}`}
+                                    className='home-seccion'>
+                                    Examen
+                                  </Link>
+                                </div>
+                                : ""
+                              }
+                              <div
+                                style={{ "text-align": "-webkit-center" }}>
+                                <Preguntas
+                                  edit={false}
+                                  p={p}
+                                  num={current}
+                                />
+                              </div>
+                              <div>
+                                <br></br>
+                                {p.tipo === "Normal" &&
+                                  <button
+                                    className='boton home-boton'
+                                    onClick={() => mostrarRespuesta(p.id)}>
+                                    {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
+                                  </button>}
+                                <hr></hr>
+                              </div>
+                              {p.tipo === "Multiple" &&
+                                <div
+                                  className="home-multiple cuadro">
+                                  <Opciones
+                                    p={p}
+                                    num={current} />
+                                </div>}
+                              {p.tipo === "vof" &&
+                                <div
+                                  style={{ "text-align": "left" }}
+                                  className="home-multiple cuadro">
+                                  <VoF
+                                    p={p}
+                                    num={current} />
+                                </div>}
+
+                              <div
+                                className='hide'
+                                id={"respuesta-" + p.id}>
+                                <div>
+                                  <p style={{ "color": "green" }} className='hide' id={`correcto-${p.id}`}>✓</p>
+                                  <p>
+                                    La respuesta correcta es: {p.correcta || p.resultado}
+                                  </p>
+                                </div>
+                                <div
+                                  className="show-element cuadro contendedor-pregunta-respuesta">
+                                  <ReactMarkdown
+                                    remarkPlugins={[remarkGfm]}>
+                                    {p.respuesta}
+                                  </ReactMarkdown>
+                                </div>
+                              </div>
+
+                            </div>
+                          )
+
                         }
-                        {p.seccionId ?
-                          <div>
-                            <span>De la seccion: {" "}</span>
-                            <Link
-                              to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
-                              className='home-seccion'>
-                              {`${p.seccionId}: ${p.titulo}`}
-                            </Link>
-                          </div>
-                          : ""
-                        }
-                        {p.examen ?
-                          <div>
-                            <Link
-                              to={`/examenes/${p.examen}`}
-                              className='home-seccion'>
-                              Examen
-                            </Link>
-                          </div>
-                          : ""
-                        }
-                        <div
-                          style={{ "text-align": "-webkit-center" }}>
-                          <Preguntas
-                            edit={false}
-                            p={p}
-                            num={current}
-                          />
-                        </div>
-                        <div>
-                          <br></br>
-                          {p.tipo === "Normal" &&
-                            <button
-                              className='boton home-boton'
-                              onClick={() => mostrarRespuesta(p.id)}>
-                              {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
-                            </button>}
-                          <hr></hr>
-                        </div>
-                        {p.tipo === "Multiple" &&
-                          <div
-                            className="home-multiple cuadro">
-                            <Opciones
-                              p={p}
-                              num={current} />
-                          </div>}
-                        {p.tipo === "vof" &&
-                          <div
-                            style={{ "text-align": "left" }}
-                            className="home-multiple cuadro">
-                            <VoF
-                              p={p}
-                              num={current} />
-                          </div>}
 
-                        <div
-                          className='hide'
-                          id={"respuesta-" + p.id}>
-                          <div>
-                            <p style={{ "color": "green" }} className='hide' id={`correcto-${p.id}`}>✓</p>
-                            <p>
-                              La respuesta correcta es: {p.correcta || p.resultado}
-                            </p>
-                          </div>
-                          <div
-                            className="show-element cuadro contendedor-pregunta-respuesta">
-                            <ReactMarkdown
-                              remarkPlugins={[remarkGfm]}>
-                              {p.respuesta}
-                            </ReactMarkdown>
-                          </div>
-                        </div>
+                        )
+                      }
+                    </>
+                    : null
 
-                      </div>
-                    )
-
-                  }
-
-                  ) 
-                }
-                </>
-                 : null
-              
                   : <div
                     style={{ paddingTop: 20 }}>
 
