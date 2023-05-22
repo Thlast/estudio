@@ -27,13 +27,20 @@ export function HomeMongo() {
   const [numeroBuscar, setNumeroBuscar] = useState(1)
   const [recargar, setRecargar] = useState(false)
 
-  const cargarHome = () => {
+  const cargarHome = async () => {
     setRecargar(false)
 
     if (!materias.length) {
-      cargarMaterias()
+      await cargarMaterias()
     }
-   
+
+    obtenerLongitudPreguntas(matPreferida).then(data => {
+      if (data !== "error del servidor") {
+        setLongitudPreguntas(data)
+      } else {
+        setRecargar(true)
+      }
+    })
   }
 
 const obtenerPreguntaPorIndice = async (mat, c) => {
@@ -54,17 +61,6 @@ const obtenerPreguntaPorIndice = async (mat, c) => {
       }
       )
   }
-
-  useEffect(() => {
-    obtenerLongitudPreguntas(matPreferida).then(data => {
-      if (data !== "error del servidor") {
-        setLongitudPreguntas(data)
-      } else {
-        setRecargar(true)
-      }
-    })
-   
-  }, [matPreferida])
 
   useEffect(() => {
 
