@@ -11,7 +11,7 @@ import { Preguntas } from './preguntas/preguntas';
 import { Opciones } from './preguntas/opcionesMultiples';
 import { VoF } from './preguntas/formVoF';
 import { SelectMateria } from './selectMateria';
-
+import { EvaluarRespuesta } from './IA/evaluarRespuesta';
 
 export function HomeMongo() {
 
@@ -22,15 +22,13 @@ export function HomeMongo() {
   const [show, setShow] = useState(false);
   const [cargando, setCargando] = useState(false);
 
-
   const { loading } = useAuth()
   const [numeroBuscar, setNumeroBuscar] = useState(1)
   const [recargar, setRecargar] = useState(false)
 
   const cargarHome = async () => {
-    setCargando(true)
+    //setCargando(true)
     setRecargar(false)
-
     if (!materias.length) {
       await cargarMaterias()
     }
@@ -69,12 +67,11 @@ export function HomeMongo() {
   }
 
   useEffect(() => {
-    setCargando(true)
+    //setCargando(true)
     cargarHome()
     identificarCurso().then(async resp => {
       setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1])
       await obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp].length - 1])
-      setCargando(false)
     }
     )
 
@@ -288,11 +285,14 @@ export function HomeMongo() {
                               <div>
                                 <br></br>
                                 {p.tipo === "Normal" &&
+                                <>
                                   <button
                                     className='boton home-boton'
                                     onClick={() => mostrarRespuesta(p.id)}>
                                     {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
-                                  </button>}
+                                  </button>
+                                  </>
+                                  }
                                 <hr></hr>
                               </div>
                               {p.tipo === "Multiple" &&
