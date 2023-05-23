@@ -4,9 +4,9 @@ import { ResueltasContext } from "../../context/Resueltas";
 
 export function Resultado(props) {
 
-  const {agregarHistorial} = useContext(ResueltasContext)
+  const {agregarResueltasContext} = useContext(ResueltasContext)
   const {c} = props
-  const {id} = props
+  const {id, curso} = props
   const {num} = props
 
 
@@ -15,10 +15,10 @@ export function Resultado(props) {
     try {
     const respuesta = parseInt(document.querySelector(`input[name=resultado${num}-${id}]`).value);
     if(respuesta === c) {
-      await alertasuccess("Respuesta correcta")
+      alertasuccess("Respuesta correcta")
       document.getElementById(`respuesta-${id}`).style.display = 'block'
       document.getElementById(`correcto-${id}`).style.display = 'block'
-      agregarHistorial(id)
+      agregarResueltasContext(10, curso, id)
       console.log(id)
       // localStorage.setItem("listaResueltas", lista)
     } else if (respuesta === null || undefined) {

@@ -191,7 +191,7 @@ export function MostrarPregunta(props) {
             </div>
             {/* con filtro */}
             {preguntas.length !== 0 ?
-              filtroUser ? preguntas.map((p, num) => {
+              filtroUser ? preguntas?.map((p, num) => {
                 if ((user.uid === p.user)) {
                   return (
                     <div
@@ -211,7 +211,7 @@ export function MostrarPregunta(props) {
 
                 }
               }) :
-                preguntas.map((p, num) => {
+                preguntas?.map((p, num) => {
                   if ((filtro === p.curso || filtro === undefined)) {
                     return (
                       <div
@@ -233,7 +233,8 @@ export function MostrarPregunta(props) {
                 })
 
               : <p>No hay preguntas</p>
-            } {anexadas &&
+            } 
+            {anexadas &&
               <AnexadasExamen
                 quitar={quitar}
                 examenid={examenid}

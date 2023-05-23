@@ -6,7 +6,7 @@ import { alertafail, alertainfo, alertasuccess } from '../alertas'
 
 export function Opciones(props) {
 
-  const {agregarHistorial} = useContext(ResueltasContext)
+  const {agregarResueltasContext} = useContext(ResueltasContext)
   const {p} = props
   const {num} = props
 
@@ -14,9 +14,10 @@ export function Opciones(props) {
     try {
     const respuesta = document.querySelector(`input[name=opciones${num}-${id}]:checked`).value;
     if(respuesta === c) {
-      await alertasuccess("Respuesta correcta")
+      alertasuccess("Respuesta correcta")
       document.getElementById(`respuesta-${id}`).style.display = 'block'
-      agregarHistorial(id)
+      agregarResueltasContext(10, p.curso, p.id)
+      //agregarHistorial(id)
       // localStorage.setItem("listaResueltas", lista)
     } else if (respuesta === null || undefined) {
       alertainfo("debe seleccionar una respuesta") 

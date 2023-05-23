@@ -8,10 +8,8 @@ export function VoF(props) {
 
   //   const {agregarHistorial} = useContext(ResueltasContext)
   const { p } = props
-  const { agregarHistorial } = useContext(ResueltasContext)
+  const { agregarResueltasContext } = useContext(ResueltasContext)
   const checkRespuesta = async (preg, num, id) => {
-
-
     try {
       const respuesta = document.querySelector(`input[name=vof${num}${id}]:checked`).value;
       if (respuesta === preg.vof) {
@@ -53,7 +51,7 @@ export function VoF(props) {
     }
     if (count === p.arrayPreguntas.length) {
       alertasuccess(`${count} / ${p.arrayPreguntas.length}`);
-      agregarHistorial(p.id)
+      agregarResueltasContext(10, p.curso, p.id)
     } else {
       alertainfo(`${count} / ${p.arrayPreguntas.length}`)
     }
@@ -66,7 +64,7 @@ export function VoF(props) {
         <div>
           <div
             className='preguntas-vof'>
-            {p.arrayPreguntas.map((preg, num) => {
+            {p.arrayPreguntas?.map((preg, num) => {
               return (
                 <div
                   id={p.id}
