@@ -37,9 +37,9 @@ function App() {
   document.title = 'Estudio'
 
   return (
+    <AuthProvider>
     <HistorialProvider>
     <DataProvider>
-    <AuthProvider>
       <UserConfigProvider>
       <Nav />
       <MenuDesplegable />
@@ -226,9 +226,9 @@ function App() {
           <Route path="/register" element={<SignUp />} />
           </Routes>
           </UserConfigProvider>
-    </AuthProvider>
     </DataProvider>
     </HistorialProvider>
+    </AuthProvider>
   )
 }
 
