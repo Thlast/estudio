@@ -38,8 +38,8 @@ function App() {
 
   return (
     <AuthProvider>
-    <HistorialProvider>
     <DataProvider>
+    <HistorialProvider>
       <UserConfigProvider>
       <Nav />
       <MenuDesplegable />
@@ -226,8 +226,8 @@ function App() {
           <Route path="/register" element={<SignUp />} />
           </Routes>
           </UserConfigProvider>
-    </DataProvider>
     </HistorialProvider>
+    </DataProvider>
     </AuthProvider>
   )
 }
