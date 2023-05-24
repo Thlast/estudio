@@ -15,21 +15,23 @@ const swalWithBootstrapButtons = Swal.mixin({
   buttonsStyling: false
 })
 
-export const alertasuccess = (mensaje, confetti) => {
-
-  if (!confetti?.estado) {
-    if(confetti?.emojis) {
-      jsConfetti.addConfetti({ emojis: [confetti.emojis] })
-    } else {
-      jsConfetti.addConfetti()
-    }
-  } 
+export const alertasuccess = async (mensaje, confetti) => {
   MySwal.fire({
     icon: 'success',
     title: <p>{mensaje}</p>,
     showConfirmButton: false,
     timer: 1500
   });
+  if (!confetti?.estado) {
+    if (confetti?.emojis) {
+      await jsConfetti.addConfetti({ emojis: [...confetti.emojis] })
+      jsConfetti.clearCanvas()
+    } else {
+      await jsConfetti.addConfetti()
+      jsConfetti.clearCanvas()
+    }
+  }
+
 }
 
 export const alertafail = (mensaje) => {

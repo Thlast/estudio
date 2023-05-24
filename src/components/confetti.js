@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import JSConfetti from 'js-confetti'
 import { useAuth } from '../context/AuthContext';
 import { modificarConfetti } from './servicios/cursos/datosUser/userConfig';
 import { UserConfig } from '../context/UserConfig';
+import { alertasuccess } from './alertas';
 
 export function ConfettiOptions() {
 
   const { confetti, obtenerConfettiUsuario } = useContext(UserConfig)
-  const jsConfetti = new JSConfetti()
+  // const jsConfetti = new JSConfetti()
   const [selectedIcons, setSelectedIcons] = useState([]);
   const [desactivar, setDesactivar] = useState(confetti?.estado);
   const { user } = useAuth()
@@ -37,19 +37,19 @@ export function ConfettiOptions() {
 
     } else {
       if (selectedIcons?.length > 0) {
-        jsConfetti.addConfetti({ emojis: [...selectedIcons] })
+        alertasuccess("prueba", { emojis: selectedIcons.join(""), estado: false})
       } else {
-        jsConfetti.addConfetti()
+        alertasuccess("prueba", { emojis: [], estado: false})
       }
     }
-
+    //jsConfetti.clearCanvas()
   }
   const guardarConfetti = async () => {
 
     await modificarConfetti(user.uid, selectedIcons, desactivar)
     obtenerConfettiUsuario()
   }
-
+//console.log(selectedIcons)
   return (
     <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px" }}>
       Configura tu confetti:
