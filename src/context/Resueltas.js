@@ -67,27 +67,27 @@ export function HistorialProvider({ children }) {
     await limpiarHistorial(curso, user)
     await actualizarResueltas()
   }
-  //viejo en localStorage
-  const [completadas, setCompletadas] = useState(localStorage.getItem("listaResueltas") || [])
+  // //viejo en localStorage
+  // const [completadas, setCompletadas] = useState(localStorage.getItem("listaResueltas") || [])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    setCompletadas(localStorage.getItem("listaResueltas") || [])
+  //   setCompletadas(localStorage.getItem("listaResueltas") || [])
 
-  }, [])
+  // }, [])
 
-  const agregarHistorial = async (preguntaid) => {
+  // const agregarHistorial = async (preguntaid) => {
 
 
-    await localStorage.setItem("listaResueltas", JSON.stringify(completadas.concat(preguntaid)))
-    // localStorage.setItem("listaResueltas", JSON.stringify(completadas))
-    setCompletadas(localStorage.getItem("listaResueltas"))
-  }
-  const reiniciarHistorial = async () => {
+  //   await localStorage.setItem("listaResueltas", JSON.stringify(completadas.concat(preguntaid)))
+  //   // localStorage.setItem("listaResueltas", JSON.stringify(completadas))
+  //   setCompletadas(localStorage.getItem("listaResueltas"))
+  // }
+  // const reiniciarHistorial = async () => {
 
-    await localStorage.setItem("listaResueltas", [])
-    setCompletadas([])
-  }
+  //   await localStorage.setItem("listaResueltas", [])
+  //   setCompletadas([])
+  // }
 
 
 
@@ -98,9 +98,9 @@ export function HistorialProvider({ children }) {
       agregarResueltasContext,
       devolverResueltas,
       resueltas,
-      completadas,
-      agregarHistorial,
-      reiniciarHistorial
+      // completadas,
+      // agregarHistorial,
+      // reiniciarHistorial
     }}>
       {children}
     </ResueltasContext.Provider>
