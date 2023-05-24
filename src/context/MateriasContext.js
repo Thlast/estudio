@@ -13,7 +13,12 @@ export function DataProvider({ children }) {
   const [materiasIndices, setMateriasIndices] = useState()
 
   const identificarCurso = async () => {
-    return materiasIndices?.indexOf(matPreferida);
+    if(materiasIndices?.length > 0) {
+      return materiasIndices?.indexOf(matPreferida);
+    } else {
+      await cargarMaterias()
+      return materiasIndices?.indexOf(matPreferida);
+    }
   };
 
   const cargarMaterias = async () => {
@@ -22,20 +27,21 @@ export function DataProvider({ children }) {
     await getCursos().then(data => {
       setMaterias(data)
       setMateriasIndices(data?.map(mat => mat.CursoId))
-      setCargandoMaterias(false)
       setHstorialeshistorial(data?.map(mat => [0]))
+      setCargandoMaterias(false)
     });
-
+    //identificarCurso()
   }
 
   useEffect(() => {
     cargarMaterias()
     
   }, [])
-
   useEffect(() => {
     identificarCurso()
+    
   }, [matPreferida])
+
   const preferenciaMateria = (mat) => {
     setMatPreferida(mat)
   }
