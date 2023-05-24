@@ -172,8 +172,9 @@ export function Perfil() {
               <hr></hr>
               <li>
                 <Link
-                className='perfil-boton'
-                to={"/opcionesUsuario"}
+                  draggable={false}
+                  className='perfil-boton'
+                  to={"/opcionesUsuario"}
                 >
                   Confetti
                 </Link>
@@ -195,6 +196,7 @@ export function Perfil() {
                 {matPreferida == "impuestos" ?
                   <>
                     <Link
+                      draggable={false}
                       className='perfil-boton'
                       to={"/IA"}>
                       Interactuar con la IA
