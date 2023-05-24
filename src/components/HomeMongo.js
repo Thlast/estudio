@@ -15,7 +15,11 @@ import { ResueltasContext } from '../context/Resueltas';
 
 export function HomeMongo() {
 
-  const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida, historiales, materiasIndices } = useContext(MateriasContext);
+  const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida, 
+    identificarCurso,
+    historialeshistorial,
+    historialesagregar,
+    historialesreiniciarh, materiasIndices } = useContext(MateriasContext);
   const { totalResueltas } = useContext(ResueltasContext)
   const [preguntas, setPreguntas] = useState([]);
   const [longitudPreguntas, setLongitudPreguntas] = useState();
@@ -30,20 +34,25 @@ export function HomeMongo() {
   const cargarHome = async () => {
     //setCargando(true)
     setRecargar(false)
-    if (!materias.length) {
+    if (materias.length == 0) {
       await cargarMaterias()
     }
 
-    obtenerLongitudPreguntas(matPreferida).then(data => {
+    await obtenerLongitudPreguntas(matPreferida).then(data => {
       if (data !== "error del servidor") {
         setLongitudPreguntas(data)
       } else {
         setRecargar(true)
       }
     })
-    identificarCurso().then(async resp => {
-      await obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp]?.length - 1])
-      setCurrent(historiales?.historial[resp][historiales?.historial[resp]?.length - 1])
+
+    await identificarCurso().then(async resp => {
+      if(resp) {
+        await obtenerPreguntaPorIndice(matPreferida, historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
+        setCurrent(historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
+      } else {
+        setRecargar(true)
+      }
     }
     )
   }
@@ -73,19 +82,17 @@ export function HomeMongo() {
   }
 
   useEffect(() => {
-    //setCargando(true)
     cargarHome()
-
 
   }, [matPreferida])
 
 
-  const identificarCurso = async () => {
-    return materiasIndices?.indexOf(matPreferida);
-  };
+  // const identificarCurso = async () => {
+  //   return materiasIndices?.indexOf(matPreferida);
+  // };
 
   const funcionreiniciar = async () => {
-    await identificarCurso().then(resp => historiales.reiniciarh(current, resp))
+    await identificarCurso().then(resp => historialesreiniciarh(current, resp))
   }
 
   const reiniciar = () => {
@@ -97,14 +104,14 @@ export function HomeMongo() {
 
       const indice = Math.floor(Math.random() * longitudPreguntas)
       await identificarCurso().then(resp => {
-        //console.log(historiales.historial[resp])
-        if (historiales.historial[resp].indexOf(indice) === -1 && longitudPreguntas !== historiales.historial[resp].length) {
-          historiales.agregar(indice, resp)
+        //console.log(historialeshistorial[resp])
+        if (historialeshistorial[resp].indexOf(indice) === -1 && longitudPreguntas !== historialeshistorial[resp].length) {
+          historialesagregar(indice, resp)
           setCurrent(indice)
           obtenerPreguntaPorIndice(matPreferida, indice)
-        } else if (historiales.historial[resp].indexOf(indice) !== -1 && longitudPreguntas !== historiales.historial[resp].length) {
+        } else if (historialeshistorial[resp].indexOf(indice) !== -1 && longitudPreguntas !== historialeshistorial[resp].length) {
           random()
-        } else if (longitudPreguntas === historiales.historial[resp].length) {
+        } else if (longitudPreguntas === historialeshistorial[resp].length) {
           reiniciar()
         }
       })
@@ -117,7 +124,7 @@ export function HomeMongo() {
     if (longitudPreguntas > 0) {
       const indice = current + 1
       if (indice !== longitudPreguntas) {
-        await identificarCurso().then(resp => historiales.agregar(indice, resp));
+        await identificarCurso().then(resp => historialesagregar(indice, resp));
         setCurrent(indice);
         obtenerPreguntaPorIndice(matPreferida, indice)
       } else if (indice >= longitudPreguntas) {
@@ -132,7 +139,7 @@ export function HomeMongo() {
     if (longitudPreguntas > 0) {
       const indice = current - 1
       if (indice !== -1) {
-        await identificarCurso().then(resp => historiales.agregar(indice, resp));
+        await identificarCurso().then(resp => historialesagregar(indice, resp));
         setCurrent(indice);
         obtenerPreguntaPorIndice(matPreferida, indice)
       } else if (indice <= 0) {
@@ -149,7 +156,7 @@ export function HomeMongo() {
     event.preventDefault();
     const indice = parseInt(numeroBuscar) - 1
     if (indice < longitudPreguntas & indice >= 0) {
-      await identificarCurso().then(resp => historiales.agregar(indice, resp));
+      await identificarCurso().then(resp => historialesagregar(indice, resp));
       setCurrent(indice);
       obtenerPreguntaPorIndice(matPreferida, indice)
     } else if (indice >= longitudPreguntas) {

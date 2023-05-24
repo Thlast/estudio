@@ -11,36 +11,70 @@ export function DataProvider({ children }) {
   const [matPreferida, setMatPreferida] = useState("impuestos")
 
   const [materiasIndices, setMateriasIndices] = useState()
-  const historiales = useHistorial(materias)
- 
+
+  const identificarCurso = async () => {
+    return materiasIndices?.indexOf(matPreferida);
+  };
 
   const cargarMaterias = async () => {
     setCargandoMaterias(true)
     let h = {}
     await getCursos().then(data => {
-      setMaterias(data) 
+      setMaterias(data)
       setMateriasIndices(data?.map(mat => mat.CursoId))
       setCargandoMaterias(false)
+      setHstorialeshistorial(data?.map(mat => [0]))
     });
 
   }
-  
+
   useEffect(() => {
     cargarMaterias()
-
+    
   }, [])
 
+  useEffect(() => {
+    identificarCurso()
+  }, [matPreferida])
   const preferenciaMateria = (mat) => {
     setMatPreferida(mat)
+  }
+  
+  //const historiales = useHistorial(materias)
+
+  const [historialeshistorial, setHstorialeshistorial] = useState([]);
+
+  useEffect(() => {
+    const h = []
+    materias?.map(mat => {
+      h.push([0])
+    })
+    setHstorialeshistorial(h)
+  }, [materias])
+
+  const historialesagregar = (i, indiceMateria) => { 
+    if(historialeshistorial[indiceMateria].indexOf(i) === -1) {
+      const historialNuevo = [...historialeshistorial.slice(0, indiceMateria), historialeshistorial[indiceMateria].concat(i), ...historialeshistorial.slice(indiceMateria+1)];
+      setHstorialeshistorial(historialNuevo)}
+  }
+
+  const historialesreiniciarh = (current, indiceMateria) => {
+    const nuevoHistorial = [...historialeshistorial]; // crear una copia del arreglo historial
+    nuevoHistorial[indiceMateria] = [current]; // actualizar el elemento en el índice indiceMateria
+    setHstorialeshistorial(nuevoHistorial); // actualizar el estado del componente con el nuevo arreglo
   }
 
   return (
     <MateriasContext.Provider value={{
+      identificarCurso,
+      historialeshistorial,
+      historialesagregar,
+      historialesreiniciarh,
       matPreferida,
       cargarMaterias,
       preferenciaMateria,
       materias,
-      historiales,
+      //historiales,
       materiasIndices,
       cargandoMaterias
     }}>
