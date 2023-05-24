@@ -59,7 +59,7 @@ export const modificarConfetti = async (idUser, confetti, estado) => {
 
         if (response.ok) {
             const data = await response.json();
-            alertasuccess('Modificado', confetti);
+            alertasuccess('Modificado', emojis.join(''));
             respuesta = data;
         } else if (response.status === 404) {
             // No se encontró el registro, crear uno nuevo
@@ -67,7 +67,7 @@ export const modificarConfetti = async (idUser, confetti, estado) => {
             const createResponse = await fetch(urlpost, {
                 method: 'POST',
                 body: JSON.stringify({
-                    emojis: emojis.join(''),
+                    emojis: {emojis: emojis.join(''), estado: estado},
                     estado: estado,
                 }),
                 headers: {
@@ -77,7 +77,7 @@ export const modificarConfetti = async (idUser, confetti, estado) => {
 
             if (createResponse.ok) {
                 const data = await createResponse.json();
-                alertasuccess('Creado', confetti);
+                alertasuccess('Creado', {emojis: emojis.join(''), estado: estado});
                 respuesta = data;
             } else {
                 console.error('Error al crear el registro:', createResponse.statusText);
