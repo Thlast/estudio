@@ -97,7 +97,7 @@ swalWithBootstrapButtons.fire({
   }
 })
 }
-export const alertaquitar = (funcionquitar) => {
+export const alertaquitar = (funcionquitar, curso) => {
 
   swalWithBootstrapButtons.fire({
     title: 'Quitar pregunta del examen?',
@@ -127,21 +127,21 @@ export const alertaquitar = (funcionquitar) => {
   })
 }
 
-export const alertalimpiarHistorialUsuario = (funcion) => {
+export const alertalimpiarHistorialUsuario = (funcion, curso, user) => {
 
   swalWithBootstrapButtons.fire({
-    title: 'limpiar historial?',
-    text: "se borrarán las preguntas contestadas correctamente",
+    title: `Seguro que desea limpiar el historial de ${curso}?`,
+    text: "Se borrarán las preguntas contestadas correctamente",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'Si!',
+    confirmButtonText: `Si, eliminar historial de ${curso}`,
     cancelButtonText: 'No, cancelar!',
     reverseButtons: true
   }).then(async (result) => {
     if (result.isConfirmed) {
-      funcion();
+      funcion(curso, user);
       swalWithBootstrapButtons.fire(
-        'Se ha limpiado el historial!',
+        `Se ha limpiado el historial de ${curso}!`,
         '',
         'success'
       )

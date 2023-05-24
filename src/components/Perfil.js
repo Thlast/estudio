@@ -9,10 +9,13 @@ import { doc, setDoc } from 'firebase/firestore';
 import { getAuth, updateProfile } from "firebase/auth";
 import style from '../modulos-css/Perfil.module.css'
 import { UserConfig } from '../context/UserConfig';
+import { limpiarHistorial } from './servicios/preguntas/borrarResueltas';
+import { MateriasContext } from '../context/MateriasContext';
 export function Perfil() {
 
+  const { matPreferida } = useContext(MateriasContext)
   const { mobile, switchTema } = useContext(UserConfig);
-  const { reiniciarHistorial } = useContext(ResueltasContext)
+  const { limpiarResueltas } = useContext(ResueltasContext)
   const { loading, datosUser, user, obtenerUser, editMode, changeEditMode } = useAuth();
   const auth = getAuth();
   const navigate = useNavigate();
@@ -25,14 +28,14 @@ export function Perfil() {
     e.preventDefault();
     if (apiKey.length > 45) {
       await setDoc(doc(db, "usuarios/" + user.uid), { apiKey: apiKey }, { merge: true })
-      .then(() => {
-        alert("ApiKey updated!")
-        getAuth()
-        obtenerUser()
-        setEditApiKey(false)
-      }).catch((error) => {
-        alert("An error occurred " + error)
-      });
+        .then(() => {
+          alert("ApiKey updated!")
+          getAuth()
+          obtenerUser()
+          setEditApiKey(false)
+        }).catch((error) => {
+          alert("An error occurred " + error)
+        });
     }
 
     else {
@@ -62,9 +65,8 @@ export function Perfil() {
     }
   }
 
-  const limpiarHistorialUsuario = () => {
-
-    alertalimpiarHistorialUsuario(reiniciarHistorial)
+  const limpiarHistorialUsuario = async () => {
+    alertalimpiarHistorialUsuario(limpiarResueltas, matPreferida, user.uid)
   }
 
 
@@ -135,7 +137,7 @@ export function Perfil() {
                   :
                   "✘"}
                 {editApiKey ?
-                    <form>
+                  <form>
                     <input
                       placeholder='introduce la apiKey'
                       onChange={(e) => setApiKey(e.target.value)}
@@ -143,21 +145,21 @@ export function Perfil() {
                       type='text'>
                     </input>
                     <span>
-                    <button
+                      <button
                         onClick={(e) => añadirApiKey(e)}
                         className={style.botonconfirmar}
                       >
                         ✓
                       </button>
-                    <button
-                      type='button'
-                      onClick={() => setEditApiKey(false)}
-                      className={style.botoncancelar}
-                    >
-                      ✘
-                    </button>
+                      <button
+                        type='button'
+                        onClick={() => setEditApiKey(false)}
+                        className={style.botoncancelar}
+                      >
+                        ✘
+                      </button>
                     </span>
-                    </form>
+                  </form>
                   :
                   <button
                     onClick={() => setEditApiKey(true)}
@@ -179,16 +181,21 @@ export function Perfil() {
                   to="/examenes">Examenes
                 </Link>
               </li>
-              {/* <hr></hr>
-              <li>
-                <button
-                  className='perfil-boton'
-                  onClick={() => most()}>
-                  Mis preguntas
-                </button>
-              </li> */}
               <hr></hr>
-
+              <li>
+                {matPreferida == "impuestos" ?
+                  <>
+                    <Link
+                      className='perfil-boton'
+                      to={"/IA"}>
+                      Interactuar con la IA
+                    </Link>
+                    <hr></hr>
+                  </>
+                  :
+                  null
+                }
+              </li>
               <li>
                 <Link
                   draggable={false}
