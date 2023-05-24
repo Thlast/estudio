@@ -11,11 +11,12 @@ import { Preguntas } from './preguntas/preguntas';
 import { Opciones } from './preguntas/opcionesMultiples';
 import { VoF } from './preguntas/formVoF';
 import { SelectMateria } from './selectMateria';
-import { EvaluarRespuesta } from './IA/evaluarRespuesta';
+import { ResueltasContext } from '../context/Resueltas';
 
 export function HomeMongo() {
 
   const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida, historiales, materiasIndices } = useContext(MateriasContext);
+  const {totalResueltas} = useContext(ResueltasContext)
   const [preguntas, setPreguntas] = useState([]);
   const [longitudPreguntas, setLongitudPreguntas] = useState();
   const [current, setCurrent] = useState(0);
@@ -197,14 +198,14 @@ export function HomeMongo() {
             <div
               className='contenedorMateriaIa'
             >
-              {matPreferida == "impuestos" ?
-                <Link
-                  className='boton home-boton'
-                  to={"/IA"}>
-                  Interactuar con la IA
-                </Link>
-                :
-                null
+              {(totalResueltas && longitudPreguntas) ? 
+              <>
+              Tu progreso: {(Math.round((totalResueltas / longitudPreguntas) * 100))} %
+              </>
+              :
+              <>
+              Tu progreso: 0%
+              </>
               }
               <div>
                 <SelectMateria />
