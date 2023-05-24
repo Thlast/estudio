@@ -1,6 +1,7 @@
 import { alertafail, alertainfo, alertasuccess } from "../alertas";
 import { useContext } from "react";
 import { ResueltasContext } from "../../context/Resueltas";
+import { UserConfig } from "../../context/UserConfig";
 
 export function Resultado(props) {
 
@@ -8,14 +9,14 @@ export function Resultado(props) {
   const {c} = props
   const {id, curso} = props
   const {num} = props
-
+  const {confetti} = useContext(UserConfig)
 
   const checkResultado = async (c, num, id, e) => {
     e.preventDefault()
     try {
     const respuesta = parseInt(document.querySelector(`input[name=resultado${num}-${id}]`).value);
     if(respuesta === c) {
-      alertasuccess("Respuesta correcta")
+      alertasuccess("Respuesta correcta", confetti)
       document.getElementById(`respuesta-${id}`).style.display = 'block'
       document.getElementById(`correcto-${id}`).style.display = 'block'
       agregarResueltasContext(10, curso, id)

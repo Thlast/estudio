@@ -3,10 +3,12 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { ResueltasContext } from '../../context/Resueltas'
 import { alertainfo, alertasuccess } from '../alertas'
+import { UserConfig } from '../../context/UserConfig'
 
 export function VoF(props) {
 
   //   const {agregarHistorial} = useContext(ResueltasContext)
+  const {confetti} = useContext(UserConfig)
   const { p } = props
   const { agregarResueltasContext } = useContext(ResueltasContext)
   const checkRespuesta = async (preg, num, id) => {
@@ -50,7 +52,7 @@ export function VoF(props) {
       console.log(error)
     }
     if (count === p.arrayPreguntas.length) {
-      alertasuccess(`${count} / ${p.arrayPreguntas.length}`);
+      alertasuccess(`${count} / ${p.arrayPreguntas.length}`, confetti);
       agregarResueltasContext(10, p.curso, p.id)
     } else {
       alertainfo(`${count} / ${p.arrayPreguntas.length}`)

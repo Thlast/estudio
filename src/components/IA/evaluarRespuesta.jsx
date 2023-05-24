@@ -2,9 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { evaluarIA, getRespuestaIA, guardarRespuestaIA } from "../servicios/serviciosIA/evaluar";
 import { useAuth } from "../../context/AuthContext";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { agregarResuelta } from "../servicios/preguntas/resueltas";
 import { ResueltasContext } from "../../context/Resueltas";
 import { Spinner } from "../Login/Spinner";
+import { alertasuccess } from "../alertas";
+import { UserConfig } from "../../context/UserConfig";
 
 export function EvaluarRespuesta(props) {
 
@@ -13,9 +14,9 @@ export function EvaluarRespuesta(props) {
   const [respuestaUsuario, setRespuestaUsuario] = useState()
   const [evaluacionIA, setEvaluacionIA] = useState()
   const [cargando, setCargando] = useState()
-  const [notaIA, setNotaIA] = useState()
   const [modificarRespuestaId, setModificarRespuestaId] = useState()
-  const { devolverResueltas, agregarResueltasContext } = useContext(ResueltasContext)
+  const { agregarResueltasContext } = useContext(ResueltasContext)
+  const {confetti} = useContext(UserConfig)
 
   const evaluar = async () => {
     setCargando(true)
@@ -33,11 +34,11 @@ export function EvaluarRespuesta(props) {
       const match = infoIA.choices[0].message.content.match(regex);
       const nota = match[1] | match[2];
       if (match) {
-        setNotaIA(parseInt(match[1]))
-        await guardarRespuestaIA(infoIA.id, idPregunta, infoIA.choices[0].message.content, respuestaUsuario, parseInt(nota), user.uid, modificarRespuestaId)
-        if (parseInt(match[1]) >= 7) {
-          await agregarResueltasContext(parseInt(match[1]), curso, idPregunta)
 
+        await guardarRespuestaIA(infoIA.id, idPregunta, infoIA.choices[0].message.content, respuestaUsuario, parseInt(nota), user.uid, modificarRespuestaId)
+        if (nota >= 7) {
+          await agregarResueltasContext(nota, curso, idPregunta)
+          alertasuccess(`Correcto, nota: ${nota}`, confetti)
         }
       } else {
         await guardarRespuestaIA(infoIA.id, idPregunta, infoIA.choices[0].message.content, respuestaUsuario, null, user.uid, modificarRespuestaId)
