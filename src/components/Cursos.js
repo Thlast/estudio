@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MateriasContext } from '../context/MateriasContext';
 import { Spinner } from './Login/Spinner';
 import { useAuth } from '../context/AuthContext';
+import { CrearCurso } from './formCrearCurso';
 
 export function Cursos() {
 
@@ -12,6 +13,10 @@ export function Cursos() {
   const { editMode } = useAuth()
 
   const [listado, setListado] = useState(materias)
+
+  useEffect(() => {
+    setListado(materias)
+  }, [materias])
 
   function handleDragStart(e, index) {
     // Agregar el índice del elemento arrastrado
@@ -49,12 +54,12 @@ export function Cursos() {
                 {materias !== listado ?
                   <>
                     <button
-                    //onClick={() => }
+                      //onClick={() => }
                       className='btn btn-primary'>
                       Guardar
                     </button>
                     <button
-                    onClick={() => setListado(materias)}
+                      onClick={() => setListado(materias)}
                       className='btn btn-danger'>
                       Cancelar
                     </button>
@@ -92,9 +97,14 @@ export function Cursos() {
                   )
                 })
               }
+              {
+                editMode ? <CrearCurso />
+                  :
+                  null
+              }
+
             </div>
           }
-
 
 
         </div>
