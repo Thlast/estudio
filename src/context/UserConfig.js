@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "./AuthContext";
+import { obtenerConfetti } from "../components/servicios/cursos/datosUser/userConfig";
 
 export const UserConfig = React.createContext({})
 
 export function UserConfigProvider({ children }) {
 
   const [mobile, setMobile] = useState(window.innerWidth <= 500)
+  const [confetti, setConfetti] = useState()
+  const { user } = useAuth()
+
+  const obtenerConfettiUsuario = async () => {
+    await obtenerConfetti(user?.uid).then(data => {
+      setConfetti(data[0])
+    })
+  }
 
   //funcion para detectar si es mobile
   useEffect(() => {
@@ -20,7 +30,8 @@ export function UserConfigProvider({ children }) {
 
   useEffect(() => {
     checkTema()
-  }, [])
+    obtenerConfettiUsuario()
+  }, [user])
 
   const getCurrentTheme = () => document.body.classList.contains('dark-theme') ? 'dark' : 'light'
 
@@ -45,6 +56,8 @@ export function UserConfigProvider({ children }) {
 
   return (
     <UserConfig.Provider value={{
+      obtenerConfettiUsuario,
+      confetti,
       mobile,
       switchTema
     }}>

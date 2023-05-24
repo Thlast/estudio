@@ -171,6 +171,15 @@ export function Perfil() {
               </li>
               <hr></hr>
               <li>
+                <Link
+                className='perfil-boton'
+                to={"/opcionesUsuario"}
+                >
+                  Confetti
+                </Link>
+              </li>
+              <hr></hr>
+              <li>
                 <SelectMateria />
               </li>
               <hr></hr>

@@ -1,9 +1,11 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import JSConfetti from 'js-confetti'
 
+const jsConfetti = new JSConfetti()
 const MySwal = withReactContent(Swal)
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -13,8 +15,17 @@ const swalWithBootstrapButtons = Swal.mixin({
   buttonsStyling: false
 })
 
-export const alertasuccess = (mensaje) => {
-    MySwal.fire({icon: 'success', 
+export const alertasuccess = (mensaje, confetti) => {
+
+  if (!confetti?.estado) {
+    if(confetti?.emojis) {
+      jsConfetti.addConfetti({ emojis: [confetti.emojis] })
+    } else {
+      jsConfetti.addConfetti()
+    }
+  } 
+  MySwal.fire({
+    icon: 'success',
     title: <p>{mensaje}</p>,
     showConfirmButton: false,
     timer: 1500
@@ -22,15 +33,17 @@ export const alertasuccess = (mensaje) => {
 }
 
 export const alertafail = (mensaje) => {
-    MySwal.fire({icon: 'error', 
-      title: <p>{mensaje}</p>,
-      showConfirmButton: false,
-      timer: 1500
-    });
+  MySwal.fire({
+    icon: 'error',
+    title: <p>{mensaje}</p>,
+    showConfirmButton: false,
+    timer: 1500
+  });
 }
 
 export const alertainfo = (mensaje) => {
-  MySwal.fire({icon: 'info', 
+  MySwal.fire({
+    icon: 'info',
     title: <p>{mensaje}</p>,
     showConfirmButton: false,
     timer: 1500
@@ -70,32 +83,32 @@ export const alertareiniciar = (funcionreiniciar) => {
 
 export const alertaexamen = (eliminar) => {
 
-swalWithBootstrapButtons.fire({
-  title: 'Seguro desea eliminar el examen?',
-  text: "Se eliminarán todas las preguntas en este examen, las agregadas se mantendrán en sus respectivas secciones",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Si, eliminar todo!',
-  cancelButtonText: 'No, cancelar!',
-  reverseButtons: true
-}).then(async (result) => {
-  if (result.isConfirmed) {
-    eliminar();
-    swalWithBootstrapButtons.fire(
-      'Eliminado!',
-      'navegando a examenes',
-      'success'
-    );
-  } else if (
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelado',
-      'El examen y las preguntas no se han eliminado',
-      'error'
-    )
-  }
-})
+  swalWithBootstrapButtons.fire({
+    title: 'Seguro desea eliminar el examen?',
+    text: "Se eliminarán todas las preguntas en este examen, las agregadas se mantendrán en sus respectivas secciones",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Si, eliminar todo!',
+    cancelButtonText: 'No, cancelar!',
+    reverseButtons: true
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      eliminar();
+      swalWithBootstrapButtons.fire(
+        'Eliminado!',
+        'navegando a examenes',
+        'success'
+      );
+    } else if (
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        'El examen y las preguntas no se han eliminado',
+        'error'
+      )
+    }
+  })
 }
 export const alertaquitar = (funcionquitar, curso) => {
 

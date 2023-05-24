@@ -3,9 +3,12 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { ResueltasContext } from '../../context/Resueltas'
 import { alertafail, alertainfo, alertasuccess } from '../alertas'
+import { UserConfig } from '../../context/UserConfig'
+
 
 export function Opciones(props) {
-
+  
+  const {confetti} = useContext(UserConfig)
   const {agregarResueltasContext} = useContext(ResueltasContext)
   const {p} = props
   const {num} = props
@@ -14,7 +17,7 @@ export function Opciones(props) {
     try {
     const respuesta = document.querySelector(`input[name=opciones${num}-${id}]:checked`).value;
     if(respuesta === c) {
-      alertasuccess("Respuesta correcta")
+      alertasuccess("Respuesta correcta", confetti)
       document.getElementById(`respuesta-${id}`).style.display = 'block'
       agregarResueltasContext(10, p.curso, p.id)
       //agregarHistorial(id)

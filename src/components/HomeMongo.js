@@ -16,7 +16,7 @@ import { ResueltasContext } from '../context/Resueltas';
 export function HomeMongo() {
 
   const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida, historiales, materiasIndices } = useContext(MateriasContext);
-  const {totalResueltas} = useContext(ResueltasContext)
+  const { totalResueltas } = useContext(ResueltasContext)
   const [preguntas, setPreguntas] = useState([]);
   const [longitudPreguntas, setLongitudPreguntas] = useState();
   const [current, setCurrent] = useState(0);
@@ -41,6 +41,11 @@ export function HomeMongo() {
         setRecargar(true)
       }
     })
+    identificarCurso().then(async resp => {
+      await obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp]?.length - 1])
+      setCurrent(historiales?.historial[resp][historiales?.historial[resp]?.length - 1])
+    }
+    )
   }
 
   const obtenerPreguntaPorIndice = async (mat, c) => {
@@ -70,11 +75,7 @@ export function HomeMongo() {
   useEffect(() => {
     //setCargando(true)
     cargarHome()
-    identificarCurso().then(async resp => {
-      setCurrent(historiales?.historial[resp][historiales?.historial[resp].length - 1])
-      await obtenerPreguntaPorIndice(matPreferida, historiales?.historial[resp][historiales?.historial[resp].length - 1])
-    }
-    )
+
 
   }, [matPreferida])
 
@@ -198,14 +199,14 @@ export function HomeMongo() {
             <div
               className='contenedorMateriaIa'
             >
-              {(totalResueltas && longitudPreguntas) ? 
-              <>
-              Tu progreso: {(Math.round((totalResueltas / longitudPreguntas) * 100))} %
-              </>
-              :
-              <>
-              Tu progreso: 0%
-              </>
+              {(totalResueltas && longitudPreguntas) ?
+                <>
+                  Tu progreso: {(Math.round((totalResueltas / longitudPreguntas) * 100))} %
+                </>
+                :
+                <>
+                  Tu progreso: 0%
+                </>
               }
               <div>
                 <SelectMateria />
@@ -286,14 +287,14 @@ export function HomeMongo() {
                               <div>
                                 <br></br>
                                 {p.tipo === "Normal" &&
-                                <>
-                                  <button
-                                    className='boton home-boton'
-                                    onClick={() => mostrarRespuesta(p.id)}>
-                                    {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
-                                  </button>
+                                  <>
+                                    <button
+                                      className='boton home-boton'
+                                      onClick={() => mostrarRespuesta(p.id)}>
+                                      {show ? "Ocultar Respuesta" : "Mostrar Respuesta"}
+                                    </button>
                                   </>
-                                  }
+                                }
                                 <hr></hr>
                               </div>
                               {p.tipo === "Multiple" &&

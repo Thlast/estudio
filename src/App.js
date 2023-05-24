@@ -31,6 +31,7 @@ import { SVGZoom } from './components/dataInformes/guia';
 import { Articulos } from './components/dataInformes/articulos';
 import { InteraccionIA } from './components/IA/interaccion';
 import { Error404 } from './components/Error404';
+import { ConfettiOptions } from './components/confetti';
 
 function App() {
 
@@ -49,6 +50,14 @@ function App() {
             element={
               <ProtectedRoute> 
                 <Cursos />
+              </ProtectedRoute>
+            } 
+          />
+      <Route 
+          path="/opcionesUsuario" 
+            element={
+              <ProtectedRoute> 
+                <ConfettiOptions />
               </ProtectedRoute>
             } 
           />
