@@ -14,7 +14,10 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { UserConfig } from "../../context/UserConfig";
 
 export function Impcaps() {
-
+  
+  // const location = useLocation();
+  // const SeccionId = location.state?.SeccionId;
+  // console.log(SeccionId)
   const { sec } = useParams();
   const { titulo } = useParams();
   const { materia } = useParams();

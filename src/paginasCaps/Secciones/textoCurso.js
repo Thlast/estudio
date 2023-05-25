@@ -27,7 +27,7 @@ export function TextoCurso(props) {
   }
 
   useEffect(() => {
-  
+
     setEnunciado();
     // Creamos el controlador para abortar la petición
     const controller = new AbortController()
@@ -53,20 +53,35 @@ export function TextoCurso(props) {
           <br></br>
           <div>
             {enunciado === undefined || enunciado[0].enunciado === undefined || enunciado[0].enunciado.length === 0 ? null :
-              enunciado[0].enunciado.map((e, num) => {
-
+              enunciado.map(a => {
                 return (
-                  <div
-                    className='show-element'
-                    key={seccion + num}>
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}>
-                      {e}
-                    </ReactMarkdown>
-                  </div>
+                  <>
+                    {a.enunciado.map((e, num) => {
+
+                      return (
+                        <>
+                          <div
+                            className='show-element'
+                            key={seccion + num}>
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}>
+                              {e}
+                            </ReactMarkdown>
+                          </div>
+                        </>
+                      )
+                    }
+                    )
+                    }
+                    {
+                      <blockquote>
+                        id: {a.SeccionId}
+                      </blockquote>
+                    }
+                  </>
                 )
-              }
-              )
+              })
+
 
             }
           </div>
