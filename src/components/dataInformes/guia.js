@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { SVGForm } from './formularioNuevoSVG';
 import { ComoCrearSVG } from './comoCrearSVG';
 import { CambiarSVG } from './cambiarSVG';
+import { alertainfo, alertasuccess } from '../alertas';
 
 export function SVGZoom(props) {
 
@@ -15,11 +16,13 @@ export function SVGZoom(props) {
   const [offsetY, setOffsetY] = useState();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [initialValues, setInitialValues] = useState(translate);
-  const { seccion, isZooming } = props;
+  const { seccion, isZooming, curso, nombreCapitulo } = props;
   const { capituloId, pasarSeccionId } = props;
   const [render, setRender] = useState()
   const [idDiagrama, setIdDiagrama] = useState()
   const [linkEditar, setLinkEditar] = useState()
+  const [renderCurso, setRenderCurso] = useState()
+  const [renderCapitulo, setRenderCapitulo] = useState()
   const svgRef = useRef(null);
   const gRef = useRef(null);
   const [cargando, setCargando] = useState(false)
@@ -42,16 +45,37 @@ export function SVGZoom(props) {
     }
   }, [render])
 
-  const actualizarEsquema = async (idCap, idDiagram, linkEdit) => {
+  const actualizarEsquema = async (idDiagram, linkEdit) => {
     //pedimos el ultimo
     setCargando(true)
+    try {
+      const elemento = await getSVGfromDiagrams(idDiagram);
+      try {
+        const data = await actualizarSVG(idDiagram, elemento);
+        if (data.paraCurso) {
+          setRenderCurso(data);
+          setRender(data?.elementoG)
+          setMostrarCurso(true)
+          alertasuccess("SVG cargando correctamente!")
+        } else {
+          setRenderCapitulo(data);
+          setRender(data?.elementoG)
+          setMostrarCurso(false)
+          alertasuccess("SVG cargando correctamente!")
 
-    await getSVGfromDiagrams(capituloId).then(async elemento => {
-      await actualizarSVG(idCap, idDiagram, elemento).then(data => {
-        setRender(data?.elementoG)
-        setCargando(false)
-      })
-    })
+        }
+        setCargando(false);
+      } catch (error) {
+        // Manejar el error en la segunda función
+        console.error("Error al actualizar el SVG:", error);
+        // Detener la ejecución o realizar acciones adicionales en caso de error
+      }
+    } catch (error) {
+      // Manejar el error en la primera función
+      alertainfo("No se pudo acceder al enlace")
+      console.error("Error al obtener el SVG del diagrama:", error);
+      // Detener la ejecución o realizar acciones adicionales en caso de error
+    }
 
     if (linkEdit) {
       setIdDiagrama(idDiagram)
@@ -62,18 +86,23 @@ export function SVGZoom(props) {
 
   useEffect(() => {
 
-    getSVGfromMongo(capituloId).then(data => {
-      if (data[0]) {
+    getSVGfromMongo(capituloId, curso).then(data => {
+      //console.log(data)
+      if (data) {
+        //diagrama de curso
+        setRenderCurso(data[0])
         setIdDiagrama(data[0].id)
         setLinkEditar(data[0].linkEditar)
         setRender(data[0].elementoG)
+        //diagrama de capitulo
+        setRenderCapitulo(data[1])
+
       } else {
         setIdDiagrama()
         setLinkEditar()
         setRender()
       }
     })
-
   }, [capituloId])
 
   const centrarEnSeccion = () => {
@@ -106,7 +135,7 @@ export function SVGZoom(props) {
       encontrarSeccion()
     }
     centrarEnSeccion()
-  }, [render, seccion])
+  }, [seccion])
 
   const handleWheel = (event) => {
     //event.preventDefault();
@@ -217,14 +246,71 @@ export function SVGZoom(props) {
     isZooming(false)
   }
 
+  const [mostrarCurso, setMostrarCurso] = useState(true)
+
+  useEffect(() => {
+    if (mostrarCurso) {
+      setIdDiagrama(renderCurso?.id)
+      setLinkEditar(renderCurso?.linkEditar)
+      setRender(renderCurso?.elementoG)
+    } else {
+      setIdDiagrama(renderCapitulo?.id)
+      setLinkEditar(renderCapitulo?.linkEditar)
+      setRender(renderCapitulo?.elementoG)
+    }
+  }, [mostrarCurso])
+
+  const cambiarRender = () => {
+    setMostrarCurso(prevState => !prevState)
+  }
 
   return (
     <>
+      <hr></hr>
+      <button
+        className="boton home-boton"
+        onClick={() => cambiarRender()}
+      >
+        Esquema: {mostrarCurso ? curso : nombreCapitulo}
+      </button>
+      {render ?
+        <div className={style.contenedorSVG}>
+          {/* <button onClick={() => handleZoomIn()}>Zoom In</button>
+        <button onClick={() => handleZoomOut()}>Zoom Out</button> */}
+          <button
+            className={style.centericon}
+            onClick={() => centrarEnSeccion()}
+          ></button>
+
+          <svg
+            ref={svgRef}
+            dragable={false}
+
+            viewBox="0 0 700 700"
+
+            cursor={isPanning ? "move" : ""}
+            onWheel={(event) => handleWheel(event)}
+            onMouseDown={(event) => handleMouseDown(event)}
+            onMouseMove={(event) => handleMouseMove(event)}
+            onMouseUp={(event) => handleMouseUp(event)}
+            onMouseEnter={(event) => handleMouseEnter(event)}
+            onMouseLeave={(event) => handleMouseLeave(event)}
+          >
+
+            <g
+              ref={gRef}
+              transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
+              dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
+            />
+          </svg>
+        </div>
+        : "No hay diagrama"}
       {modificar ?
         <CambiarSVG actualizarEsquema={actualizarEsquema} idDiagrama={idDiagrama} />
         :
         null
       }
+      <hr></hr>
       {idDiagrama ?
         <div className={style.contenedorEditarSVG}>
           <a
@@ -240,7 +326,7 @@ export function SVGZoom(props) {
               <button
                 className='btn btn-primary'
                 style={{ width: "fit-content" }}
-                onClick={() => actualizarEsquema(capituloId, idDiagrama)}
+                onClick={() => actualizarEsquema(idDiagrama)}
               >
                 Sincronizar
               </button>
@@ -249,7 +335,7 @@ export function SVGZoom(props) {
                 style={{ width: "fit-content" }}
                 onClick={() => setModificar(!modificar)}
               >
-                {modificar ? "Cancelar" :  "Modificar enlace" }
+                {modificar ? "Cancelar" : "Modificar enlace"}
               </button>
             </>
             : null
@@ -257,39 +343,10 @@ export function SVGZoom(props) {
         </div>
         :
         <>
-          <SVGForm actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
+          <SVGForm nombreCapitulo={nombreCapitulo} curso={curso} actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
           <ComoCrearSVG />
         </>
       }
-      <hr></hr>
-      <div className={style.contenedorSVG}>
-        {/* <button onClick={() => handleZoomIn()}>Zoom In</button>
-        <button onClick={() => handleZoomOut()}>Zoom Out</button> */}
-        <button
-          className={style.centericon}
-          onClick={() => centrarEnSeccion()}
-        ></button>
-        <svg
-          ref={svgRef}
-          dragable={false}
-
-          viewBox="0 0 700 700"
-
-          cursor={isPanning ? "move" : ""}
-          onWheel={(event) => handleWheel(event)}
-          onMouseDown={(event) => handleMouseDown(event)}
-          onMouseMove={(event) => handleMouseMove(event)}
-          onMouseUp={(event) => handleMouseUp(event)}
-          onMouseEnter={(event) => handleMouseEnter(event)}
-          onMouseLeave={(event) => handleMouseLeave(event)}
-        >
-          <g
-            ref={gRef}
-            transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
-            dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
-          />
-        </svg>
-      </div>
     </>
   );
 }

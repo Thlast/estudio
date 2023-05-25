@@ -144,7 +144,9 @@ export function Secciones() {
     if (!editar) {
       setMostrarPreguntas(false)
     }
-    setEsquema(false)
+    if (mobile) {
+      setEsquema(false)
+    }
     setBuscador(false)
     setEdit(false)
     setInfo(false)
@@ -190,7 +192,7 @@ export function Secciones() {
   const isZooming = (valor) => {
     const container = containerRef.current;
     if (container) {
-      if(valor) {
+      if (valor) {
         container.style.overflowY = 'hidden';
       }
       else {
@@ -198,7 +200,7 @@ export function Secciones() {
       }
     }
   }
-  
+
   return (
     <>
       <>
@@ -320,6 +322,8 @@ export function Secciones() {
               <div
                 style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                 <SVGZoomMobile
+                  nombreCapitulo={titulo}
+                  curso={curso}
                   pasarSeccionId={pasarSeccionId}
                   capituloId={capituloId}
                   seccion={id}
@@ -407,6 +411,8 @@ export function Secciones() {
                   <div
                     style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                     <SVGZoom
+                      nombreCapitulo={titulo}
+                      curso={curso}
                       isZooming={isZooming}
                       pasarSeccionId={pasarSeccionId}
                       capituloId={capituloId}

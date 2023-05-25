@@ -3,22 +3,38 @@ const urlmongo = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REAC
 
 
 //obtengo el SVG de MONGODB
-export const getSVGfromMongo = async (capituloId) => {
+export const getSVGfromMongo = async (capituloId, curso) => {
 
-    const data = await fetch(`${urlmongo}/diagrams/${capituloId}`)
+    const data = await fetch(`${urlmongo}/diagrams/${curso}/${capituloId}`)
+    return data.json();
+}
+export const getSVGCursofromMongo = async (curso) => {
+
+    const data = await fetch(`${urlmongo}/diagramsCurso/${curso}`)
     return data.json();
 }
 
-
 //con esta funcion obtenemos el diagrama desde Diagrams
-export const getSVGfromDiagrams = async (capituloId) => {
-
-    const data = await fetch(`${urlmongo}/elementoG/${capituloId}`)
-    return data.text();
-}
+export const getSVGfromDiagrams = async (diagramId) => {
+    try {
+      const response = await fetch(`${urlmongo}/elementoG/${diagramId}`);
+  
+      if (!response.ok) {
+        throw new Error(`Error al obtener el SVG. Código de estado: ${response.status}`);
+      }
+  
+      return response.text();
+    } catch (error) {
+      // Manejar el error
+      console.error("Error al obtener el SVG:", error);
+      // Puedes lanzar una excepción para propagar el error si es necesario
+      throw error;
+    }
+  };
+  
 
 //obtengo el SVG actualizado
-export const actualizarSVG = async (capituloId, diagramsId, nuevaData) => {
+export const actualizarSVG = async (diagramsId, nuevaData) => {
 
     //const nuevaData = await getSVGfromDiagrams(capituloId)
     const url = `${urlmongo}/actualizarSVG/${diagramsId}`;
