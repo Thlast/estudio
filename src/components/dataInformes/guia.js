@@ -90,12 +90,16 @@ export function SVGZoom(props) {
       //console.log(data)
       if (data) {
         //diagrama de curso
-        setRenderCurso(data[0])
-        setIdDiagrama(data[0].id)
-        setLinkEditar(data[0].linkEditar)
-        setRender(data[0].elementoG)
-        //diagrama de capitulo
-        setRenderCapitulo(data[1])
+        if (data[0]) {
+          setRenderCurso(data[0])
+          setIdDiagrama(data[0].id)
+          setLinkEditar(data[0].linkEditar)
+          setRender(data[0].elementoG)
+        } else if (data[1]) {
+          //diagrama de capitulo
+          setRenderCapitulo(data[1])
+
+        }
 
       } else {
         setIdDiagrama()
