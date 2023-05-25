@@ -6,7 +6,7 @@ import { obtenerDatosTitulos } from './servicios/cursos/obtenerSeccion';
 import { Spinner } from './Login/Spinner';
 import style from '../modulos-css/Curso.module.css'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import {Secciones} from './listarSecciones';
+import { Secciones } from './listarSecciones';
 
 export function Curso() {
 
@@ -20,12 +20,16 @@ export function Curso() {
 
     setCargando(true)
     obtenerDetalleCurso(curso)
-      .then(data => (setCurs(data)));
+      .then(data => {
+        //console.log(data)
+        setCurs(data)
+      });
     obtenerDatosTitulos(curso)
-      .then(data =>(
-        setDatosCaps(data),
+      .then(data => {
+        //console.log(data)
+        setDatosCaps(data)
         setCargando(false)
-        )
+      }
       )
 
 
@@ -60,7 +64,7 @@ export function Curso() {
     <div className="App">
 
       <div className={style.cursolistado}>
-        
+
         <Link
           className={style.volver}
           to={"/cursos"}>
@@ -82,8 +86,8 @@ export function Curso() {
               </svg>
               Imprimir resumen
             </a>
-            
-            {curs.map((t, num) => {
+
+            {curs?.map((t, num) => {
               return (
                 <div
                   key={"curso-descripcion-" + t.nombre + num}>
@@ -100,18 +104,18 @@ export function Curso() {
               )
             }
             )}
-               <Secciones />
+            <Secciones />
             {cargando ? <Spinner /> :
               <div class='curso-capitulos-contenedor'>
                 <hr></hr>
-                   Del archivo fijo:
+                Del archivo fijo:
                 {datosCaps ?
-                  datosCaps.map((s, num) => {
+                  datosCaps?.map((s, num) => {
 
                     return (
                       <div
-                        key={num + "-" + s.titulo}
-                        id={s.titulo}
+                        key={s.CapituloId}
+                        id={s.CapituloId}
                         class="cuadro-curso">
                         <div class="bloque-curso">
                           <h3>
@@ -151,10 +155,10 @@ export function Curso() {
                           {s.secciones.map((sec, num) => {
                             return (
                               <Link
-                                key={'capitulo-' + sec + num}
+                                key={sec.SeccionId}
                                 className={style.seccion}
-                                to={"/cursos/" + curso + "/" + s.titulo + "/" + sec}>
-                                {sec}
+                                to={`/cursos/${curso}/${s.titulo}/${sec.nombre}`}>
+                                {sec.nombre}
                               </Link>
                             )
                           })}
@@ -169,9 +173,9 @@ export function Curso() {
 
               </div>
             }
-                 
+
           </div>
-          
+
         </div>
 
       </div>
