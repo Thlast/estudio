@@ -30,7 +30,9 @@ export function UserConfigProvider({ children }) {
 
   useEffect(() => {
     checkTema()
-    obtenerConfettiUsuario()
+    if (user) {
+      obtenerConfettiUsuario()
+    }
   }, [user])
 
   const getCurrentTheme = () => document.body.classList.contains('dark-theme') ? 'dark' : 'light'
