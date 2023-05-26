@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ResueltasContext } from "../../context/Resueltas";
 import { Spinner } from "../Login/Spinner";
-import { alertasuccess } from "../alertas";
+import { alertainfo, alertasuccess } from "../alertas";
 import { UserConfig } from "../../context/UserConfig";
 
 export function EvaluarRespuesta(props) {
@@ -16,15 +16,23 @@ export function EvaluarRespuesta(props) {
   const [cargando, setCargando] = useState()
   const [modificarRespuestaId, setModificarRespuestaId] = useState()
   const { agregarResueltasContext } = useContext(ResueltasContext)
-  const {confetti} = useContext(UserConfig)
+  const { confetti } = useContext(UserConfig)
 
   const evaluar = async () => {
     setCargando(true)
-    await evaluarIA(pregunta, respuesta, respuestaUsuario, datosUser?.apiKey).then(async data => {
-      setEvaluacionIA(data.choices[0].message.content)
-      await pushResuelta(data)
+    try {
+      await evaluarIA(pregunta, respuesta, respuestaUsuario, datosUser?.apiKey).then(async data => {
+        setEvaluacionIA(data.choices[0].message.content)
+        await pushResuelta(data)
+        setCargando(false)
+      })
+    } catch (error) {
       setCargando(false)
-    })
+      alertainfo(error)
+      console.log(error)
+    }
+
+
   }
   // Utilizamos una expresión regular para buscar el número entre las llaves
   const pushResuelta = async (infoIA) => {
