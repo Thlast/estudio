@@ -31,7 +31,7 @@ export function SVGForm(props) {
 
     setCargando(false)
   }
-  console.log(paraCurso)
+  
   return (
     <>
       {cargando ? <Spinner></Spinner> :
