@@ -84,14 +84,19 @@ export function SVGZoom(props) {
 
   }
 
+  const limpiarDatos = () => {
+    setRenderCapitulo()
+    setIdDiagrama()
+    setLinkEditar()
+    setRender()
+  }
+
   useEffect(() => {
 
     getSVGfromMongo(capituloId, curso).then(data => {
       //console.log(data)
       if (!data) {
-        setIdDiagrama()
-        setLinkEditar()
-        setRender()
+        limpiarDatos()
       } else {
         if (data[0]) {
           //diagrama de curso
@@ -99,11 +104,15 @@ export function SVGZoom(props) {
           setIdDiagrama(data[0].id)
           setLinkEditar(data[0].linkEditar)
           setRender(data[0].elementoG)
-        } 
+        } else {
+          limpiarDatos()
+        }
         if (data[1]) {
           //diagrama de capitulo
           setRenderCapitulo(data[1])
 
+        } else {
+          limpiarDatos()
         }
       }
     })
