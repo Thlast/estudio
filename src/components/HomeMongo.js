@@ -32,7 +32,7 @@ export function HomeMongo() {
   const [recargar, setRecargar] = useState(false)
 
   const cargarHome = async () => {
-    //setCargando(true)
+    setCargando(true)
     setRecargar(false)
     if (materias.length == 0) {
       await cargarMaterias()
