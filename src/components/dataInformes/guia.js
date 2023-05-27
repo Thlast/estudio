@@ -17,7 +17,7 @@ export function SVGZoom(props) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [initialValues, setInitialValues] = useState(translate);
   const { seccion, isZooming, curso, nombreCapitulo } = props;
-  const { capituloId, pasarSeccionId } = props;
+  const { capituloId, pasarSeccionId, recargarFuncionClickcode } = props;
   const [render, setRender] = useState()
   const [idDiagrama, setIdDiagrama] = useState()
   const [linkEditar, setLinkEditar] = useState()
@@ -41,8 +41,9 @@ export function SVGZoom(props) {
           pasarSeccionId(elements[i].id);
         }
       }
-
+      recargarFuncionClickcode()
     }
+
   }, [render])
 
   const actualizarEsquema = async (idDiagram, linkEdit) => {
@@ -116,6 +117,7 @@ export function SVGZoom(props) {
         }
       }
     })
+
   }, [capituloId])
 
   const centrarEnSeccion = () => {

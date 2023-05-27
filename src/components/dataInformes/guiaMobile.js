@@ -7,7 +7,7 @@ export function SVGZoomMobile(props) {
   const [scale, setScale] = useState(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const { seccion } = props;
-  const { capituloId, pasarSeccionId } = props;
+  const { capituloId, pasarSeccionId, recargarFuncionClickcode } = props;
   const [render, setRender] = useState()
   const svgRef = useRef(null);
   const gRef = useRef(null);
@@ -15,14 +15,18 @@ export function SVGZoomMobile(props) {
 
   //funcion que da funcionalidad a las id de las secciones
   useEffect(() => {
-    const gElement = gRef.current;
-    const elements = gElement.querySelectorAll('[id]');
+    if (render) {
 
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].classList.add("remarcarSecciones")
-      elements[i].onclick = function () {
-        pasarSeccionId(elements[i].id);
+      const gElement = gRef.current;
+      const elements = gElement.querySelectorAll('[id]');
+
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].classList.add("remarcarSecciones")
+        elements[i].onclick = function () {
+          pasarSeccionId(elements[i].id);
+        }
       }
+      recargarFuncionClickcode()
     }
 
   }, [render])

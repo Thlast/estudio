@@ -322,6 +322,7 @@ export function Secciones() {
               <div
                 style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                 <SVGZoomMobile
+                  recargarFuncionClickcode={recargarFuncionClickcode}
                   nombreCapitulo={titulo}
                   curso={curso}
                   pasarSeccionId={pasarSeccionId}
@@ -411,6 +412,7 @@ export function Secciones() {
                   <div
                     style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                     <SVGZoom
+                      recargarFuncionClickcode={recargarFuncionClickcode}
                       nombreCapitulo={titulo}
                       curso={curso}
                       isZooming={isZooming}
