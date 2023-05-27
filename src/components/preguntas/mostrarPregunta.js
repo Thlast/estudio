@@ -24,7 +24,7 @@ export function MostrarPregunta(props) {
   const { seccion } = props;
   const { seccionId, capituloId } = props;
   const { user } = useAuth();
-  const {matPreferida} = useContext(MateriasContext)
+  const { matPreferida } = useContext(MateriasContext)
   const curso = props?.curso || matPreferida;
   let edit = props.edit;
   const mostrarPreguntas = props.mostrarPreguntas
@@ -37,7 +37,7 @@ export function MostrarPregunta(props) {
   const { eliminarExamen } = props
   const { perfil } = props
   const [datosVof, setDatosVof] = useState()
-  const [filtro, setFiltro] = useState() 
+  const [filtro, setFiltro] = useState()
   const [filtroUser, setFiltroUser] = useState(false)
   const { obtenerQpreguntas } = props;
 
@@ -70,7 +70,7 @@ export function MostrarPregunta(props) {
       obtenerUsuario(user.uid)
         .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else if (seccionId) {
-      getPreguntaSeccionId(seccionId, {signal})
+      getPreguntaSeccionId(seccionId, { signal })
         .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else {
       obtenerPregunta(curso)
@@ -95,11 +95,14 @@ export function MostrarPregunta(props) {
   const modificarPreguntas = async (datos, indice, idmodif, event) => {
     try {
       let preguntamodif = null
-      await modificarPregunta(datos, idmodif, event).then(response =>
-        preguntamodif = { ...response, id: idmodif }
+      await modificarPregunta(datos, idmodif, event).then(response => {
+        if (response) {
+          preguntamodif = { ...response, id: idmodif }
+          preguntas.splice(indice, 1, preguntamodif)
+          //document.getElementById(idmodif).scrollIntoView()
+        }
+      }
       );
-      preguntas.splice(indice, 1, preguntamodif)
-      //document.getElementById(idmodif).scrollIntoView()
     } catch (error) {
       console.log(error)
     }
@@ -108,8 +111,12 @@ export function MostrarPregunta(props) {
 
   const crearPreguntas = async (preguntaCrear, event) => {
     try {
-      await crearPregunta(preguntaCrear, event).then(response =>
-        setPreguntas(preguntas.concat(response)))
+      await crearPregunta(preguntaCrear, event).then(response => {
+        if (response) {
+          setPreguntas(preguntas.concat(response))
+        }
+      }
+      )
     } catch (error) {
       console.log(error)
     }
@@ -118,10 +125,14 @@ export function MostrarPregunta(props) {
   const modificarPreguntasVoF = async (user, enunciado, rows, id, indice, titulo, seccion, seccionId, capituloId, event) => {
     try {
       let preguntamodif = null
-      await serverModificarVof(user, enunciado, rows, id, titulo, seccion, seccionId, capituloId, event).then(response =>
-        preguntamodif = { ...response, id: id }
+      await serverModificarVof(user, enunciado, rows, id, titulo, seccion, seccionId, capituloId, event).then(response => {
+        if (response) {
+          preguntamodif = { ...response, id: id }
+          preguntas.splice(indice, 1, preguntamodif)
+
+        }
+      }
       );
-      preguntas.splice(indice, 1, preguntamodif)
     } catch (error) {
       console.log(error)
     }
@@ -131,10 +142,12 @@ export function MostrarPregunta(props) {
   const crearPreguntasVoF = async (user, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event) => {
     event.preventDefault()
     try {
-      await crearVoF(user, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event).then(response =>
-        setPreguntas(preguntas.concat(response))
+      await crearVoF(user, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event).then(response => {
+        if (response) {
+          setPreguntas(preguntas.concat(response))
+        }
+      }
       );
-
     } catch (error) {
       console.log(error)
     }
@@ -163,56 +176,36 @@ export function MostrarPregunta(props) {
 
   return (
     <>
-    <div className={perfil ? 'menuContenedor' : ""}>
-      {mostrarPreguntas & !modificar & !modificarVof ?
-        cargandoPreguntas ? <Spinner></Spinner> :
-          <div
-            style={{ minHeight: preguntas.length > 0 ? 600 : 200 }}
-            className={"contenedorpreguntas"}>
+      <div className={perfil ? 'menuContenedor' : ""}>
+        {mostrarPreguntas & !modificar & !modificarVof ?
+          cargandoPreguntas ? <Spinner></Spinner> :
             <div
-              style={{ alignSelf: "center" }}
-              className='botonespreguntas'>
-              {seccion &&
-                <button
+              style={{ minHeight: preguntas.length > 0 ? 600 : 200 }}
+              className={"contenedorpreguntas"}>
+              <div
+                style={{ alignSelf: "center" }}
+                className='botonespreguntas'>
+                {seccion &&
+                  <button
 
-                  className='home-boton'
-                  onClick={() => filtrarUser()}>
-                  {filtroUser ? "✓ filtrar mis preguntas" : "✘ filtrar mis preguntas"}
-                </button>
-              }
-              {edit & examenid !== undefined ?
-                <button
-                  className='eliminarexamen btn-danger'
-                  onClick={() => eliminarExamen(preguntas)}>
-                  eliminar examen
-                </button>
-                : ""
-              }
-            </div>
-            {/* con filtro */}
-            {preguntas.length !== 0 ?
-              filtroUser ? preguntas?.map((p, num) => {
-                if ((user.uid === p.user)) {
-                  return (
-                    <div
-                      key={'mostrar-' + p.id}>
-                      <Preguntas
-                        irModificarVof={irModificarVof}
-                        edit={edit}
-                        irModificarPregunta={irModificarPregunta}
-                        eliminar={eliminar}
-                        p={p}
-                        num={num}
-                        integral={true}
-                      />
-                      <hr></hr>
-                    </div>
-                  )
-
+                    className='home-boton'
+                    onClick={() => filtrarUser()}>
+                    {filtroUser ? "✓ filtrar mis preguntas" : "✘ filtrar mis preguntas"}
+                  </button>
                 }
-              }) :
-                preguntas?.map((p, num) => {
-                  if ((filtro === p.curso || filtro === undefined)) {
+                {edit & examenid !== undefined ?
+                  <button
+                    className='eliminarexamen btn-danger'
+                    onClick={() => eliminarExamen(preguntas)}>
+                    eliminar examen
+                  </button>
+                  : ""
+                }
+              </div>
+              {/* con filtro */}
+              {preguntas.length !== 0 ?
+                filtroUser ? preguntas?.map((p, num) => {
+                  if ((user.uid === p.user)) {
                     return (
                       <div
                         key={'mostrar-' + p.id}>
@@ -230,59 +223,79 @@ export function MostrarPregunta(props) {
                     )
 
                   }
-                })
+                }) :
+                  preguntas?.map((p, num) => {
+                    if ((filtro === p.curso || filtro === undefined)) {
+                      return (
+                        <div
+                          key={'mostrar-' + p.id}>
+                          <Preguntas
+                            irModificarVof={irModificarVof}
+                            edit={edit}
+                            irModificarPregunta={irModificarPregunta}
+                            eliminar={eliminar}
+                            p={p}
+                            num={num}
+                            integral={true}
+                          />
+                          <hr></hr>
+                        </div>
+                      )
 
-              : <p>No hay preguntas</p>
-            } 
-            {anexadas &&
-              <AnexadasExamen
-                quitar={quitar}
-                examenid={examenid}
-                numpreguntas={preguntas.length}
-                anexadas={anexadas} />
-            }
-          </div>
-        : ""
-      }
+                    }
+                  })
 
-      {agregar & !modificar & !modificarVof ?
-        <FormAgregarPregunta
-          crearPreguntasVoF={crearPreguntasVoF}
-          examenid={examenid}
-          crearPreguntas={crearPreguntas}
-          titulo={titulo}
-          seccion={seccion}
-          seccionId={seccionId}
-          capituloId={capituloId}
-          curso={curso}
-        />
-        : ""
-      }
-      {modificar &&
-        <div>
-          <FormModificarPregunta
+                : <p>No hay preguntas</p>
+              }
+              {anexadas &&
+                <AnexadasExamen
+                  quitar={quitar}
+                  examenid={examenid}
+                  numpreguntas={preguntas.length}
+                  anexadas={anexadas} />
+              }
+            </div>
+          : ""
+        }
+
+        {agregar & !modificar & !modificarVof ?
+          <FormAgregarPregunta
+            crearPreguntasVoF={crearPreguntasVoF}
             examenid={examenid}
-            cancelar={cancelar}
+            crearPreguntas={crearPreguntas}
             titulo={titulo}
             seccion={seccion}
             seccionId={seccionId}
-            curso={curso}
-            modificarPregunta={modificarPreguntas}
-            preguntaModificar={preguntaModificar} />
-        </div>
-      }
-      {modificarVof &&
-        <div>
-          <FormVof
-            modificarPreguntasVoF={modificarPreguntasVoF}
-            cancelar={cancelar}
-            datospreguntas={datosVof}
-            seccionId={seccionId}
             capituloId={capituloId}
-            vofModificar={preguntaModificar}
+            curso={curso}
           />
-        </div>
-      }
+          : ""
+        }
+        {modificar &&
+          <div>
+            <FormModificarPregunta
+              examenid={examenid}
+              cancelar={cancelar}
+              titulo={titulo}
+              seccion={seccion}
+              seccionId={seccionId}
+              curso={curso}
+              modificarPregunta={modificarPreguntas}
+              preguntaModificar={preguntaModificar} />
+          </div>
+        }
+        {modificarVof &&
+          <div>
+            <FormVof
+              modificarPreguntasVoF={modificarPreguntasVoF}
+              cancelar={cancelar}
+              datospreguntas={datosVof}
+              seccionId={seccionId}
+              capituloId={capituloId}
+              vofModificar={preguntaModificar}
+            />
+          </div>
+        }
       </div>
     </>
   );
