@@ -52,7 +52,7 @@ export function Secciones() {
           setContenidoSeccion(data[0])
           setTitulo(data[0]?.CapituloNombre)
           setCargando(false)
-          console.log(data)
+          //console.log(data)
         }
         else {
           navigate("/Error404", { state: { mensaje: `La sección Nº${id} no existe, o no pertenece al capítulo ${capituloId} de ${curso}` } });

@@ -125,6 +125,7 @@ export function SVGZoom(props) {
     if (document.getElementById(seccion)) {
       setTranslate({ x: -document.getElementById(seccion)?.offsetLeft * scale + 300, y: -document.getElementById(seccion)?.offsetTop * scale + 200 })
     }
+    encontrarSeccion()
   }
 
   const encontrarSeccion = () => {
