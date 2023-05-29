@@ -143,7 +143,7 @@ export function Consola(props) {
         <>
           {/* si existen definiciones se renderizan: */}
           {articulo ?
-            <Articulos articulo={articulo} />
+            <Articulos articulo={articulo} recargarFuncionClickcode={recargarFuncionClickcode} />
             :
             <>
               <MostrarDef

@@ -4,18 +4,18 @@ import { decretoReglamentario } from "./decretoReglamentario";
 import { procedimientoTributario } from "./procedimientoTributario";
 export function Articulos(props) {
 
-  const { articulo } = props;
+  const { articulo, recargarFuncionClickcode } = props;
   const [sectionHtml, setSeccionHtml] = useState("")
   const [linkLey, setLinkLey] = useState("")
 
   function formatArticleId(str) {
 
-    
+
     if (articulo.endsWith("dr")) {
       const numeroArticulo = parseInt(articulo.match(/\d+/)[0]);
       const formatoArticulo = `articulo${numeroArticulo.toString().padStart(4, "0")}___${numeroArticulo.toString().padStart(2, "0")}_`;
       return formatoArticulo;
-    } 
+    }
     else if (articulo.endsWith("lpt")) {
       const id = str.match(/\d/);
       const paddedId = id ? id[0].padStart(4, '0') : '0000';
@@ -35,7 +35,7 @@ export function Articulos(props) {
     if (articulo.endsWith("dr")) {
       setSeccionHtml(getSectionById(decretoReglamentario, `${formatArticleId(articulo)}`))
       setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06")
-    } else if (articulo.endsWith("lpt")){
+    } else if (articulo.endsWith("lpt")) {
       setSeccionHtml(getSectionById(procedimientoTributario, `${formatArticleId(articulo)}`))
       setLinkLey("http://biblioteca.afip.gob.ar/dcp/TOR_C_011683_1998_07_13")
     } else {
@@ -45,10 +45,18 @@ export function Articulos(props) {
 
   }, [articulo])
 
+  useEffect(() => {
+    recargarFuncionClickcode()
+  }, [sectionHtml])
+
+  const patron = /artículo\s+(\d+)/gi;
+  // let resultado = asd.replace(patron, '<code>artículo $1</code>');
+
+
 
   return (
     <>
-    <blockquote>Link a la ley:
+      <blockquote>Link a la ley:
         <em
           style={{ textDecoration: "underline" }}>
           <a
@@ -58,11 +66,11 @@ export function Articulos(props) {
           </a>
         </em>
       </blockquote>
-    <div
-      dangerouslySetInnerHTML={{ __html: `${sectionHtml}` }}
-    >
-    </div>
-    
+      <div
+        dangerouslySetInnerHTML={{ __html: `${sectionHtml.replace(patron, '<code>artículo $1</code>')}` }}
+      >
+      </div>
+
     </>
   )
 
