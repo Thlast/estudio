@@ -25,6 +25,7 @@ export function Consola(props) {
 
   useEffect(() => {
     if (dic) {
+      pasarSeccionId()
       setArticulo()
       setDatos()
       setDatosSeccion()
@@ -54,20 +55,22 @@ export function Consola(props) {
       return () => controller.abort()
     } 
     //buscar articulos si el curso=impuestos
-    else if (curso == "impuestos" & (dic.includes("artículo") || dic.includes("articulo"))) {
+    else if (curso == "impuestos" && (dic.includes("artículo") || dic.includes("articulo"))) {
+      
       setArticulo(dic)
     }
   }, [dic])
 
   //esto es por si limipio la consola desde Secciones
   useEffect(() => {
-    if (!dic & !buscarSeccionId) {
+    if (!dic && !buscarSeccionId) {
       setArticulo()
       setDatosSeccion()
     }
 
   }, [dic, buscarSeccionId])
 
+//console.log(dic)
   //cuando le paso directo el id del SVG
   useEffect(() => {
     if (buscarSeccionId) {

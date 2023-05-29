@@ -18,7 +18,6 @@ import { modificarSeccion } from "../../components/servicios/cursos/cursosSQL/mo
 import { alertainfo } from "../../components/alertas";
 import { UserConfig } from "../../context/UserConfig";
 import { SVGZoom } from "../../components/dataInformes/guia";
-import { SVGZoomMobile } from "../../components/dataInformes/guiaMobile";
 
 export function Secciones() {
 
@@ -321,7 +320,7 @@ export function Secciones() {
               </div>
               <div
                 style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
-                <SVGZoomMobile
+                <SVGZoom
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   nombreCapitulo={titulo}
                   curso={curso}
