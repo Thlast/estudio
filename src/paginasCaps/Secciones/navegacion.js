@@ -17,7 +17,7 @@ export function NavegacionCursos(props) {
   const [anterior, setAnterior] = useState("")
   const [anteriorSeccion, setAnteriorSeccion] = useState("")
   const [siguienteSeccion, setSiguienteSeccion] = useState("")
-
+console.log(siguienteSeccion)
   useEffect(() => {
 
     setIndiceSeccion(secciones.indexOf(seccion))
@@ -64,8 +64,8 @@ export function NavegacionCursos(props) {
               indiceSeccion === 0 ?
                 anterior ?
                   <Link
-                    to={"/cursos/" + curso + "/" + anterior + "/" + anteriorSeccion}
-                    onClick={() => ingresarSeccion(anterior, anteriorSeccion, true)}
+                    to={"/cursos/" + curso + "/" + anterior + "/" + anteriorSeccion?.nombre}
+                    onClick={() => ingresarSeccion(anterior, anteriorSeccion?.nombre, true)}
                     className={style.cambioseccion}>
                     <p
                       className={style.anterior}>{"< "}Anterior Capitulo </p>
@@ -91,8 +91,8 @@ export function NavegacionCursos(props) {
             {secciones.length === indiceSeccion + 1 ?
               proximo ?
                 <Link
-                  to={"/cursos/" + curso + "/" + proximo + "/" + siguienteSeccion}
-                  onClick={() => ingresarSeccion(proximo, siguienteSeccion, false)}
+                  to={"/cursos/" + curso + "/" + proximo + "/" + siguienteSeccion?.nombre}
+                  onClick={() => ingresarSeccion(proximo, siguienteSeccion?.nombre, false)}
                   className={style.cambioseccion}>
                   <p
                     className={style.siguiente}>Siguiente Capitulo {" >"}</p>
