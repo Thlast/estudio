@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import style from './guia.module.css'
 import { getSVGfromMongo, actualizarSVG, getSVGfromDiagrams } from '../servicios/SVGservicios/obtenerSVG';
 import { useAuth } from '../../context/AuthContext';
@@ -6,9 +6,12 @@ import { SVGForm } from './formularioNuevoSVG';
 import { ComoCrearSVG } from './comoCrearSVG';
 import { CambiarSVG } from './cambiarSVG';
 import { alertainfo, alertasuccess } from '../alertas';
+import { UserConfig } from '../../context/UserConfig';
+import { SVGZoomMobile } from './guiaMobile';
 
 export function SVGZoom(props) {
 
+  const { mobile } = useContext(UserConfig)
   const { datosUser } = useAuth()
   const [scale, setScale] = useState(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
@@ -29,13 +32,13 @@ export function SVGZoom(props) {
   const [modificar, setModificar] = useState(false)
 
   //funcion que da funcionalidad a las id de las secciones
-  useEffect(() => {
+  const funcionSeccionId = (gRef) => {
     if (render) {
 
-      const gElement = gRef.current;
-      const elements = gElement.querySelectorAll('[id]');
+      const gElement = gRef?.current;
+      const elements = gElement?.querySelectorAll('[id]');
 
-      for (let i = 0; i < elements.length; i++) {
+      for (let i = 0; i < elements?.length; i++) {
         elements[i].classList.add("remarcarSecciones")
         elements[i].onclick = function () {
           pasarSeccionId(elements[i].id);
@@ -43,6 +46,9 @@ export function SVGZoom(props) {
       }
       recargarFuncionClickcode()
     }
+  }
+  useEffect(() => {
+    funcionSeccionId(gRef)
 
   }, [render])
 
@@ -279,6 +285,14 @@ export function SVGZoom(props) {
   const cambiarRender = () => {
     setMostrarCurso(prevState => !prevState)
   }
+  
+  function handleZoomIn() {
+    setScale(scale * 1.2);
+  }
+
+  function handleZoomOut() {
+    setScale(scale / 1.2);
+  }
 
   return (
     <>
@@ -291,34 +305,42 @@ export function SVGZoom(props) {
       </button>
       {render ?
         <div className={style.contenedorSVG}>
-          {/* <button onClick={() => handleZoomIn()}>Zoom In</button>
-        <button onClick={() => handleZoomOut()}>Zoom Out</button> */}
+          <div className={style.contenedorZoom}>
+            <button
+              className={style.zoom}
+              onClick={() => handleZoomIn()}>+</button>
+            <button
+              className={style.zoom}
+              onClick={() => handleZoomOut()}>-</button>
+          </div>
           <button
             className={style.centericon}
             onClick={() => centrarEnSeccion()}
           ></button>
-
-          <svg
-            ref={svgRef}
-            dragable={false}
-
-            viewBox="0 0 700 700"
-
-            cursor={isPanning ? "move" : ""}
-            onWheel={(event) => handleWheel(event)}
-            onMouseDown={(event) => handleMouseDown(event)}
-            onMouseMove={(event) => handleMouseMove(event)}
-            onMouseUp={(event) => handleMouseUp(event)}
-            onMouseEnter={(event) => handleMouseEnter(event)}
-            onMouseLeave={(event) => handleMouseLeave(event)}
-          >
-
-            <g
-              ref={gRef}
-              transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
-              dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
-            />
-          </svg>
+          {!mobile ?
+            <>
+              <svg
+                ref={svgRef}
+                dragable={false}
+                viewBox="0 0 700 700"
+                cursor={isPanning ? "move" : ""}
+                onWheel={(event) => handleWheel(event)}
+                onMouseDown={(event) => handleMouseDown(event)}
+                onMouseMove={(event) => handleMouseMove(event)}
+                onMouseUp={(event) => handleMouseUp(event)}
+                onMouseEnter={(event) => handleMouseEnter(event)}
+                onMouseLeave={(event) => handleMouseLeave(event)}
+              >
+                <g
+                  ref={gRef}
+                  transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
+                  dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
+                />
+              </svg>
+            </>
+            :
+            <SVGZoomMobile render={render} funcionSeccionId={funcionSeccionId} />
+          }
         </div>
         : "No hay diagrama"}
       {modificar ?
