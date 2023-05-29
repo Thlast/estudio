@@ -265,7 +265,6 @@ export function SVGZoom(props) {
 
   function handleMouseLeave(event) {
     setIsPanning(false);
-    isZooming(false)
   }
 
   const [mostrarCurso, setMostrarCurso] = useState(true)
@@ -285,7 +284,7 @@ export function SVGZoom(props) {
   const cambiarRender = () => {
     setMostrarCurso(prevState => !prevState)
   }
-  
+
   function handleZoomIn() {
     setScale(scale * 1.2);
   }
@@ -304,43 +303,49 @@ export function SVGZoom(props) {
         Esquema: {mostrarCurso ? curso : nombreCapitulo}
       </button>
       {render ?
-        <div className={style.contenedorSVG}>
-          <div className={style.contenedorZoom}>
+        <div
+        onMouseUp={() => isZooming(true)}
+        onMouseLeave={() => isZooming(false)}
+        >
+          <div
+            className={style.contenedorSVG}>
+            <div className={style.contenedorZoom}>
+              <button
+                className={style.zoom}
+                onClick={() => handleZoomIn()}>+</button>
+              <button
+                className={style.zoom}
+                onClick={() => handleZoomOut()}>-</button>
+            </div>
             <button
-              className={style.zoom}
-              onClick={() => handleZoomIn()}>+</button>
-            <button
-              className={style.zoom}
-              onClick={() => handleZoomOut()}>-</button>
+              className={style.centericon}
+              onClick={() => centrarEnSeccion()}
+            ></button>
+            {!mobile ?
+              <>
+                <svg
+                  ref={svgRef}
+                  dragable={false}
+                  viewBox="0 0 1000 1000"
+                  cursor={isPanning ? "move" : ""}
+                  onWheel={(event) => handleWheel(event)}
+                  onMouseDown={(event) => handleMouseDown(event)}
+                  onMouseMove={(event) => handleMouseMove(event)}
+                  onMouseUp={(event) => handleMouseUp(event)}
+                  onMouseEnter={(event) => handleMouseEnter(event)}
+                  onMouseLeave={(event) => handleMouseLeave(event)}
+                >
+                  <g
+                    ref={gRef}
+                    transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
+                    dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
+                  />
+                </svg>
+              </>
+              :
+              <SVGZoomMobile render={render} funcionSeccionId={funcionSeccionId} />
+            }
           </div>
-          <button
-            className={style.centericon}
-            onClick={() => centrarEnSeccion()}
-          ></button>
-          {!mobile ?
-            <>
-              <svg
-                ref={svgRef}
-                dragable={false}
-                viewBox="0 0 700 700"
-                cursor={isPanning ? "move" : ""}
-                onWheel={(event) => handleWheel(event)}
-                onMouseDown={(event) => handleMouseDown(event)}
-                onMouseMove={(event) => handleMouseMove(event)}
-                onMouseUp={(event) => handleMouseUp(event)}
-                onMouseEnter={(event) => handleMouseEnter(event)}
-                onMouseLeave={(event) => handleMouseLeave(event)}
-              >
-                <g
-                  ref={gRef}
-                  transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
-                  dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
-                />
-              </svg>
-            </>
-            :
-            <SVGZoomMobile render={render} funcionSeccionId={funcionSeccionId} />
-          }
         </div>
         : "No hay diagrama"}
       {modificar ?

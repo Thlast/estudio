@@ -409,7 +409,8 @@ export function Secciones() {
                       previsualizar={previsualizar} />
                   </div>
                   <div
-                    style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
+
+                    style={{ display: `${(esquema && !editMode) ? "block" : "none"}`}}>
                     <SVGZoom
                       recargarFuncionClickcode={recargarFuncionClickcode}
                       nombreCapitulo={titulo}
