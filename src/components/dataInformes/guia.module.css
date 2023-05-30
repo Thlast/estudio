@@ -3,7 +3,7 @@
     flex-direction: column;
     color: var(--text-color);
     background-color: var(--body-color);
-    max-height: calc(100vh - 62.5px);
+    max-height: 100%;
     position: relative;
 }
 

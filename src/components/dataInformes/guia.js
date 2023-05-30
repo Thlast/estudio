@@ -8,6 +8,7 @@ import { CambiarSVG } from './cambiarSVG';
 import { alertainfo, alertasuccess } from '../alertas';
 import { UserConfig } from '../../context/UserConfig';
 import { SVGZoomMobile } from './guiaMobile';
+import { Spinner } from '../Login/Spinner';
 
 export function SVGZoom(props) {
 
@@ -64,12 +65,13 @@ export function SVGZoom(props) {
           setRender(data?.elementoG)
           setMostrarCurso(true)
           alertasuccess("SVG cargando correctamente!")
+          setCargando(false)
         } else {
           setRenderCapitulo(data);
           setRender(data?.elementoG)
           setMostrarCurso(false)
           alertasuccess("SVG cargando correctamente!")
-
+          setCargando(false)
         }
         setCargando(false);
       } catch (error) {
@@ -79,8 +81,9 @@ export function SVGZoom(props) {
       }
     } catch (error) {
       // Manejar el error en la primera función
-      alertainfo("No se pudo acceder al enlace")
+      alertainfo("Tiempo de espera agotado. Intente nuevamente.")
       console.error("Error al obtener el SVG del diagrama:", error);
+      setCargando(false)
       // Detener la ejecución o realizar acciones adicionales en caso de error
     }
 
@@ -360,41 +363,43 @@ export function SVGZoom(props) {
         null
       }
       <hr></hr>
-      {idDiagrama ?
-        <div className={style.contenedorEditarSVG}>
-          <a
-            className='btn btn-primary'
-            style={{ width: "fit-content" }}
-            target='_blank'
-            href={linkEditar}
-          >
-            Editar en diagrams
-          </a>
-          {datosUser?.rol == "admin" ?
-            <>
-              <button
-                className='btn btn-primary'
-                style={{ width: "fit-content" }}
-                onClick={() => actualizarEsquema(idDiagrama)}
-              >
-                Sincronizar
-              </button>
-              <button
-                className={modificar ? 'btn btn-danger' : 'btn btn-primary'}
-                style={{ width: "fit-content" }}
-                onClick={() => setModificar(!modificar)}
-              >
-                {modificar ? "Cancelar" : "Modificar enlace"}
-              </button>
-            </>
-            : null
-          }
-        </div>
-        :
-        <>
-          <SVGForm nombreCapitulo={nombreCapitulo} curso={curso} actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
-          <ComoCrearSVG />
-        </>
+
+      {cargando ? <Spinner></Spinner> :
+        idDiagrama ?
+          <div className={style.contenedorEditarSVG}>
+            <a
+              className='btn btn-primary'
+              style={{ width: "fit-content" }}
+              target='_blank'
+              href={linkEditar}
+            >
+              Editar en diagrams
+            </a>
+            {datosUser?.rol == "admin" ?
+              <>
+                <button
+                  className='btn btn-primary'
+                  style={{ width: "fit-content" }}
+                  onClick={() => actualizarEsquema(idDiagrama)}
+                >
+                  Sincronizar
+                </button>
+                <button
+                  className={modificar ? 'btn btn-danger' : 'btn btn-primary'}
+                  style={{ width: "fit-content" }}
+                  onClick={() => setModificar(!modificar)}
+                >
+                  {modificar ? "Cancelar" : "Modificar enlace"}
+                </button>
+              </>
+              : null
+            }
+          </div>
+          :
+          <>
+            <SVGForm nombreCapitulo={nombreCapitulo} curso={curso} actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
+            <ComoCrearSVG />
+          </>
       }
     </>
   );
