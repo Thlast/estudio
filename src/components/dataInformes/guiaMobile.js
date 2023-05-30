@@ -9,7 +9,7 @@ export function SVGZoomMobile(props) {
   // const { seccion } = props;
   // const { capituloId, pasarSeccionId, recargarFuncionClickcode } = props;
   // const [render, setRender] = useState()
-  const { render, funcionSeccionId } = props;
+  const { render, funcionSeccionId, seccion } = props;
   const svgRef = useRef(null);
   const gRef = useRef(null);
   const [initialValues, setInitialValues] = useState(translate);
@@ -52,12 +52,12 @@ export function SVGZoomMobile(props) {
   // }, [capituloId])
 
 
-  // const centrarEnSeccion = () => {
+  const centrarEnSeccion = () => {
 
-  //   if (document.getElementById(seccion)) {
-  //     setTranslate({ x: -document.getElementById(seccion)?.offsetLeft * scale + 300, y: -document.getElementById(seccion)?.offsetTop * scale + 200 })
-  //   }
-  // }
+    if (document.getElementById(seccion)) {
+      setTranslate({ x: -document.getElementById(seccion)?.offsetLeft * scale + 300, y: -document.getElementById(seccion)?.offsetTop * scale + 200 })
+    }
+  }
 
   // const encontrarSeccion = () => {
   //   setTimeout(() => {
@@ -76,12 +76,10 @@ export function SVGZoomMobile(props) {
   //   }, 100)
   // }
 
-  // useEffect(() => {
-  //   if (seccion) {
-  //     encontrarSeccion()
-  //   }
-  //   centrarEnSeccion()
-  // }, [render, seccion])
+  useEffect(() => {
+
+    centrarEnSeccion()
+  }, [])
 
   const [startPos, setStartPos] = useState(null);
 
@@ -147,14 +145,18 @@ export function SVGZoomMobile(props) {
 
   return (
     <>
-        <div className={style.contenedorZoom}>
+      <div className={style.contenedorZoom}>
         <button
           className={style.zoom}
           onClick={() => handleZoomIn()}>+</button>
         <button
           className={style.zoom}
           onClick={() => handleZoomOut()}>-</button>
-          </div>
+      </div>
+      <button
+        className={style.centericon}
+        onClick={() => centrarEnSeccion()}
+      ></button>
       <svg
         style={{ touchAction: "none" }}
         ref={svgRef}

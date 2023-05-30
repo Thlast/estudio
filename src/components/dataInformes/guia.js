@@ -130,32 +130,33 @@ export function SVGZoom(props) {
 
     if (document.getElementById(seccion)) {
       setTranslate({ x: -document.getElementById(seccion)?.offsetLeft * scale + 300, y: -document.getElementById(seccion)?.offsetTop * scale + 200 })
+      //document.getElementById(seccion).classList.add("encontrarSeccion")
     }
     encontrarSeccion()
   }
 
   const encontrarSeccion = () => {
-    setTimeout(() => {
-      const elementToCenter = document.getElementById(seccion)
+    // setTimeout(() => {
+    const elementToCenter = document.getElementById(seccion)
 
-      //quito las clases anteriores secciones
-      if (document.querySelector(".encontrarSeccion")) {
-        document.querySelector(".encontrarSeccion")?.classList.remove("encontrarSeccion")
-      }
-      //agrego clase a la nueva y centro la vista
-      if (document.getElementById(seccion)) {
-        elementToCenter?.classList.add("encontrarSeccion")
+    //quito las clases anteriores secciones
+    if (document.querySelector(".encontrarSeccion")) {
+      document.querySelector(".encontrarSeccion")?.classList.remove("encontrarSeccion")
+    }
+    //agrego clase a la nueva y centro la vista
+    if (document.getElementById(seccion)) {
+      elementToCenter?.classList.add("encontrarSeccion")
 
-      }
+    }
 
-    }, 100)
+    // }, 100)
   }
 
 
   useEffect(() => {
-    if (seccion) {
-      encontrarSeccion()
-    }
+    // if (seccion) {
+    //   encontrarSeccion()
+    // }
     centrarEnSeccion()
   }, [seccion])
 
@@ -304,28 +305,33 @@ export function SVGZoom(props) {
       </button>
       {render ?
         <div
-        onMouseUp={() => isZooming(true)}
-        onMouseLeave={() => isZooming(false)}
+
         >
           <div
+
             className={style.contenedorSVG}>
-            <div className={style.contenedorZoom}>
-              <button
-                className={style.zoom}
-                onClick={() => handleZoomIn()}>+</button>
-              <button
-                className={style.zoom}
-                onClick={() => handleZoomOut()}>-</button>
-            </div>
-            <button
-              className={style.centericon}
-              onClick={() => centrarEnSeccion()}
-            ></button>
             {!mobile ?
-              <>
+              <div
+                onMouseUp={() => isZooming(true)}
+                onMouseLeave={() => isZooming(false)}
+              >
+                <div className={style.contenedorZoom}>
+
+                  <button
+                    className={style.zoom}
+                    onClick={() => handleZoomIn()}>+</button>
+                  <button
+                    className={style.zoom}
+                    onClick={() => handleZoomOut()}>-</button>
+                </div>
+                <button
+                  className={style.centericon}
+                  onClick={() => centrarEnSeccion()}
+                ></button>
+
                 <svg
                   ref={svgRef}
-                  dragable={false}
+                  dragable="false"
                   viewBox="0 0 1000 1000"
                   cursor={isPanning ? "move" : ""}
                   onWheel={(event) => handleWheel(event)}
@@ -341,13 +347,13 @@ export function SVGZoom(props) {
                     dangerouslySetInnerHTML={{ __html: `${render?.replaceAll("rgb(0, 0, 0)", "var(--text-color)")?.replaceAll("rgb(255, 255, 255)", "var(--secundario)")?.replaceAll("<a ", "<a target='_blank' ")}` }}
                   />
                 </svg>
-              </>
+              </div>
               :
-              <SVGZoomMobile render={render} funcionSeccionId={funcionSeccionId} />
+              <SVGZoomMobile seccion={seccion} render={render} funcionSeccionId={funcionSeccionId} />
             }
           </div>
         </div>
-        : "No hay diagrama"}
+        : <p>{`No hay diagrama para el ${mostrarCurso ? "curso" : "capítulo"}`}</p>}
       {modificar ?
         <CambiarSVG actualizarEsquema={actualizarEsquema} idDiagrama={idDiagrama} />
         :
