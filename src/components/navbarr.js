@@ -36,9 +36,10 @@ export function Nav() {
           {user == null ?
             //para registrarse o loguearse
             <div
-              className={style.login}>
+            //className={style.login}
+            >
               <ul
-                className={style.contenedorlista}>
+                className={style.contenedorLoginMobile}>
                 <li>
                   <Link
                     className={style.loginlinks}
@@ -102,9 +103,11 @@ export function Nav() {
           {user == null ?
             //para registrarse o loguearse
             <div
-              className={style.login}>
+            //className={style.login}
+            >
               <ul
-                className={style.contenedorlista}>
+                className={style.contenedorlista}
+                >
                 <li>
                   <Link
                     className={style.loginlinks}
