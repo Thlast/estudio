@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import style from './guia.module.css'
-import { getSVGfromMongo, actualizarSVG, getSVGfromDiagrams } from '../servicios/SVGservicios/obtenerSVG';
+import { getSVGfromMongo, actualizarSVG, getSVGfromDiagrams, getSVGfromMongoArchivoFijo } from '../servicios/SVGservicios/obtenerSVG';
 import { useAuth } from '../../context/AuthContext';
 import { SVGForm } from './formularioNuevoSVG';
 import { ComoCrearSVG } from './comoCrearSVG';
@@ -21,6 +21,9 @@ export function SVGZoom(props) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [initialValues, setInitialValues] = useState(translate);
   const { seccion, isZooming, curso, nombreCapitulo } = props;
+  //si viene de archivo fijo impCaps
+  const { capituloNombre } = props;
+  //si viene de SQL
   const { capituloId, pasarSeccionId, recargarFuncionClickcode } = props;
   const [render, setRender] = useState()
   const [idDiagrama, setIdDiagrama] = useState()
@@ -98,34 +101,60 @@ export function SVGZoom(props) {
     setRenderCapitulo()
     setIdDiagrama()
     setLinkEditar()
+    setRenderCurso()
     setRender()
   }
 
   useEffect(() => {
 
-    getSVGfromMongo(capituloId, curso).then(data => {
-      //console.log(data)
-      if (!data) {
-        limpiarDatos()
-      } else {
-        if (data[0]) {
-          //diagrama de curso
-          setRenderCurso(data[0])
-          setIdDiagrama(data[0].id)
-          setLinkEditar(data[0].linkEditar)
-          setRender(data[0].elementoG)
-        } else {
+    if (capituloNombre) {
+      getSVGfromMongoArchivoFijo(capituloNombre, curso).then(data => {
+        //console.log(data)
+        if (!data) {
           limpiarDatos()
-        }
-        if (data[1]) {
-          //diagrama de capitulo
-          setRenderCapitulo(data[1])
+        } else {
+          if (data[0]) {
+            //diagrama de curso
+            setRenderCurso(data[0])
+            setIdDiagrama(data[0].id)
+            setLinkEditar(data[0].linkEditar)
+            setRender(data[0].elementoG)
+          } else {
+            setRenderCurso()
+          }
+          if (data[1]) {
+            //diagrama de capitulo
+            setRenderCapitulo(data[1])
 
-        } else {
-          limpiarDatos()
+          } else {
+            setRenderCapitulo()
+          }
         }
-      }
-    })
+      })
+    } else
+      getSVGfromMongo(capituloId, curso).then(data => {
+        //console.log(data)
+        if (!data) {
+          limpiarDatos()
+        } else {
+          if (data[0]) {
+            //diagrama de curso
+            setRenderCurso(data[0])
+            setIdDiagrama(data[0].id)
+            setLinkEditar(data[0].linkEditar)
+            setRender(data[0].elementoG)
+          } else {
+            setRenderCurso()
+          }
+          if (data[1]) {
+            //diagrama de capitulo
+            setRenderCapitulo(data[1])
+
+          } else {
+            setRenderCapitulo()
+          }
+        }
+      })
 
   }, [capituloId])
 
@@ -275,9 +304,10 @@ export function SVGZoom(props) {
 
   useEffect(() => {
     if (mostrarCurso) {
+      //console.log(renderCurso?.elementoG)
+      setRender(renderCurso?.elementoG)
       setIdDiagrama(renderCurso?.id)
       setLinkEditar(renderCurso?.linkEditar)
-      setRender(renderCurso?.elementoG)
     } else {
       setIdDiagrama(renderCapitulo?.id)
       setLinkEditar(renderCapitulo?.linkEditar)
@@ -308,7 +338,6 @@ export function SVGZoom(props) {
       </button>
       {render ?
         <div
-
         >
           <div
 
@@ -397,7 +426,7 @@ export function SVGZoom(props) {
           </div>
           :
           <>
-            <SVGForm nombreCapitulo={nombreCapitulo} curso={curso} actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
+            <SVGForm capituloNombre={capituloNombre} nombreCapitulo={nombreCapitulo} curso={curso} actualizarEsquema={actualizarEsquema} capituloId={capituloId} />
             <ComoCrearSVG />
           </>
       }

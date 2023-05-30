@@ -17,7 +17,7 @@ export function NavegacionCursos(props) {
   const [anterior, setAnterior] = useState("")
   const [anteriorSeccion, setAnteriorSeccion] = useState("")
   const [siguienteSeccion, setSiguienteSeccion] = useState("")
-console.log(siguienteSeccion)
+
   useEffect(() => {
 
     setIndiceSeccion(secciones.indexOf(seccion))

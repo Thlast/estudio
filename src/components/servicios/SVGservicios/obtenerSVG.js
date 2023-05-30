@@ -3,6 +3,11 @@ const urlmongo = process.env.REACT_APP_SERVER_PRODUCTION_URL || process.env.REAC
 
 
 //obtengo el SVG de MONGODB
+export const getSVGfromMongoArchivoFijo = async (capituloId, curso) => {
+
+    const data = await fetch(`${urlmongo}/diagramsArchivoFijo/${curso}/${capituloId}`)
+    return data.json();
+}
 export const getSVGfromMongo = async (capituloId, curso) => {
 
     const data = await fetch(`${urlmongo}/diagrams/${curso}/${capituloId}`)

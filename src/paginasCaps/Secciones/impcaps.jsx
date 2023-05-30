@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
@@ -12,9 +12,10 @@ import { WindowSplitter } from "./splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { UserConfig } from "../../context/UserConfig";
+import { SVGZoom } from "../../components/dataInformes/guia";
 
 export function Impcaps() {
-  
+
   // const location = useLocation();
   // const SeccionId = location.state?.SeccionId;
   // console.log(SeccionId)
@@ -27,6 +28,10 @@ export function Impcaps() {
   const curso = materia
   const { mobile } = useContext(UserConfig)
   const [buscarSeccionId, setBuscarSeccionId] = useState();
+  const [esquema, setEsquema] = useState(false)
+  //para el svg del esquema
+  const containerRef = useRef(null);
+
   //cargar y actualizar consola PARA MOBILE
   useEffect(() => {
 
@@ -107,9 +112,11 @@ export function Impcaps() {
   const [mostrarConsola, setMostrarConsola] = useState(false)
 
   const cambiarBoton = (editar) => {
-
     if (!editar) {
       setMostrarPreguntas(false)
+    }
+    if (mobile) {
+      setEsquema(false)
     }
     setBuscador(false)
     setEdit(false)
@@ -170,21 +177,46 @@ export function Impcaps() {
     recargarFuncionClickcode();
   }
 
+  const isZooming = (valor) => {
+    const container = containerRef.current;
+    if (container) {
+      if (valor) {
+        container.style.overflowY = 'hidden';
+      }
+      else {
+        container.style.overflowY = 'scroll';
+      }
+    }
+  }
+
+
   return (
     <>
       {mobile ?
         <div>
+          <div>
+            <button
+              className={esquema ? style.pinSeleccionado : style.pin}
+              onClick={() => (cambiarBoton(), setEsquema(!esquema))}
+            >
+              {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
+            </button>
+          </div>
           <div
-            className={`${style.cursotitulo} secciones`}>
+            className={`${style.cursotitulomobile} secciones`}>
             <Link className="aa"
               to={"/cursos/" + curso}>
               {curso}
             </Link>
             <Link
               to={"/cursos/" + curso + "/" + titulo}
-              className={style.titulo}>
+              className={`${style.titulo} aa`}>
               {titulo}
             </Link>
+            <span
+              className={style.titulo}>
+              {sec}
+            </span>
           </div>
           <div
             className={style.cursointeraccion}>
@@ -267,6 +299,17 @@ export function Impcaps() {
                 eliminarDelHistorial={eliminarDelHistorial}
                 limpiarHistorial={limpiarHistorial} />
             </div>
+            <div
+              style={{ display: `${(esquema) ? "block" : "none"}` }}>
+              <SVGZoom
+                recargarFuncionClickcode={recargarFuncionClickcode}
+                nombreCapitulo={titulo}
+                curso={curso}
+                pasarSeccionId={pasarSeccionId}
+                capituloNombre={titulo}
+                seccion={sec}
+              />
+            </div>
             <MostrarPregunta
               obtenerQpreguntas={obtenerQpreguntas}
               titulo={titulo}
@@ -298,8 +341,17 @@ export function Impcaps() {
         :
         <>
           <WindowSplitter Left={
-            <div class="secciones">
+            <div
+              ref={containerRef}
+              class="secciones">
               <div>
+                <button
+
+                  className={esquema ? style.pinSeleccionado : style.pin}
+                  onClick={() => setEsquema(!esquema)}
+                >
+                  {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
+                </button>
                 <div
                   className={style.cursotitulo}>
                   <Link className="aa"
@@ -308,9 +360,13 @@ export function Impcaps() {
                   </Link>
                   <Link
                     to={"/cursos/" + curso + "/" + titulo}
-                    className={style.titulo}>
+                    className={`${style.titulo} aa`}>
                     {titulo}
                   </Link>
+                  <span
+                    className={style.titulo}>
+                    {sec}
+                  </span>
                 </div>
                 <NavegacionCursos
                   curso={curso}
@@ -319,7 +375,19 @@ export function Impcaps() {
                   ingresar={ingresar}
                   titulo={titulo} />
               </div>
-              <div>
+              <div
+                style={{ display: `${(esquema) ? "block" : "none"}` }}>
+                <SVGZoom
+                  recargarFuncionClickcode={recargarFuncionClickcode}
+                  nombreCapitulo={titulo}
+                  curso={curso}
+                  isZooming={isZooming}
+                  pasarSeccionId={pasarSeccionId}
+                  capituloNombre={titulo}
+                  seccion={sec}
+                />
+              </div>
+              <div style={{ display: `${(esquema) ? "none" : "block"}` }}>
                 <TextoCurso
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   seccion={seccion}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import style from './formularioNuevoSVG.module.css'
-import { crearSVG } from '../servicios/SVGservicios/crearSVG'
+import { crearSVG, crearSVGArchivoFijo } from '../servicios/SVGservicios/crearSVG'
 import { actualizarSVG } from '../servicios/SVGservicios/obtenerSVG'
 import { Spinner } from '../Login/Spinner'
 import { precargarSVG } from '../servicios/SVGservicios/precargarSVG'
@@ -8,7 +8,7 @@ import { alertainfo } from '../alertas'
 
 export function SVGForm(props) {
 
-  const { capituloId, actualizarEsquema, curso, nombreCapitulo } = props
+  const { capituloId, actualizarEsquema, curso, nombreCapitulo, capituloNombre } = props
   const [link, setLink] = useState()
   const [linkEditar, setLinkEditar] = useState()
   const [cargando, setCargando] = useState(false)
@@ -17,16 +17,31 @@ export function SVGForm(props) {
   const enviarSVG = async (e) => {
     e.preventDefault()
     setCargando(true)
-    try {
-      await crearSVG(link, linkEditar, capituloId, paraCurso, curso).then(async data => {
-        console.log(data)
-        await precargarSVG(link)
-        await actualizarEsquema(data.id, data.linkEditar)
-
-        //console.log(data.id)
-      })
-    } catch (error) {
-      alertainfo("Ya existe en diagrama para el capitulo/curso")
+    //chequeamos si estamos en SQL o en Archivo Fijo
+    if(capituloNombre) {
+      try {
+        await crearSVGArchivoFijo(link, linkEditar, capituloNombre, paraCurso, curso).then(async data => {
+          console.log(data)
+          await precargarSVG(link)
+          await actualizarEsquema(data.id, data.linkEditar)
+  
+          //console.log(data.id)
+        })
+      } catch (error) {
+        alertainfo("Ya existe en diagrama para el capitulo/curso")
+      }
+    } else {
+      try {
+        await crearSVG(link, linkEditar, capituloId, paraCurso, curso).then(async data => {
+          console.log(data)
+          await precargarSVG(link)
+          await actualizarEsquema(data.id, data.linkEditar)
+  
+          //console.log(data.id)
+        })
+      } catch (error) {
+        alertainfo("Ya existe en diagrama para el capitulo/curso")
+      }
     }
 
     setCargando(false)
