@@ -24,6 +24,7 @@ export function Secciones() {
   const { id } = useParams();
   const { capituloId } = useParams();
   const [titulo, setTitulo] = useState();
+  const [seccionNombre, setSeccionNombre] = useState();
   const { curso } = useParams();
   const { mobile } = useContext(UserConfig);
   const [dic, setDic] = useState("");
@@ -50,6 +51,7 @@ export function Secciones() {
         if (data[0]) {
           setContenidoSeccion(data[0])
           setTitulo(data[0]?.CapituloNombre)
+          setSeccionNombre(data[0]?.SeccionNombre)
           setCargando(false)
           //console.log(data)
         }
@@ -214,16 +216,20 @@ export function Secciones() {
               </button>
             </div>
             <div
-              className={`${style.cursotitulo} secciones`}>
+              className={`${style.cursotitulomobile} secciones`}>
               <Link className="aa"
                 to={"/cursos/" + curso}>
                 {curso}
               </Link>
               <Link
                 to={"/cursos/" + curso + "/" + titulo}
-                className={style.titulo}>
+                className={`${style.titulo} aa`}>
                 {titulo}
               </Link>
+              <span
+                className={style.titulo}>
+                {seccionNombre}
+              </span>
             </div>
             <div
               className={style.cursointeraccion}>
@@ -381,16 +387,15 @@ export function Secciones() {
                     </Link>
                     <Link
                       to={"/cursos/" + curso + "/" + titulo}
-                      className={style.titulo}>
+                      className={`${style.titulo} aa`}>
                       {titulo}
                     </Link>
-                    {/* <Link
-                      to={"/guia/" + titulo + "/" + id}
+                    <span
                       className={style.titulo}>
-                      (ver en el esquema)
-                    </Link> */}
+                      {seccionNombre}
+                    </span>
                   </div>
-                  <div style={{ display: `${esquema ? "none" : "block"}` }}>
+                  <div >
                     <NavegacionCursosSQL
                       mobile={mobile}
                       seccionId={id}
@@ -409,8 +414,7 @@ export function Secciones() {
                       previsualizar={previsualizar} />
                   </div>
                   <div
-
-                    style={{ display: `${(esquema && !editMode) ? "block" : "none"}`}}>
+                    style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                     <SVGZoom
                       recargarFuncionClickcode={recargarFuncionClickcode}
                       nombreCapitulo={titulo}
