@@ -62,7 +62,7 @@ export function DataProvider({ children }) {
       setHistorialeshistorial(h)
     }
   }
-  console.log(historialeshistorial)
+  
   useEffect(() => {
     if (materias) {
       crearHistorial(materias)
