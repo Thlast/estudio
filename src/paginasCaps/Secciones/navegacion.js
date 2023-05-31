@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { obtenerDatosCapitulos, obtenerDatosTitulos } from "../../components/servicios/cursos/obtenerSeccion"
 import style from './navegacion.module.css'
 
@@ -17,6 +17,7 @@ export function NavegacionCursos(props) {
   const [anterior, setAnterior] = useState("")
   const [anteriorSeccion, setAnteriorSeccion] = useState("")
   const [siguienteSeccion, setSiguienteSeccion] = useState("")
+  const navigate = useNavigate()
 
   useEffect(() => {
 
@@ -27,10 +28,17 @@ export function NavegacionCursos(props) {
   useEffect(() => {
     setCargando(true)
     obtenerDatosCapitulos(curso, titulo)
-      .then(data => (
-        setIndiceSeccion(data.caps.indexOf(seccion)),
-        setSecciones(data.caps))
-      );
+      .then(data => {
+        //console.log(data)
+        if (data) {
+          setIndiceSeccion(data.caps.indexOf(seccion))
+          setSecciones(data.caps)
+        }
+      }
+      ).catch(error => {
+        navigate("/Error404", { state: { mensaje: `El curso: ${curso}, no se encontro en la base de datos` } })
+      }
+      )
     obtenerDatosTitulos(curso)
       .then(data => (
         data.map((t, num) => {
@@ -53,6 +61,10 @@ export function NavegacionCursos(props) {
         setCargando(false)
 
       ))
+      .catch(error => {
+        navigate("/Error404", { state: { mensaje: `El curso: ${curso}, no se encontro en la base de datos` } })
+      }
+      )
   }, [titulo])
 
   return (

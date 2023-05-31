@@ -19,10 +19,15 @@ export function Curso() {
   useEffect(() => {
 
     setCargando(true)
+
     obtenerDetalleCurso(curso)
       .then(data => {
         //console.log(data)
         setCurs(data)
+      })
+      .catch(error => {
+        console.log(error);
+        setCargando(false)
       });
     obtenerDatosTitulos(curso)
       .then(data => {
@@ -31,6 +36,10 @@ export function Curso() {
         setCargando(false)
       }
       )
+      .catch(error => {
+        console.log(error);
+        setCargando(false)
+      });
 
 
   }, [])

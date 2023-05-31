@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm'
 import { InformeAuditor } from '../../components/informeAuditor';
 import { obtenerDatosSeccion } from '../../components/servicios/cursos/obtenerSeccion';
 import { Spinner } from '../../components/Login/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 export function TextoCurso(props) {
 
@@ -13,17 +14,20 @@ export function TextoCurso(props) {
   const [enunciado, setEnunciado] = useState()
   const [cargando, setCargando] = useState(false)
   const { recargarFuncionClickcode } = props
+  const navigate = useNavigate()
 
   const cargarPagina = async ({ signal }) => {
     setCargando(true)
-    await obtenerDatosSeccion(curso, seccion, titulo, { signal })
+    obtenerDatosSeccion(curso, seccion, titulo, { signal })
       .then(data => {
         setEnunciado(data)
         setCargando(false)
+        recargarFuncionClickcode()
       }
-      );
-    recargarFuncionClickcode()
-
+      ).catch(error => {
+        console.log(error);
+        navigate("/Error404", { state: { mensaje: `No se encontro la seccion ${seccion} o no corresponde al capítulo ${titulo}` } })
+      });
   }
 
   useEffect(() => {
@@ -52,11 +56,11 @@ export function TextoCurso(props) {
 
           <br></br>
           <div>
-            {enunciado === undefined || enunciado[0].enunciado === undefined || enunciado[0].enunciado.length === 0 ? null :
-              enunciado.map(a => {
+            {enunciado?.length == 0 ? null :
+              enunciado?.map(a => {
                 return (
                   <>
-                    {a.enunciado.map((e, num) => {
+                    {a.enunciado?.map((e, num) => {
 
                       return (
                         <>

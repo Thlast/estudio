@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
@@ -13,6 +13,7 @@ import { MostrarNotas } from "../../components/notes/mostrarNotas";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { UserConfig } from "../../context/UserConfig";
 import { SVGZoom } from "../../components/dataInformes/guia";
+import { obtenerDatosCapitulos } from "../../components/servicios/cursos/obtenerSeccion";
 
 export function Impcaps() {
 
@@ -31,6 +32,23 @@ export function Impcaps() {
   const [esquema, setEsquema] = useState(false)
   //para el svg del esquema
   const containerRef = useRef(null);
+  const navigate = useNavigate()
+
+  const [cargando, setCargando] = useState(true)
+  useEffect(() => {
+    setCargando(true);
+  
+    obtenerDatosCapitulos(curso, titulo)
+      .then(data => {
+        console.log(data);
+        setCargando(false);
+      })
+      .catch(error => {
+        console.log(error);
+        navigate("/Error404", { state: { mensaje: `El curso: ${curso}, no se encontro en la base de datos` } })
+      });
+  
+  }, []);
 
   //cargar y actualizar consola PARA MOBILE
   useEffect(() => {
@@ -191,6 +209,8 @@ export function Impcaps() {
 
 
   return (
+    <>
+    {cargando ? null :
     <>
       {mobile ?
         <div>
@@ -485,7 +505,8 @@ export function Impcaps() {
         </>
       }
     </>
-
+}
+    </>
   );
 }
 
