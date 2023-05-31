@@ -199,9 +199,9 @@ export function FormVof(props) {
           <div
             style={{ "text-align": "center" }}>
             <button
-              onClick={(e) => modificarPreguntasVoF(user.uid, enunciado, rows, datospregunta.id, datospregunta.indice, datospregunta.titulo, datospregunta.seccion, e)}
+              onClick={(e) => modificarPreguntasVoF(user.uid, enunciado, rows, datospregunta.id, datospregunta.indice, datospregunta.titulo, datospregunta.seccion,  datospregunta.SeccionId,  datospregunta.CapituloId, e)}
               className="home-boton btn-primary"
-              type="submit">
+              type="button">
               Modificar
             </button>
             <button

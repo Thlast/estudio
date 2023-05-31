@@ -34,7 +34,7 @@ export function AsignarSeccion(props) {
 
   }, [])
 
-// console.log(datos.datosPregunta.CapituloId )
+  // console.log(datos.datosPregunta.CapituloId )
   return (
     <>
       <div className="buscadorBotones">
@@ -56,10 +56,65 @@ export function AsignarSeccion(props) {
         verSQL ?
           <>
             {capitulosSQL?.length > 0 ?
-              <>
+              datos.datosPregunta ?
+              //para NORMAL-MULTIPLE en SQL
+                <>
+                  <select
+                    value={datos.datosPregunta.CapituloId}
+                    onChange={datos.handleChange}
+                    name="CapituloId"
+                    className='home-boton'>
+                    <option
+                      value=""
+                      disabled
+                      selected>
+                      Seleccione un capitulo
+                    </option>
+                    {capitulosSQL?.map(cap => {
+                      return (
+                        <option
+                          key={"capituloSQL-" + cap.CapituloId}
+                          value={cap.CapituloId}
+                        >
+                          {cap.CapituloNombre}
+                        </option>
+                      )
+                    })
+                    }
+                  </select>
+                  {datos.datosPregunta.CapituloId ?
+                    <select
+                      value={datos.datosPregunta.SeccionId}
+                      onChange={datos.handleChange}
+                      name="SeccionId"
+                      className='home-boton'>
+                      <option
+                        disabled selected>
+                        Seleccione una seccion
+                      </option>
+                      {seccionesSQL?.map(sec => {
+                        if (sec.CapituloId == datos.datosPregunta.CapituloId) {
+                          return (
+                            <option
+                              key={"seccionSQL" + sec.SeccionId}
+                              value={sec.SeccionId}>
+                              {sec.SeccionNombre}
+                            </option>
+
+                          )
+                        }
+                      })
+                      }
+                    </select>
+                    : null
+                  }
+                </>
+                :   
+                //para VOF en SQL
+                <>
                 <select
-                  value={datos.datosPregunta.CapituloId}
-                  onChange={datos.handleChange}
+                  value={datos.CapituloId}
+                  onChange={vofhandleChange}
                   name="CapituloId"
                   className='home-boton'>
                   <option
@@ -80,10 +135,10 @@ export function AsignarSeccion(props) {
                   })
                   }
                 </select>
-                {datos.datosPregunta.CapituloId ?
+                {datos.CapituloId ?
                   <select
-                    value={datos.datosPregunta.SeccionId}
-                    onChange={datos.handleChange}
+                    value={datos.SeccionId}
+                    onChange={vofhandleChange}
                     name="SeccionId"
                     className='home-boton'>
                     <option
@@ -91,7 +146,7 @@ export function AsignarSeccion(props) {
                       Seleccione una seccion
                     </option>
                     {seccionesSQL?.map(sec => {
-                      if (sec.CapituloId == datos.datosPregunta.CapituloId) {
+                      if (sec.CapituloId == datos.CapituloId) {
                         return (
                           <option
                             key={"seccionSQL" + sec.SeccionId}
@@ -107,6 +162,7 @@ export function AsignarSeccion(props) {
                   : null
                 }
               </>
+
               : null
             }
           </>
@@ -165,7 +221,8 @@ export function AsignarSeccion(props) {
                     : null
                   }
                 </>
-                : <>
+                : 
+                <>
                   <select
                     value={datos.titulo}
                     onChange={vofhandleChange}
