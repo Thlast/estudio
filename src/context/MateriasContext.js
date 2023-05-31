@@ -13,7 +13,7 @@ export function DataProvider({ children }) {
   const [materiasIndices, setMateriasIndices] = useState()
 
   const identificarCurso = async () => {
-    if(materiasIndices?.length > 0) {
+    if (materiasIndices?.length > 0) {
       return materiasIndices?.indexOf(matPreferida);
     } else {
       await cargarMaterias()
@@ -23,11 +23,11 @@ export function DataProvider({ children }) {
 
   const cargarMaterias = async () => {
     setCargandoMaterias(true)
-    let h = {}
+
     await getCursos().then(data => {
       setMaterias(data)
       setMateriasIndices(data?.map(mat => mat.CursoId))
-      setHstorialeshistorial(data?.map(mat => [0]))
+      //crearHistorial(data)
       setCargandoMaterias(false)
     });
     //identificarCurso()
@@ -35,39 +35,52 @@ export function DataProvider({ children }) {
 
   useEffect(() => {
     cargarMaterias()
-    
+
   }, [])
+
   useEffect(() => {
     identificarCurso()
-    
+
   }, [matPreferida])
 
   const preferenciaMateria = (mat) => {
     setMatPreferida(mat)
   }
-  
+
   //const historiales = useHistorial(materias)
 
-  const [historialeshistorial, setHstorialeshistorial] = useState([]);
+  const [historialeshistorial, setHistorialeshistorial] = useState([]);
 
+  const crearHistorial = (data) => {
+    const h = [...historialeshistorial]
+    if (data.length > 0) {
+      data?.map((mat, num) => {
+        if (num > (h.length - 1)) {
+          h.push([0])
+        }
+      })
+      setHistorialeshistorial(h)
+    }
+  }
+  console.log(historialeshistorial)
   useEffect(() => {
-    const h = []
-    materias?.map(mat => {
-      h.push([0])
-    })
-    setHstorialeshistorial(h)
+    if (materias) {
+      crearHistorial(materias)
+    }
+
   }, [materias])
 
-  const historialesagregar = (i, indiceMateria) => { 
-    if(historialeshistorial[indiceMateria].indexOf(i) === -1) {
-      const historialNuevo = [...historialeshistorial.slice(0, indiceMateria), historialeshistorial[indiceMateria].concat(i), ...historialeshistorial.slice(indiceMateria+1)];
-      setHstorialeshistorial(historialNuevo)}
+  const historialesagregar = (i, indiceMateria) => {
+    if (historialeshistorial[indiceMateria].indexOf(i) === -1) {
+      const historialNuevo = [...historialeshistorial.slice(0, indiceMateria), historialeshistorial[indiceMateria].concat(i), ...historialeshistorial.slice(indiceMateria + 1)];
+      setHistorialeshistorial(historialNuevo)
+    }
   }
 
   const historialesreiniciarh = (current, indiceMateria) => {
     const nuevoHistorial = [...historialeshistorial]; // crear una copia del arreglo historial
     nuevoHistorial[indiceMateria] = [current]; // actualizar el elemento en el índice indiceMateria
-    setHstorialeshistorial(nuevoHistorial); // actualizar el estado del componente con el nuevo arreglo
+    setHistorialeshistorial(nuevoHistorial); // actualizar el estado del componente con el nuevo arreglo
   }
 
   return (

@@ -47,7 +47,7 @@ export function HomeMongo() {
     })
 
     await identificarCurso().then(async resp => {
-      if (resp == undefined) {
+      if (!resp) {
         setRecargar(true)
       } else {
         await obtenerPreguntaPorIndice(matPreferida, historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
