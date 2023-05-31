@@ -251,7 +251,7 @@ export function HomeMongo() {
                               <h1>
                                 Pregunta Nº {current + 1} de {longitudPreguntas}:
                               </h1>
-                              {p.seccion ?
+                              {p.seccion && !p.seccionId ?
                                 <div>
                                   <span>De la seccion: {" "}</span>
                                   <Link
