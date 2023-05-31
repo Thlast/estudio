@@ -28,8 +28,16 @@ export const buscarFiltradoNuevo = async (curso, valor, page, limit) => {
 }
 
 export const obtenerDetalleCurso = async (materia) => {
+    try {
     const data = await fetch(`${urlserver}/app/${materia}/detalle`)
-    return data.json()
+    if (!data.ok) {
+        throw new Error(`Curso no encontrado: ${data.status}`);
+      }
+  
+      return data.json()
+    } catch (error) {
+      throw error
+    }
   
 }
 //desde la base de datos SQL
