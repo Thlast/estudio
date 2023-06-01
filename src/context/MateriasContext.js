@@ -10,14 +10,14 @@ export function DataProvider({ children }) {
   const [cargandoMaterias, setCargandoMaterias] = useState(true)
   const [matPreferida, setMatPreferida] = useState("impuestos")
 
-  const [materiasIndices, setMateriasIndices] = useState()
+  const [materiasIndices, setMateriasIndices] = useState([])
 
   const identificarCurso = async () => {
     if (materiasIndices?.length > 0) {
       return materiasIndices?.indexOf(matPreferida);
     } else {
-      await cargarMaterias()
-      return materiasIndices?.indexOf(matPreferida);
+      //orden de impuestos
+      return 4
     }
   };
 
@@ -49,7 +49,8 @@ export function DataProvider({ children }) {
 
   //const historiales = useHistorial(materias)
 
-  const [historialeshistorial, setHistorialeshistorial] = useState([]);
+  //empiezo con 4 materias e inicio en impuestos en caso de no haber cargado las materias no hay error
+  const [historialeshistorial, setHistorialeshistorial] = useState([[0], [0], [0], [0], [0]]);
 
   const crearHistorial = (data) => {
     const h = [...historialeshistorial]
