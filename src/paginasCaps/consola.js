@@ -36,7 +36,7 @@ export function Consola(props) {
     }
 
 
-    if (dic !== "" & !(dic.includes("artículo") || dic.includes("articulo"))) {
+    if (dic !== "" & !(dic.includes("artículo") || dic.includes("articulo") || dic.includes("rt")) ) {
       buscarConsolaSQL(curso, dic)
         .then(data => {
           setDatosSeccion(data)
@@ -55,6 +55,8 @@ export function Consola(props) {
 
       //setCargando(false)
       return () => controller.abort()
+    } else if ((dic.startsWith("rt"))) {
+      setArticulo(dic)
     }
     //buscar articulos si el curso=impuestos
     else if (curso == "impuestos" && (dic.includes("artículo") || dic.includes("articulo"))) {
@@ -105,10 +107,10 @@ export function Consola(props) {
     <>
       {mobile ? null :
         <div
-        style={{ textAlign: "right" }}
+          style={{ textAlign: "right" }}
         >
           <button
-          className='boton home-boton'
+            className='boton home-boton'
             onClick={() => setMostrarConsola(!mostrarConsola)}>
             {mostrarConsola ? "Cerrar Consola" : "Abrir Consola"}
           </button>
