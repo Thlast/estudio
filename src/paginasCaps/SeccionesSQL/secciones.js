@@ -201,6 +201,10 @@ export function Secciones() {
       }
     }
   }
+  const [cantidadDiagramas, setCantidadDiagramas] = useState(0)
+  const obtenerCantidadDiagramas = (valor) => {
+    setCantidadDiagramas(valor)
+  }
 
   return (
     <>
@@ -212,7 +216,9 @@ export function Secciones() {
                 className={esquema ? style.pinSeleccionado : style.pin}
                 onClick={() => (cambiarBoton(), setEsquema(!esquema))}
               >
-                {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
+                <span>
+                  {cantidadDiagramas}
+                </span>
               </button>
             </div>
             <div
@@ -327,6 +333,7 @@ export function Secciones() {
               <div
                 style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                 <SVGZoom
+                  obtenerCantidadDiagramas={obtenerCantidadDiagramas}
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   nombreCapitulo={titulo}
                   curso={curso}
@@ -373,11 +380,13 @@ export function Secciones() {
                 class="secciones">
                 <div>
                   <button
-
                     className={esquema ? style.pinSeleccionado : style.pin}
                     onClick={() => setEsquema(!esquema)}
                   >
-                    {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
+                    <span>
+                      {cantidadDiagramas}
+
+                    </span>
                   </button>
                   <div
                     className={style.cursotitulo}>
@@ -416,6 +425,7 @@ export function Secciones() {
                   <div
                     style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
                     <SVGZoom
+                      obtenerCantidadDiagramas={obtenerCantidadDiagramas}
                       recargarFuncionClickcode={recargarFuncionClickcode}
                       nombreCapitulo={titulo}
                       curso={curso}
@@ -453,9 +463,12 @@ export function Secciones() {
             }
               Right={
                 <>
-                  <div style={{ display: `${editMode ? "block" : "none"}` }}>
-                    <AyudaEditor curso={curso} preview={preview} />
-                  </div>
+                  {/* <div style={{ display: `${editMode ? "block" : "none"}` }}> */}
+                  {editMode &&
+                    <div>
+                      <AyudaEditor curso={curso} preview={preview} />
+                    </div>
+                  }
                   <div
                     style={{ display: `${editMode ? "none" : "block"}` }}
                     class="secciones">

@@ -37,7 +37,7 @@ export function Impcaps() {
   const [cargando, setCargando] = useState(true)
   useEffect(() => {
     setCargando(true);
-  
+
     obtenerDatosCapitulos(curso, titulo)
       .then(data => {
         console.log(data);
@@ -47,7 +47,7 @@ export function Impcaps() {
         console.log(error);
         navigate("/Error404", { state: { mensaje: `El curso: ${curso}, no se encontro en la base de datos` } })
       });
-  
+
   }, []);
 
   //cargar y actualizar consola PARA MOBILE
@@ -206,208 +206,83 @@ export function Impcaps() {
       }
     }
   }
-
+  const [cantidadDiagramas, setCantidadDiagramas] = useState(0)
+  const obtenerCantidadDiagramas = (valor) => {
+    setCantidadDiagramas(valor)
+  }
 
   return (
     <>
-    {cargando ? null :
-    <>
-      {mobile ?
-        <div>
-          <div>
-            <button
-              className={esquema ? style.pinSeleccionado : style.pin}
-              onClick={() => (cambiarBoton(), setEsquema(!esquema))}
-            >
-              {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
-            </button>
-          </div>
-          <div
-            className={`${style.cursotitulomobile} secciones`}>
-            <Link className="aa"
-              to={"/cursos/" + curso}>
-              {curso}
-            </Link>
-            <Link
-              to={"/cursos/" + curso + "/" + titulo}
-              className={`${style.titulo} aa`}>
-              {titulo}
-            </Link>
-            <span
-              className={style.titulo}>
-              {sec}
-            </span>
-          </div>
-          <div
-            className={style.cursointeraccion}>
-            <button
-              onClick={() => (cambiarBoton(), setInfo(!info))}
-              className={`${info && "botonmostrar"} cursos-as editarcurso`}>
-              Info
-            </button>
-            <button
-              onClick={() => (cambiarBoton(), setMostrarConsola(!mostrarConsola))}
-              className={`${mostrarConsola && "botonmostrar"} cursos-as editarcurso`}>
-              Consola
-            </button>
-            <button
-              className={`${edit && "botonmostrar"} cursos-as editarcurso`}
-              onClick={() => (cambiarBoton(true), setEdit(!edit))}
-            >
-              Editar
-            </button>
-            <button
-              className={`${buscador && "botonmostrar"} cursos-as editarcurso`}
-              onClick={() => (cambiarBoton(), setBuscador(!buscador))}
-            >
-              Buscar
-            </button>
-            <button
-              className={`${mostrarPreguntas && "botonmostrar"} cursos-as mostrarpreg`}
-              onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
-            >
-              Preguntas ({qpreguntas})
-            </button>
-            <button
-              className={`${mostrarNotas && "botonmostrar"} cursos-as mostrarpreg`}
-              onClick={() => (cambiarBoton(), setMostrarNotas(!mostrarNotas))}
-            >
-              Notas ({qnotes})
-            </button>
-          </div>
-          <div
-            style={{ display: `${info ? "block" : "none"}` }}
-            class="secciones">
-            <TextoCurso
-              recargarFuncionClickcode={recargarFuncionClickcode}
-              seccion={seccion}
-              curso={curso}
-              titulo={titulo}
-            />
-            <>
-              <hr></hr>
-              <blockquote>
-                Anotaciones:
-              </blockquote>
-              {notes?.map(n => {
-                return (
-                  <ReactMarkdown key={"notaTextoM-" + n.id}>
-                    {n.contenido}
-                  </ReactMarkdown>
-                )
-              })}
-            </>
-          </div>
-          <div class="secciones">
-            {buscador ?
-              <Buscador
-                recargarFuncionClickcode={recargarFuncionClickcode}
-                cursoBuscador={curso}
-              />
-              : null}
-
-            <div
-              style={{ display: `${mostrarConsola ? "block" : "none"}` }}
-            >
-              <Consola
-                recargarFuncionClickcode={recargarFuncionClickcode}
-                curso={curso}
-                dic={dic}
-                pasarSeccionId={pasarSeccionId}
-                buscarSeccionId={buscarSeccionId}
-                enconsola={enconsola}
-                eliminarDelHistorial={eliminarDelHistorial}
-                limpiarHistorial={limpiarHistorial} />
-            </div>
-            <div
-              style={{ display: `${(esquema) ? "block" : "none"}` }}>
-              <SVGZoom
-                recargarFuncionClickcode={recargarFuncionClickcode}
-                nombreCapitulo={titulo}
-                curso={curso}
-                pasarSeccionId={pasarSeccionId}
-                capituloNombre={titulo}
-                seccion={sec}
-              />
-            </div>
-            <MostrarPregunta
-              obtenerQpreguntas={obtenerQpreguntas}
-              titulo={titulo}
-              curso={curso}
-              seccion={seccion}
-              agregar={edit}
-              edit={edit}
-              mostrarPreguntas={mostrarPreguntas} />
-            <div
-              style={{ display: `${mostrarNotas ? "block" : "none"}` }}
-            >
-              <>
-                <MostrarNotas
-                  obtenerContenidoNotas={obtenerContenidoNotas}
-                  seccion={seccion}
-                  titulo={titulo}
-                  obtenerQnotes={obtenerQnotes}
-                  curso={curso} />
-              </>
-            </div>
-            <NavegacionCursos
-              curso={curso}
-              ingresarSeccion={ingresarSeccion}
-              seccion={seccion}
-              ingresar={ingresar}
-              titulo={titulo} />
-          </div>
-        </div>
-        :
+      {cargando ? null :
         <>
-          <WindowSplitter Left={
-            <div
-              ref={containerRef}
-              class="secciones">
+          {mobile ?
+            <div>
               <div>
                 <button
-
                   className={esquema ? style.pinSeleccionado : style.pin}
-                  onClick={() => setEsquema(!esquema)}
+                  onClick={() => (cambiarBoton(), setEsquema(!esquema))}
                 >
-                  {/* {esquema ? "Ver sección" : "Ver en el diagrama"} */}
-                </button>
-                <div
-                  className={style.cursotitulo}>
-                  <Link className="aa"
-                    to={"/cursos/" + curso}>
-                    {curso}
-                  </Link>
-                  <Link
-                    to={"/cursos/" + curso + "/" + titulo}
-                    className={`${style.titulo} aa`}>
-                    {titulo}
-                  </Link>
-                  <span
-                    className={style.titulo}>
-                    {sec}
+                  <span>
+                    {cantidadDiagramas}
                   </span>
-                </div>
-                <NavegacionCursos
-                  curso={curso}
-                  ingresarSeccion={ingresarSeccion}
-                  seccion={seccion}
-                  ingresar={ingresar}
-                  titulo={titulo} />
+                </button>
               </div>
               <div
-                style={{ display: `${(esquema) ? "block" : "none"}` }}>
-                <SVGZoom
-                  recargarFuncionClickcode={recargarFuncionClickcode}
-                  nombreCapitulo={titulo}
-                  curso={curso}
-                  isZooming={isZooming}
-                  pasarSeccionId={pasarSeccionId}
-                  capituloNombre={titulo}
-                  seccion={sec}
-                />
+                className={`${style.cursotitulomobile} secciones`}>
+                <Link className="aa"
+                  to={"/cursos/" + curso}>
+                  {curso}
+                </Link>
+                <Link
+                  to={"/cursos/" + curso + "/" + titulo}
+                  className={`${style.titulo} aa`}>
+                  {titulo}
+                </Link>
+                <span
+                  className={style.titulo}>
+                  {sec}
+                </span>
               </div>
-              <div style={{ display: `${(esquema) ? "none" : "block"}` }}>
+              <div
+                className={style.cursointeraccion}>
+                <button
+                  onClick={() => (cambiarBoton(), setInfo(!info))}
+                  className={`${info && "botonmostrar"} cursos-as editarcurso`}>
+                  Info
+                </button>
+                <button
+                  onClick={() => (cambiarBoton(), setMostrarConsola(!mostrarConsola))}
+                  className={`${mostrarConsola && "botonmostrar"} cursos-as editarcurso`}>
+                  Consola
+                </button>
+                <button
+                  className={`${edit && "botonmostrar"} cursos-as editarcurso`}
+                  onClick={() => (cambiarBoton(true), setEdit(!edit))}
+                >
+                  Editar
+                </button>
+                <button
+                  className={`${buscador && "botonmostrar"} cursos-as editarcurso`}
+                  onClick={() => (cambiarBoton(), setBuscador(!buscador))}
+                >
+                  Buscar
+                </button>
+                <button
+                  className={`${mostrarPreguntas && "botonmostrar"} cursos-as mostrarpreg`}
+                  onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
+                >
+                  Preguntas ({qpreguntas})
+                </button>
+                <button
+                  className={`${mostrarNotas && "botonmostrar"} cursos-as mostrarpreg`}
+                  onClick={() => (cambiarBoton(), setMostrarNotas(!mostrarNotas))}
+                >
+                  Notas ({qnotes})
+                </button>
+              </div>
+              <div
+                style={{ display: `${info ? "block" : "none"}` }}
+                class="secciones">
                 <TextoCurso
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   seccion={seccion}
@@ -421,91 +296,225 @@ export function Impcaps() {
                   </blockquote>
                   {notes?.map(n => {
                     return (
-                      <ReactMarkdown key={"notaTexto-" + n.id}>
+                      <ReactMarkdown key={"notaTextoM-" + n.id}>
                         {n.contenido}
                       </ReactMarkdown>
                     )
                   })}
                 </>
-                <hr></hr>
               </div>
-            </div>
-          }
-            Right={<div class="secciones">
-              <div
-                className={style.cursointeraccion}>
-                <button
-                  className="cursos-as"
-                  onClick={() => limpiarConsola()}>
-                  Limpiar consola
-                </button>
-                <button
-                  className={`${edit && "botonmostrar"} cursos-as editarcurso`}
-                  onClick={() => (cambiarBoton(true), setEdit(!edit))}
-                >
-                  Editar
-                </button>
-                <button
-                  className={`${buscador && "botonmostrar"} cursos-as editarcurso`}
-                  onClick={() => (cambiarBoton(), setBuscador(!buscador))}
-                >
-                  Buscador
-                </button>
-                <button
-                  className={`${mostrarPreguntas && "botonmostrar"} cursos-as editarcurso`}
-                  onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
-                >
-                  Mostrar preguntas ({qpreguntas})
-                </button>
-                <button
-                  className={`${mostrarNotas && "botonmostrar"} cursos-as mostrarpreg`}
-                  onClick={() => (cambiarBoton(), setMostrarNotas(!mostrarNotas))}
-                >
-                  Notas ({qnotes})
-                </button>
-              </div>
-              <hr></hr>
-              {buscador ?
-                <Buscador
-                  recargarFuncionClickcode={recargarFuncionClickcode}
-                  cursoBuscador={curso}
-                />
-                : null}
-              <Consola
-                recargarFuncionClickcode={recargarFuncionClickcode}
-                curso={curso}
-                dic={dic}
-                pasarSeccionId={pasarSeccionId}
-                buscarSeccionId={buscarSeccionId}
-                enconsola={enconsola}
-                eliminarDelHistorial={eliminarDelHistorial}
-                limpiarHistorial={limpiarHistorial} />
-              <hr></hr>
-              <MostrarPregunta
-                obtenerQpreguntas={obtenerQpreguntas}
-                titulo={titulo}
-                curso={curso}
-                seccion={seccion}
-                agregar={edit}
-                edit={edit}
-                mostrarPreguntas={mostrarPreguntas} />
-              <div
-                style={{ display: `${mostrarNotas ? "block" : "none"}` }}>
-                <MostrarNotas
-                  obtenerContenidoNotas={obtenerContenidoNotas}
-                  seccion={seccion}
-                  titulo={titulo}
-                  obtenerQnotes={obtenerQnotes}
-                  curso={curso} />
-              </div>
-            </div>
-            }
+              <div class="secciones">
+                {buscador ?
+                  <Buscador
+                    recargarFuncionClickcode={recargarFuncionClickcode}
+                    cursoBuscador={curso}
+                  />
+                  : null}
 
-          />
+                <div
+                  style={{ display: `${mostrarConsola ? "block" : "none"}` }}
+                >
+                  <Consola
+                    recargarFuncionClickcode={recargarFuncionClickcode}
+                    curso={curso}
+                    dic={dic}
+                    pasarSeccionId={pasarSeccionId}
+                    buscarSeccionId={buscarSeccionId}
+                    enconsola={enconsola}
+                    eliminarDelHistorial={eliminarDelHistorial}
+                    limpiarHistorial={limpiarHistorial} />
+                </div>
+                <div
+                  style={{ display: `${(esquema) ? "block" : "none"}` }}>
+                  <SVGZoom
+                    obtenerCantidadDiagramas={obtenerCantidadDiagramas}
+                    recargarFuncionClickcode={recargarFuncionClickcode}
+                    nombreCapitulo={titulo}
+                    curso={curso}
+                    pasarSeccionId={pasarSeccionId}
+                    capituloNombre={titulo}
+                    seccion={sec}
+                  />
+                </div>
+                <MostrarPregunta
+                  obtenerQpreguntas={obtenerQpreguntas}
+                  titulo={titulo}
+                  curso={curso}
+                  seccion={seccion}
+                  agregar={edit}
+                  edit={edit}
+                  mostrarPreguntas={mostrarPreguntas} />
+                <div
+                  style={{ display: `${mostrarNotas ? "block" : "none"}` }}
+                >
+                  <>
+                    <MostrarNotas
+                      obtenerContenidoNotas={obtenerContenidoNotas}
+                      seccion={seccion}
+                      titulo={titulo}
+                      obtenerQnotes={obtenerQnotes}
+                      curso={curso} />
+                  </>
+                </div>
+                <NavegacionCursos
+                  curso={curso}
+                  ingresarSeccion={ingresarSeccion}
+                  seccion={seccion}
+                  ingresar={ingresar}
+                  titulo={titulo} />
+              </div>
+            </div>
+            :
+            <>
+              <WindowSplitter Left={
+                <div
+                  ref={containerRef}
+                  class="secciones">
+                  <div>
+                    <button
+
+                      className={esquema ? style.pinSeleccionado : style.pin}
+                      onClick={() => setEsquema(!esquema)}
+                    >
+                      <span>
+                        {cantidadDiagramas}
+                      </span>
+                    </button>
+                    <div
+                      className={style.cursotitulo}>
+                      <Link className="aa"
+                        to={"/cursos/" + curso}>
+                        {curso}
+                      </Link>
+                      <Link
+                        to={"/cursos/" + curso + "/" + titulo}
+                        className={`${style.titulo} aa`}>
+                        {titulo}
+                      </Link>
+                      <span
+                        className={style.titulo}>
+                        {sec}
+                      </span>
+                    </div>
+                    <NavegacionCursos
+                      curso={curso}
+                      ingresarSeccion={ingresarSeccion}
+                      seccion={seccion}
+                      ingresar={ingresar}
+                      titulo={titulo} />
+                  </div>
+                  <div
+                    style={{ display: `${(esquema) ? "block" : "none"}` }}>
+                    <SVGZoom
+                      obtenerCantidadDiagramas={obtenerCantidadDiagramas}
+                      recargarFuncionClickcode={recargarFuncionClickcode}
+                      nombreCapitulo={titulo}
+                      curso={curso}
+                      isZooming={isZooming}
+                      pasarSeccionId={pasarSeccionId}
+                      capituloNombre={titulo}
+                      seccion={sec}
+                    />
+                  </div>
+                  <div style={{ display: `${(esquema) ? "none" : "block"}` }}>
+                    <TextoCurso
+                      recargarFuncionClickcode={recargarFuncionClickcode}
+                      seccion={seccion}
+                      curso={curso}
+                      titulo={titulo}
+                    />
+                    <>
+                      <hr></hr>
+                      <blockquote>
+                        Anotaciones:
+                      </blockquote>
+                      {notes?.map(n => {
+                        return (
+                          <ReactMarkdown key={"notaTexto-" + n.id}>
+                            {n.contenido}
+                          </ReactMarkdown>
+                        )
+                      })}
+                    </>
+                    <hr></hr>
+                  </div>
+                </div>
+              }
+                Right={<div class="secciones">
+                  <div
+                    className={style.cursointeraccion}>
+                    <button
+                      className="cursos-as"
+                      onClick={() => limpiarConsola()}>
+                      Limpiar consola
+                    </button>
+                    <button
+                      className={`${edit && "botonmostrar"} cursos-as editarcurso`}
+                      onClick={() => (cambiarBoton(true), setEdit(!edit))}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className={`${buscador && "botonmostrar"} cursos-as editarcurso`}
+                      onClick={() => (cambiarBoton(), setBuscador(!buscador))}
+                    >
+                      Buscador
+                    </button>
+                    <button
+                      className={`${mostrarPreguntas && "botonmostrar"} cursos-as editarcurso`}
+                      onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
+                    >
+                      Mostrar preguntas ({qpreguntas})
+                    </button>
+                    <button
+                      className={`${mostrarNotas && "botonmostrar"} cursos-as mostrarpreg`}
+                      onClick={() => (cambiarBoton(), setMostrarNotas(!mostrarNotas))}
+                    >
+                      Notas ({qnotes})
+                    </button>
+                  </div>
+                  <hr></hr>
+                  {buscador ?
+                    <Buscador
+                      recargarFuncionClickcode={recargarFuncionClickcode}
+                      cursoBuscador={curso}
+                    />
+                    : null}
+                  <Consola
+                    recargarFuncionClickcode={recargarFuncionClickcode}
+                    curso={curso}
+                    dic={dic}
+                    pasarSeccionId={pasarSeccionId}
+                    buscarSeccionId={buscarSeccionId}
+                    enconsola={enconsola}
+                    eliminarDelHistorial={eliminarDelHistorial}
+                    limpiarHistorial={limpiarHistorial} />
+                  <hr></hr>
+                  <MostrarPregunta
+                    obtenerQpreguntas={obtenerQpreguntas}
+                    titulo={titulo}
+                    curso={curso}
+                    seccion={seccion}
+                    agregar={edit}
+                    edit={edit}
+                    mostrarPreguntas={mostrarPreguntas} />
+                  <div
+                    style={{ display: `${mostrarNotas ? "block" : "none"}` }}>
+                    <MostrarNotas
+                      obtenerContenidoNotas={obtenerContenidoNotas}
+                      seccion={seccion}
+                      titulo={titulo}
+                      obtenerQnotes={obtenerQnotes}
+                      curso={curso} />
+                  </div>
+                </div>
+                }
+
+              />
+            </>
+          }
         </>
       }
-    </>
-}
     </>
   );
 }

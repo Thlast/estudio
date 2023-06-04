@@ -1,17 +1,19 @@
 .titulo {
-    white-space: nowrap;
+  white-space: nowrap;
 }
+
 .cursotitulo {
-    display: flex;
-    display: inline-block;
-    flex-direction: row;
-    text-align: left;
-    gap: 20px;
-    padding: 10px;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  display: flex;
+  display: inline-block;
+  flex-direction: row;
+  text-align: left;
+  gap: 20px;
+  padding: 10px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .cursotitulomobile {
   display: flex;
   display: inline-block;
@@ -22,122 +24,180 @@
   width: 100%;
   overflow: scroll;
 }
+
 .cursointeraccion {
-    display: flex;
-    flex-direction: row;
-    padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
 }
 
-@media screen and (max-width: 500px)  {
-    .cursointeraccion button {
-        font-size: 15px;
-    }
-}
 
 /* Definimos el tamaño del botón */
 .pin {
-    width: 50px;
-    height: 50px;
-    border: none;
-    background-color: transparent;
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    right: 19px;
-    z-index: 2;
-  }
-  
-  /* Creamos la forma de pin con un borde circular */
-  .pin:before {
-    content: "";
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    background-color: var(--secundario);
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    top: 10px;
-    left: 10px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Añadimos un pequeño círculo en el centro */
-  .pin:after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background-color: var(--text-color);
-    border-radius: 50%;
-    top: 16px;
-    left: 16.5px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Cambiamos el color y estilo del cursor al pasar el ratón */
-  .pin:hover {
-    cursor: pointer;
-    background-color: var(--secundario);
-  }
-  .pin:hover:after {
-   
-    background-color: var(--secundario);
-  }
-  .pin:hover:before {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  right: 19px;
+  z-index: 2;
+}
 
-    background-color: var(--text-color);
-  }
-  /* //si esta apretado */
-  .pinSeleccionado {
-    width: 50px;
-    height: 50px;
-    border: none;
-    background-color: transparent;
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    right: 19px;
-    z-index: 2;
-  }
-  
-  /* Creamos la forma de pinSeleccionado con un borde circular */
-  .pinSeleccionado:before {
-    content: "";
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    background-color: var(--text-color);
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    top: 10px;
-    left: 10px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Añadimos un pequeño círculo en el centro */
-  .pinSeleccionado:after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background-color: var(--secundario);
-    border-radius: 50%;
-    top: 16px;
-    left: 16.5px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Cambiamos el color y estilo del cursor al pasar el ratón */
-  .pinSeleccionado:hover {
-    cursor: pointer;
-    background-color: var(--text-color);
-  }
-  .pinSeleccionado:hover:after {
-   
-    background-color: var(--text-color);
-  }
-  .pinSeleccionado:hover:before {
+/* Creamos la forma de pin con un borde circular */
+.pin:before {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: var(--secundario);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  top: 10px;
+  left: 10px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+}
 
-    background-color: var(--secundario);
+/* Añadimos un pequeño círculo en el centro */
+.pin:after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: var(--text-color);
+  border-radius: 50%;
+  top: 16px;
+  left: 16.5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.pin span {
+  position: relative;
+  top: -30px;
+  left: -1.74px;
+  z-index: 2;
+  color: var(--text-color);
+  font-weight: 300px;
+  font-size: 17px;
+}
+
+/* Cambiamos el color y estilo del cursor al pasar el ratón */
+.pin:hover {
+  cursor: pointer;
+  background-color: var(--secundario);
+}
+
+.pin:hover:after {
+
+  background-color: var(--secundario);
+}
+
+.pin:hover:before {
+
+  background-color: var(--text-color);
+}
+
+/* //si esta apretado */
+.pinSeleccionado {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  right: 19px;
+  z-index: 2;
+}
+
+.pinSeleccionado span {
+  position: relative;
+  top: -30px;
+  /* Ajusta esta propiedad según sea necesario */
+  left: -1.74px;
+  /* Ajusta esta propiedad según sea necesario */
+  z-index: 2;
+  color: var(--text-color);
+  font-weight: 300px;
+  font-size: 17px;
+}
+
+/* Creamos la forma de pinSeleccionado con un borde circular */
+.pinSeleccionado:before {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: var(--text-color);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  top: 10px;
+  left: 10px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Añadimos un pequeño círculo en el centro */
+.pinSeleccionado:after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: var(--secundario);
+  border-radius: 50%;
+  top: 16px;
+  left: 16.5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Cambiamos el color y estilo del cursor al pasar el ratón */
+.pinSeleccionado:hover {
+  color: var(--body-color);
+  cursor: pointer;
+  background-color: var(--text-color);
+}
+
+.pinSeleccionado:hover:after {
+
+  background-color: var(--text-color);
+}
+
+.pinSeleccionado:hover:before {
+
+  background-color: var(--secundario);
+}
+
+@media screen and (max-width: 500px) {
+  .cursointeraccion button {
+    font-size: 15px;
+  }
+
+  .pin span {
+    top: -2.63px;
+    /* Ajusta esta propiedad según sea necesario */
+    left: -1.5px;
+    /* Ajusta esta propiedad según sea necesario */
+    z-index: 2;
+    color: var(--body-color);
+    font-weight: 300px;
+    font-size: 15px;
+  }
+
+  .pinSeleccionado span {
+    top: -2.63px;
+    /* Ajusta esta propiedad según sea necesario */
+    left: -1.5px;
+    /* Ajusta esta propiedad según sea necesario */
+    z-index: 2;
+    color: var(--text-color);
+    font-weight: 300px;
+    font-size: 15px;
+  }
+  .pin:hover span{
+    color: var(--text-color);
+  }
+  .pinSeleccionado:hover span{
+    color: var(--body-color);
   }
   
+}

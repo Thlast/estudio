@@ -24,7 +24,7 @@ export function SVGZoom(props) {
   //si viene de archivo fijo impCaps
   const { capituloNombre } = props;
   //si viene de SQL
-  const { capituloId, pasarSeccionId, recargarFuncionClickcode } = props;
+  const { capituloId, pasarSeccionId, recargarFuncionClickcode, obtenerCantidadDiagramas } = props;
   const [render, setRender] = useState()
   const [idDiagrama, setIdDiagrama] = useState()
   const [linkEditar, setLinkEditar] = useState()
@@ -104,11 +104,24 @@ export function SVGZoom(props) {
     setRenderCurso()
     setRender()
   }
+  //para enviar cuando diagramas hay para ver en secciones
+  useEffect(() => {
+    let i = 0
+    if (renderCurso) {
+      console.log(renderCurso)
+      i += 1
+    }
+    if (renderCapitulo) {
+      i += 1
+    }
+    obtenerCantidadDiagramas(i)
+  }, [renderCurso, renderCapitulo])
 
   useEffect(() => {
 
     if (capituloNombre) {
       getSVGfromMongoArchivoFijo(capituloNombre, curso).then(data => {
+
         //console.log(data)
         if (!data) {
           limpiarDatos()
@@ -134,6 +147,7 @@ export function SVGZoom(props) {
     } else
       getSVGfromMongo(capituloId, curso).then(data => {
         //console.log(data)
+
         if (!data) {
           limpiarDatos()
         } else {
