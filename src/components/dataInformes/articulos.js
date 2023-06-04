@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { articulosImpuestoALasGanancias, getSectionById } from "./constantesarticulos"
 import { decretoReglamentario } from "./decretoReglamentario";
 import { procedimientoTributario } from "./procedimientoTributario";
-import { getSectionRT, identificarRT } from "./rt53";
-import { RT53 } from "./rt53";
 import { buscarRT } from "../servicios/consola/buscarRT";
 import { Link } from "react-router-dom";
 
@@ -115,9 +113,11 @@ export function Articulos(props) {
                 <Link
                 to={linkRT}
                 >
-                Ver RT completa
+                Ver {getRTNumber(articulo)} completa
                 </Link>
             </em>
+            <hr></hr>
+            <p>Indice:{" "}<code>{getRTNumber(articulo)}</code></p>
         </>
         :
         null
