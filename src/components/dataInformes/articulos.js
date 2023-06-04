@@ -4,12 +4,15 @@ import { decretoReglamentario } from "./decretoReglamentario";
 import { procedimientoTributario } from "./procedimientoTributario";
 import { getSectionRT, identificarRT } from "./rt53";
 import { RT53 } from "./rt53";
+import { buscarRT } from "../servicios/consola/buscarRT";
+import { Link } from "react-router-dom";
 
 export function Articulos(props) {
 
   const { articulo, recargarFuncionClickcode } = props;
   const [sectionHtml, setSeccionHtml] = useState("")
   const [linkLey, setLinkLey] = useState("")
+  const [linkRT, setLinkRT] = useState("")
 
   function formatArticleId(str) {
 
@@ -38,13 +41,15 @@ export function Articulos(props) {
 
     const regex = /^rt\s*(\d+)/i;
     const matches = input.match(regex);
-    console.log(input, matches)
+    //console.log(input, matches)
     if (matches && matches.length > 1) {
-      console.log(`RT${matches[1]}`)
-      return `RT${matches[1]}`;
+      //console.log(`RT${matches[1]}`)
+      return `rt${matches[1]}`;
+    } else {
+      
+      return undefined
     }
 
-    return '';
   }
 
 
@@ -62,7 +67,10 @@ export function Articulos(props) {
     }
     // si tengo una rt
     else if (valorBuscar.startsWith("rt")) {
-      setSeccionHtml(getSectionRT(getRTNumber(articulo), articulo.toUpperCase()))
+      buscarRT(getRTNumber(articulo), articulo).then(data => {
+        setSeccionHtml(data)
+        setLinkRT(`/verRT/${getRTNumber(articulo)}`)
+      })
     }
 
     else {
@@ -96,6 +104,20 @@ export function Articulos(props) {
               </a>
             </em>
           </blockquote>
+        </>
+        :
+        null
+      }
+      {linkRT ?
+        <>
+            <em
+              style={{ textDecoration: "underline" }}>
+                <Link
+                to={linkRT}
+                >
+                Ver RT completa
+                </Link>
+            </em>
         </>
         :
         null
