@@ -15,7 +15,7 @@ export function Consola(props) {
   const [datosSeccion, setDatosSeccion] = useState()
   const { curso } = props;
   const { dic } = props;
-  const { buscarSeccionId, pasarSeccionId } = props;
+  const { buscarSeccionId, pasarSeccionId, capituloId } = props;
   const { eliminarDelHistorial } = props;
   const { limpiarHistorial } = props;
   const { enconsola } = props;
@@ -155,7 +155,7 @@ export function Consola(props) {
           <>
             {/* si existen definiciones se renderizan: */}
             {articulo ?
-              <Articulos articulo={articulo} recargarFuncionClickcode={recargarFuncionClickcode} />
+              <Articulos capituloId={capituloId} articulo={articulo} recargarFuncionClickcode={recargarFuncionClickcode} />
               :
               <>
                 <MostrarDef

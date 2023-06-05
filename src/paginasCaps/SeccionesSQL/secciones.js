@@ -321,6 +321,7 @@ export function Secciones() {
                 style={{ display: `${mostrarConsola ? "block" : "none"}` }}
               >
                 <Consola
+                  capituloId={capituloId}
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   curso={curso}
                   dic={dic}
@@ -513,6 +514,7 @@ export function Secciones() {
                       />
                       : null}
                     <Consola
+                      capituloId={capituloId}
                       pasarSeccionId={pasarSeccionId}
                       recargarFuncionClickcode={recargarFuncionClickcode}
                       curso={curso}
