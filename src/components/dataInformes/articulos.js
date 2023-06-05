@@ -125,8 +125,10 @@ export function Articulos(props) {
   }, [articulo])
 
   useEffect(() => {
-    recargarFuncionClickcode()
-  }, [sectionHtml])
+    if(!cargando) {
+      recargarFuncionClickcode()
+    }
+  }, [cargando])
 
   return (
     <>
