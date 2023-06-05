@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { buscarRT } from "../servicios/consola/buscarRT";
 import { Link } from "react-router-dom";
 import { buscarArticulo } from "../servicios/consola/buscarArticulo";
-import {Spinner} from '../Login/Spinner'
+import { Spinner } from '../Login/Spinner'
 export function Articulos(props) {
 
   const { articulo, recargarFuncionClickcode, capituloId } = props;
@@ -85,18 +85,20 @@ export function Articulos(props) {
         let patronDR = /(artículo\s+(\d+)(?:º)?)(?=\s+de\seste\sdecreto\b)/gi
         //setSeccionHtml(data.replace(/artículo\s+(\d+)(?:º)?\s+de\s+la\s+ley/g, '<code>artículo $1</code> de la ley').replace(patronDR, '<code>$1$</code>3'))
         setSeccionHtml(data.replace(/artículo\s+(\d+)(?:º)?\s+de\s+la\s+ley/g, '<code>artículo $1</code> de la ley').replace(patronDR, '<code>$1 dr</code>'))
+        setCargando(false)
       })
       //setSeccionHtml(getSectionById(decretoReglamentario, `${formatArticleId(articulo)}`))
       let link = linkDR.filter(l => l.ley === ley).flatMap(l => l.link);
       setLinkLey(link);
-      setCargando(false)
+
     }
 
     else if (valorBuscar.endsWith("lpt")) {
       buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1</code>'))
+        setCargando(false)
       })
-      setCargando(false)
+
       //setSeccionHtml(getSectionById(procedimientoTributario, `${formatArticleId(articulo)}`))
       setLinkLey("http://biblioteca.afip.gob.ar/dcp/TOR_C_011683_1998_07_13")
     }
@@ -105,19 +107,21 @@ export function Articulos(props) {
       buscarRT(getRTNumber(articulo), articulo).then(data => {
         setSeccionHtml(data)
         setLinkRT(`/verRT/${getRTNumber(articulo)}`)
+        setCargando(false)
       })
-      setCargando(false)
+
     }
     else {
       buscarArticulo(`to${ley}`, `${formatArticleId(articulo)}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1</code>'))
+        setCargando(false)
       })
       //setSeccionHtml(getSectionById(articulosImpuestoALasGanancias, `${formatArticleId(articulo)}`))
       let link = linkDeLey.filter(l => l.ley === ley).flatMap(l => l.link);
       setLinkLey(link);
-      setCargando(false)
+
     }
-    
+
   }, [articulo])
 
   useEffect(() => {
