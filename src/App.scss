@@ -199,6 +199,10 @@ input {
   text-align: center;
 }
 
+.resultadosBuscador a {
+  text-decoration: none;
+  color: var(--text-color);
+}
 .boton-buscar {
   background-color: var(--secundario);
   color: var(--text-color);

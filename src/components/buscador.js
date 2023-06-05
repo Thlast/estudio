@@ -58,12 +58,12 @@ export const Buscador = (props) => {
     <div className={perfil ? "menuContenedor" : ""}>
       <div
         className="buscador">
-        <div style={{display:"flex", flexDirection:"column", gap:"15px", alignItems:"center"}}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "15px", alignItems: "center" }}>
           {cursoBuscador ? null :
             <>
               <select
                 onChange={(e) => cambiarCurso(e.target.value)}
-                style={{width:"fit-content"}}
+                style={{ width: "fit-content" }}
                 class="boton home-boton"
                 value={curso}
                 for="materias">
@@ -82,17 +82,17 @@ export const Buscador = (props) => {
             </>
           }
           <div>
-          Limite de resultados: {" "}
-          <select
-            onChange={(e) => setLimit(e.target.value)}
-            class="boton home-boton">
-            <option>
-              50
-            </option>
-            <option>
-              100
-            </option>
-          </select>
+            Limite de resultados: {" "}
+            <select
+              onChange={(e) => setLimit(e.target.value)}
+              class="boton home-boton">
+              <option>
+                50
+              </option>
+              <option>
+                100
+              </option>
+            </select>
           </div>
         </div>
         <form
@@ -158,17 +158,14 @@ export const Buscador = (props) => {
                       resultadosSQL?.map((res, num) => {
                         return (
                           <div
+                            className="resultadosBuscador"
                             key={res.CapituloId + res.SeccionId + num}>
-                            {cursoBuscador ?
-                              <a href={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
-                                {res.SeccionNombre}
-                              </a>
-                              :
-                              <Link
-                                to={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
-                                {res.SeccionNombre}
-                              </Link>
-                            }
+
+                            <Link
+                              to={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
+                              {res.SeccionNombre}
+                            </Link>
+
                             <div
                               className="cuadro">
                               <ReactMarkdown
@@ -193,17 +190,14 @@ export const Buscador = (props) => {
                         resultados?.map((resultado, num) => {
                           return (
                             <div
+                              className="resultadosBuscador"
                               key={resultado.titulo + resultado.seccion + num}>
-                              {cursoBuscador ?
-                                <a href={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
-                                  {resultado.seccion}
-                                </a>
-                                :
-                                <Link
-                                  to={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
-                                  {resultado.seccion}
-                                </Link>
-                              }
+
+                              <Link
+                                to={`/cursos/${curso}/${resultado.titulo}/${resultado.seccion}`}>
+                                {resultado.seccion}
+                              </Link>
+
                               <div
                                 className="cuadro">
                                 <ReactMarkdown
