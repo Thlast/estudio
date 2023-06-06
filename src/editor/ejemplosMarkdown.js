@@ -1,10 +1,10 @@
 export const ejemplosMarkdown = [
     {
         nombre: "Artículos ganancias",
-        explicacion: "Se pueden citar artículos de la ley de la siguiente manera:",
+        explicacion: "Se pueden citar artículos de la ley (texto ordenado y el decreto) dependerá del capitulo en el que se encuentre (IVA, GANANCIAS, BS PERSONALES), por defecto será ganancias:",
         texto: [
-            'Ley texto ordenado: `Artículo 2`',
-            'Decreto Reglamentario: `Artículo 2 DR`',
+            'Ley texto ordenado del respectivo capitulo: `Artículo 2`',
+            'Decreto Reglamentario del respectivo capitulo: `Artículo 2 DR`',
             'Ley procedimiento tributario: `Artículo 2 LPT`'
         ],
         curso: "impuestos"
