@@ -1339,6 +1339,48 @@ strong {
 .HomeMongo p {
   font-size: 20px;
 }
+.progress-circle {
+  width: 80px;
+  height: 80px;
+}
+
+.progress-circle-background {
+  fill: var(--secundario);
+}
+
+.progress-circle-progress {
+  fill: transparent;
+  stroke: var(--container-shadow-hover);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.3s ease-in-out;
+}
+
+.progress-circle-text {
+  dominant-baseline: middle;
+  text-anchor: middle;
+  font-size: 20px;
+  fill: var(--text-color);
+}
+
+
+/* Agrega animación para suavizar la transición */
+@keyframes progress-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Agrega la clase de animación al círculo de progreso */
+.progress.active {
+  animation: progress-animation 1s linear forwards;
+}
+
 
 circle {
   height: 20px;

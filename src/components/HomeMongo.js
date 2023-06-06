@@ -12,6 +12,7 @@ import { Opciones } from './preguntas/opcionesMultiples';
 import { VoF } from './preguntas/formVoF';
 import { SelectMateria } from './selectMateria';
 import { ResueltasContext } from '../context/Resueltas';
+import { ProgressCircle } from './porcentajeProgreso';
 
 export function HomeMongo() {
 
@@ -208,11 +209,11 @@ export function HomeMongo() {
             >
               {(totalResueltas && longitudPreguntas) ?
                 <>
-                  Tu progreso: {(Math.round((totalResueltas / longitudPreguntas) * 100))} %
+                <ProgressCircle progress={(Math.round((totalResueltas / longitudPreguntas) * 100))} />
                 </>
                 :
                 <>
-                  Tu progreso: 0%
+                <ProgressCircle progress={0} />
                 </>
               }
               <div>
