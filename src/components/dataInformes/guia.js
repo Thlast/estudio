@@ -123,7 +123,7 @@ export function SVGZoom(props) {
       getSVGfromMongoArchivoFijo(capituloNombre, curso).then(data => {
 
         //console.log(data)
-        if (!data) {
+        if (!data[0] && !data[1]) {
           limpiarDatos()
         } else {
           if (data[0]) {
@@ -133,22 +133,25 @@ export function SVGZoom(props) {
             setLinkEditar(data[0].linkEditar)
             setRender(data[0].elementoG)
           } else {
-            setRenderCurso()
-          }
-          if (data[1]) {
-            //diagrama de capitulo
-            setRenderCapitulo(data[1])
+            if (data[1]) {
+              setRenderCapitulo(data[1])
+              setIdDiagrama(data[1].id)
+              setLinkEditar(data[1].linkEditar)
+              setRender(data[1].elementoG)
+              setMostrarCurso(false)
+            } else {
+              setRenderCurso()
+              setRenderCapitulo()
 
-          } else {
-            setRenderCapitulo()
+            }
           }
         }
       })
     } else
       getSVGfromMongo(capituloId, curso).then(data => {
-        //console.log(data)
+        console.log(data)
 
-        if (!data) {
+        if (!data[0] && !data[1]) {
           limpiarDatos()
         } else {
           if (data[0]) {
@@ -158,14 +161,16 @@ export function SVGZoom(props) {
             setLinkEditar(data[0].linkEditar)
             setRender(data[0].elementoG)
           } else {
-            setRenderCurso()
-          }
-          if (data[1]) {
-            //diagrama de capitulo
-            setRenderCapitulo(data[1])
-
-          } else {
-            setRenderCapitulo()
+            if (data[1]) {
+              setRenderCapitulo(data[1])
+              setIdDiagrama(data[1].id)
+              setLinkEditar(data[1].linkEditar)
+              setRender(data[1].elementoG)
+              setMostrarCurso(false)
+            } else {
+              setRenderCurso()
+              setRenderCapitulo()
+            }
           }
         }
       })
@@ -342,7 +347,7 @@ export function SVGZoom(props) {
   }
 
   return (
-    <>
+    <div style={{textAlign:"center"}}>
       <hr></hr>
       <button
         className="boton home-boton"
@@ -350,11 +355,11 @@ export function SVGZoom(props) {
       >
         Esquema: {mostrarCurso ? curso : nombreCapitulo}
       </button>
+      <hr></hr>
       {render ?
         <div
         >
           <div
-
             className={style.contenedorSVG}>
             {!mobile ?
               <div
@@ -444,6 +449,6 @@ export function SVGZoom(props) {
             <ComoCrearSVG />
           </>
       }
-    </>
+    </div>
   );
 }
