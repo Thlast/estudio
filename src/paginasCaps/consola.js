@@ -173,7 +173,7 @@ export function Consola(props) {
                     <div
                       key={"consola" + buscarSeccionId}
                       class="show-element">
-                      <h1>{s.SeccionNombre}</h1>
+                      <h2>{s.CapituloNombre}: {s.SeccionNombre}</h2>
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]}>
                         {s.SeccionContenido}
