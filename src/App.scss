@@ -1645,3 +1645,17 @@ a:hover>svg {
   justify-content: center;
   align-items: center;
 }
+
+.footnotes h2 {
+  display: none;
+}
+
+.footnotes ol {
+  margin: 0;
+  padding: 10px 0 0 0;
+}
+
+.footnotes p {
+  font-size: 16px;
+  font-style: italic;
+}
