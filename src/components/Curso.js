@@ -7,6 +7,7 @@ import { Spinner } from './Login/Spinner';
 import style from '../modulos-css/Curso.module.css'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { Secciones } from './listarSecciones';
+import { obtenerAllRT } from './servicios/consola/buscarRT';
 
 export function Curso() {
 
@@ -15,6 +16,17 @@ export function Curso() {
   const [curs, setCurs] = useState([]);
   const { focus } = useParams();
   const [datosCaps, setDatosCaps] = useState([]);
+  const [rt, setRT] = useState([]);
+
+  useEffect(() => {
+    //PEDIR LAS RT DISPONIBLES PARA EL CURSO RESOLUCIONES TECNICAS
+    if (curso === "rts") {
+      obtenerAllRT().then(data => {
+        console.log(data)
+        setRT(data)
+      })
+    }
+  }, [])
 
   useEffect(() => {
 
@@ -95,7 +107,6 @@ export function Curso() {
               </svg>
               Imprimir resumen
             </a>
-
             {curs?.map((t, num) => {
               return (
                 <div
@@ -120,7 +131,6 @@ export function Curso() {
                 Del archivo fijo:
                 {datosCaps ?
                   datosCaps?.map((s, num) => {
-
                     return (
                       <div
                         key={s.CapituloId}
@@ -171,6 +181,24 @@ export function Curso() {
                               </Link>
                             )
                           })}
+                          {
+                            s.titulo === "Listado de Resoluciones técnicas" &&
+                            <>
+                              {rt?.map(r => {
+                                return (
+                                  <>
+                                    <Link
+                                      key={r}
+                                      className={style.seccion}
+                                      to={`/cursos/${curso}/${s.titulo}/${r}`}>
+                                      {r}
+                                    </Link>
+                                  </>
+                                )
+                              })}
+                            </>
+
+                          }
                         </ul>
                       </div>
 

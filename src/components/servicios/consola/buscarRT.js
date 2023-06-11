@@ -23,3 +23,14 @@ export const obtenerRTCompleta = async (rt) => {
     }
   };
   
+export const obtenerAllRT = async (rt) => {
+
+    try {
+      const response = await fetch(`${urlserver}/AllRT/`);
+      return response.json();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+  
