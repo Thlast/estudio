@@ -96,6 +96,7 @@ export function Articulos(props) {
     else if (valorBuscar.endsWith("lpt")) {
       buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1</code>'))
+        setLey("procedimiento tributario")
         setCargando(false)
       })
 
@@ -125,7 +126,7 @@ export function Articulos(props) {
   }, [articulo])
 
   useEffect(() => {
-    if(!cargando) {
+    if(!cargando && recargarFuncionClickcode) {
       recargarFuncionClickcode()
     }
   }, [cargando])

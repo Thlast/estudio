@@ -7,12 +7,12 @@ import { MateriasContext } from "../context/MateriasContext";
 import remarkGfm from 'remark-gfm'
 import { MostrarDef } from "./definiciones/mostrarDef";
 import { buscarValorSQL } from "./servicios/cursos/cursosSQL/buscarSeccion";
+import { Articulos } from "./dataInformes/articulos";
 
 export const Buscador = (props) => {
 
-  const { materias } = useContext(MateriasContext);
-  const { matPreferida } = useContext(MateriasContext);
-  const { cursoBuscador } = props
+  const { materias, matPreferida } = useContext(MateriasContext);
+  const { cursoBuscador, capituloId } = props
   const { perfil } = props
   const [valor, setValor] = useState(null);
   const [valorEnviado, setValorEnviado] = useState();
@@ -26,6 +26,8 @@ export const Buscador = (props) => {
   const [verSQL, setVerSQL] = useState(false)
   const [resultadosSQL, setResultadosSQL] = useState([])
   const { recargarFuncionClickcode } = props;
+  const [mostrarArticulos, setMostrarArticulos] = useState(false)
+  const [ley, setLey] = useState(capituloId || 1)
 
   useEffect(() => {
     setPage(1)
@@ -33,6 +35,7 @@ export const Buscador = (props) => {
 
   const find = async (valor, e) => {
     e.preventDefault()
+    valor?.toLowerCase().replace(/[-º°`'".,]/g, '')
     setCargando(true)
     if (e.target.value == "Siguiente página") {
       setPage(page + 1)
@@ -46,8 +49,13 @@ export const Buscador = (props) => {
     }
     await buscarValorSQL(curso, valor).then(data => setResultadosSQL(data))
     setValorEnviado(valor)
-    setCargando(false)
 
+    if (valor.startsWith("articulo") || valor.startsWith("artículo") || valor.startsWith("rt")) {
+      setMostrarArticulos(true)
+    } else {
+      setMostrarArticulos(false)
+    }
+    setCargando(false)
   }
   const cambiarCurso = (e) => {
     setResultados([]);
@@ -78,9 +86,28 @@ export const Buscador = (props) => {
                     )
                   })}
               </select>
-
             </>
           }
+          {valor?.toLowerCase().replace(/[-º°`'".,]/g, '')?.startsWith("artículo") || valor?.toLowerCase().replace(/[-º°`'".,]/g, '')?.startsWith("articulo") ?
+            <select
+              class="boton home-boton"
+              value={ley}
+              onChange={(e) => setLey(e.target.value)}
+            >
+              <option
+                value={1}>
+                Impuesto a las ganancias
+              </option>
+              <option
+                value={3}>
+                IVA
+              </option>
+              <option
+                value={4}>
+                Bienes personales
+              </option>
+            </select>
+            : null}
           <div>
             Limite de resultados: {" "}
             <select
@@ -133,7 +160,11 @@ export const Buscador = (props) => {
           className="contenedorbuscador">
           {page == 1 &&
             <>
-              <MostrarDef recargarFuncionClickcode={recargarFuncionClickcode} dic={valorEnviado} curso={curso} />
+              {mostrarArticulos ?
+                <Articulos articulo={valorEnviado} recargarFuncionClickcode={recargarFuncionClickcode} capituloId={ley} />
+                :
+                <MostrarDef recargarFuncionClickcode={recargarFuncionClickcode} dic={valorEnviado} curso={curso} />
+              }
             </>
           }
           <hr></hr>
