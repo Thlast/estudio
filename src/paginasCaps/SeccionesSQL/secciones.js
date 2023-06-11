@@ -313,6 +313,7 @@ export function Secciones() {
                 style={{ display: `${buscador ? "block" : "none"}` }}
               >
                 <Buscador
+                  capituloId={capituloId}
                   recargarFuncionClickcode={recargarFuncionClickcode}
                   cursoBuscador={curso}
                 />
@@ -509,6 +510,7 @@ export function Secciones() {
                     <hr></hr>
                     {buscador ?
                       <Buscador
+                        capituloId={capituloId}
                         recargarFuncionClickcode={recargarFuncionClickcode}
                         cursoBuscador={curso}
                       />

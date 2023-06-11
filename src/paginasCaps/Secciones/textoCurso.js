@@ -50,8 +50,7 @@ export function TextoCurso(props) {
 
     }
   }, [seccion])
-
-console.log(seccion)
+  
   return (
     <>
       {
