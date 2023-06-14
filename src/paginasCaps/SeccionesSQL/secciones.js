@@ -33,6 +33,9 @@ export function Secciones() {
   const [contenidoSeccion, setContenidoSeccion] = useState()
   const [preview, setPreview] = useState()
   const [esquema, setEsquema] = useState(false)
+  
+  const [modificando, setModificando] = useState(false)//ESTE ES UN CARGANDO PARA CUANDO SE ESTA MODIFICANDO
+
   const navigate = useNavigate()
 
   //para el svg del esquema
@@ -176,14 +179,18 @@ export function Secciones() {
   const modificarActualizar = async (nombreSeccion, contenido, SeccionId, e) => {
     e.preventDefault()
     if (nombreSeccion.length >= 3) {
+      setModificando(true)
       try {
 
-        await modificarSeccion(nombreSeccion, contenido, SeccionId, e).then(response =>
+        await modificarSeccion(nombreSeccion, contenido, SeccionId, e).then(response => {
           setContenidoSeccion(response)
+          setModificando(false)
+        }
         );
 
       } catch (error) {
-        console.log(error)
+        alertainfo(error)
+        setModificando(false)
       }
     } else {
       alertainfo("El nombre debe contener al menos 3 caracteres")
@@ -279,6 +286,7 @@ export function Secciones() {
               class="secciones">
               {editMode ?
                 <ModificarSeccion
+                  modificando={modificando}
                   modificarActualizar={modificarActualizar}
                   cargando={cargando}
                   seccionModificar={contenidoSeccion}
@@ -418,6 +426,7 @@ export function Secciones() {
                 <div>
                   <div style={{ display: `${editMode ? "block" : "none"}` }}>
                     <ModificarSeccion
+                      modificando={modificando}
                       modificarActualizar={modificarActualizar}
                       cargando={cargando}
                       seccionModificar={contenidoSeccion}

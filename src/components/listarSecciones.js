@@ -20,6 +20,7 @@ export function Secciones() {
   const [capitulos, setCapitulos] = useState([]);
   const [secciones, setSecciones] = useState([]);
   const [cargando, setCargando] = useState(true)
+  const [guardando, setGuardando] = useState(false)
   const { curso } = useParams();
   const { editMode } = useAuth();
   const ordenOriginal = useRef()
@@ -168,6 +169,7 @@ export function Secciones() {
   }
 
   const guardar = async (event) => {
+    setGuardando(true)
     let enviarNewOrden = []
     capitulos?.map((cap, num) => {
       if (num + 1 !== cap.orden) {
@@ -182,21 +184,27 @@ export function Secciones() {
     })
 
     if (enviarNewOrden?.length !== 0) {
-      await cambiarOrdenCapitulo(enviarNewOrden, event)
+      try {
+        await cambiarOrdenCapitulo(enviarNewOrden, event)
+        setGuardando(false)
+        setEditarCapitulo(false)
+      } catch (error) {
+        alertainfo(error)
+        setGuardando(false)
+        setEditarCapitulo(false)
+      }
       //console.log(enviarNewOrden)
-      setEditarCapitulo(false)
     }
     return
   }
 
   const guardarSeccion = async (capituloId, event) => {
+    setGuardando(true)
     let seccionesModificadas = []
-
     let filtrarSeccion = secciones
       ?.map((sec, i) => ({ ...sec, index: i })) // Agregar el índice original a cada elemento
       .filter((sec) => sec.CapituloId == capituloId) // Filtrar las secciones que cumplan la condición
       .map((sec) => ({ ...sec, index: sec.index })); // Mantener el índice original en el nuevo array resultante
-
 
     filtrarSeccion.map((s, num) => {
       if (num + 1 !== s.orden) {
@@ -210,8 +218,15 @@ export function Secciones() {
     })
 
     if (seccionesModificadas?.length !== 0) {
-      await cambiarOrdenSeccion(seccionesModificadas, event)
-      setEditarSeccion(false)
+      try {
+        await cambiarOrdenSeccion(seccionesModificadas, event)
+        setEditarSeccion(false)
+        setGuardando(false)
+      } catch (error) {
+        alertainfo(error)
+        setEditarSeccion(false)
+        setGuardando(false)
+      }
       //console.log(seccionesModificadas)
     }
 
@@ -300,7 +315,7 @@ export function Secciones() {
       console.log(error)
     }
   }
-//console.log(secciones)
+  //console.log(secciones)
   const crearSeccionActualizar = async (capituloId, nombreSeccion, contenido, event) => {
     event.preventDefault()
     if (nombreSeccion.length >= 3) {
@@ -356,16 +371,18 @@ export function Secciones() {
                 <>
                   <p>arrasta y suelta para cambiar de lugar los capitulos</p>
 
-                  <>
-                    <button
-                      onClick={(event) => guardar(event)}
-                      className='btn btn-primary'>Guardar</button>
+                  {guardando ? <Spinner></Spinner>
+                    :
+                    <>
+                      <button
+                        onClick={(event) => guardar(event)}
+                        className='btn btn-primary'>Guardar</button>
 
-                    <button
-                      onClick={() => cancelar()}
-                      className='btn btn-danger'>Cancelar</button>
-                  </>
-
+                      <button
+                        onClick={() => cancelar()}
+                        className='btn btn-danger'>Cancelar</button>
+                    </>
+                  }
                 </>
                 :
                 <>
@@ -434,14 +451,19 @@ export function Secciones() {
                     </ul>
                     {editarSeccion ?
                       <>
-                        <button
-                          onClick={(event) => guardarSeccion(t.CapituloId, event)}
-                          className='btn btn-primary'>Guardar Seccion</button>
-                        <button
-                          className='btn btn-danger'
-                          onClick={() => cancelarEditarSeccion()}>
-                          cancelar
-                        </button>
+                        {guardando ? <Spinner></Spinner>
+                          :
+                          <>
+                            <button
+                              onClick={(event) => guardarSeccion(t.CapituloId, event)}
+                              className='btn btn-primary'>Guardar Seccion</button>
+                            <button
+                              className='btn btn-danger'
+                              onClick={() => cancelarEditarSeccion()}>
+                              cancelar
+                            </button>
+                          </>
+                        }
                       </>
                       :
                       <>
@@ -452,7 +474,6 @@ export function Secciones() {
                             onClick={() => setEditarSeccion(true)}>
                             Modificar orden
                           </button>
-
                         }
                       </>
                     }
