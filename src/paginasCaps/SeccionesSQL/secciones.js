@@ -507,7 +507,7 @@ export function Secciones() {
                         className={`${mostrarPreguntas && "botonmostrar"} cursos-as editarcurso`}
                         onClick={() => (cambiarBoton(), setMostrarPreguntas(!mostrarPreguntas))}
                       >
-                        Mostrar preguntas ({qpreguntas})
+                        Preguntas ({qpreguntas})
                       </button>
                       <button
                         className={`${mostrarNotas && "botonmostrar"} cursos-as mostrarpreg`}
