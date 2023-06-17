@@ -61,8 +61,8 @@ export function SVGZoom(props) {
   const actualizarEsquema = async (idDiagram, linkEdit, link) => {
     //pedimos el ultimo
     setCargando(true)
+    await precargarSVG(linkDiagram)
     try {
-      await precargarSVG(linkDiagram)
       const elemento = await getSVGfromDiagrams(idDiagram);
       try {
         const data = await actualizarSVG(idDiagram, elemento);
