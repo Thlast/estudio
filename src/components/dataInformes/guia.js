@@ -96,7 +96,7 @@ export function SVGZoom(props) {
     if (linkEdit) {
       setIdDiagrama(idDiagram)
       setLinkEditar(linkEdit)
-      setLinkDiagram(linkDiagram)
+      setLinkDiagram(link)
     }
 
   }
@@ -340,7 +340,7 @@ export function SVGZoom(props) {
     } else {
       setIdDiagrama(renderCapitulo?.id)
       setLinkEditar(renderCapitulo?.linkEditar)
-      setLinkDiagram(renderCurso?.link)
+      setLinkDiagram(renderCapitulo?.link)
       setRender(renderCapitulo?.elementoG)
     }
   }, [mostrarCurso])

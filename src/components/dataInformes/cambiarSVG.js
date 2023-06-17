@@ -18,7 +18,7 @@ export function CambiarSVG(props) {
     setCargando(true)
     await actualizarSVGEnlace(link, linkEditar, idDiagrama).then(async data => {
       await precargarSVG(link)
-      await actualizarEsquema(data.id, data.linkEditar)
+      await actualizarEsquema(data.id, data.linkEditar, link)
       setCargando(false)
     })
 
