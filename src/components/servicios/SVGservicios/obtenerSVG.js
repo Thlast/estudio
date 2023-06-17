@@ -40,25 +40,30 @@ export const getSVGfromDiagrams = async (diagramId) => {
 
 //obtengo el SVG actualizado
 export const actualizarSVG = async (diagramsId, nuevaData) => {
-
-    //const nuevaData = await getSVGfromDiagrams(capituloId)
     const url = `${urlmongo}/actualizarSVG/${diagramsId}`;
-
-    let resp = {};
-
-    await fetch(url, {
+  
+    try {
+      const response = await fetch(url, {
         method: 'PUT',
         body: JSON.stringify({
-            elementoG: nuevaData
+          elementoG: nuevaData
         }),
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
-        .catch(error => (console.error('Error:', error)))
-        .then(response => (
-            console.log('SVG actualizado:', response),
-            resp = response)
-        )
-    return resp
-}
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error en la solicitud de actualización del SVG.');
+      }
+  
+      const data = await response.json();
+      console.log('SVG actualizado:', data);
+      return data;
+    } catch (error) {
+      console.error('Error al actualizar el SVG:', error);
+      // Realizar acciones adicionales en caso de error, si es necesario
+      throw error; // Opcionalmente, relanzar el error para que pueda ser manejado en el llamador de la función
+    }
+  };
+  
