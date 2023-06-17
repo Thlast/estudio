@@ -61,7 +61,16 @@ export function SVGZoom(props) {
   const actualizarEsquema = async (idDiagram, linkEdit, link) => {
     //pedimos el ultimo
     setCargando(true)
-    await precargarSVG(linkDiagram)
+    //PRECARGO LA PAGINA
+    try {
+      await precargarSVG(linkDiagram);
+    } catch (error) {
+      //alertainfo("Tiempo de espera agotado. Intente nuevamente.");
+      console.error("Error al precargar el SVG:", error);
+      //setCargando(false);
+      // Realizar acciones adicionales en caso de error, si es necesario
+    }
+
     try {
       const elemento = await getSVGfromDiagrams(idDiagram);
       try {
