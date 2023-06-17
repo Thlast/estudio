@@ -9,9 +9,11 @@ import { alertainfo, alertasuccess } from '../alertas';
 import { UserConfig } from '../../context/UserConfig';
 import { SVGZoomMobile } from './guiaMobile';
 import { Spinner } from '../Login/Spinner';
+import { precargarSVG } from '../servicios/SVGservicios/precargarSVG';
 
 export function SVGZoom(props) {
 
+  const [mostrarCurso, setMostrarCurso] = useState(true)
   const { mobile } = useContext(UserConfig)
   const { datosUser } = useAuth()
   const [scale, setScale] = useState(1);
@@ -28,6 +30,7 @@ export function SVGZoom(props) {
   const [render, setRender] = useState()
   const [idDiagrama, setIdDiagrama] = useState()
   const [linkEditar, setLinkEditar] = useState()
+  const [linkDiagram, setLinkDiagram] = useState()
   const [renderCurso, setRenderCurso] = useState()
   const [renderCapitulo, setRenderCapitulo] = useState()
   const svgRef = useRef(null);
@@ -36,7 +39,7 @@ export function SVGZoom(props) {
   const [modificar, setModificar] = useState(false)
 
   //funcion que da funcionalidad a las id de las secciones
-  const funcionSeccionId = (gRef) => {
+  const funcionSeccionId = () => {
     if (render) {
 
       const gElement = gRef?.current;
@@ -52,14 +55,14 @@ export function SVGZoom(props) {
     }
   }
   useEffect(() => {
-    funcionSeccionId(gRef)
+    funcionSeccionId()
+  }, [mostrarCurso, capituloId, renderCurso, renderCapitulo])
 
-  }, [render])
-
-  const actualizarEsquema = async (idDiagram, linkEdit) => {
+  const actualizarEsquema = async (idDiagram, linkEdit, link) => {
     //pedimos el ultimo
     setCargando(true)
     try {
+      await precargarSVG(linkDiagram)
       const elemento = await getSVGfromDiagrams(idDiagram);
       try {
         const data = await actualizarSVG(idDiagram, elemento);
@@ -93,6 +96,7 @@ export function SVGZoom(props) {
     if (linkEdit) {
       setIdDiagrama(idDiagram)
       setLinkEditar(linkEdit)
+      setLinkDiagram(linkDiagram)
     }
 
   }
@@ -101,6 +105,7 @@ export function SVGZoom(props) {
     setRenderCapitulo()
     setIdDiagrama()
     setLinkEditar()
+    setLinkDiagram()
     setRenderCurso()
     setRender()
   }
@@ -131,12 +136,14 @@ export function SVGZoom(props) {
             setRenderCurso(data[0])
             setIdDiagrama(data[0].id)
             setLinkEditar(data[0].linkEditar)
+            setLinkDiagram(data[0].link)
             setRender(data[0].elementoG)
           } else {
             if (data[1]) {
               setRenderCapitulo(data[1])
               setIdDiagrama(data[1].id)
               setLinkEditar(data[1].linkEditar)
+              setLinkDiagram(data[1].link)
               setRender(data[1].elementoG)
               setMostrarCurso(false)
             } else {
@@ -159,12 +166,14 @@ export function SVGZoom(props) {
             setRenderCurso(data[0])
             setIdDiagrama(data[0].id)
             setLinkEditar(data[0].linkEditar)
+            setLinkDiagram(data[0].link)
             setRender(data[0].elementoG)
           } else {
             if (data[1]) {
               setRenderCapitulo(data[1])
               setIdDiagrama(data[1].id)
               setLinkEditar(data[1].linkEditar)
+              setLinkDiagram(data[1].link)
               setRender(data[1].elementoG)
               setMostrarCurso(false)
             } else {
@@ -173,6 +182,7 @@ export function SVGZoom(props) {
             }
           }
         }
+
       })
 
   }, [capituloId])
@@ -246,11 +256,12 @@ export function SVGZoom(props) {
 
   }
   function handleMouseMove(event) {
-    setPosition({
-      x: event.clientX,
-      y: event.clientY,
-    });
+
     if (isPanning) {
+      setPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
       const gElement = gRef.current;
       const gRect = gElement.getBoundingClientRect();
       const dx = initialValues.x + (event.clientX - offsetX);
@@ -309,17 +320,15 @@ export function SVGZoom(props) {
 
   function handleMouseUp(event) {
     setIsPanning(false);
-    isZooming(true)
+
   }
   function handleMouseEnter(event) {
-    isZooming(true)
+
   }
 
   function handleMouseLeave(event) {
     setIsPanning(false);
   }
-
-  const [mostrarCurso, setMostrarCurso] = useState(true)
 
   useEffect(() => {
     if (mostrarCurso) {
@@ -327,9 +336,11 @@ export function SVGZoom(props) {
       setRender(renderCurso?.elementoG)
       setIdDiagrama(renderCurso?.id)
       setLinkEditar(renderCurso?.linkEditar)
+      setLinkDiagram(renderCurso?.link)
     } else {
       setIdDiagrama(renderCapitulo?.id)
       setLinkEditar(renderCapitulo?.linkEditar)
+      setLinkDiagram(renderCurso?.link)
       setRender(renderCapitulo?.elementoG)
     }
   }, [mostrarCurso])
@@ -347,7 +358,7 @@ export function SVGZoom(props) {
   }
 
   return (
-    <div style={{textAlign:"center"}}>
+    <div style={{ textAlign: "center" }}>
       <hr></hr>
       <button
         className="boton home-boton"
@@ -363,7 +374,7 @@ export function SVGZoom(props) {
             className={style.contenedorSVG}>
             {!mobile ?
               <div
-                onMouseUp={() => isZooming(true)}
+                onMouseEnter={() => isZooming(true)}
                 onMouseLeave={() => isZooming(false)}
               >
                 <div className={style.contenedorZoom}>
