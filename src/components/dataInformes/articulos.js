@@ -33,7 +33,7 @@ export function Articulos(props) {
       return numeroArticulo
     }
     else if (str.endsWith("lpt")) {
-      const id = str.match(/\d/);
+      const id = parseInt(str.match(/\d+/)[0]);
       // const paddedId = id ? id[0].padStart(4, '0') : '0000';
       // return `articulo${paddedId}____`;
       return id
