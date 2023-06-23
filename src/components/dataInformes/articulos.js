@@ -94,14 +94,24 @@ export function Articulos(props) {
     }
 
     else if (valorBuscar.endsWith("lpt")) {
-      buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
-        setSeccionHtml(data.replace(patron, '<code>$1</code>'))
-        setLey("procedimiento tributario")
-        setCargando(false)
-      })
+      if (valorBuscar.includes("dr")) {
+        buscarArticulo("procedimientoDR", `${formatArticleId(articulo)}`).then(data => {
+          setSeccionHtml(data.replace(patron, '<code>$1</code>'))
+          setLey("procedimiento tributario")
+          setCargando(false)
+          setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_001397_1979_06_12")
+        })
+      } else {
+
+        buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
+          setSeccionHtml(data.replace(patron, '<code>$1</code>'))
+          setLey("procedimiento tributario")
+          setCargando(false)
+          setLinkLey("http://biblioteca.afip.gob.ar/dcp/TOR_C_011683_1998_07_13")
+        })
+      }
 
       //setSeccionHtml(getSectionById(procedimientoTributario, `${formatArticleId(articulo)}`))
-      setLinkLey("http://biblioteca.afip.gob.ar/dcp/TOR_C_011683_1998_07_13")
     }
     // si tengo una rt
     else if (valorBuscar.startsWith("rt")) {
@@ -126,7 +136,7 @@ export function Articulos(props) {
   }, [articulo])
 
   useEffect(() => {
-    if(!cargando && recargarFuncionClickcode) {
+    if (!cargando && recargarFuncionClickcode) {
       recargarFuncionClickcode()
     }
   }, [cargando])
