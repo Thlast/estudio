@@ -96,7 +96,7 @@ export function Articulos(props) {
     else if (valorBuscar.endsWith("lpt")) {
       if (valorBuscar.includes("dr")) {
         buscarArticulo("procedimientoDR", `${formatArticleId(articulo)}`).then(data => {
-          setSeccionHtml(data.replace(patron, '<code>$1</code>'))
+          setSeccionHtml(data.replace(patron, '<code>$1 DR LPT</code>'))
           setLey("procedimiento tributario")
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_001397_1979_06_12")
@@ -104,7 +104,7 @@ export function Articulos(props) {
       } else {
 
         buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
-          setSeccionHtml(data.replace(patron, '<code>$1</code>'))
+          setSeccionHtml(data.replace(patron, '<code>$1 LPT</code>'))
           setLey("procedimiento tributario")
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/TOR_C_011683_1998_07_13")
