@@ -1,0 +1,80 @@
+/* Estilos para el componente de esqueleto de tarjeta */
+.cardskeletoncontainer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos para el componente de esqueleto de tarjeta */
+  .cardskeleton {
+    width: 100%;
+    height: 100%;
+    background-color: var(--body-color);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos para el título del esqueleto de tarjeta */
+  .card-skeleton .titleskeleton {
+    width: 70%;
+    height: 20px;
+    background-color: #e0e0e0; /* Color del esqueleto */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  /* Estilos para el párrafo 1 del esqueleto de tarjeta */
+  .card-skeleton .paragraph1skeleton {
+    width: 90%;
+    height: 16px;
+    background-color: #e0e0e0; /* Color del esqueleto */
+    position: absolute;
+    top: 60px;
+    left: 20px;
+  }
+  
+  /* Estilos para el párrafo 2 del esqueleto de tarjeta */
+  .card-skeleton .paragraph2skeleton {
+    width: 80%;
+    height: 16px;
+    background-color: #e0e0e0; /* Color del esqueleto */
+    position: absolute;
+    top: 90px;
+    left: 20px;
+  }
+  
+  /* Animación de carga en ida y vuelta */
+  @keyframes skeleton-loading {
+    0% {
+      transform: translateX(-20vw); /* Inicio de la animación hacia la izquierda */
+    }
+    100% {
+      transform: translateX(20vw); /* Fin de la animación hacia la derecha */
+    }
+  }
+  
+  .barracarga {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to right, var(--body-color), var(--secundario), var(--body-color));
+    background-size: 200% 100%;
+    animation: carga 1s linear infinite alternate-reverse;
+  }
+  
+  @keyframes carga {
+    0% {
+      background-position: 0% 100%; 
+    }
+    
+    100% {
+      background-position: 100% 0%;
+    }
+  }
+  

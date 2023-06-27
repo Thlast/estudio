@@ -3,7 +3,6 @@ import { getSiguienteSeccion } from "../../components/servicios/cursos/obtenerSe
 import style from './navegacionSQL.module.css'
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
-import { Spinner } from "../../components/Login/Spinner";
 
 export function NavegacionCursosSQL(props) {
 
@@ -57,45 +56,49 @@ export function NavegacionCursosSQL(props) {
 
   return (
     <>
-      {cargando ? <Spinner></Spinner> :
-        <>
-          <div class="cursos-botones">
-            {anterior ?
-              <Link
-                to={`/cursosSQL/${curso}/${anterior?.CapituloId}/${anterior?.CapituloNombre}/${anterior?.SeccionId}`}
-                onClick={() => ingresarSeccion(anterior?.CapituloNombre, anterior?.SeccionNombre, true)}
-                className={anterior?.CapituloNombre !== titulo ? style.cambioseccion : style.contenedorSeccion}>
-                <p
-                  className={style.anterior}>{"< "}Anterior {anterior?.CapituloNombre !== titulo ? "Capítulo" : null} </p>
-                <p
-                  className={style.blockellipsis}>
-                  {anterior?.SeccionNombre}
-                </p>
-              </Link>
-              : <div className={style.cambioseccionEmpty}></div>
-            }
 
-            {/* {mobile ? null :
+
+      <div class="cursos-botones">
+        {anterior ?
+          <Link
+            to={`/cursosSQL/${curso}/${anterior?.CapituloId}/${anterior?.CapituloNombre}/${anterior?.SeccionId}`}
+            onClick={() => ingresarSeccion(anterior?.CapituloNombre, anterior?.SeccionNombre, true)}
+            className={anterior?.CapituloNombre !== titulo ? style.cambioseccion : style.contenedorSeccion}>
+            <p
+              className={style.anterior}>{"< "}Anterior {anterior?.CapituloNombre !== titulo ? "Capítulo" : null} </p>
+            <p
+              className={style.blockellipsis}>
+              {cargando
+                ? <p className={style.skeleton} ></p>
+                : anterior?.SeccionNombre
+              }
+            </p>
+          </Link>
+          : <div className={style.cambioseccionEmpty}></div>
+        }
+
+        {/* {mobile ? null :
               <p className={style.cambioseccionEmpty}></p>
             } */}
 
-            {siguiente ?
-              <Link
-                to={`/cursosSQL/${curso}/${siguiente?.CapituloId}/${siguiente?.CapituloNombre}/${siguiente?.SeccionId}`}
-                onClick={() => ingresarSeccion(siguiente?.CapituloNombre, siguiente?.SeccionNombre, false)}
-                className={siguiente?.CapituloNombre !== titulo ? style.cambioseccion : style.contenedorSeccion}>
-                <p
-                  className={style.anterior}>Siguiente Capítulo{" >"}</p>
-                <p
-                  className={style.blockellipsis}>
-                  {siguiente?.SeccionNombre}
-                </p>
-              </Link>
-              : <div className={style.cambioseccionEmpty}></div>
-            }
-          </div>
-        </>
-      }
+        {siguiente ?
+          <Link
+            to={`/cursosSQL/${curso}/${siguiente?.CapituloId}/${siguiente?.CapituloNombre}/${siguiente?.SeccionId}`}
+            onClick={() => ingresarSeccion(siguiente?.CapituloNombre, siguiente?.SeccionNombre, false)}
+            className={siguiente?.CapituloNombre !== titulo ? style.cambioseccion : style.contenedorSeccion}>
+            <p
+              className={style.anterior}>Siguiente {siguiente?.CapituloNombre !== titulo ? "Capítulo" : null}{" >"}</p>
+            <p
+              className={style.blockellipsis}>
+              {cargando
+                ? <p className={style.skeleton} ></p>
+                : siguiente?.SeccionNombre
+              }
+            </p>
+          </Link>
+          : <div className={style.cambioseccionEmpty}></div>
+        }
+      </div>
     </>
   )
 

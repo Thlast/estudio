@@ -8,6 +8,7 @@ import style from '../modulos-css/Curso.module.css'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { Secciones } from './listarSecciones';
 import { obtenerAllRT } from './servicios/consola/buscarRT';
+import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
 
 export function Curso() {
 
@@ -125,7 +126,7 @@ export function Curso() {
             }
             )}
             <Secciones />
-            {cargando ? <Spinner /> :
+            {cargando ? <CardSkeleton /> :
               <div class='curso-capitulos-contenedor'>
                 <hr></hr>
                 Del archivo fijo:

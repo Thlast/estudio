@@ -14,6 +14,7 @@ import { modificarCapitulo } from "../components/servicios/cursos/cursosSQL/modi
 import { crearSeccion } from './servicios/cursos/cursosSQL/crearSeccion';
 import { modificarSeccion, modificarSeccionNombre } from './servicios/cursos/cursosSQL/modifSeccion';
 import { alertainfo } from './alertas';
+import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
 
 
 export function Secciones() {
@@ -362,7 +363,6 @@ export function Secciones() {
 
   return (
     <div >
-      {cargando ? <Spinner></Spinner> :
         <div >
           De la base de datos:
           <div>
@@ -399,8 +399,8 @@ export function Secciones() {
             </>}
           </div>
           <div className={style.contenedorCapitulos}>
-
-            {capitulos?.map((t, num) => {
+          {cargando ? <CardSkeleton /> :
+            capitulos?.map((t, num) => {
               return (
                 <div
                   className={style.contenedorCapitulo}
@@ -572,7 +572,6 @@ export function Secciones() {
           </div>
 
         </div>
-      }
     </div>
   )
 }

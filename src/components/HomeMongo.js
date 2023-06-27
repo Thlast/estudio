@@ -13,6 +13,7 @@ import { VoF } from './preguntas/formVoF';
 import { SelectMateria } from './selectMateria';
 import { ResueltasContext } from '../context/Resueltas';
 import { ProgressCircle } from './porcentajeProgreso';
+import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
 
 export function HomeMongo() {
 
@@ -239,7 +240,7 @@ export function HomeMongo() {
                 <span>Siguiente{" >"}</span>
               </button>
             </div>
-            {cargando ? <Spinner></Spinner> :
+            {cargando ? <CardSkeleton /> :
               <>
                 {!recargar ?
                   longitudPreguntas > 0 ?
