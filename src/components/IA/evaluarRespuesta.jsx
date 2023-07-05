@@ -58,6 +58,7 @@ export function EvaluarRespuesta(props) {
   useEffect(() => {
     getRespuestaIA(user.uid, idPregunta).then(data => {
       if (data) {
+        setRespuestaUsuario(data[0].respuestaUser)
         setModificarRespuestaId(data[0].id)
         setEvaluacionIA(data[0].respuestaIA)
       }
