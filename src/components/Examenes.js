@@ -7,6 +7,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { Spinner } from './Login/Spinner';
 import { alertasuccess, alertafail } from './alertas';
 import { MateriasContext } from '../context/MateriasContext';
+import { CardSkeleton, CuadroSkeleton } from '../modulos-css/esqueletoSeccion';
 
 
 export function Examenes() {
@@ -24,7 +25,7 @@ export function Examenes() {
 
   const getExamenes = async () => {
     const data = await getDocs(examenesCollectionRef);
-    await setExamenes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    setExamenes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     setExamenesRender(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setCargando(false);
   }
@@ -97,121 +98,34 @@ export function Examenes() {
 
   return (
     <div>
-      <div className='examenes'>
-        {cargando ? <Spinner></Spinner> :
+      <div
+
+        className='examenes'>
+        <div>
           <div>
-            <div>
-              <div
-                className='examen-filtrar'>
-                <button
-                  className='home-boton'
-                  onClick={() => filtrarExamenes()}>
-                  {mostrarMisExamenes ? "Mostrando solo mis exámenes" : "Mostrando todos"}
-                </button>
-              </div>
-              <div>
-                <form
-                  className='homebuscar'>
-                  <div>
-                    <span>
-                      Buscar por curso: {" "}
-                    </span>
-                    <select
-                      onChange={(e) => buscarExamen(e)}
-                      value={examenBuscar}
-                      name="curso"
-                      for="materias">
-                      <option
-                        disabled
-                        value={""}
-                        selected="selected">
-                        Selecciona un curso
-                      </option>
-                      {materias.map(a => {
-                        return (
-                          <option
-                            key={"materia-" + a.CursoId}
-                            value={a.CursoId}>
-                            {a.CursoNombre}
-                          </option>
-                        )
-                      })}
-
-                    </select>
-                    <button
-                      className='examenesbuscar'
-                      onClick={(e) => limpiarBusqueda(e)}>
-                      ✘
-                    </button>
-                  </div>
-                </form>
-              </div>
+            <div
+              className='examen-filtrar'>
+              <button
+                className='home-boton'
+                onClick={() => filtrarExamenes()}>
+                {mostrarMisExamenes ? "Mostrando solo mis exámenes" : "Mostrando todos"}
+              </button>
             </div>
-            <hr></hr>
-            <div className="cuadrilla">
-              {mostrarMisExamenes &&
-                misExamenes.map((exa) => {
-                  return (
-                    <Link
-                      to={"/examenes/" + exa.id} className="examen">
-                      <div className='textos'>
-                        <h6 >{exa.materia || "-  "}: {exa.nombre}</h6>
-                        Descripcion:
-                        <br></br>
-                        <div className='contenedor-descripcion'>
-                          <span className='examenes-descripcion'>{exa.descripcion}</span>
-                        </div>
-                      </div>
-                      <div
-                        className='examenfecha'>
-                        <span>{exa.usernombre}</span>
-                        <span>{exa.fecha}</span>
-                      </div>
-                    </Link>
-                  )
-                })}
-              {!mostrarMisExamenes &&
-                examenesRender.map((exa) => {
-                  return (
-                    <Link
-                      to={"/examenes/" + exa.id} className="examen">
-                      <div className='textos'>
-                        <h6 >{exa.materia || "-  "}: {exa.nombre}</h6>
-                        Descripcion:
-                        <br></br>
-                        <div className='contenedor-descripcion'>
-                          <span className='examenes-descripcion'>{exa.descripcion}</span>
-                        </div>
-                      </div>
-                      <div
-                        className='examenfecha'>
-                        <span>{exa.usernombre}</span>
-                        <span>{exa.fecha}</span>
-                      </div>
-                    </Link>
-                  )
-                })}
-                <form
-                  onSubmit={(e) => agExa(e, curso)}
-                  className="examen-agregar">
-                  <input
-                  className='home-boton'
-                    required
-                    maxlength="51"
-                    placeholder='Introducir un nombre'
-                    onChange={(e) => setNombre(e.target.value)}>
-                  </input>
-
+            <div>
+              <form
+                className='homebuscar'>
+                <div>
+                  <span>
+                    Buscar por curso: {" "}
+                  </span>
                   <select
-                  className='home-boton'
-                    required
-                    onChange={(e) => setCurso(e.target.value)}
-                    value={curso}
+                    onChange={(e) => buscarExamen(e)}
+                    value={examenBuscar}
                     name="curso"
                     for="materias">
                     <option
-                      value=""
                       disabled
+                      value={""}
                       selected="selected">
                       Selecciona un curso
                     </option>
@@ -224,19 +138,117 @@ export function Examenes() {
                         </option>
                       )
                     })}
-                  </select>
 
+                  </select>
                   <button
-                    className='home-boton'
-                  // onClick={() => agExa()}
-                  >
-                    Agregar Exámen
+                    className='examenesbuscar'
+                    onClick={(e) => limpiarBusqueda(e)}>
+                    ✘
                   </button>
-                </form>
-              
+                </div>
+              </form>
             </div>
           </div>
-        }
+          <hr></hr>
+          <div className="cuadrilla">
+            {cargando ? <CuadroSkeleton /> :
+            <>{
+
+              mostrarMisExamenes &&
+              misExamenes?.map((exa) => {
+                return (
+                  // <div style={{viewTransitionName: `examen: ${exa.id}`}}>
+                  <Link
+                    to={"/examenes/" + exa.id} className="examen">
+                    <div className='textos'>
+                      <h6 >{exa.materia || "-  "}: {exa.nombre}</h6>
+                      Descripcion:
+                      <br></br>
+                      <div className='contenedor-descripcion'>
+                        <span className='examenes-descripcion'>{exa.descripcion}</span>
+                      </div>
+                    </div>
+                    <div
+                      className='examenfecha'>
+                      <span>{exa.usernombre}</span>
+                      <span>{exa.fecha}</span>
+                    </div>
+                  </Link>
+                  // </div>
+                )
+              })}
+            {!mostrarMisExamenes &&
+              examenesRender?.map((exa) => {
+                return (
+                  // <div style={{viewTransitionName: `examen: ${exa.id}`}}>
+                  <Link
+                    to={"/examenes/" + exa.id} className="examen">
+                    <div className='textos'>
+                      <h6 >{exa.materia || "-  "}: {exa.nombre}</h6>
+                      Descripcion:
+                      <br></br>
+                      <div className='contenedor-descripcion'>
+                        <span className='examenes-descripcion'>{exa.descripcion}</span>
+                      </div>
+                    </div>
+                    <div
+                      className='examenfecha'>
+                      <span>{exa.usernombre}</span>
+                      <span>{exa.fecha}</span>
+                    </div>
+                  </Link>
+                  // </div>
+                )
+              })}
+   
+              <form
+                onSubmit={(e) => agExa(e, curso)}
+                className="examen-agregar">
+                <input
+                  className='home-boton'
+                  required
+                  maxlength="51"
+                  placeholder='Introducir un nombre'
+                  onChange={(e) => setNombre(e.target.value)}>
+                </input>
+
+                <select
+                  className='home-boton'
+                  required
+                  onChange={(e) => setCurso(e.target.value)}
+                  value={curso}
+                  name="curso"
+                  for="materias">
+                  <option
+                    value=""
+                    disabled
+                    selected="selected">
+                    Selecciona un curso
+                  </option>
+                  {materias?.map(a => {
+                    return (
+                      <option
+                        key={"materia-" + a.CursoId}
+                        value={a.CursoId}>
+                        {a.CursoNombre}
+                      </option>
+                    )
+                  })}
+                </select>
+
+                <button
+                  className='home-boton'
+                // onClick={() => agExa()}
+                >
+                  Agregar Exámen
+                </button>
+              </form>
+            
+            </>
+}
+          </div>
+        </div>
+
       </div>
     </div>
   )

@@ -57,17 +57,17 @@ export function Curso() {
 
   }, [])
 
-  const asd = () => {
+  const fijarVista = () => {
     setTimeout(() => {
       if (document.getElementById(focus)) {
         document.getElementById(focus).scrollIntoView()
       }
-    }, 200)
+    }, 100)
   }
 
   useEffect(() => {
 
-    asd()
+    fijarVista()
 
   }, [document.getElementById(focus)], cargando)
 

@@ -15,3 +15,14 @@ export const CardSkeleton = () => {
   );
 };
 
+export const CuadroSkeleton = () => {
+  return (
+      <>
+      <div className={`examen ${style.cuadrocarga}`}></div>
+      <div className={`examen ${style.cuadrocarga}`}></div>
+      <div className={`examen ${style.cuadrocarga}`}></div>
+      <div className={`examen ${style.cuadrocarga}`}></div>
+    </>
+  );
+};
+

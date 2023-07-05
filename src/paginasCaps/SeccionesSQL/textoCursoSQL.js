@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm'
 import { InformeAuditor } from '../../components/informeAuditor';
 import { Spinner } from '../../components/Login/Spinner';
 import { getSeccionPorId } from '../../components/servicios/cursos/obtenerSeccion';
+import { CardSkeleton } from '../../modulos-css/esqueletoSeccion';
 
 export function TextoCursoSQL(props) {
 
@@ -15,7 +16,7 @@ export function TextoCursoSQL(props) {
 
   return (
     <>
-      {cargando ? <Spinner></Spinner> :
+      {cargando ? <CardSkeleton /> :
         <div>
           {/* {mobile ? */}
             <h1>

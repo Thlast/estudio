@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm'
 import { FormCrearDef } from './crearDef';
 import { getDef } from '../servicios/definiciones/service.getDef';
 import { Spinner } from '../Login/Spinner';
+import { CardSkeleton } from '../../modulos-css/esqueletoSeccion';
 
 export function MostrarDef(props) {
 
@@ -40,7 +41,7 @@ export function MostrarDef(props) {
 
   return (
     <>
-      {cargando ? <Spinner></Spinner> :
+      {cargando ? <CardSkeleton /> :
         <>
           {def && dic ?
 

@@ -3,6 +3,7 @@ import { buscarRT } from "../servicios/consola/buscarRT";
 import { Link } from "react-router-dom";
 import { buscarArticulo } from "../servicios/consola/buscarArticulo";
 import { Spinner } from '../Login/Spinner'
+import { CardSkeleton } from "../../modulos-css/esqueletoSeccion";
 export function Articulos(props) {
 
   const { articulo, recargarFuncionClickcode, capituloId } = props;
@@ -143,7 +144,7 @@ export function Articulos(props) {
 
   return (
     <>
-      {cargando ? <Spinner></Spinner> :
+      {cargando ? <CardSkeleton /> :
         <>
           {linkLey ?
             <>

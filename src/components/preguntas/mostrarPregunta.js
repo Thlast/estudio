@@ -14,6 +14,7 @@ import { alertainfo } from '../alertas';
 import { serverModificarVof } from "../servicios/preguntas/modificarVof";
 import { crearVoF } from "../servicios/preguntas/crearVoF";
 import { MateriasContext } from '../../context/MateriasContext';
+import { CardSkeleton, CuadroSkeleton } from '../../modulos-css/esqueletoSeccion';
 export function MostrarPregunta(props) {
 
   const { quitar } = props;
@@ -178,83 +179,88 @@ export function MostrarPregunta(props) {
     <>
       <div className={perfil ? 'menuContenedor' : ""}>
         {mostrarPreguntas & !modificar & !modificarVof ?
-          cargandoPreguntas ? <Spinner></Spinner> :
-            <div
-              style={{ minHeight: preguntas.length > 0 ? 600 : 200 }}
-              className={"contenedorpreguntas"}>
-              <div
-                style={{ alignSelf: "center" }}
-                className='botonespreguntas'>
-                {seccion &&
-                  <button
 
-                    className='home-boton'
-                    onClick={() => filtrarUser()}>
-                    {filtroUser ? "✓ filtrar mis preguntas" : "✘ filtrar mis preguntas"}
-                  </button>
-                }
-                {edit & examenid !== undefined ?
-                  <button
-                    className='eliminarexamen btn-danger'
-                    onClick={() => eliminarExamen(preguntas)}>
-                    eliminar examen
-                  </button>
-                  : ""
-                }
-              </div>
-              {/* con filtro */}
-              {preguntas.length !== 0 ?
-                filtroUser ? preguntas?.map((p, num) => {
-                  if ((user.uid === p.user)) {
-                    return (
-                      <div
-                        key={'mostrar-' + p.id}>
-                        <Preguntas
-                          irModificarVof={irModificarVof}
-                          edit={edit}
-                          irModificarPregunta={irModificarPregunta}
-                          eliminar={eliminar}
-                          p={p}
-                          num={num}
-                          integral={true}
-                        />
-                        <hr></hr>
-                      </div>
-                    )
+          <div
+            style={{ minHeight: preguntas.length > 0 ? 600 : 200 }}
+            className={"contenedorpreguntas"}>
+            {
+              cargandoPreguntas ? <CuadroSkeleton /> :
+                <>
+                  <div
+                    style={{ alignSelf: "center" }}
+                    className='botonespreguntas'>
+                    {seccion &&
+                      <button
 
-                  }
-                }) :
-                  preguntas?.map((p, num) => {
-                    if ((filtro === p.curso || filtro === undefined)) {
-                      return (
-                        <div
-                          key={'mostrar-' + p.id}>
-                          <Preguntas
-                            irModificarVof={irModificarVof}
-                            edit={edit}
-                            irModificarPregunta={irModificarPregunta}
-                            eliminar={eliminar}
-                            p={p}
-                            num={num}
-                            integral={true}
-                          />
-                          <hr></hr>
-                        </div>
-                      )
-
+                        className='home-boton'
+                        onClick={() => filtrarUser()}>
+                        {filtroUser ? "✓ filtrar mis preguntas" : "✘ filtrar mis preguntas"}
+                      </button>
                     }
-                  })
+                    {edit & examenid !== undefined ?
+                      <button
+                        className='eliminarexamen btn-danger'
+                        onClick={() => eliminarExamen(preguntas)}>
+                        eliminar examen
+                      </button>
+                      : ""
+                    }
+                  </div>
+                  {/* con filtro */}
+                  {preguntas.length !== 0 ?
+                    filtroUser ? preguntas?.map((p, num) => {
+                      if ((user.uid === p.user)) {
+                        return (
+                          <div
+                            key={'mostrar-' + p.id}>
+                            <Preguntas
+                              irModificarVof={irModificarVof}
+                              edit={edit}
+                              irModificarPregunta={irModificarPregunta}
+                              eliminar={eliminar}
+                              p={p}
+                              num={num}
+                              integral={true}
+                            />
+                            <hr></hr>
+                          </div>
+                        )
 
-                : <p>No hay preguntas</p>
-              }
-              {anexadas &&
-                <AnexadasExamen
-                  quitar={quitar}
-                  examenid={examenid}
-                  numpreguntas={preguntas.length}
-                  anexadas={anexadas} />
-              }
-            </div>
+                      }
+                    }) :
+                      preguntas?.map((p, num) => {
+                        if ((filtro === p.curso || filtro === undefined)) {
+                          return (
+                            <div
+                              key={'mostrar-' + p.id}>
+                              <Preguntas
+                                irModificarVof={irModificarVof}
+                                edit={edit}
+                                irModificarPregunta={irModificarPregunta}
+                                eliminar={eliminar}
+                                p={p}
+                                num={num}
+                                integral={true}
+                              />
+                              <hr></hr>
+                            </div>
+                          )
+
+                        }
+                      })
+
+                    : <p>No hay preguntas</p>
+                  }
+                  {anexadas &&
+                    <AnexadasExamen
+                      quitar={quitar}
+                      examenid={examenid}
+                      numpreguntas={preguntas.length}
+                      anexadas={anexadas} />
+                  }
+                </>
+            }
+          </div>
           : ""
         }
 

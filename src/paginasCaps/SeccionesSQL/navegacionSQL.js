@@ -56,8 +56,6 @@ export function NavegacionCursosSQL(props) {
 
   return (
     <>
-
-
       <div class="cursos-botones">
         {anterior ?
           <Link
