@@ -20,6 +20,13 @@
   /* Establece un efecto de destello */
   animation: destelloLigth 1s ease-in-out infinite;
 }
+.resaltarValorBuscado {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  animation: destello 1s ease-in-out infinite;
+}
+
+
 .RemarcarAyudaEditor {
   /* Establece un borde alrededor de la sección */
   border: 3px solid var(--colordestello) !important;

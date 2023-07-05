@@ -16,6 +16,7 @@ export const Buscador = (props) => {
   const { perfil } = props
   const [valor, setValor] = useState(null);
   const [valorEnviado, setValorEnviado] = useState();
+  const [valorAlternativo, setValorAlternativo] = useState();
   const [resultados, setResultados] = useState([]);
   const [curso, setCurso] = useState(cursoBuscador || matPreferida);
   const [cargando, setCargando] = useState(false);
@@ -39,15 +40,31 @@ export const Buscador = (props) => {
     setCargando(true)
     if (e.target.value == "Siguiente página") {
       setPage(page + 1)
-      await buscarFiltradoNuevo(curso, valor, page + 1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
+      await buscarFiltradoNuevo(curso, valor, page + 1, limit).then(data => {
+        setResultados(data.datos)
+        setLimitEnv(data.limitEnviado)
+        setTotalResultados(data.total)
+      });
     } else if (e.target.value == "Anterior página") {
       setPage(page - 1)
-      await buscarFiltradoNuevo(curso, valor, page - 1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
+      await buscarFiltradoNuevo(curso, valor, page - 1, limit).then(data => {
+        setResultados(data.datos)
+        setLimitEnv(data.limitEnviado)
+        setTotalResultados(data.total)
+      });
     } else {
       setPage(1)
-      await buscarFiltradoNuevo(curso, valor, 1, limit).then(data => (setResultados(data.datos), setLimitEnv(data.limitEnviado), setTotalResultados(data.total)));
+      await buscarFiltradoNuevo(curso, valor, 1, limit).then(data => {
+        setResultados(data.datos)
+        setLimitEnv(data.limitEnviado)
+        setTotalResultados(data.total)
+      });
     }
-    await buscarValorSQL(curso, valor).then(data => setResultadosSQL(data))
+    await buscarValorSQL(curso, valor).then(data => {
+
+      setResultadosSQL(data.resultados)
+      setValorAlternativo(data.valorAlternativo)
+    })
     setValorEnviado(valor)
 
     if (valor.startsWith("articulo") || valor.startsWith("artículo") || valor.startsWith("rt")) {
@@ -62,6 +79,48 @@ export const Buscador = (props) => {
     setCurso(e)
   }
 
+  const CustomEm = ({ node, children, ...props }) => {
+    const valueToHighlight = valorEnviado.toLowerCase();
+
+    if (typeof children[0] === 'string') {
+      if (children[0].toLowerCase().includes(valueToHighlight))
+        return <em className="resaltarValorBuscado">{children[0].replaceAll("*", "")}</em>;
+
+      if (children[0].toLowerCase().includes(valorAlternativo.toLowerCase()))
+        return <em className="resaltarValorBuscado">{children[0].replaceAll("*", "")}</em>;
+    }
+
+    if (typeof children[1] === 'string') {
+      if (children[1].toLowerCase().includes(valueToHighlight))
+        return <em className="resaltarValorBuscado">{children[1].replaceAll("*", "")}</em>;
+
+      if (children[1].toLowerCase().includes(valorAlternativo.toLowerCase()))
+        return <em className="resaltarValorBuscado">{children[1].replaceAll("*", "")}</em>;
+    }
+
+    return <em>{children}</em>;
+  };
+
+
+  const CustomCode = ({ node, children, ...props }) => {
+    const valueToHighlight = valorEnviado;
+
+    if (typeof children[0] === "string") {
+      if (children[0].toLowerCase().includes(valueToHighlight.toLowerCase())) {
+        return <code className={"resaltarValorBuscado"} style={{ color: 'red' }}>{children[0].replaceAll("*", "")}</code>;
+      }
+
+      if (children[0].toLowerCase().includes(valorAlternativo.toLowerCase())) {
+        return <code className={"resaltarValorBuscado"} style={{ color: 'red' }}>{children[0].replaceAll("*", "")}</code>;
+      }
+
+    }
+
+    return <code>{children}</code>;
+  };
+  const regexValorEnviado = new RegExp(`(${valorEnviado})`, 'gi');
+  const regexValorAlternativo = new RegExp(`(${valorAlternativo})`, 'gi');
+  
   return (
     <div className={perfil ? "menuContenedor" : ""}>
       <div
@@ -185,31 +244,42 @@ export const Buscador = (props) => {
               {verSQL ? <>
                 {
                   resultadosSQL?.length !== 0 ?
-                    <>{
-                      resultadosSQL?.map((res, num) => {
-                        return (
-                          <div
-                            className="resultadosBuscador"
-                            key={res.CapituloId + res.SeccionId + num}>
-
-                            <Link
-                              to={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
-                              {res.SeccionNombre}
-                            </Link>
-
+                    <>
+                      {
+                        resultadosSQL?.map((res, num) => {
+                          return (
                             <div
-                              className="cuadro">
-                              <ReactMarkdown
-                                remarkPlugins={[remarkGfm]}>
-                                {res.SeccionContenido}
-                              </ReactMarkdown>
+                              className="resultadosBuscador"
+                              key={res.CapituloId + res.SeccionId + num}>
+
+                              <Link
+                                to={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
+                                {res.SeccionNombre}
+                              </Link>
+
+                              <div
+                                className="cuadro">
+                                <ReactMarkdown
+                                  components={{
+                                    h1: 'h2',
+                                    em: CustomEm,
+                                    code: CustomCode
+
+                                  }}
+                                  remarkPlugins={[remarkGfm]}
+                                >
+                                  {res.SeccionContenido.replace(regexValorEnviado, '*$1*').replace(regexValorAlternativo, '*$1*')}
+
+                                </ReactMarkdown>
+
+                                {/* <CustomMarkdownRenderer source={res.SeccionContenido.replace(valorEnviado, `&${valorEnviado}&`)} /> */}
+                              </div>
                             </div>
-                          </div>
-                        )
-                      })
+                          )
+                        })
 
 
-                    }
+                      }
                     </> : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>}
               </> :
                 <>
