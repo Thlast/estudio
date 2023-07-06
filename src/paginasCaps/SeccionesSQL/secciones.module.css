@@ -43,6 +43,7 @@
   margin: 0;
   right: 19px;
   z-index: 2;
+  transition: transform 0.5s ease;
 }
 
 /* Creamos la forma de pin con un borde circular */
@@ -86,6 +87,7 @@
 .pin:hover {
   cursor: pointer;
   background-color: var(--secundario);
+  transform: translateY(-5px);
 }
 
 .pin:hover:after {
@@ -109,6 +111,7 @@
   margin: 0;
   right: 19px;
   z-index: 2;
+  transition: transform 0.5s ease;
 }
 
 .pinSeleccionado span {
@@ -155,6 +158,7 @@
   color: var(--body-color);
   cursor: pointer;
   background-color: var(--text-color);
+    transform: translateY(-5px);
 }
 
 .pinSeleccionado:hover:after {
