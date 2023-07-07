@@ -13,7 +13,7 @@ import { crearCapitulo } from './servicios/cursos/cursosSQL/crearCapitulo';
 import { modificarCapitulo } from "../components/servicios/cursos/cursosSQL/modifCapitulo";
 import { crearSeccion } from './servicios/cursos/cursosSQL/crearSeccion';
 import { modificarSeccion, modificarSeccionNombre } from './servicios/cursos/cursosSQL/modifSeccion';
-import { alertainfo } from './alertas';
+import { alertafail, alertainfo } from './alertas';
 import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
 
 
@@ -22,6 +22,7 @@ export function Secciones() {
   const [secciones, setSecciones] = useState([]);
   const [cargando, setCargando] = useState(true)
   const [guardando, setGuardando] = useState(false)
+  const [creandoSeccion, setCreandoSeccion] = useState(false)
   const { curso } = useParams();
   const { editMode } = useAuth();
   const ordenOriginal = useRef()
@@ -319,6 +320,7 @@ export function Secciones() {
   //console.log(secciones)
   const crearSeccionActualizar = async (capituloId, nombreSeccion, contenido, event) => {
     event.preventDefault()
+    setCreandoSeccion(true)
     if (nombreSeccion.length >= 3) {
       let filtrarSeccion = secciones
         ?.map((sec, i) => ({ ...sec, index: i })) // Agregar el índice original a cada elemento
@@ -331,26 +333,32 @@ export function Secciones() {
         const response = await crearSeccion(capituloId, nombreSeccion, contenido, event);
         const nuevasSecciones = [...secciones.slice(0, indice), response, ...secciones.slice(indice)];
         setSecciones(nuevasSecciones);
+        setCreandoSeccion(false)
       } catch (error) {
-        console.log(error);
+        alertafail(error);
+        setCreandoSeccion(false)
       }
     }
     else {
       alertainfo("El nombre debe contener al menos 3 caracteres")
+      setCreandoSeccion(false)
     }
 
   }
   const crearSeccionNavegar = async (capituloId, nombreSeccion, contenido, event) => {
     event.preventDefault()
+    setCreandoSeccion(true)
     if (nombreSeccion.length >= 3) {
       try {
         const response = await crearSeccion(capituloId, nombreSeccion, contenido, event);
         navigate(`/cursosSQL/${curso}/${capituloId}/crear/${response.SeccionId}`)
       } catch (error) {
-        console.log(error);
+        alertafail(error);
+        setCreandoSeccion(false)
       }
     } else {
       alertainfo("El nombre debe contener al menos 3 caracteres")
+      setCreandoSeccion(false)
     }
 
   }
@@ -363,42 +371,42 @@ export function Secciones() {
 
   return (
     <div >
-        <div >
-          De la base de datos:
-          <div>
-            {editMode && <>
-              {editarCapitulo ?
-                <>
-                  <p>arrasta y suelta para cambiar de lugar los capitulos</p>
+      <div >
+        De la base de datos:
+        <div>
+          {editMode && <>
+            {editarCapitulo ?
+              <>
+                <p>arrasta y suelta para cambiar de lugar los capitulos</p>
 
-                  {guardando ? <Spinner></Spinner>
-                    :
-                    <>
-                      <button
-                        onClick={(event) => guardar(event)}
-                        className='btn btn-primary'>Guardar</button>
-
-                      <button
-                        onClick={() => cancelar()}
-                        className='btn btn-danger'>Cancelar</button>
-                    </>
-                  }
-                </>
-                :
-                <>
-                  {!editarSeccion &&
+                {guardando ? <Spinner></Spinner>
+                  :
+                  <>
                     <button
-                      className='btn btn-primary'
-                      onClick={() => setEditarCapitulo(true)}>
-                      Modificar orden
-                    </button>
-                  }
-                </>
-              }
+                      onClick={(event) => guardar(event)}
+                      className='btn btn-primary'>Guardar</button>
 
-            </>}
-          </div>
-          <div className={style.contenedorCapitulos}>
+                    <button
+                      onClick={() => cancelar()}
+                      className='btn btn-danger'>Cancelar</button>
+                  </>
+                }
+              </>
+              :
+              <>
+                {!editarSeccion &&
+                  <button
+                    className='btn btn-primary'
+                    onClick={() => setEditarCapitulo(true)}>
+                    Modificar orden
+                  </button>
+                }
+              </>
+            }
+
+          </>}
+        </div>
+        <div className={style.contenedorCapitulos}>
           {cargando ? <CardSkeleton /> :
             capitulos?.map((t, num) => {
               return (
@@ -547,6 +555,7 @@ export function Secciones() {
                         id={"agregarSeccion" + num}>
                         <hr></hr>
                         <EditorRapidoSeccion
+                          creandoSeccion={creandoSeccion}
                           indiceCapitulo={num}
                           cancelarModfSeccion={cancelarModfSeccion}
                           modificarSeccionActualizar={modificarSeccionActualizar}
@@ -561,17 +570,17 @@ export function Secciones() {
 
               )
             })}
-            {editMode &&
-              <div id='editorCapitulo'>
-                <EditorCapitulo
-                  modificarActualizar={modificarActualizar}
-                  crearActualizar={crearActualizar}
-                  cancelarModfCapitulo={cancelarModfCapitulo} curso={curso} modifCapitulo={modifCapitulo} />
-              </div>
-            }
-          </div>
-
+          {editMode &&
+            <div id='editorCapitulo'>
+              <EditorCapitulo
+                modificarActualizar={modificarActualizar}
+                crearActualizar={crearActualizar}
+                cancelarModfCapitulo={cancelarModfCapitulo} curso={curso} modifCapitulo={modifCapitulo} />
+            </div>
+          }
         </div>
+
+      </div>
     </div>
   )
 }

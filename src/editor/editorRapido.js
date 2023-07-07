@@ -7,7 +7,7 @@ import { Spinner } from "../components/Login/Spinner";
 export function EditorRapidoSeccion(props) {
 
   //const {curso} = props;
-  const { capituloId, seccionModificar, cargando, crearSeccionActualizar, crearSeccionNavegar, modificarSeccionActualizar, cancelarModfSeccion, indiceCapitulo } = props;
+  const { capituloId, seccionModificar, cargando, crearSeccionActualizar, crearSeccionNavegar, modificarSeccionActualizar, cancelarModfSeccion, indiceCapitulo, creandoSeccion } = props;
   const [nombreSeccion, setNombreSeccion] = useState(seccionModificar ? seccionModificar.SeccionNombre : null);
   const [contenido, setContenido] = useState(seccionModificar ? seccionModificar.SeccionContenido : null);
 
@@ -75,27 +75,35 @@ export function EditorRapidoSeccion(props) {
               </>
             }
             {seccionModificar ?
-            //ESTE EDITOR no modifica el contenido, para modificar ingresando en la seccion
+              //ESTE EDITOR no modifica el contenido, para modificar ingresando en la seccion
               <button
                 onClick={(e) => modificarSeccionActualizar(nombreSeccion, seccionModificar.SeccionId, seccionModificar.indice, e)}
                 className="btn btn-primary">
                 Modificar
               </button>
               :
-              <div className="botones-EditorSeccion">
-                <button
-                  type="submit"
-                  onClick={(event) => crearSeccionActualizar(capituloId, nombreSeccion, contenido, event)}
-                  className="btn btn-primary">
-                  Añadir Sección
-                </button>
-                <button
-                  type="submit"
-                  onClick={(event) => crearSeccionNavegar(capituloId, nombreSeccion, contenido, event)}
-                  className="btn btn-primary">
-                  Añadir en Editor Detallado
-                </button>
-              </div>
+              <>
+                {creandoSeccion ?
+                  <Spinner />
+                  :
+                  <>
+                    <div className="botones-EditorSeccion">
+                      <button
+                        type="submit"
+                        onClick={(event) => crearSeccionActualizar(capituloId, nombreSeccion, contenido, event)}
+                        className="btn btn-primary">
+                        Añadir Sección
+                      </button>
+                      <button
+                        type="submit"
+                        onClick={(event) => crearSeccionNavegar(capituloId, nombreSeccion, contenido, event)}
+                        className="btn btn-primary">
+                        Añadir en Editor Detallado
+                      </button>
+                    </div>
+                  </>
+                }
+              </>
             }
           </form >
         </div>
