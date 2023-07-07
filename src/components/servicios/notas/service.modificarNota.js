@@ -16,8 +16,8 @@ export const modificarNota = async (privateStatus, user, curso, notaName, titulo
       curso: curso,
       capitulo: titulo,
       seccion: seccion,
-      seccionId: seccionId,
-      capituloId: capituloId,
+      SeccionId: seccionId,
+      CapituloId: capituloId,
       contenido: contenido,
       name: notaName
     }),

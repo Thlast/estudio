@@ -16,8 +16,8 @@ export const agregarNota = async (privateStatus, curso, titulo, seccion, seccion
       curso: curso,
       capitulo: titulo,
       seccion: seccion,
-      seccionId: seccionId,
-      capituloId: capituloId,
+      SeccionId: seccionId,
+      CapituloId: capituloId,
       contenido: contenido,
       name: notaName
     }),
