@@ -33,7 +33,7 @@ export function Articulos(props) {
       // return formatoArticulo;
       return numeroArticulo
     }
-    else if (str.endsWith("lpt")) {
+    else if (str.endsWith("lpt") || str.endsWith("cm")) {
       const id = parseInt(str.match(/\d+/)[0]);
       // const paddedId = id ? id[0].padStart(4, '0') : '0000';
       // return `articulo${paddedId}____`;
@@ -94,6 +94,16 @@ export function Articulos(props) {
 
     }
 
+    else if (valorBuscar.endsWith("cm")) {
+      buscarArticulo(`toConvenioMultilateral`, `${formatArticleId(articulo)}`).then(data => {
+        setSeccionHtml(data.replace(patron, '<code>$1 CM</code>'))
+          setLey("convenioMultilateral")
+          setCargando(false)
+          setLinkLey("https://www.ca.gob.ar/convenio-multilateral-menu-pagina-legales")
+      })
+
+    }
+
     else if (valorBuscar.endsWith("lpt")) {
       if (valorBuscar.includes("dr")) {
         buscarArticulo("procedimientoDR", `${formatArticleId(articulo)}`).then(data => {
@@ -102,7 +112,8 @@ export function Articulos(props) {
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_001397_1979_06_12")
         })
-      } else {
+      } 
+      else {
 
         buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
           setSeccionHtml(data.replace(patron, '<code>$1 LPT</code>'))
