@@ -79,6 +79,79 @@ export function Perfil() {
         <div className='menuperfil'>
           <nav >
             <ul>
+              <br></br>
+              <li>
+                <SelectMateria />
+              </li>
+              <hr></hr>
+              <li>
+                {matPreferida == "impuestos" ?
+                  <>
+                    <Link
+                      draggable={false}
+                      className='perfil-boton'
+                      to={"/IA"}>
+                      Interactuar con la IA
+                    </Link>
+                    <hr></hr>
+                  </>
+                  :
+                  null
+                }
+              </li>
+              <li>
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to={"/menu/mis-notas"}>
+                  Mis notas
+                </Link>
+              </li>
+              <hr></hr>
+
+              <li>
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to="/menu/mis-preguntas">Mis preguntas
+                </Link>
+              </li>
+              <hr></hr>
+              <li>
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to="/menu/buscador">Buscador
+                </Link>
+              </li>
+              <hr></hr>
+              <li>
+              Enlaces:
+              </li>
+              <li>
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to="/examenes">Examenes
+                </Link>
+              </li>
+              <hr></hr>
+              <li>
+                <button
+                  className='perfil-boton'
+                  onClick={() => navigate("/calculadora-prestamos")}
+                > Calculadora prestamos
+                </button>
+              </li>
+              <hr></hr>
+              <li>
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
+                  to="/estados-contables">Estados contables
+                </Link>
+              </li>
+              <hr></hr>
               <li>
                 {editUser ?
                   <form>
@@ -117,6 +190,7 @@ export function Perfil() {
                   </div>}
               </li>
               <hr></hr>
+
               {mobile &&
                 <>
                   <button
@@ -176,83 +250,9 @@ export function Perfil() {
                   className='perfil-boton'
                   to={"/opcionesUsuario"}
                 >
-                  Confetti
+                  Configuracion
                 </Link>
               </li>
-              <hr></hr>
-              <li>
-                <SelectMateria />
-              </li>
-              <hr></hr>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/examenes">Examenes
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
-                {matPreferida == "impuestos" ?
-                  <>
-                    <Link
-                      draggable={false}
-                      className='perfil-boton'
-                      to={"/IA"}>
-                      Interactuar con la IA
-                    </Link>
-                    <hr></hr>
-                  </>
-                  :
-                  null
-                }
-              </li>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to={"/menu/mis-notas"}>
-                  Mis notas
-                </Link>
-              </li>
-              {/* <button
-                  className='perfil-boton'
-                  onClick={() => mostNotas()}>
-                  Mis notas
-                </button> */}
-
-              <hr></hr>
-
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/menu/mis-preguntas">Mis preguntas
-                </Link>
-              </li>
-              {/* <button
-                  className='perfil-boton'
-                  onClick={() => agregarPregunta()}
-                >
-                  Agregar Pregunta
-                </button> */}
-
-              <hr></hr>
-
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/menu/buscador">Buscador
-                </Link>
-              </li>
-              {/* <button
-                  className='perfil-boton'
-                  onClick={() => buscarPregunta()}
-                >
-                  Buscador
-                </button> */}
-
               <hr></hr>
               <li>
                 <button
@@ -261,45 +261,9 @@ export function Perfil() {
                 > Borrar historial
                 </button>
               </li>
-              <hr></hr>
-              <li>
-                <button
-                  className='perfil-boton'
-                  onClick={() => navigate("/calculadora-prestamos")}
-                > Calculadora prestamos
-                </button>
-              </li>
-              <hr></hr>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/estados-contables">Estados contables
-                </Link>
-              </li>
             </ul>
           </nav>
         </div>
-        {/* <div>
-          {
-            mostrarNotas &&
-            <MostrarNotas
-              curso={matPreferida}
-            />
-          }
-          {buscador &&
-            <Buscador />
-          }
-          <div style={ocultarPreguntas ? { display: "none" } : { display: "block" }}>
-            <MostrarPregunta
-              filtro={matPreferida}
-              curso={matPreferida}
-              perfil={true}
-              agregar={agregar}
-              edit={true}
-              mostrarPreguntas={mostrarPreguntas} />
-          </div>
-        </div> */}
       </main>
     </div>
   );
