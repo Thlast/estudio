@@ -6,11 +6,30 @@
     max-height: 100%;
     position: relative;
 }
+.contenedorSVGFull {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+  background-color: var(--body-color);
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  overflow-y: hidden;
+}
 
 .contenedorSVG svg {
+  background-color: var(--body-color);
   user-select: none;
   width: 100%;
   max-height: 100vh;
+}
+.contenedorSVGFull svg {
+  background-color: var(--body-color);
+  user-select: none;
+  width: 100%;
+  height: 100%;
 }
 .contenedorEditarSVG {
   display: flex;
@@ -44,13 +63,17 @@
   display: flex;
 }
 .centericon {
-  right: 15px;
+  right: 25px;
   top: 15px;
   position: absolute;
   height: 25px;
   border: none;
   background: none;
   width: fit-content;
+}
+.centericon:hover::before {
+  background-color: var(--text-color);
+  transition:  all .5s;
 }
 .centericon::before {
   content: "";
@@ -100,5 +123,71 @@
       opacity: 0.5;
       box-shadow: 0 0 10px #f9ca24;
     }
+  }
+
+  .fullscreenButton {
+    position: absolute;
+    top:  3px;
+    right:  50px;
+    background: none;
+    border:  0;
+    width:  40px;
+    height:  40px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transition:  transform .3s;
+    font-size: 0;
+    opacity: 1;
+    pointer-events: auto;
+    cursor:  pointer;
+  }
+  .fullscreenButton:hover {
+    transform: scale(1.125);
+  }
+  .fullscreenButton span {
+    width:  4px;
+    height:  4px;
+    border-top:  2.5px solid var(--text-color); /* color */
+    border-left:  2.5px solid var(--text-color); /* color */
+    position: absolute;
+    outline: 1px solid transparent;
+    /* -webkit-backface-visibility: hidden; */
+    transform: translateZ(0);
+    will-change: transform;
+    /* -webkit-perspective: 1000; */
+    transition:  .3s;
+    transition-delay: .75s;
+  }
+  .fullscreenButton span:nth-child(1) {
+    top: 15px;
+    left: 15px;
+  }
+  .fullscreenButton span:nth-child(2) {
+    top: 15px;
+    left: 30px;
+    transform: rotate(90deg);
+  }
+  .fullscreenButton span:nth-child(3) {
+    top: 30px;
+    left: 15px;
+    transform: rotate(-90deg);
+  }
+  .fullscreenButton span:nth-child(4) {
+    top: 30px;
+    left: 30px;
+    transform: rotate(-180deg);
+  }
+
+  .fullscreenLeftButton {
+    position: relative;
+    color: var(--text-color);
+    background: none;
+    border:  0;
+    width:  40px;
+    height:  40px;
+    box-sizing: border-box;
+    transition:  transform .3s;
+    pointer-events: auto;
+    cursor:  pointer;
   }
   

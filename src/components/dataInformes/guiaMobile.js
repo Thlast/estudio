@@ -17,39 +17,31 @@ export function SVGZoomMobile(props) {
   useEffect(() => {
     funcionSeccionId(gRef)
   }, [])
-  // //funcion que da funcionalidad a las id de las secciones
-  // useEffect(() => {
-  //   if (render) {
 
-  //     const gElement = gRef.current;
-  //     const elements = gElement.querySelectorAll('[id]');
-
-  //     for (let i = 0; i < elements.length; i++) {
-  //       elements[i].classList.add("remarcarSecciones")
-  //       elements[i].onclick = function () {
-  //         pasarSeccionId(elements[i].id);
-  //       }
+  //NO ANDA BIEN EN MOBILE EL TEMA DE AMPLIAR PANTALLA
+  // const toggleFullScreen = () => {
+  //   if (!document.fullscreenElement) {
+  //     if (svgRef.current.requestFullscreen) {
+  //       svgRef.current.requestFullscreen();
+  //     } else if (svgRef.current.mozRequestFullScreen) { // Firefox
+  //       svgRef.current.mozRequestFullScreen();
+  //     } else if (svgRef.current.webkitRequestFullscreen) { // Chrome, Safari y Opera
+  //       svgRef.current.webkitRequestFullscreen();
+  //     } else if (svgRef.current.msRequestFullscreen) { // Internet Explorer/Edge
+  //       svgRef.current.msRequestFullscreen();
   //     }
-  //     recargarFuncionClickcode()
+  //   } else {
+  //     if (document.exitFullscreen) {
+  //       document.exitFullscreen();
+  //     } else if (document.mozCancelFullScreen) { // Firefox
+  //       document.mozCancelFullScreen();
+  //     } else if (document.webkitExitFullscreen) { // Chrome, Safari y Opera
+  //       document.webkitExitFullscreen();
+  //     } else if (document.msExitFullscreen) { // Internet Explorer/Edge
+  //       document.msExitFullscreen();
+  //     }
   //   }
-
-  // }, [render])
-
-  // useEffect(() => {
-
-  //   getSVGfromMongo(capituloId).then(data => {
-  //     if (data[0]) {
-  //       // setIdDiagrama(data[0].id)
-  //       // setLinkEditar(data[0].linkEditar)
-  //       setRender(data[0].elementoG)
-  //     } else {
-  //       // setIdDiagrama()
-  //       // setLinkEditar()
-  //       setRender()
-  //     }
-  //   })
-
-  // }, [capituloId])
+  // };
 
 
   const centrarEnSeccion = () => {
@@ -59,22 +51,6 @@ export function SVGZoomMobile(props) {
     }
   }
 
-  // const encontrarSeccion = () => {
-  //   setTimeout(() => {
-  //     const elementToCenter = document.getElementById(seccion)
-
-  //     //quito las clases anteriores secciones
-  //     if (document.querySelector(".encontrarSeccion")) {
-  //       document.querySelector(".encontrarSeccion")?.classList.remove("encontrarSeccion")
-  //     }
-  //     //agrego clase a la nueva y centro la vista
-  //     if (document.getElementById(seccion)) {
-  //       elementToCenter?.classList.add("encontrarSeccion")
-
-  //     }
-
-  //   }, 100)
-  // }
 
   useEffect(() => {
 
@@ -157,6 +133,15 @@ export function SVGZoomMobile(props) {
         className={style.centericon}
         onClick={() => centrarEnSeccion()}
       ></button>
+      {/* <button
+        className={style.fullscreenButton}
+        onClick={toggleFullScreen}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button> */}
       <svg
         style={{ touchAction: "none" }}
         ref={svgRef}

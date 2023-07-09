@@ -13,6 +13,7 @@ import { precargarSVG } from '../servicios/SVGservicios/precargarSVG';
 
 export function SVGZoom(props) {
 
+  const [fullScreen, setFullScreen] = useState(true)
   const [mostrarCurso, setMostrarCurso] = useState(true)
   const { mobile } = useContext(UserConfig)
   const { datosUser } = useAuth()
@@ -38,6 +39,31 @@ export function SVGZoom(props) {
   const [cargando, setCargando] = useState(false)
   const [modificar, setModificar] = useState(false)
 
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      if (svgRef.current.requestFullscreen) {
+        svgRef.current.requestFullscreen();
+      } else if (svgRef.current.mozRequestFullScreen) { // Firefox
+        svgRef.current.mozRequestFullScreen();
+      } else if (svgRef.current.webkitRequestFullscreen) { // Chrome, Safari y Opera
+        svgRef.current.webkitRequestFullscreen();
+      } else if (svgRef.current.msRequestFullscreen) { // Internet Explorer/Edge
+        svgRef.current.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) { // Firefox
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) { // Chrome, Safari y Opera
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { // Internet Explorer/Edge
+        document.msExitFullscreen();
+      }
+    }
+  };
+
+
   //funcion que da funcionalidad a las id de las secciones
   const funcionSeccionId = () => {
     if (render) {
@@ -56,7 +82,9 @@ export function SVGZoom(props) {
   }
   useEffect(() => {
     funcionSeccionId()
+
   }, [mostrarCurso, capituloId, renderCurso, renderCapitulo])
+
 
   const actualizarEsquema = async (idDiagram, linkEdit, link) => {
     //pedimos el ultimo
@@ -230,6 +258,10 @@ export function SVGZoom(props) {
     centrarEnSeccion()
   }, [seccion])
 
+  useEffect(() => {
+    recargarFuncionClickcode()
+  }, [render])
+
   const handleWheel = (event) => {
     //event.preventDefault();
     const delta = event.deltaY;
@@ -264,6 +296,7 @@ export function SVGZoom(props) {
     setIsPanning(true);
 
   }
+
   function handleMouseMove(event) {
 
     if (isPanning) {
@@ -380,7 +413,7 @@ export function SVGZoom(props) {
         <div
         >
           <div
-            className={style.contenedorSVG}>
+            className={fullScreen ? style.contenedorSVGFull : style.contenedorSVG}>
             {!mobile ?
               <div
                 onMouseEnter={() => isZooming(true)}
@@ -399,6 +432,21 @@ export function SVGZoom(props) {
                   className={style.centericon}
                   onClick={() => centrarEnSeccion()}
                 ></button>
+                <button
+                  className={style.fullscreenLeftButton}
+                  onClick={() => setFullScreen(!fullScreen)}
+                >
+                  {fullScreen ? <>&#129047;&#129047;</> : <>&#129045;&#129045;</>}
+                </button>
+                <button
+                  className={style.fullscreenButton}
+                  onClick={toggleFullScreen}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+
+                </button>
 
                 <svg
                   ref={svgRef}
