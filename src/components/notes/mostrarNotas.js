@@ -22,8 +22,10 @@ export function MostrarNotas(props) {
   const { obtenerQnotes } = props;
   const [modificar, setModificar] = useState(false);
   const [notaModificar, setNotaModificar] = useState()
+  const { obtenerContenidoNotas } = props;
 
   const notaModificada = async (privateStatus, usuario, curso, notaName, titulo, seccion, seccionId, capituloId, contenido, idNotaModificar, indice, e) => {
+
     try {
       let notaModif = null
       await modificarNota(privateStatus, usuario, curso, notaName, titulo, seccion, seccionId, capituloId, contenido, idNotaModificar, e).then(response =>
@@ -92,7 +94,7 @@ export function MostrarNotas(props) {
 
     }
 
-  }, [curso, seccion])
+  }, [curso, seccion, seccionId])
 
   const irModificarNota = (n, i) => {
     setModificar(!modificar)
@@ -104,8 +106,6 @@ export function MostrarNotas(props) {
     setModificar(false)
 
   }
-  const { obtenerContenidoNotas } = props;
-
 
   return (
     <>
