@@ -138,7 +138,7 @@ export function FormModificarPregunta(props) {
                   value={datosmodificar.datosPregunta.correcta}
                   onChange={datosmodificar.handleChange}
                   name="correcta"
-                  class=""
+                  class="home-boton"
                   for="correcta">
                   <option>
                     a
