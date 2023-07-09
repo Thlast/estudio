@@ -69,7 +69,6 @@ export function Secciones() {
   }
   useEffect(() => {
     cargarPagina()
-
   }, [id])
 
   const previsualizar = (contenido) => {
@@ -101,6 +100,7 @@ export function Secciones() {
   //funcion para actualizar los codes
   const recargarFuncionClickcode = () => {
     setCodes(document.querySelectorAll('code'))
+    // console.log("ejecutado")
   }
 
   useEffect(() => {
@@ -460,6 +460,7 @@ export function Secciones() {
                     <blockquote>
                       Anotaciones:
                     </blockquote>
+                    <div className="footnotes">
                     {notes?.map(n => {
                       return (
                         <ReactMarkdown key={"notaTexto-" + n.id}>
@@ -467,6 +468,7 @@ export function Secciones() {
                         </ReactMarkdown>
                       )
                     })}
+                    </div>
                   </div>
                   <hr></hr>
                 </div>
