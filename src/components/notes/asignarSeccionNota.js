@@ -31,7 +31,7 @@ export function AsignarSeccionNota(props) {
 
   }, [])
 
- 
+
   return (
     <>
       <div className="buscadorBotones">

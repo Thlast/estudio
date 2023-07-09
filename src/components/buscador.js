@@ -120,7 +120,7 @@ export const Buscador = (props) => {
   };
   const regexValorEnviado = new RegExp(`(${valorEnviado})`, 'gi');
   const regexValorAlternativo = new RegExp(`(${valorAlternativo})`, 'gi');
-  
+
   return (
     <div className={perfil ? "menuContenedor" : ""}>
       <div
@@ -272,15 +272,14 @@ export const Buscador = (props) => {
 
                                 </ReactMarkdown>
 
-                                {/* <CustomMarkdownRenderer source={res.SeccionContenido.replace(valorEnviado, `&${valorEnviado}&`)} /> */}
                               </div>
                             </div>
                           )
                         })
-
-
                       }
-                    </> : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>}
+                    </> 
+                    : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>
+                }
               </> :
                 <>
                   <p>Aparece en las siguientes secciones:</p>
