@@ -29,7 +29,16 @@ export function ConfettiOptions() {
     { label: '💥', value: '💥' },
     { label: '✨', value: '✨' },
     { label: '💫', value: '💫' },
-    { label: '🌸', value: '🌸' }
+    { label: '🌸', value: '🌸' },
+    { label: '💯', value: '💯' },
+    { label: '🍂', value: '🍂' },
+    { label: '🌺', value: '🌺' },
+    { label: '🌻', value: '🌻' },
+    { label: '🌼', value: '🌼' },
+    { label: '🌷', value: '🌷' },
+    { label: '💐', value: '💐' },
+    { label: '🎉', value: '🎉' },
+    { label: '🎊', value: '🎊' }
   ];
 
   const probarConfetti = () => {
@@ -51,8 +60,12 @@ export function ConfettiOptions() {
   }
 //console.log(selectedIcons)
   return (
-    <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px" }}>
-      Configura tu confetti:
+    <div className='confetti-container'>
+    <div 
+    // style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px" }}
+    >
+      Personalizar alertas:
+      <div className='actual-desactivar'>
       <label>
         Desactivado:{" "}
         <input
@@ -76,6 +89,8 @@ export function ConfettiOptions() {
         :
         null
       }
+      </div>
+      <div className='confetti-icons'>
       {icons?.map((icon) => (
         <label key={icon.value}>
           <input
@@ -88,6 +103,7 @@ export function ConfettiOptions() {
           {icon.label}
         </label>
       ))}
+      </div>
       <div style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
         <button
           className='boton home-boton'
@@ -102,6 +118,7 @@ export function ConfettiOptions() {
           Guardar
         </button>
       </div>
+    </div>
     </div>
   );
 }
