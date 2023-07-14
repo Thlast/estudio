@@ -36,7 +36,7 @@ export function Consola(props) {
     }
 
 
-    if (dic !== "" & !(dic.includes("artículo") || dic.includes("articulo") || dic.includes("rt")) ) {
+    if (dic !== "" & !(dic.includes("artículo") || dic.includes("articulo") || dic.includes("rt"))) {
       buscarConsolaSQL(curso, dic)
         .then(data => {
           setDatosSeccion(data)
@@ -103,6 +103,15 @@ export function Consola(props) {
 
   const [mostrarConsola, setMostrarConsola] = useState(true)
 
+  const mostrarResultado = (cap) => {
+    if(document.getElementById(`resultado-${cap}`).style.display == "none") {
+      document.getElementById(`resultado-${cap}`).style.display = "block"
+    }
+    else if(document.getElementById(`resultado-${cap}`).style.display == "block") {
+      document.getElementById(`resultado-${cap}`).style.display = "none"
+    }
+  }
+
   return (
     <>
       {mobile ? null :
@@ -110,9 +119,9 @@ export function Consola(props) {
           style={{ textAlign: "right" }}
         >
           <button
-            className='boton home-boton'
+            className="botonConsola"
             onClick={() => setMostrarConsola(!mostrarConsola)}>
-            {mostrarConsola ? "Cerrar Consola" : "Abrir Consola"}
+            {mostrarConsola ? <>&#x2191; Ocultar</> : <>&#x2193; Consola</>}
           </button>
         </div>
       }
@@ -173,24 +182,34 @@ export function Consola(props) {
                     <div
                       key={"consola" + buscarSeccionId}
                       class="show-element">
-                      <h2>{s.CapituloNombre}: {s.SeccionNombre}</h2>
-                      <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}>
-                        {s.SeccionContenido}
-                      </ReactMarkdown>
-                      <br></br>
-                      <blockquote>Link a la sección:
-                        <em
-                          style={{ textDecoration: "underline" }}>
-                          <a
-                            target="_blank"
-                            href={`${url}/cursosSQL/${curso}/${s.CapituloId}/${s.CapituloNombre}/${s.SeccionId}`}>
-                            {" "}{s.SeccionNombre}
-                          </a>
-                        </em>
-                      </blockquote>
+                      <button
+                        onClick={() => mostrarResultado(s.CapituloId)}
+                        className='titulosBuscador'
+                      >
+                        <h3>&#x2191;&#x2193;{" "}{s.CapituloNombre}: {s.SeccionNombre}</h3>
+                      </button>
+                      <div
+                      className='show-element'
+                        id={`resultado-${s.CapituloId}`}
+                        style={{ display: "none" }}
+                      >
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}>
+                          {s.SeccionContenido}
+                        </ReactMarkdown>
+                        <br></br>
+                        <blockquote>Link a la sección:
+                          <em
+                            style={{ textDecoration: "underline" }}>
+                            <a
+                              target="_blank"
+                              href={`${url}/cursosSQL/${curso}/${s.CapituloId}/${s.CapituloNombre}/${s.SeccionId}`}>
+                              {" "}{s.SeccionNombre}
+                            </a>
+                          </em>
+                        </blockquote>
+                      </div>
                       <hr></hr>
-
                     </div>
                   )
                 })}

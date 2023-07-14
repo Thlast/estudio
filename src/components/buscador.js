@@ -317,6 +317,7 @@ export const Buscador = (props) => {
           }
         </div>
       }
+      <hr></hr>
     </div>
   )
 }

@@ -77,7 +77,7 @@
   position: relative;
   top: -30px;
   left: -1.74px;
-  z-index: 2;
+  z-index: 3;
   color: var(--text-color);
   font-weight: 300px;
   font-size: 17px;
@@ -110,7 +110,7 @@
   padding: 0;
   margin: 0;
   right: 19px;
-  z-index: 2;
+  z-index: 3;
   transition: transform 0.5s ease;
 }
 
@@ -120,7 +120,7 @@
   /* Ajusta esta propiedad según sea necesario */
   left: -1.74px;
   /* Ajusta esta propiedad según sea necesario */
-  z-index: 2;
+ 
   color: var(--text-color);
   font-weight: 300px;
   font-size: 17px;

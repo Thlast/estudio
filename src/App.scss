@@ -211,6 +211,60 @@ input {
   text-align: center;
 }
 
+// .titulosBuscador {
+//   background: none;
+//   border: none;
+//   color: var(--text-color);
+// }
+// .titulosBuscador:hover {
+//   color: #07c9ff;
+//   animation: colorize 2s ease-in-out infinite;
+//   background: linear-gradient(to right, transparent); /* Cambia el color a tu gusto */
+//   animation: slide-color 2s linear infinite;
+// }
+
+.titulosBuscador {
+  background: none;
+  border: none;
+  color: var(--text-color);
+}
+.titulosBuscador:hover {
+  display: inline-block;
+  background-image: linear-gradient(to right, var(--text-color), var(--link-hover));
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: animateTitle 1s forwards;
+}
+
+@keyframes animateTitle {
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: 0% center;
+    color: var(--link-hover);
+  }
+}
+
+// @keyframes colorize {
+//   0% {
+//     color: transparent;
+//     text-shadow: 0 0 10px #fff;
+//   }
+//   50% {
+//     color: #ff0000; /* Cambia el color a tu gusto */
+//     text-shadow: 0 0 10px #ff0000; /* Cambia el color a tu gusto */
+//   }
+//   100% {
+//     color: transparent;
+//     text-shadow: 0 0 10px #fff;
+//   }
+// }
+
+
 .resultadosBuscador a {
   text-decoration: none;
   color: var(--text-color);
@@ -593,7 +647,15 @@ h5 {
   background-color: var(--container-color);
   padding: 10px;
 }
-
+.botonConsola {
+  color: var(--text-color);
+  background-color: var(--container-color);
+  border: none;
+}
+.botonConsola:hover {
+  background-color: var(--text-color);
+  color: var(--container-color);
+}
 .consola a {
   text-decoration: underline !important;
 }
