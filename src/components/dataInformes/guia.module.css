@@ -62,8 +62,14 @@
   color: var(--text-color);
   display: flex;
 }
+
+.zoom:hover {
+  transform: scale(1.2); /* Aumenta la escala en un 20% */
+  transition: transform 0.1s;
+}
+
 .centericon {
-  right: 25px;
+  right: 125px;
   top: 15px;
   position: absolute;
   height: 25px;
@@ -128,7 +134,7 @@
   .fullscreenButton {
     position: absolute;
     top:  3px;
-    right:  50px;
+    right:  150px;
     background: none;
     border:  0;
     width:  40px;
@@ -145,8 +151,8 @@
     transform: scale(1.125);
   }
   .fullscreenButton span {
-    width:  4px;
-    height:  4px;
+    width:  5px;
+    height:  5px;
     border-top:  2.5px solid var(--text-color); /* color */
     border-left:  2.5px solid var(--text-color); /* color */
     position: absolute;
@@ -156,7 +162,7 @@
     will-change: transform;
     /* -webkit-perspective: 1000; */
     transition:  .3s;
-    transition-delay: .75s;
+    
   }
   .fullscreenButton span:nth-child(1) {
     top: 15px;
@@ -178,16 +184,58 @@
     transform: rotate(-180deg);
   }
 
-  .fullscreenLeftButton {
+  .fullscreenLeftButtonActivo {
     position: relative;
     color: var(--text-color);
     background: none;
     border:  0;
+    padding: 0;
+    font-size: 20px;
     width:  40px;
     height:  40px;
     box-sizing: border-box;
     transition:  transform .3s;
     pointer-events: auto;
     cursor:  pointer;
+    
+  }
+
+  .fullscreenLeftButtonActivo::after {
+    content: "🠕🠗";
+  }
+  .fullscreenLeftButtonActivo:hover::after {
+    content: "🠗🠗";
   }
   
+  .fullscreenLeftButtonActivo:hover {
+    transform: scale(1.3); /* Aumenta la escala en un 20% */
+    transition: transform 0.5s;
+  }
+  .fullscreenLeftButton {
+    position: relative;
+    color: var(--text-color);
+    background: none;
+    border:  0;
+    padding: 0;
+    font-size: 20px;
+    width:  40px;
+    height:  40px;
+    box-sizing: border-box;
+    transition:  transform .3s;
+    pointer-events: auto;
+    cursor:  pointer;
+    
+  }
+
+  .fullscreenLeftButton::after {
+    content: "🠕🠗";
+  }
+  .fullscreenLeftButton:hover::after {
+    content: "🠕🠕";
+  }
+  
+  
+  .fullscreenLeftButton:hover {
+    transform: scale(1.3); /* Aumenta la escala en un 20% */
+    transition: transform 0.5s;
+  }

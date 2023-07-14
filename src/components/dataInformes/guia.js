@@ -433,10 +433,10 @@ export function SVGZoom(props) {
                   onClick={() => centrarEnSeccion()}
                 ></button>
                 <button
-                  className={style.fullscreenLeftButton}
+                  className={fullScreen ? style.fullscreenLeftButtonActivo : style.fullscreenLeftButton}
                   onClick={() => setFullScreen(!fullScreen)}
                 >
-                  {fullScreen ? <>&#129047;&#129047;</> : <>&#129045;&#129045;</>}
+                  {/* {fullScreen ? <>&#129047;&#129045;</> : <>&#129045;&#129047;</>} */}
                 </button>
                 <button
                   className={style.fullscreenButton}
