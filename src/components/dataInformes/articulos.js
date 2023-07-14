@@ -33,7 +33,7 @@ export function Articulos(props) {
       // return formatoArticulo;
       return numeroArticulo
     }
-    else if (str.endsWith("lpt") || str.endsWith("cm")) {
+    else if (str.endsWith("lpt") || str.endsWith("cm") || str.endsWith("rs")) {
       const id = parseInt(str.match(/\d+/)[0]);
       // const paddedId = id ? id[0].padStart(4, '0') : '0000';
       // return `articulo${paddedId}____`;
@@ -80,7 +80,7 @@ export function Articulos(props) {
 
     let patron = /(artículo\s+(\d+)(?:º)?)(?!(\sde\s+la\sLey|\sde\seste\sartículo|\d))/g;
 
-
+//DECRETOS
     if (valorBuscar.endsWith("dr")) {
       buscarArticulo(`dr${ley}`, `${formatArticleId(articulo)}`).then(data => {
         let patronDR = /(artículo\s+(\d+)(?:º)?)(?=\s+de\seste\sdecreto\b)/gi
@@ -93,7 +93,7 @@ export function Articulos(props) {
       setLinkLey(link);
 
     }
-
+//CONVENIO MULTILATERAL
     else if (valorBuscar.endsWith("cm")) {
       buscarArticulo(`toConvenioMultilateral`, `${formatArticleId(articulo)}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1 CM</code>'))
@@ -103,7 +103,27 @@ export function Articulos(props) {
       })
 
     }
+//MONOTRIBUTO
+else if (valorBuscar.endsWith("rs")) {
+  if (valorBuscar.includes("dr")) {
+    buscarArticulo("drMonotributo", `${formatArticleId(articulo)}`).then(data => {
+      setSeccionHtml(data.replace(patron, '<code>$1 DR RS</code>'))
+      setLey("Monotributo")
+      setCargando(false)
+      setLinkLey("http://biblioteca.afip.gob.ar/dcp/LEY_C_024977_1998_06_03")
+    })
+  } 
+  else {
 
+    buscarArticulo("toMonotributo", `${formatArticleId(articulo)}`).then(data => {
+      setSeccionHtml(data.replace(patron, '<code>$1 RS</code>'))
+      setLey("Monotributo")
+      setCargando(false)
+      setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_000001_2010_01_04")
+    })
+  }
+}
+//PROCEDIMIENTO TRIBUTARIO
     else if (valorBuscar.endsWith("lpt")) {
       if (valorBuscar.includes("dr")) {
         buscarArticulo("procedimientoDR", `${formatArticleId(articulo)}`).then(data => {
@@ -114,7 +134,6 @@ export function Articulos(props) {
         })
       } 
       else {
-
         buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
           setSeccionHtml(data.replace(patron, '<code>$1 LPT</code>'))
           setLey("procedimiento tributario")
@@ -122,10 +141,9 @@ export function Articulos(props) {
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/TOR_C_011683_1998_07_13")
         })
       }
-
-      //setSeccionHtml(getSectionById(procedimientoTributario, `${formatArticleId(articulo)}`))
     }
-    // si tengo una rt
+
+    // RESOLUCIONES TECNICAS
     else if (valorBuscar.startsWith("rt")) {
       buscarRT(getRTNumber(articulo), articulo).then(data => {
         setSeccionHtml(data)
@@ -134,6 +152,7 @@ export function Articulos(props) {
       })
 
     }
+
     else {
       buscarArticulo(`to${ley}`, `${formatArticleId(articulo)}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1</code>'))
