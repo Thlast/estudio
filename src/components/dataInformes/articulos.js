@@ -11,6 +11,27 @@ export function Articulos(props) {
   const [linkLey, setLinkLey] = useState("")
   const [linkRT, setLinkRT] = useState("")
   const [cargando, setCargando] = useState(false)
+  const [articuloNumero, setArticuloNumero] = useState()
+  const [articuloBuscar, setArticuloBuscar] = useState(articuloNumero)
+
+  useEffect(() => {
+    setArticuloNumero(Number(formatArticleId(articulo)))
+    setArticuloBuscar(Number(formatArticleId(articulo)))
+  }, [articulo])
+
+  const buscarSiguiente = () => {
+    setArticuloNumero(prevState => prevState+1)
+  }
+  const buscarAnterior = () => {
+    if(articuloNumero > 1) {
+      setArticuloNumero(prevState => prevState-1)
+    }
+  }
+  const buscadorArticulo = (e) => {
+    e.preventDefault()
+    setArticuloNumero(Number(articuloBuscar))
+  }
+
 
   const linkDR = [
     { ley: "Ganancias", link: "http://biblioteca.afip.gob.ar/dcp/DEC_C_000862_2019_12_06" },
@@ -82,20 +103,20 @@ export function Articulos(props) {
 
 //DECRETOS
     if (valorBuscar.endsWith("dr")) {
-      buscarArticulo(`dr${ley}`, `${formatArticleId(articulo)}`).then(data => {
+      buscarArticulo(`dr${ley}`, `${articuloNumero}`).then(data => {
         let patronDR = /(artículo\s+(\d+)(?:º)?)(?=\s+de\seste\sdecreto\b)/gi
         //setSeccionHtml(data.replace(/artículo\s+(\d+)(?:º)?\s+de\s+la\s+ley/g, '<code>artículo $1</code> de la ley').replace(patronDR, '<code>$1$</code>3'))
         setSeccionHtml(data.replace(/artículo\s+(\d+)(?:º)?\s+de\s+la\s+ley/g, '<code>artículo $1</code> de la ley').replace(patronDR, '<code>$1 dr</code>'))
         setCargando(false)
       })
-      //setSeccionHtml(getSectionById(decretoReglamentario, `${formatArticleId(articulo)}`))
+      //setSeccionHtml(getSectionById(decretoReglamentario, `${articuloNumero}`))
       let link = linkDR.filter(l => l.ley === ley).flatMap(l => l.link);
       setLinkLey(link);
 
     }
 //CONVENIO MULTILATERAL
     else if (valorBuscar.endsWith("cm")) {
-      buscarArticulo(`toConvenioMultilateral`, `${formatArticleId(articulo)}`).then(data => {
+      buscarArticulo(`toConvenioMultilateral`, `${articuloNumero}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1 CM</code>'))
           setLey("convenioMultilateral")
           setCargando(false)
@@ -106,7 +127,7 @@ export function Articulos(props) {
 //MONOTRIBUTO
 else if (valorBuscar.endsWith("rs")) {
   if (valorBuscar.includes("dr")) {
-    buscarArticulo("drMonotributo", `${formatArticleId(articulo)}`).then(data => {
+    buscarArticulo("drMonotributo", `${articuloNumero}`).then(data => {
       setSeccionHtml(data.replace(patron, '<code>$1 DR RS</code>'))
       setLey("Monotributo")
       setCargando(false)
@@ -115,7 +136,7 @@ else if (valorBuscar.endsWith("rs")) {
   } 
   else {
 
-    buscarArticulo("toMonotributo", `${formatArticleId(articulo)}`).then(data => {
+    buscarArticulo("toMonotributo", `${articuloNumero}`).then(data => {
       setSeccionHtml(data.replace(patron, '<code>$1 RS</code>'))
       setLey("Monotributo")
       setCargando(false)
@@ -126,7 +147,7 @@ else if (valorBuscar.endsWith("rs")) {
 //PROCEDIMIENTO TRIBUTARIO
     else if (valorBuscar.endsWith("lpt")) {
       if (valorBuscar.includes("dr")) {
-        buscarArticulo("procedimientoDR", `${formatArticleId(articulo)}`).then(data => {
+        buscarArticulo("procedimientoDR", `${articuloNumero}`).then(data => {
           setSeccionHtml(data.replace(patron, '<code>$1 DR LPT</code>'))
           setLey("procedimiento tributario")
           setCargando(false)
@@ -134,7 +155,7 @@ else if (valorBuscar.endsWith("rs")) {
         })
       } 
       else {
-        buscarArticulo("procedimiento", `${formatArticleId(articulo)}`).then(data => {
+        buscarArticulo("procedimiento", `${articuloNumero}`).then(data => {
           setSeccionHtml(data.replace(patron, '<code>$1 LPT</code>'))
           setLey("procedimiento tributario")
           setCargando(false)
@@ -154,23 +175,23 @@ else if (valorBuscar.endsWith("rs")) {
     }
 
     else {
-      buscarArticulo(`to${ley}`, `${formatArticleId(articulo)}`).then(data => {
+      buscarArticulo(`to${ley}`, `${articuloNumero}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1</code>'))
         setCargando(false)
       })
-      //setSeccionHtml(getSectionById(articulosImpuestoALasGanancias, `${formatArticleId(articulo)}`))
+      //setSeccionHtml(getSectionById(articulosImpuestoALasGanancias, `${articuloNumero}`))
       let link = linkDeLey.filter(l => l.ley === ley).flatMap(l => l.link);
       setLinkLey(link);
 
     }
 
-  }, [articulo])
+  }, [articulo, articuloNumero])
 
   useEffect(() => {
     if (!cargando && recargarFuncionClickcode) {
       recargarFuncionClickcode()
     }
-  }, [cargando])
+  }, [cargando, articulo, sectionHtml])
 
   return (
     <>
@@ -194,6 +215,14 @@ else if (valorBuscar.endsWith("rs")) {
             :
             null
           }
+          <div className="buscadorArticulos" style={{textAlign: "center"}}>
+          <button className="home-botonbuscar" onClick={() => buscarAnterior()}>{"<"}</button>
+          <form onSubmit={(e) => buscadorArticulo(e)}>
+          <input type="number" value={articuloBuscar} onChange={(e) => setArticuloBuscar(e.target.value)}></input>
+          <button className="home-botonbuscar" type="submit">🔎</button>
+          </form>
+          <button className="home-botonbuscar" onClick={() => buscarSiguiente()}>{">"}</button>
+          </div>
           {linkRT ?
             <>
               <em

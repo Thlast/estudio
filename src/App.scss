@@ -347,10 +347,15 @@ input {
 }
 
 .home-botonbuscar {
+  color: var(--text-color);
   background: none;
   border: none;
   padding: 0 0 0 5px;
   font-size: 18px;
+}
+.home-botonbuscar:hover {
+  transform: scale(1.2);
+
 }
 
 .home-multiple {
@@ -1813,4 +1818,16 @@ a:hover>svg {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--light-text-color); /* Color del pulgar de la barra de desplazamiento al pasar el ratón por encima */
+}
+
+.buscadorArticulos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+}
+.buscadorArticulos input{
+  width: 70px;
 }
