@@ -61,9 +61,9 @@ export const WindowSplitter = ({ Left, Right }) => {
     }, []);
     return (
         <>
-        <div className= "split left" id= "left" ref= {leftRef} style={{ width: "50%"}}>{Left}</div>
-        <div className= "split right" id= "right" ref= {rightRef} style={{width: "50%"}}>{Right}</div>
-        <div className= "split separator" id= "separator" ref={separatorRef} style={{left: `50%`}}></div>
+        <div className= "split left" id= "left" ref= {leftRef} style={{ width: "calc(50%)"}}>{Left}</div>
+        <div className= "split right" id= "right" ref= {rightRef} style={{width: "calc(50%)"}}>{Right}</div>
+        <div className= "split separator" id= "separator" ref={separatorRef} style={{left: `calc(50%)`}}></div>
 
         </>
     )

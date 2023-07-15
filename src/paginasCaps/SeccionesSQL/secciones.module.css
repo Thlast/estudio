@@ -75,7 +75,7 @@
 
 .pin span {
   position: relative;
-  top: -30px;
+  top: -25px;
   left: -1.74px;
   z-index: 3;
   color: var(--text-color);
@@ -116,7 +116,7 @@
 
 .pinSeleccionado span {
   position: relative;
-  top: -30px;
+  top: -25px;
   /* Ajusta esta propiedad según sea necesario */
   left: -1.74px;
   /* Ajusta esta propiedad según sea necesario */

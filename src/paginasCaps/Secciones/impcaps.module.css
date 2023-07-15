@@ -70,7 +70,7 @@
 }
 .pin span {
   position: relative;
-  top: -30px; /* Ajusta esta propiedad según sea necesario */
+  top: -25px; /* Ajusta esta propiedad según sea necesario */
   left: -1.74px; /* Ajusta esta propiedad según sea necesario */
   z-index: 2;
   color: var(--text-color);
@@ -104,7 +104,7 @@
 }
 .pinSeleccionado span {
   position: relative;
-  top: -30px; /* Ajusta esta propiedad según sea necesario */
+  top: -25px; /* Ajusta esta propiedad según sea necesario */
   left: -1.74px; /* Ajusta esta propiedad según sea necesario */
   z-index: 2;
   color: var(--text-color);

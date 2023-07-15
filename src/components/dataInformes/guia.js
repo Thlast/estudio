@@ -13,9 +13,10 @@ import { precargarSVG } from '../servicios/SVGservicios/precargarSVG';
 
 export function SVGZoom(props) {
 
-  const [fullScreen, setFullScreen] = useState(true)
+  
   const [mostrarCurso, setMostrarCurso] = useState(true)
   const { mobile } = useContext(UserConfig)
+  const [fullScreen, setFullScreen] = useState(!mobile) //si es mobile arranca en false y no se puede modificar
   const { datosUser } = useAuth()
   const [scale, setScale] = useState(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });

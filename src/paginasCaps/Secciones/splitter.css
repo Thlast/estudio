@@ -1,8 +1,8 @@
 /* Split the screen */
 .split {
-    height: calc(100% - 67px);
+    height: calc(100% - 62.5px);
     position: fixed;
-    top: 67px;
+    top: 62.5px;
     overflow-x: hidden;
     
   }
@@ -15,14 +15,14 @@
   
   /* Control the right side */
   .right {
-    right: -10px;
+    right: 0;
     background-color:var(--body-color);
   }
   
   /* Separator between Left and Right components */
   .separator {
     cursor: col-resize;
-    background-color: #aaa;
+    background-color: #a39f9f;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='30'><path d='M2 0 v30 M5 0 v30 M8 0 v30' fill='none' stroke='black'/></svg>");
     background-repeat: no-repeat;
     background-position: center;
@@ -31,7 +31,14 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    transition: background-color 0.1s ease;
   }
+  .separator:hover {
+    background-color: var(--link-hover);
+    transition-delay: 0.5s;
+  }
+
+
   
   /* If you want the content centered horizontally and vertically */
   .centered {

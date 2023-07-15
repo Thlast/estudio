@@ -235,7 +235,7 @@ input {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  animation: animateTitle 1s forwards;
+  animation: animateTitle 1.2s forwards;
 }
 
 @keyframes animateTitle {
@@ -690,14 +690,18 @@ hr {
 }
 
 .enconsola {
-  color: #74767a;
+  color: var(--light-text-color);
 }
 
 .botonhistorial {
   background-color: inherit;
   border-radius: 50%;
-  border-color: var(--border-color);
-  color: #74767a;
+  color: var(--light-text-color);
+  border: 2px solid var(--light-text-color);
+}
+.botonhistorial:hover {
+  transform: scale(1.1);
+  color: var(--container-shadow-hover);
 }
 
 blockquote {
@@ -1789,4 +1793,24 @@ a:hover>svg {
 .actual-desactivar {
   display: flex;
   flex-direction: column;
+}
+
+//BARRA DE SCROLL
+/* Para navegadores webkit */
+::-webkit-scrollbar   {
+  width: 10px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilos para la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background: var(--body-color); /* Color de fondo de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secundario); /* Color del pulgar de la barra de desplazamiento */
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-text-color); /* Color del pulgar de la barra de desplazamiento al pasar el ratón por encima */
 }

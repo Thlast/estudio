@@ -1,7 +1,7 @@
 .menu {
     position: fixed;
     top: 0;
-    left: -295px;
+    left: -299px;
     width: 300px;
     max-height: 100%;
     background-color: var(--secundario);
@@ -12,6 +12,10 @@
     user-select: none;
     border-right: 1px solid var(--border-cuadro);
     box-shadow: 2px 3px 2px var(--secundario);
+  }
+.menu:hover {
+  
+    left: -295px;
   }
   
   .menuOpen {
@@ -46,6 +50,11 @@
     border: none;
     color: var(--text-color);
   }
+  .abrirMenu:hover {
+    color: var(--link-hover);
+    transform: scale(1.3); /* Aumenta la escala en un 20% */
+    transition: transform 0.3s;
+  }
   .cerrarMenu {
     position: fixed;
     left: 270px;
@@ -54,6 +63,11 @@
     background: none;
     border: none;
     color: var(--text-color);
+  }
+  .cerrarMenu:hover {
+    color: var(--link-hover);
+    transform: scale(1.3); /* Aumenta la escala en un 20% */
+    transition: transform 0.3s;
   }
 
   
