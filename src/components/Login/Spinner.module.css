@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+.contenedorLoading {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.svgprueba {
+  width: 248px;
+  fill: none;
+  stroke-width: 10;
+}
+.base {
+  stroke: var(--secundario);
+}
+.loading {
+  stroke: var(--text-color);
+  stroke-dasharray: 150, 1503;
+  stroke-dashoffset: 150;
+  animation: loading 4s ease-in-out alternate infinite;
+}
+@keyframes loading {
+  0% {
+    stroke-dashoffset: 150;
+    stroke-dasharray: 150, 1503;
+  }
+  50% {
+    stroke-dashoffset: -1503;
+    stroke-dasharray: 150, 1503;
+  }
+  100% {
+    stroke-dashoffset: 150;
+    stroke-dasharray: 1503;
+  }
+}
