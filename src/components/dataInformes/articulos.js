@@ -11,20 +11,24 @@ export function Articulos(props) {
   const [linkLey, setLinkLey] = useState("")
   const [linkRT, setLinkRT] = useState("")
   const [cargando, setCargando] = useState(false)
-  const [articuloNumero, setArticuloNumero] = useState()
+  const [articuloNumero, setArticuloNumero] = useState(Number(formatArticleId(articulo)))
   const [articuloBuscar, setArticuloBuscar] = useState(articuloNumero)
 
   useEffect(() => {
     setArticuloNumero(Number(formatArticleId(articulo)))
-    setArticuloBuscar(Number(formatArticleId(articulo)))
+
   }, [articulo])
+  useEffect(() => {
+    setArticuloBuscar(articuloNumero)
+
+  }, [articuloNumero])
 
   const buscarSiguiente = () => {
-    setArticuloNumero(prevState => prevState+1)
+    setArticuloNumero(prevState => prevState + 1)
   }
   const buscarAnterior = () => {
-    if(articuloNumero > 1) {
-      setArticuloNumero(prevState => prevState-1)
+    if (articuloNumero > 1) {
+      setArticuloNumero(prevState => prevState - 1)
     }
   }
   const buscadorArticulo = (e) => {
@@ -85,9 +89,13 @@ export function Articulos(props) {
 
   }
 
+
+
   const [ley, setLey] = useState()
   useEffect(() => {
     setCargando(true)
+    setLinkRT()
+
     const valorBuscar = articulo.toLowerCase().replace(/[-º°`'".,]/g, '')
     let ley = ""
     switch (capituloId) {
@@ -98,10 +106,10 @@ export function Articulos(props) {
     }
     //para los que no son decreto
     setLey(ley)
-
+    
     let patron = /(artículo\s+(\d+)(?:º)?)(?!(\sde\s+la\sLey|\sde\seste\sartículo|\d))/g;
 
-//DECRETOS
+    //DECRETOS
     if (valorBuscar.endsWith("dr")) {
       buscarArticulo(`dr${ley}`, `${articuloNumero}`).then(data => {
         let patronDR = /(artículo\s+(\d+)(?:º)?)(?=\s+de\seste\sdecreto\b)/gi
@@ -114,37 +122,37 @@ export function Articulos(props) {
       setLinkLey(link);
 
     }
-//CONVENIO MULTILATERAL
+    //CONVENIO MULTILATERAL
     else if (valorBuscar.endsWith("cm")) {
       buscarArticulo(`toConvenioMultilateral`, `${articuloNumero}`).then(data => {
         setSeccionHtml(data.replace(patron, '<code>$1 CM</code>'))
-          setLey("convenioMultilateral")
-          setCargando(false)
-          setLinkLey("https://www.ca.gob.ar/convenio-multilateral-menu-pagina-legales")
+        setLey("convenioMultilateral")
+        setCargando(false)
+        setLinkLey("https://www.ca.gob.ar/convenio-multilateral-menu-pagina-legales")
       })
 
     }
-//MONOTRIBUTO
-else if (valorBuscar.endsWith("rs")) {
-  if (valorBuscar.includes("dr")) {
-    buscarArticulo("drMonotributo", `${articuloNumero}`).then(data => {
-      setSeccionHtml(data.replace(patron, '<code>$1 DR RS</code>'))
-      setLey("Monotributo")
-      setCargando(false)
-      setLinkLey("http://biblioteca.afip.gob.ar/dcp/LEY_C_024977_1998_06_03")
-    })
-  } 
-  else {
+    //MONOTRIBUTO
+    else if (valorBuscar.endsWith("rs")) {
+      if (valorBuscar.includes("dr")) {
+        buscarArticulo("drMonotributo", `${articuloNumero}`).then(data => {
+          setSeccionHtml(data.replace(patron, '<code>$1 DR RS</code>'))
+          setLey("Monotributo")
+          setCargando(false)
+          setLinkLey("http://biblioteca.afip.gob.ar/dcp/LEY_C_024977_1998_06_03")
+        })
+      }
+      else {
 
-    buscarArticulo("toMonotributo", `${articuloNumero}`).then(data => {
-      setSeccionHtml(data.replace(patron, '<code>$1 RS</code>'))
-      setLey("Monotributo")
-      setCargando(false)
-      setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_000001_2010_01_04")
-    })
-  }
-}
-//PROCEDIMIENTO TRIBUTARIO
+        buscarArticulo("toMonotributo", `${articuloNumero}`).then(data => {
+          setSeccionHtml(data.replace(patron, '<code>$1 RS</code>'))
+          setLey("Monotributo")
+          setCargando(false)
+          setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_000001_2010_01_04")
+        })
+      }
+    }
+    //PROCEDIMIENTO TRIBUTARIO
     else if (valorBuscar.endsWith("lpt")) {
       if (valorBuscar.includes("dr")) {
         buscarArticulo("procedimientoDR", `${articuloNumero}`).then(data => {
@@ -153,7 +161,7 @@ else if (valorBuscar.endsWith("rs")) {
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_001397_1979_06_12")
         })
-      } 
+      }
       else {
         buscarArticulo("procedimiento", `${articuloNumero}`).then(data => {
           setSeccionHtml(data.replace(patron, '<code>$1 LPT</code>'))
@@ -166,6 +174,8 @@ else if (valorBuscar.endsWith("rs")) {
 
     // RESOLUCIONES TECNICAS
     else if (valorBuscar.startsWith("rt")) {
+      setLey() //limpiamos articulos
+      setLinkLey() //limpiamos articulos
       buscarRT(getRTNumber(articulo), articulo).then(data => {
         setSeccionHtml(data)
         setLinkRT(`/verRT/${getRTNumber(articulo)}`)
@@ -211,18 +221,19 @@ else if (valorBuscar.endsWith("rs")) {
                   </a>
                 </em>
               </blockquote>
+              <div className="buscadorArticulos" style={{ textAlign: "center" }}>
+            <button className="home-botonbuscar" onClick={() => buscarAnterior()}>{"<"}</button>
+            <form onSubmit={(e) => buscadorArticulo(e)}>
+              <input type="number" value={articuloBuscar} onChange={(e) => setArticuloBuscar(e.target.value)}></input>
+              <button className="home-botonbuscar" type="submit">🔎</button>
+            </form>
+            <button className="home-botonbuscar" onClick={() => buscarSiguiente()}>{">"}</button>
+          </div>
             </>
             :
             null
           }
-          <div className="buscadorArticulos" style={{textAlign: "center"}}>
-          <button className="home-botonbuscar" onClick={() => buscarAnterior()}>{"<"}</button>
-          <form onSubmit={(e) => buscadorArticulo(e)}>
-          <input type="number" value={articuloBuscar} onChange={(e) => setArticuloBuscar(e.target.value)}></input>
-          <button className="home-botonbuscar" type="submit">🔎</button>
-          </form>
-          <button className="home-botonbuscar" onClick={() => buscarSiguiente()}>{">"}</button>
-          </div>
+       
           {linkRT ?
             <>
               <em
