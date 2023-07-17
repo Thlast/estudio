@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import style from '../modulos-css/navbarr.module.scss'
 import { UserConfig } from '../context/UserConfig';
+import { Spinner } from './Login/Spinner';
 
 export function Nav() {
 
@@ -88,6 +89,9 @@ export function Nav() {
           {user ?
             <div
               class={style.usuario}>
+              <li style={{background: "var(--body-color)"}}>
+                <Spinner w={"20px"}></Spinner>
+              </li>
               <li>
                 {datosUser?.rol}:
               </li>
@@ -107,7 +111,7 @@ export function Nav() {
             >
               <ul
                 className={style.contenedorlista}
-                >
+              >
                 <li>
                   <Link
                     className={style.loginlinks}
