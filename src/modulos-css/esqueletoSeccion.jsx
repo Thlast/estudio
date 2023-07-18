@@ -1,6 +1,15 @@
 import React from 'react';
 import style from './esqueletoSeccion.module.css'; // Asegúrate de importar el archivo CSS
 
+export const BarraSkeleton = () => {
+  return (
+    <div className={style.cardskeletoncontainer}>
+    <div className={style.cardskeleton}>
+      <div className={style.barracarga}></div>
+      </div>
+    </div>
+  );
+};
 export const CardSkeleton = () => {
   return (
     <div className={style.cardskeletoncontainer}>
