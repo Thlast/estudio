@@ -251,7 +251,9 @@ export const Buscador = (props) => {
                             <div
                               className="resultadosBuscador"
                               key={res.CapituloId + res.SeccionId + num}>
-
+                                <span>
+                                  {res.CapituloNombre}{"→ "}
+                                </span>
                               <Link
                                 to={`/cursosSQL/${curso}/${res.CapituloId}/${res.CapituloNombre}/${res.SeccionId}`}>
                                 {res.SeccionNombre}
@@ -268,7 +270,9 @@ export const Buscador = (props) => {
                                   }}
                                   remarkPlugins={[remarkGfm]}
                                 >
-                                  {res.SeccionContenido.replace(regexValorEnviado, '*$1*').replace(regexValorAlternativo, '*$1*')}
+                                  {res.SeccionContenido.replace(regexValorEnviado, '*$1*')
+                                  // .replace(regexValorAlternativo, '*$1*')
+                                  }
 
                                 </ReactMarkdown>
 
