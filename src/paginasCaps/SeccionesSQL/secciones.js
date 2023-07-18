@@ -18,9 +18,11 @@ import { modificarSeccion } from "../../components/servicios/cursos/cursosSQL/mo
 import { alertainfo } from "../../components/alertas";
 import { UserConfig } from "../../context/UserConfig";
 import { SVGZoom } from "../../components/dataInformes/guia";
+import { ProgresoSecciones } from "../../components/progresoSecciones";
 
 export function Secciones() {
 
+  const [ordenActual, setOrdenActual] = useState();
   const { id } = useParams();
   const { capituloId } = useParams();
   const [titulo, setTitulo] = useState();
@@ -33,7 +35,7 @@ export function Secciones() {
   const [contenidoSeccion, setContenidoSeccion] = useState()
   const [preview, setPreview] = useState()
   const [esquema, setEsquema] = useState(false)
-  
+
   const [modificando, setModificando] = useState(false)//ESTE ES UN CARGANDO PARA CUANDO SE ESTA MODIFICANDO
 
   const navigate = useNavigate()
@@ -55,6 +57,7 @@ export function Secciones() {
           setContenidoSeccion(data[0])
           setTitulo(data[0]?.CapituloNombre)
           setSeccionNombre(data[0]?.SeccionNombre)
+          setOrdenActual(data[0]?.orden)
           setCargando(false)
           //console.log(data)
         }
@@ -63,7 +66,6 @@ export function Secciones() {
         }
       }
       );
-
 
     recargarFuncionClickcode()
   }
@@ -388,6 +390,7 @@ export function Secciones() {
               <div
                 ref={containerRef}
                 class="secciones">
+                  <ProgresoSecciones currentSection={ordenActual} currentCap={capituloId}/>
                 <div>
                   <button
                     className={esquema ? style.pinSeleccionado : style.pin}
@@ -461,13 +464,13 @@ export function Secciones() {
                       Anotaciones:
                     </blockquote>
                     <div className="footnotes">
-                    {notes?.map(n => {
-                      return (
-                        <ReactMarkdown key={"notaTexto-" + n.id}>
-                          {n.contenido}
-                        </ReactMarkdown>
-                      )
-                    })}
+                      {notes?.map(n => {
+                        return (
+                          <ReactMarkdown key={"notaTexto-" + n.id}>
+                            {n.contenido}
+                          </ReactMarkdown>
+                        )
+                      })}
                     </div>
                   </div>
                   <hr></hr>
