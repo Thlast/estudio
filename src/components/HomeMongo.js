@@ -17,11 +17,12 @@ import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
 
 export function HomeMongo() {
 
-  const { cargandoMaterias, cargarMaterias, preferenciaMateria, materias, matPreferida,
+  const { materias, 
+    matPreferida,
     identificarCurso,
     historialeshistorial,
     historialesagregar,
-    historialesreiniciarh, materiasIndices } = useContext(MateriasContext);
+    historialesreiniciarh } = useContext(MateriasContext);
   const { totalResueltas } = useContext(ResueltasContext)
   const [preguntas, setPreguntas] = useState([]);
   const [longitudPreguntas, setLongitudPreguntas] = useState();
@@ -36,27 +37,28 @@ export function HomeMongo() {
   const cargarHome = async () => {
     //setCargando(true)
     setRecargar(false)
-    if (materias.length == 0) {
-      await cargarMaterias()
-    }
+    if (materias.length > 0) {
 
-    await obtenerLongitudPreguntas(matPreferida).then(data => {
-      if (data !== "error del servidor") {
-        setLongitudPreguntas(data)
-      } else {
-        setRecargar(true)
-      }
-    })
+      await obtenerLongitudPreguntas(matPreferida).then(data => {
+        if (data !== "error del servidor") {
+          setLongitudPreguntas(data)
+        } else {
+          setRecargar(true)
+        }
+      })
 
-    await identificarCurso().then(async resp => {
-      if (resp == undefined) {
-        setRecargar(true)
-      } else {
-        await obtenerPreguntaPorIndice(matPreferida, historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
-        setCurrent(historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
+      await identificarCurso().then(async resp => {
+        if (resp == undefined) {
+          setRecargar(true)
+        } else {
+          await obtenerPreguntaPorIndice(matPreferida, historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
+          setCurrent(historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
+        }
       }
+      )
+    } else {
+      setRecargar(true)
     }
-    )
   }
 
   const obtenerPreguntaPorIndice = async (mat, c) => {
@@ -281,7 +283,7 @@ export function HomeMongo() {
                                     p={p}
                                     num={current} />
                                 </div>
-                                }
+                              }
                               {p.tipo === "vof" &&
                                 <div
                                   style={{ "text-align": "left" }}

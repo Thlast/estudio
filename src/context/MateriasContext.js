@@ -8,7 +8,7 @@ export function DataProvider({ children }) {
 
   const [materias, setMaterias] = useState([])
   const [cargandoMaterias, setCargandoMaterias] = useState(true)
-  const [matPreferida, setMatPreferida] = useState("impuestos")
+  const [matPreferida, setMatPreferida] = useState("impuestos") //por defecto arranca aca INDEX 4
 
   const [materiasIndices, setMateriasIndices] = useState([])
 
@@ -16,8 +16,7 @@ export function DataProvider({ children }) {
     if (materiasIndices?.length > 0) {
       return materiasIndices?.indexOf(matPreferida);
     } else {
-      //orden de impuestos
-      return 4
+      return 4 //orden de impuestos
     }
   };
 
@@ -38,10 +37,10 @@ export function DataProvider({ children }) {
 
   }, [])
 
-  useEffect(() => {
-    identificarCurso()
+  // useEffect(() => {
+  //   identificarCurso()
 
-  }, [matPreferida])
+  // }, [matPreferida])
 
   const preferenciaMateria = (mat) => {
     setMatPreferida(mat)
