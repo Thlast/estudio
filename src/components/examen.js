@@ -121,7 +121,6 @@ export const Examen = () => {
           </button>
         </div>
         <div
-
           className='examen-descripcion'>
           <div
             className='examen-descripcion-elementos'>
@@ -194,7 +193,7 @@ export const Examen = () => {
         </div>
         <br></br>
         <hr></hr>
-        <div class="">
+        <div class="container-centrarResultados">
           <MostrarPregunta
             quitar={quitar}
             anexadas={anexadas}

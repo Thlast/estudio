@@ -244,7 +244,7 @@ export const Buscador = (props) => {
               {verSQL ? <>
                 {
                   resultadosSQL?.length !== 0 ?
-                    <>
+                    <div className="container-centrarResultados">
                       {
                         resultadosSQL?.map((res, num) => {
                           return (
@@ -281,7 +281,7 @@ export const Buscador = (props) => {
                           )
                         })
                       }
-                    </> 
+                    </div> 
                     : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>
                 }
               </> :

@@ -129,15 +129,15 @@ export function Examenes() {
                       selected="selected">
                       Selecciona un curso
                     </option>
-                    {materias.map(a => {
-                      return (
+                    {materias.map(a => (
+                     
                         <option
                           key={"materia-" + a.CursoId}
                           value={a.CursoId}>
                           {a.CursoNombre}
                         </option>
-                      )
-                    })}
+                      
+                    ))}
 
                   </select>
                   <button
@@ -155,8 +155,7 @@ export function Examenes() {
             <>{
 
               mostrarMisExamenes &&
-              misExamenes?.map((exa) => {
-                return (
+              misExamenes?.map((exa) =>  (
                   // <div style={{viewTransitionName: `examen: ${exa.id}`}}>
                   <Link
                     to={"/examenes/" + exa.id} className="examen">
@@ -176,10 +175,9 @@ export function Examenes() {
                   </Link>
                   // </div>
                 )
-              })}
+              )}
             {!mostrarMisExamenes &&
-              examenesRender?.map((exa) => {
-                return (
+              examenesRender?.map((exa) => (
                   // <div style={{viewTransitionName: `examen: ${exa.id}`}}>
                   <Link
                     to={"/examenes/" + exa.id} className="examen">
@@ -199,7 +197,7 @@ export function Examenes() {
                   </Link>
                   // </div>
                 )
-              })}
+              )}
    
               <form
                 onSubmit={(e) => agExa(e, curso)}
@@ -225,15 +223,14 @@ export function Examenes() {
                     selected="selected">
                     Selecciona un curso
                   </option>
-                  {materias?.map(a => {
-                    return (
+                  {materias?.map(a => (
                       <option
                         key={"materia-" + a.CursoId}
                         value={a.CursoId}>
                         {a.CursoNombre}
                       </option>
                     )
-                  })}
+                  )}
                 </select>
 
                 <button
