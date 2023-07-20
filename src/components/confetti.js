@@ -7,7 +7,6 @@ import { alertasuccess } from './alertas';
 export function ConfettiOptions() {
 
   const { confetti, obtenerConfettiUsuario } = useContext(UserConfig)
-  // const jsConfetti = new JSConfetti()
   const [selectedIcons, setSelectedIcons] = useState([]);
   const [desactivar, setDesactivar] = useState(confetti?.estado);
   const { user } = useAuth()
@@ -48,7 +47,7 @@ export function ConfettiOptions() {
       if (selectedIcons?.length > 0) {
         alertasuccess("prueba", { emojis: selectedIcons.join(""), estado: false})
       } else {
-        alertasuccess("prueba", { emojis: [], estado: false})
+        alertasuccess("prueba", { estado: false})
       }
     }
     //jsConfetti.clearCanvas()
@@ -62,7 +61,6 @@ export function ConfettiOptions() {
   return (
     <div className='confetti-container'>
     <div 
-    // style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px" }}
     >
       Personalizar alertas:
       <div className='actual-desactivar'>
@@ -78,12 +76,6 @@ export function ConfettiOptions() {
       {confetti ?
         <label>
           Actual:{" "}
-          {/* <input
-            onChange={handleCheckboxChange}
-            disabled={desactivar}
-            type="checkbox"
-            value={confetti}
-          /> */}
           {confetti?.emojis}
         </label>
         :
