@@ -221,6 +221,7 @@ export function MostrarPregunta(props) {
                               p={p}
                               num={num}
                               integral={true}
+                              isLink={seccion || seccionId}
                             />
                             <hr></hr>
                           </div>
@@ -241,6 +242,7 @@ export function MostrarPregunta(props) {
                                 p={p}
                                 num={num}
                                 integral={true}
+                                isLink={seccion || seccionId}
                               />
                               <hr></hr>
                             </div>
