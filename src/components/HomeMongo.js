@@ -204,42 +204,42 @@ export function HomeMongo() {
                 </button>
               </div>
             </form>
-            <br></br>
-            <div
-              className='contenedorMateriaIa'
-            >
-              {(totalResueltas && longitudPreguntas) ?
-                <>
-                <ProgressCircle progress={(Math.round((totalResueltas / longitudPreguntas) * 100))} />
-                </>
-                :
-                <>
-                <ProgressCircle progress={0} />
-                </>
-              }
+            <div>
+              <div>
+                {(totalResueltas && longitudPreguntas) ?
+                  <>
+                    <ProgressCircle progress={(Math.round((totalResueltas / longitudPreguntas) * 100))} />
+                  </>
+                  :
+                  <>
+                    <ProgressCircle progress={0} />
+                  </>
+                }
+              </div>
+              <br></br>
               <div>
                 <SelectMateria />
               </div>
-            </div>
-            <br></br>
-            <div>
-              <button
-                class="boton home-boton"
-                onClick={() => anterior()}>
-                {"< "}Anterior
-              </button>
-              <button
-                class="boton home-boton"
-                onClick={() => (random(), setShow(false))}>
-                ⚄ Aleatoria ⚄
-              </button>
-              <button
-                class="boton home-boton"
-                onClick={() => siguiente()
-                }>
-                <span>Siguiente{" >"}</span>
-              </button>
-            </div>
+              <br></br>
+              <div>
+                <button
+                  class="boton home-boton"
+                  onClick={() => anterior()}>
+                  {"< "}Anterior
+                </button>
+                <button
+                  class="boton home-boton"
+                  onClick={() => (random(), setShow(false))}>
+                  ⚄ Aleatoria ⚄
+                </button>
+                <button
+                  class="boton home-boton"
+                  onClick={() => siguiente()
+                  }>
+                  <span>Siguiente{" >"}</span>
+                </button>
+              </div>
+            </div >
             {cargando ? <CardSkeleton /> :
               <>
                 {!recargar ?
@@ -249,44 +249,12 @@ export function HomeMongo() {
                         preguntas?.map(p => {
                           return (
                             <div
+                              style={{ "text-align": "-webkit-center" }}
                               key={p.id}>
                               <h1>
                                 Pregunta Nº {current + 1} de {longitudPreguntas}:
                               </h1>
-                              {p.seccion && !p.seccionId ?
-                                <div>
-                                  <span>De la seccion: {" "}</span>
-                                  <Link
-                                    to={`/cursos/${p.curso}/${p.titulo.replaceAll(" ", "%20")}/${p.seccion?.replaceAll(" ", "%20")}`}
-                                    className='home-seccion'>
-                                    {p.seccion}
-                                  </Link>
-                                </div>
-                                : ""
-                              }
-                              {p.seccionId ?
-                                <div>
-                                  <span>De la seccion: {" "}</span>
-                                  <Link
-                                    to={`/cursosSQL/${p.curso}/${p.capituloId}/${p.titulo.replaceAll(" ", "%20")}/${p.seccionId}`}
-                                    className='home-seccion'>
-                                    {`${p.seccionId}: ${p.titulo}`}
-                                  </Link>
-                                </div>
-                                : ""
-                              }
-                              {p.examen ?
-                                <div>
-                                  <Link
-                                    to={`/examenes/${p.examen}`}
-                                    className='home-seccion'>
-                                    Examen
-                                  </Link>
-                                </div>
-                                : ""
-                              }
-                              <div
-                                style={{ "text-align": "-webkit-center" }}>
+                              <div>
                                 <Preguntas
                                   edit={false}
                                   p={p}
@@ -308,11 +276,12 @@ export function HomeMongo() {
                               </div>
                               {p.tipo === "Multiple" &&
                                 <div
-                                  className="home-multiple cuadro">
+                                  className="cuadro">
                                   <Opciones
                                     p={p}
                                     num={current} />
-                                </div>}
+                                </div>
+                                }
                               {p.tipo === "vof" &&
                                 <div
                                   style={{ "text-align": "left" }}
