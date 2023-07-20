@@ -34,7 +34,7 @@ export function AsignarSeccion(props) {
 
   }, [])
 
-  // console.log(datos.datosPregunta.CapituloId )
+  console.log(datos )
   return (
     <>
       <div className="buscadorBotones">
@@ -57,7 +57,7 @@ export function AsignarSeccion(props) {
           <>
             {capitulosSQL?.length > 0 ?
               datos.datosPregunta ?
-              //para NORMAL-MULTIPLE en SQL
+                //para NORMAL-MULTIPLE en SQL
                 <>
                   <select
                     value={datos.datosPregunta.CapituloId}
@@ -109,59 +109,59 @@ export function AsignarSeccion(props) {
                     : null
                   }
                 </>
-                :   
+                :
                 //para VOF en SQL
                 <>
-                <select
-                  value={datos.CapituloId}
-                  onChange={vofhandleChange}
-                  name="CapituloId"
-                  className='home-boton'>
-                  <option
-                    value=""
-                    disabled
-                    selected>
-                    Seleccione un capitulo
-                  </option>
-                  {capitulosSQL?.map(cap => {
-                    return (
-                      <option
-                        key={"capituloSQL-" + cap.CapituloId}
-                        value={cap.CapituloId}
-                      >
-                        {cap.CapituloNombre}
-                      </option>
-                    )
-                  })
-                  }
-                </select>
-                {datos.CapituloId ?
                   <select
-                    value={datos.SeccionId}
+                    value={datos.CapituloId}
                     onChange={vofhandleChange}
-                    name="SeccionId"
+                    name="CapituloId"
                     className='home-boton'>
                     <option
-                      disabled selected>
-                      Seleccione una seccion
+                      value=""
+                      disabled
+                      selected>
+                      Seleccione un capitulo
                     </option>
-                    {seccionesSQL?.map(sec => {
-                      if (sec.CapituloId == datos.CapituloId) {
-                        return (
-                          <option
-                            key={"seccionSQL" + sec.SeccionId}
-                            value={sec.SeccionId}>
-                            {sec.SeccionNombre}
-                          </option>
-
-                        )
-                      }
+                    {capitulosSQL?.map(cap => {
+                      return (
+                        <option
+                          key={"capituloSQL-" + cap.CapituloId}
+                          value={cap.CapituloId}
+                        >
+                          {cap.CapituloNombre}
+                        </option>
+                      )
                     })
                     }
                   </select>
-                  : null
-                }
-              </>
+                  {datos.CapituloId ?
+                    <select
+                      value={datos.SeccionId}
+                      onChange={vofhandleChange}
+                      name="SeccionId"
+                      className='home-boton'>
+                      <option
+                        disabled selected>
+                        Seleccione una seccion
+                      </option>
+                      {seccionesSQL?.map(sec => {
+                        if (sec.CapituloId == datos.CapituloId) {
+                          return (
+                            <option
+                              key={"seccionSQL" + sec.SeccionId}
+                              value={sec.SeccionId}>
+                              {sec.SeccionNombre}
+                            </option>
+
+                          )
+                        }
+                      })
+                      }
+                    </select>
+                    : null
+                  }
+                </>
 
               : null
             }
@@ -169,12 +169,12 @@ export function AsignarSeccion(props) {
 
           :
           <>
-
+            {/* ESTO ES NO SQL */}
             {
               datos.datosPregunta ?
                 <>
                   <select
-                    value={datos.datosPregunta.titulo}
+                    value={datos.datosPregunta?.titulo}
                     onChange={datos.handleChange}
                     name="titulo"
                     className='home-boton'>
@@ -182,18 +182,21 @@ export function AsignarSeccion(props) {
                       disabled selected>
                       Seleccione un capitulo
                     </option>
-                    {titulos?.map(tit => {
+                    {
+                    titulos?.map(tit => {
                       return (
-                        <option>
+                        <option
+                        key={tit.titulo}
+                        >
                           {tit.titulo}
                         </option>
                       )
                     })
                     }
                   </select>
-                  {datos.datosPregunta.titulo ?
+                  {datos.datosPregunta?.titulo ?
                     <select
-                      value={datos.datosPregunta.seccion}
+                      value={datos.datosPregunta?.seccion}
                       onChange={datos.handleChange}
                       name="seccion"
                       className='home-boton'>
@@ -203,13 +206,14 @@ export function AsignarSeccion(props) {
                         Seleccione una seccion
                       </option>
                       {titulos?.map(tit => {
-                        if (tit.titulo === datos.datosPregunta.titulo) {
+                        if (tit.titulo === datos.datosPregunta?.titulo) {
                           return (
                             tit.secciones.map(s => {
                               return (
                                 <option
-                                  value={s}>
-                                  {s}
+                                  key={s.SeccionId}
+                                  value={s.nombre}>
+                                  {s.nombre}
                                 </option>
                               )
                             })
@@ -221,7 +225,7 @@ export function AsignarSeccion(props) {
                     : null
                   }
                 </>
-                : 
+                :
                 <>
                   <select
                     value={datos.titulo}
