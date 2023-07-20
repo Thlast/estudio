@@ -289,7 +289,7 @@ export const Buscador = (props) => {
                   <p>Aparece en las siguientes secciones:</p>
                   <p>Mostrando resultados: {(page - 1) * limitEnv}-{page * limitEnv < totalResultados ? (page) * limitEnv : totalResultados} de un total de {totalResultados}</p>
                   {resultados?.length !== 0 ?
-                    <>
+                    <div className="container-centrarResultados">
                       {
                         resultados?.map((resultado, num) => {
                           return (
@@ -313,7 +313,7 @@ export const Buscador = (props) => {
                           )
                         })
                       }
-                    </>
+                    </div>
                     : <p>{valorEnviado ? `${valorEnviado}: sin resultados` : null}</p>}
                 </>
               }
