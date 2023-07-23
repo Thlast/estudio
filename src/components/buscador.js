@@ -270,7 +270,7 @@ export const Buscador = (props) => {
                                   }}
                                   remarkPlugins={[remarkGfm]}
                                 >
-                                  {res.SeccionContenido.replace(regexValorEnviado, '*$1*')
+                                  {res.SeccionContenido?.replace(regexValorEnviado, '*$1*')
                                   // .replace(regexValorAlternativo, '*$1*')
                                   }
 

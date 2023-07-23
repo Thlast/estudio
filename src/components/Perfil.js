@@ -126,7 +126,7 @@ export function Perfil() {
               </li>
               <hr></hr>
               <li>
-              Enlaces:
+                Enlaces:
               </li>
               <li>
                 <Link
@@ -137,11 +137,12 @@ export function Perfil() {
               </li>
               <hr></hr>
               <li>
-                <button
+                <Link
+                  draggable={false}
                   className='perfil-boton'
-                  onClick={() => navigate("/calculadora-prestamos")}
+                  to="/calculadora-prestamos"
                 > Calculadora prestamos
-                </button>
+                </Link>
               </li>
               <hr></hr>
               <li>

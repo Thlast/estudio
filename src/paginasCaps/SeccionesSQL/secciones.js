@@ -117,7 +117,7 @@ export function Secciones() {
           setEnConsola(enconsola.concat(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '')));
           document.getElementById("consol").scrollIntoView({ behavior: 'smooth' });
         }
-        setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, ''));
+        setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '').trim());
         setBuscarSeccionId()
       }
     }
