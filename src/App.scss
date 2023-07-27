@@ -225,10 +225,18 @@ input {
 // }
 
 .titulosBuscador {
-  background: none;
   border: none;
-  color: var(--text-color);
+  display: inline-block;
+  background-image: linear-gradient(to right, var(--text-color), var(--link-hover));
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  // animation: animateTitle 1.2s forwards;
+  background-image: linear-gradient(110deg, var(--text-color), 45%, var(--link-hover), 55%, var(--text-color));
+  animation: background-shine 5s linear infinite;
 }
+
 .titulosBuscador:hover {
   display: inline-block;
   background-image: linear-gradient(to right, var(--text-color), var(--link-hover));
@@ -237,6 +245,15 @@ input {
   -webkit-background-clip: text;
   color: transparent;
   animation: animateTitle 1.2s forwards;
+}
+
+@keyframes background-shine {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @keyframes animateTitle {

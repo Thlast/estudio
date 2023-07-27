@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { getCapitulos, obtenerDetalleCurso } from './servicios/cursos/obtenerCurso';
 import { obtenerDatosTitulos } from './servicios/cursos/obtenerSeccion';
@@ -18,6 +18,7 @@ export function Curso() {
   const { focus } = useParams();
   const [datosCaps, setDatosCaps] = useState([]);
   const [rt, setRT] = useState([]);
+  const seccionesFijasRef = useRef()
 
   useEffect(() => {
     //PEDIR LAS RT DISPONIBLES PARA EL CURSO RESOLUCIONES TECNICAS
@@ -47,6 +48,7 @@ export function Curso() {
         //console.log(data)
         setDatosCaps(data)
         setCargando(false)
+        fijarVista()
       }
       )
       .catch(error => {
@@ -57,19 +59,19 @@ export function Curso() {
 
   }, [])
 
+
   const fijarVista = () => {
     setTimeout(() => {
-      if (document.getElementById(focus)) {
-        document.getElementById(focus).scrollIntoView()
+      const elemento = document.getElementById(focus);
+      if (elemento) {
+        elemento.scrollIntoView();
       }
-    }, 100)
-  }
-
+    }, 300);
+  };
+  
   useEffect(() => {
-
-    fijarVista()
-
-  }, [document.getElementById(focus)], cargando)
+    fijarVista();
+  }, [focus, cargando]);
 
   const most = (e) => {
     document.getElementById("capitulo" + e).style.display = 'block';
@@ -125,9 +127,11 @@ export function Curso() {
               )
             }
             )}
-            <Secciones />
+            <Secciones fijarVista={fijarVista} focus={focus}/>
             {cargando ? <CardSkeleton /> :
-              <div class='curso-capitulos-contenedor'>
+              <div 
+              ref={seccionesFijasRef}
+              class='curso-capitulos-contenedor'>
                 <hr></hr>
                 Del archivo fijo:
                 {datosCaps ?

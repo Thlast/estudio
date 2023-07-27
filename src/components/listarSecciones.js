@@ -17,7 +17,8 @@ import { alertafail, alertainfo } from './alertas';
 import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
 
 
-export function Secciones() {
+export function Secciones(props) {
+  const {focus} = props;
   const [capitulos, setCapitulos] = useState([]);
   const [secciones, setSecciones] = useState([]);
   const [cargando, setCargando] = useState(true)
@@ -39,6 +40,18 @@ export function Secciones() {
   //para editar las secciones
   //const [seccionesModificadas, setSeccionesModificadas] = useState([])
 
+  // const fijarVista = () => {
+  //   setTimeout(() => {
+  //     const elemento = document.getElementById(focus);
+  //     if (elemento) {
+  //       elemento.scrollIntoView();
+  //     }
+  //   }, 200);
+  // };
+  
+  // useEffect(() => {
+  //   fijarVista();
+  // }, [focus]);
 
   useEffect(() => {
 
@@ -514,9 +527,9 @@ export function Secciones() {
                               onDragOver={handleDragOverSecciones}
                               onDrop={(e) => handleDropSecciones(e, s, t.CapituloId, index)}
                               key={'seccion-' + s.SeccionId}
-                              className={style.contenedorLink}>
+                              className={style.contenedorLink}
+                              >
                               <Link
-
                                 className={style.seccion}
                                 to={`/cursosSQL/${curso}/${t.CapituloId}/${t.CapituloNombre}/${s.SeccionId}`}>
                                 {s.SeccionNombre}
