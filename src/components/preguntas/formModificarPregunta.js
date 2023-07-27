@@ -1,13 +1,14 @@
 import React from 'react';
 import { AsignarSeccion } from './asignarSeccion';
 import { usePreguntaForm } from './usePregunta';
+import { Spinner } from '../Login/Spinner';
 
 
 export function FormModificarPregunta(props) {
 
   const { modificarPregunta } = props;
   const { preguntaModificar } = props || {};
-  const { cancelar } = props;
+  const { cancelar, enviandoPregunta } = props;
   const { titulo } = props;
   const { seccion } = props;
   const { id } = preguntaModificar;
@@ -67,19 +68,19 @@ export function FormModificarPregunta(props) {
               value={datosmodificar.datosPregunta.pregunta}>
             </textarea>
           </label>
-          {datosmodificar.datosPregunta.tipo === "Normal" ? 
-          <div>
-          Resultado:
-          <input
-            style={{ "width": "100%" }}
-            onChange={datosmodificar.handleChange}
-            placeholder="Escribe un resultado (opcional)"
-            name="resultado"
-            type="number"
-            value={datosmodificar.datosPregunta.resultado} />
-        </div>
-          : null}
-          
+          {datosmodificar.datosPregunta.tipo === "Normal" ?
+            <div>
+              Resultado:
+              <input
+                style={{ "width": "100%" }}
+                onChange={datosmodificar.handleChange}
+                placeholder="Escribe un resultado (opcional)"
+                name="resultado"
+                type="number"
+                value={datosmodificar.datosPregunta.resultado} />
+            </div>
+            : null}
+
         </div>
         {datosmodificar.datosPregunta.tipo === "Multiple" &&
           <div>
@@ -174,10 +175,12 @@ export function FormModificarPregunta(props) {
             </textarea>
           </label>
         </div>
-        <button
-          class="boton btn-primary">
-          Modificar
-        </button>
+        {enviandoPregunta ? <Spinner></Spinner> :
+          <button
+            class="boton btn-primary">
+            Modificar
+          </button>
+        }
         <button
           className='btn btn-danger form-cancelar'
           onClick={() => cancelar()}

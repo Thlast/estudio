@@ -29,6 +29,7 @@ export function MostrarPregunta(props) {
   const curso = props?.curso || matPreferida;
   let edit = props.edit;
   const mostrarPreguntas = props.mostrarPreguntas
+  const [enviandoPregunta, setEnviandoPregunta] = useState(false)
   const [modificar, setModificar] = useState(false)
   const [modificarVof, setModificarVof] = useState(false)
   const [preguntaModificar, setPreguntaModificar] = useState()
@@ -94,63 +95,74 @@ export function MostrarPregunta(props) {
   }
   //normal-multiple
   const modificarPreguntas = async (datos, indice, idmodif, event) => {
+    setEnviandoPregunta(true)
     try {
       let preguntamodif = null
       await modificarPregunta(datos, idmodif, event).then(response => {
         if (response) {
           preguntamodif = { ...response, id: idmodif }
           preguntas.splice(indice, 1, preguntamodif)
+          setEnviandoPregunta(false)
           //document.getElementById(idmodif).scrollIntoView()
         }
       }
       );
     } catch (error) {
       console.log(error)
+      setEnviandoPregunta(false)
     }
     setModificar(!modificar)
   }
 
   const crearPreguntas = async (preguntaCrear, event) => {
+    setEnviandoPregunta(true)
     try {
       await crearPregunta(preguntaCrear, event).then(response => {
         if (response) {
           setPreguntas(preguntas.concat(response))
+          setEnviandoPregunta(false)
         }
       }
       )
     } catch (error) {
       console.log(error)
+      setEnviandoPregunta(false)
     }
   }
   //vof
   const modificarPreguntasVoF = async (user, enunciado, rows, id, indice, titulo, seccion, seccionId, capituloId, event) => {
+    setEnviandoPregunta(true)
     try {
       let preguntamodif = null
       await serverModificarVof(user, enunciado, rows, id, titulo, seccion, seccionId, capituloId, event).then(response => {
         if (response) {
           preguntamodif = { ...response, id: id }
           preguntas.splice(indice, 1, preguntamodif)
-
+          setEnviandoPregunta(false)
         }
       }
       );
     } catch (error) {
       console.log(error)
+      setEnviandoPregunta(false)
     }
     setModificarVof(false)
   }
 
   const crearPreguntasVoF = async (user, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event) => {
     event.preventDefault()
+    setEnviandoPregunta(true)
     try {
       await crearVoF(user, enunciado, rows, mat, seccion, seccionId, capituloId, titulo, examenid, event).then(response => {
         if (response) {
           setPreguntas(preguntas.concat(response))
+          setEnviandoPregunta(false)
         }
       }
       );
     } catch (error) {
       console.log(error)
+      setEnviandoPregunta(false)
     }
   }
 
@@ -268,6 +280,7 @@ export function MostrarPregunta(props) {
 
         {agregar & !modificar & !modificarVof ?
           <FormAgregarPregunta
+            enviandoPregunta={enviandoPregunta}
             crearPreguntasVoF={crearPreguntasVoF}
             examenid={examenid}
             crearPreguntas={crearPreguntas}
@@ -282,6 +295,7 @@ export function MostrarPregunta(props) {
         {modificar &&
           <div>
             <FormModificarPregunta
+              enviandoPregunta={enviandoPregunta}
               examenid={examenid}
               cancelar={cancelar}
               titulo={titulo}
@@ -295,6 +309,7 @@ export function MostrarPregunta(props) {
         {modificarVof &&
           <div>
             <FormVof
+              enviandoPregunta={enviandoPregunta}
               modificarPreguntasVoF={modificarPreguntasVoF}
               cancelar={cancelar}
               datospreguntas={datosVof}

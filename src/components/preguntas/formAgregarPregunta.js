@@ -4,13 +4,14 @@ import { MateriasContext } from '../../context/MateriasContext';
 import { useAuth } from '../../context/AuthContext';
 import { FormVof } from './VoF';
 import { TextoaTabla } from './texto-a-tabla';
+import { Spinner } from '../Login/Spinner';
 
 export function FormAgregarPregunta(props) {
 
   const { titulo } = props;
   const { crearPreguntas } = props;
   const { seccion } = props;
-  const { seccionId, capituloId } = props;
+  const { seccionId, capituloId, enviandoPregunta } = props;
   const { curso } = props;
   const { examenid } = props;
   const { matPreferida } = useContext(MateriasContext)
@@ -234,11 +235,13 @@ export function FormAgregarPregunta(props) {
                 </textarea>
               </label>
             </div>
+            {enviandoPregunta ? <Spinner></Spinner> :
             <button
               type='submit'
               class="boton btn-primary" >
               Agregar
             </button>
+            }
           </form>
         </div>}
     </div>

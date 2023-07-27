@@ -74,9 +74,9 @@ export function VoF(props) {
                 >
                   <div
                     className='vof-listado'>
-                    <div>
-                      {`${1 + num}) ${preg.pregunta}`}
-                    </div>
+                    <ReactMarkdown>
+                      {`*${1 + num})* ${preg.pregunta}`}
+                    </ReactMarkdown>
                     <div
                       className='vof-inputs'>
                       <div

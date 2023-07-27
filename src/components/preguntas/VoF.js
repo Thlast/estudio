@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from '../../context/AuthContext';
 import { AsignarSeccion } from "./asignarSeccion";
+import { Spinner } from "../Login/Spinner";
 
 
 const defaultState = {
@@ -72,7 +73,7 @@ function Row({ indice, onChange, onRemove, pregunta, vof, respuesta }) {
 
 //renderiza para crear o modificar vof:
 export function FormVof(props) {
-  const { materias } = props
+  const { materias, enviandoPregunta } = props
   const { examenid } = props
   const { titulo } = props
   const { seccion } = props
@@ -121,40 +122,40 @@ export function FormVof(props) {
         style={{ "position": "relative" }}
         className="form-vof"
       >
-      {seccion ? null :
-        <div style={{ "textAlign": "center" }}>
-          <div>
-            {materias ? 
-              <div>
-                <select
-                  required
-                  onChange={(e) => setMat(e.target.value)}
-                  class="boton home-boton"
-                  value={mat}
-                  name="curso"
-                  for="materias">
-                  <option
-                    value=""
-                    disabled
-                    selected>
-                    Selecciona un curso
-                  </option>
-                  {materias.map(a => {
-                    return (
-                      <option
-                        key={"materia-" + a.CursoId}
-                        value={a.CursoId}>
-                        {a.CursoNombre}
-                      </option>
-                    )
-                  })}
-                </select>
-              </div>
+        {seccion ? null :
+          <div style={{ "textAlign": "center" }}>
+            <div>
+              {materias ?
+                <div>
+                  <select
+                    required
+                    onChange={(e) => setMat(e.target.value)}
+                    class="boton home-boton"
+                    value={mat}
+                    name="curso"
+                    for="materias">
+                    <option
+                      value=""
+                      disabled
+                      selected>
+                      Selecciona un curso
+                    </option>
+                    {materias.map(a => {
+                      return (
+                        <option
+                          key={"materia-" + a.CursoId}
+                          value={a.CursoId}>
+                          {a.CursoNombre}
+                        </option>
+                      )
+                    })}
+                  </select>
+                </div>
 
-              : null
-            }</div>
+                : null
+              }</div>
 
-        </div>
+          </div>
         }
         <div className="form-vof">
           {datospregunta ?
@@ -195,31 +196,37 @@ export function FormVof(props) {
             onClick={handleOnAdd}>+</button>
 
         </div>
-        {vofModificar ?
-          <div
-            style={{ "text-align": "center" }}>
-            <button
-              onClick={(e) => modificarPreguntasVoF(user.uid, enunciado, rows, datospregunta.id, datospregunta.indice, datospregunta.titulo, datospregunta.seccion,  datospregunta.SeccionId,  datospregunta.CapituloId, e)}
-              className="home-boton btn-primary"
-              type="button">
-              Modificar
-            </button>
-            <button
-              className='home-boton btn-danger'
-              onClick={() => cancelar()}
-            > Cancelar
-            </button>
-            <button
-              className='btn btn-danger form-cancelar'
-              onClick={() => cancelar()}
-            > X
-            </button>
-          </div>
-          : <button
-            className="home-boton"
-            type="submit">
-            Confirmar
-          </button>
+        {enviandoPregunta ?
+          <Spinner></Spinner>
+          :
+          <>
+            {vofModificar ?
+              <div
+                style={{ "text-align": "center" }}>
+                <button
+                  onClick={(e) => modificarPreguntasVoF(user.uid, enunciado, rows, datospregunta.id, datospregunta.indice, datospregunta.titulo, datospregunta.seccion, datospregunta.SeccionId, datospregunta.CapituloId, e)}
+                  className="home-boton btn-primary"
+                  type="button">
+                  Modificar
+                </button>
+                <button
+                  className='home-boton btn-danger'
+                  onClick={() => cancelar()}
+                > Cancelar
+                </button>
+                <button
+                  className='btn btn-danger form-cancelar'
+                  onClick={() => cancelar()}
+                > X
+                </button>
+              </div>
+              : <button
+                className="home-boton"
+                type="submit">
+                Confirmar
+              </button>
+            }
+          </>
         }
       </form>
     </div>
