@@ -15,6 +15,7 @@ export function Articulos(props) {
   const [articuloBuscar, setArticuloBuscar] = useState(articuloNumero)
 
   useEffect(() => {
+    setArticuloNumero() //LO CAMBIO PARA QUE FUNCIONE LA DEPENDENCIA DEL USEEFFECT QUE BUSCA EL ARTICULO
     setArticuloNumero(Number(formatArticleId(articulo)))
 
   }, [articulo])
