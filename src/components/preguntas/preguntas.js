@@ -113,7 +113,7 @@ export function Preguntas(props) {
             remarkPlugins={[remarkGfm]}>
             {p.pregunta}
           </ReactMarkdown>
-          {p.resultado ?
+          {p.resultado?.length > 0 ?
             <Resultado
               c={p.resultado}
               id={p.id}

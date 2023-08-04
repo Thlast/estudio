@@ -69,6 +69,15 @@
   }
 }
 
+.remarcarSecciones {
+  // background-image: linear-gradient(to right, var(--text-color), var(--link-hover));
+  // background-clip: text;
+  // -webkit-background-clip: text;
+  background-size: 200%;
+  background-image: linear-gradient(110deg, transparent, 99%, var(--link-hover), 100%, transparent);
+  animation: background-shine 5s backwards infinite;
+}
+
 .remarcarSecciones:hover {
   color: var(--link-hover) !important;
   text-decoration: underline;
@@ -226,31 +235,22 @@ input {
 
 .titulosBuscador {
   border: none;
-  display: inline-block;
-  background-image: linear-gradient(to right, var(--text-color), var(--link-hover));
+  color: var(--text-color);
+  background-color: transparent;
   background-size: 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  // animation: animateTitle 1.2s forwards;
-  background-image: linear-gradient(110deg, var(--text-color), 45%, var(--link-hover), 55%, var(--text-color));
-  animation: background-shine 5s linear infinite;
 }
 
 .titulosBuscador:hover {
-  display: inline-block;
-  background-image: linear-gradient(to right, var(--text-color), var(--link-hover));
-  background-size: 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: animateTitle 1.2s forwards;
+  background-image: linear-gradient(110deg, transparent, 90%, var(--link-hover), 100%, transparent);
+  animation: background-shine 2s backwards;
+  animation: animateTitle 2s forwards;
 }
 
 @keyframes background-shine {
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -371,6 +371,7 @@ input {
   padding: 0 0 0 5px;
   font-size: 18px;
 }
+
 .home-botonbuscar:hover {
   transform: scale(1.2);
 
@@ -391,10 +392,12 @@ input {
   padding: 10px;
   text-align: left;
 }
+
 .opciones p {
   margin: 0;
   padding: 0;
 }
+
 .opciones ul {
   margin: 0;
   padding: 0;
@@ -580,6 +583,7 @@ input {
     font-size: 18px;
     align-items: center;
   }
+
   .form-container {
     padding: 1px;
   }
@@ -677,15 +681,18 @@ h5 {
   background-color: var(--container-color);
   padding: 10px;
 }
+
 .botonConsola {
   color: var(--text-color);
   background-color: var(--container-color);
   border: none;
 }
+
 .botonConsola:hover {
   background-color: var(--text-color);
   color: var(--container-color);
 }
+
 .consola a {
   text-decoration: underline !important;
 }
@@ -729,6 +736,7 @@ hr {
   color: var(--light-text-color);
   border: 2px solid var(--light-text-color);
 }
+
 .botonhistorial:hover {
   transform: scale(1.1);
   color: var(--container-shadow-hover);
@@ -894,6 +902,21 @@ li {
 
 .pregunta-encabezado {
   padding: 10px 40px 10px 40px;
+}
+
+.pregunta-resultados {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.resultadosFilas {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .cuadro-respuesta {
@@ -1546,12 +1569,14 @@ circle {
     flex-direction: column;
     min-height: auto;
   }
+
   .opciones {
     display: flex;
     flex-direction: column;
     padding: 10px;
     text-align: left;
   }
+
   .secciones {
     font-size: 16px;
     padding: 5px;
@@ -1836,22 +1861,26 @@ a:hover>svg {
 
 //BARRA DE SCROLL
 /* Para navegadores webkit */
-::-webkit-scrollbar   {
-  width: 10px; /* Ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 10px;
+  /* Ancho de la barra de desplazamiento */
 }
 
 /* Estilos para la barra de desplazamiento */
 ::-webkit-scrollbar-track {
-  background: var(--body-color); /* Color de fondo de la barra de desplazamiento */
+  background: var(--body-color);
+  /* Color de fondo de la barra de desplazamiento */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secundario); /* Color del pulgar de la barra de desplazamiento */
+  background: var(--secundario);
+  /* Color del pulgar de la barra de desplazamiento */
   border-radius: 0.25rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--light-text-color); /* Color del pulgar de la barra de desplazamiento al pasar el ratón por encima */
+  background: var(--light-text-color);
+  /* Color del pulgar de la barra de desplazamiento al pasar el ratón por encima */
 }
 
 .buscadorArticulos {
@@ -1862,6 +1891,7 @@ a:hover>svg {
   justify-content: center;
   gap: 10px;
 }
-.buscadorArticulos input{
+
+.buscadorArticulos input {
   width: 70px;
 }

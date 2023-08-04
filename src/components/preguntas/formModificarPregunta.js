@@ -71,13 +71,21 @@ export function FormModificarPregunta(props) {
           {datosmodificar.datosPregunta.tipo === "Normal" ?
             <div>
               Resultado:
-              <input
-                style={{ "width": "100%" }}
-                onChange={datosmodificar.handleChange}
-                placeholder="Escribe un resultado (opcional)"
-                name="resultado"
-                type="number"
-                value={datosmodificar.datosPregunta.resultado} />
+              {datosmodificar.datosPregunta?.resultado?.map((r, num) => (
+                <>
+                  <input
+                    key={num}
+                    style={{ "width": "100%" }}
+                    onChange={(e) => datosmodificar.handleChangeResultado(num, e.target.value)}
+                    placeholder="Escribe un resultado (opcional)"
+                    name="resultado"
+                    type="number"
+                    value={datosmodificar.datosPregunta.resultado[num]}
+                  />
+                  <button type='button' onClick={() => datosmodificar.handleRemoveResult(num)}>x</button>
+                </>
+              ))}
+              <button type='button' onClick={datosmodificar.handleAddResult}>+</button>
             </div>
             : null}
 

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { usePreguntaForm } from './usePregunta';
 import { MateriasContext } from '../../context/MateriasContext';
 import { useAuth } from '../../context/AuthContext';
@@ -23,7 +23,7 @@ export function FormAgregarPregunta(props) {
   const preguntaCrear = usePreguntaForm({
     preg: "",
     resp: "",
-    resultado: "",
+    resultado: [],
     tipo: "Normal",
     // id: "",
     curso: curso,
@@ -40,7 +40,7 @@ export function FormAgregarPregunta(props) {
     examen: examenid,
     user: user.uid
   })
-
+  console.log(preguntaCrear.datosPregunta)
 
   return (
     <div
@@ -132,15 +132,27 @@ export function FormAgregarPregunta(props) {
 
                 </textarea>
               </label>
-              <div>
+              <div className='pregunta-resultados'>
                 Resultado:
-                <input
-                  style={{ "width": "100%" }}
-                  onChange={preguntaCrear.handleChange}
-                  placeholder="Escribe un resultado (opcional)"
-                  name="resultado"
-                  type="number"
-                  value={preguntaCrear.resultado} />
+                {preguntaCrear.datosPregunta.resultado.map((r, num) => (
+                  <div className='resultadosFilas'>
+                    <span>
+                    {`${num + 1}) `}
+                    </span>
+                    <input
+                      key={num}
+                      style={{ "width": "100%" }}
+                      onChange={(e) => preguntaCrear.handleChangeResultado(num, e.target.value)}
+                      placeholder="Escribe un resultado (opcional)"
+                      name="resultado"
+                      type="number"
+                      value={preguntaCrear.datosPregunta.resultado[num]}
+                    />
+                    <button className="btn btn-danger" type='button' onClick={() => preguntaCrear.handleRemoveResult(num)}>x</button>
+                  
+                  </div>
+                ))}
+                <button className="btn btn-primary" type='button' onClick={preguntaCrear.handleAddResult}>+</button>
               </div>
             </div>
 
@@ -236,11 +248,11 @@ export function FormAgregarPregunta(props) {
               </label>
             </div>
             {enviandoPregunta ? <Spinner></Spinner> :
-            <button
-              type='submit'
-              class="boton btn-primary" >
-              Agregar
-            </button>
+              <button
+                type='submit'
+                class="boton btn-primary" >
+                Agregar
+              </button>
             }
           </form>
         </div>}
