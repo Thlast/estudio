@@ -196,7 +196,7 @@ export function Articulos(props) {
 
     }
 
-  }, [articulo, articuloNumero])
+  }, [articuloNumero])
 
   useEffect(() => {
     if (!cargando && recargarFuncionClickcode) {
