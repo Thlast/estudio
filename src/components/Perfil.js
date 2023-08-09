@@ -192,7 +192,7 @@ export function Perfil() {
               </li>
               <hr></hr>
 
-              {mobile &&
+            
                 <>
                   <button
                     className={editMode ? style.botonActivo : style.links}
@@ -205,7 +205,7 @@ export function Perfil() {
                     onClick={() => switchTema()}>
                   </button>
                 </>
-              }
+              
               <li>
                 apiKey: {datosUser?.apiKey ?
                   "✓"
