@@ -68,11 +68,15 @@ export function FormModificarPregunta(props) {
               value={datosmodificar.datosPregunta.pregunta}>
             </textarea>
           </label>
+
           {datosmodificar.datosPregunta.tipo === "Normal" ?
-            <div>
+            <div className='pregunta-resultados'>
               Resultado:
               {datosmodificar.datosPregunta?.resultado?.map((r, num) => (
-                <>
+                <div className='resultadosFilas'>
+                  <span>
+                    {`${num + 1}) `}
+                  </span>
                   <input
                     key={num}
                     style={{ "width": "100%" }}
@@ -80,12 +84,13 @@ export function FormModificarPregunta(props) {
                     placeholder="Escribe un resultado (opcional)"
                     name="resultado"
                     type="number"
+                    step="any"
                     value={datosmodificar.datosPregunta.resultado[num]}
                   />
-                  <button type='button' onClick={() => datosmodificar.handleRemoveResult(num)}>x</button>
-                </>
+                  <button className="btn btn-danger" type='button' onClick={() => datosmodificar.handleRemoveResult(num)}>x</button>
+                </div>
               ))}
-              <button type='button' onClick={datosmodificar.handleAddResult}>+</button>
+              <button className="btn btn-primary" type='button' onClick={datosmodificar.handleAddResult}>+</button>
             </div>
             : null}
 

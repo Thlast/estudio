@@ -146,6 +146,7 @@ export function FormAgregarPregunta(props) {
                       placeholder="Escribe un resultado (opcional)"
                       name="resultado"
                       type="number"
+                      step="any"
                       value={preguntaCrear.datosPregunta.resultado[num]}
                     />
                     <button className="btn btn-danger" type='button' onClick={() => preguntaCrear.handleRemoveResult(num)}>x</button>

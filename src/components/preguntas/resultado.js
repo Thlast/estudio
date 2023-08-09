@@ -16,7 +16,8 @@ export function Resultado(props) {
     try {
       //const respuesta = document.querySelectorAll(`input[name=resultado${num}-${id}].value`);
       const inputElements = document.querySelectorAll(`input[name=resultado-${id}]`);
-      const inputValues = Array.from(inputElements).map(input => parseInt(input.value));
+      const inputValues = Array.from(inputElements).map(input => parseFloat(input.value));
+      console.log(inputValues);
 
       // Comparamos los valores ingresados con los valores correctos
       const isCorrect = inputValues.every((value, index) => value === c[index]);
@@ -54,7 +55,9 @@ export function Resultado(props) {
                   {`${n + 1}) `}
                   <input
                     name={`resultado-${id}`}
-                    type="number" />
+                    type="number"
+                    step="any"
+                  />
                 </span>
               )
 
