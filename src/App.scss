@@ -16,13 +16,13 @@
   /* Establece un borde alrededor de la sección */
   border: 3px solid var(--colordestello) !important;
   /* Establece un efecto de destello */
-  animation: destelloLigth 1s ease-in-out infinite;
+  animation: destelloLigth 1s ease-in-out infinite !important;
 }
 
 .resaltarValorBuscado {
   text-decoration: underline;
   text-decoration-thickness: 2px;
-  animation: destello 1s ease-in-out infinite;
+  animation: destello 3s ease-in-out infinite;
 }
 
 
@@ -75,7 +75,7 @@
   // -webkit-background-clip: text;
   background-size: 200%;
   background-image: linear-gradient(110deg, transparent, 99%, var(--link-hover), 100%, transparent);
-  animation: background-shine 5s backwards infinite;
+  animation: background-shine 6s forwards infinite;
 }
 
 .remarcarSecciones:hover {
@@ -911,6 +911,7 @@ li {
   align-items: center;
   justify-content: center;
 }
+
 .resultadosFilas {
   display: flex;
   flex-direction: row;
@@ -1661,13 +1662,17 @@ circle {
   max-width: 100%;
 }
 
+
 .secciones a {
   color: var(--text-color);
   text-decoration: none;
 }
-
-.secciones a:hover {
+.show-element a {
   color: var(--text-color);
+  text-decoration: underline;
+}
+.secciones a:hover {
+  color: var(--link-hover);
 }
 
 @media screen and (max-width: 570px) {

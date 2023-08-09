@@ -30,8 +30,7 @@ export function Consola(props) {
       pasarSeccionId()
       setArticulo()
       setDatos()
-      setDatosSeccion()
-      pasarSeccionId()
+      //setDatosSeccion()
       setCargando(true)
     }
 
@@ -74,13 +73,11 @@ export function Consola(props) {
     setMostrarConsola(true)
   }, [dic, buscarSeccionId])
 
-  //console.log(dic)
   //cuando le paso directo el id del SVG
   useEffect(() => {
     if (buscarSeccionId) {
-      setArticulo()
-      // setDatos()
-      // setDatosSeccion()
+      //setArticulo()
+     
       setCargando(true)
     }
 
