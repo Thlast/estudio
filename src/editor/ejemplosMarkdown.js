@@ -5,7 +5,8 @@ export const ejemplosMarkdown = [
         texto: [
             'Ley texto ordenado del respectivo capitulo: `Artículo 2`',
             'Decreto Reglamentario del respectivo capitulo: `Artículo 2 DR`',
-            'Ley procedimiento tributario: `Artículo 2 LPT`'
+            'Ley procedimiento tributario: `Artículo 2 LPT`',
+            'Decreto Reglamentario de Ley procedimiento tributario: `Artículo 2 DR LPT`'
         ],
         curso: "impuestos"
     },
