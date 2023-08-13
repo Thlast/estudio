@@ -260,6 +260,7 @@ export function Secciones(props) {
       document.getElementById("agregarSeccion" + num).style.display = 'block';
       document.getElementById("mostrarAgregar" + num).style.display = 'none';
       document.getElementById("ocultarAgregar" + num).style.display = 'block';
+      document.getElementById("agregarSeccion" + num).scrollIntoView()
     }
   }
 
