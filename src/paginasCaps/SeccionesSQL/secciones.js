@@ -35,6 +35,7 @@ export function Secciones() {
   const [contenidoSeccion, setContenidoSeccion] = useState()
   const [preview, setPreview] = useState()
   const [esquema, setEsquema] = useState(false)
+  const [esquemaRight, setEsquemaRight] = useState(false)
 
   const [modificando, setModificando] = useState(false)//ESTE ES UN CARGANDO PARA CUANDO SE ESTA MODIFICANDO
 
@@ -47,6 +48,9 @@ export function Secciones() {
   const pasarSeccionId = (seccionId) => {
     setBuscarSeccionId(seccionId)
   }
+  useEffect(() => {
+    setEsquemaRight(false) //CUANDO SE BUSCA SECCION SE CIERRA EL ESQUEMA
+  }, [buscarSeccionId])
 
   const cargarPagina = async () => {
 
@@ -119,6 +123,7 @@ export function Secciones() {
         }
         setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '').trim());
         setBuscarSeccionId()
+        setEsquemaRight(false)
       }
     }
 
@@ -151,7 +156,7 @@ export function Secciones() {
       setMostrarPreguntas(false)
     }
     if (mobile) {
-      setEsquema(false)
+      setEsquemaRight(false)
     }
     setBuscador(false)
     setEdit(false)
@@ -200,20 +205,32 @@ export function Secciones() {
   }
 
   const isZooming = (valor) => {
-    const container = containerRef.current;
-    if (container) {
-      if (valor) {
-        container.style.overflowY = 'hidden';
-      }
-      else {
-        container.style.overflowY = 'scroll';
-      }
-    }
+    // const container = containerRef.current;
+    // if (container) {
+    //   if (valor) {
+    //     container.style.overflowY = 'hidden';
+    //   }
+    //   else {
+    //     container.style.overflowY = 'scroll';
+    //   }
+    // }
   }
   const [cantidadDiagramas, setCantidadDiagramas] = useState(0)
   const obtenerCantidadDiagramas = (valor) => {
     setCantidadDiagramas(valor)
   }
+
+  const esquemaDiv =
+    <SVGZoom
+      obtenerCantidadDiagramas={obtenerCantidadDiagramas}
+      recargarFuncionClickcode={recargarFuncionClickcode}
+      nombreCapitulo={titulo}
+      curso={curso}
+      isZooming={isZooming}
+      pasarSeccionId={pasarSeccionId}
+      capituloId={capituloId}
+      seccion={id}
+    />
 
   return (
     <>
@@ -222,8 +239,8 @@ export function Secciones() {
           <div>
             <div>
               <button
-                className={esquema ? style.pinSeleccionado : style.pin}
-                onClick={() => (cambiarBoton(), setEsquema(!esquema))}
+                className={esquemaRight ? style.pinSeleccionado : style.pin}
+                onClick={() => (cambiarBoton(), setEsquemaRight(!esquemaRight))}
               >
                 <span>
                   {cantidadDiagramas}
@@ -343,7 +360,7 @@ export function Secciones() {
                   limpiarHistorial={limpiarHistorial} />
               </div>
               <div
-                style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
+                style={{ display: `${(esquemaRight && !editMode) ? "block" : "none"}` }}>
                 <SVGZoom
                   obtenerCantidadDiagramas={obtenerCantidadDiagramas}
                   recargarFuncionClickcode={recargarFuncionClickcode}
@@ -389,18 +406,30 @@ export function Secciones() {
             <WindowSplitter Left={
               <div
                 ref={containerRef}
-                class="secciones">
-                  <ProgresoSecciones currentSection={ordenActual} currentCap={capituloId}/>
+                className="secciones">
+                <ProgresoSecciones currentSection={ordenActual} currentCap={capituloId} />
                 <div>
-                  <button
-                    className={esquema ? style.pinSeleccionado : style.pin}
-                    onClick={() => setEsquema(!esquema)}
-                  >
-                    <span>
-                      {cantidadDiagramas}
-
+                  <div className={style.ContenedorBotonesEsquema}>
+                    <button
+                      className={esquemaRight ? style.pinSeleccionado : style.pin}
+                      onClick={() => setEsquemaRight(!esquemaRight)}
+                    >
+                      <span>
+                        {cantidadDiagramas}
+                      </span>
+                    </button>
+                    <span
+                      className={style.pinRight}>
+                      <button
+                        onClick={() => setEsquemaRight(!esquemaRight)}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M9 6l6 6l-6 6"></path>
+                        </svg>
+                      </button>
                     </span>
-                  </button>
+                  </div>
                   <div
                     className={style.cursotitulo}>
                     <Link className="aa"
@@ -426,6 +455,11 @@ export function Secciones() {
                   </div>
                 </div>
 
+                {/* <div
+                  style={{ display: `${(esquema && !editMode && !esquemaRight) ? "block" : "none"}` }}>
+                  {esquemaDiv}
+                </div> */}
+        
                 <div>
                   <div style={{ display: `${editMode ? "block" : "none"}` }}>
                     <ModificarSeccion
@@ -436,20 +470,7 @@ export function Secciones() {
                       capituloId={capituloId}
                       previsualizar={previsualizar} />
                   </div>
-                  <div
-                    style={{ display: `${(esquema && !editMode) ? "block" : "none"}` }}>
-                    <SVGZoom
-                      obtenerCantidadDiagramas={obtenerCantidadDiagramas}
-                      recargarFuncionClickcode={recargarFuncionClickcode}
-                      nombreCapitulo={titulo}
-                      curso={curso}
-                      isZooming={isZooming}
-                      pasarSeccionId={pasarSeccionId}
-                      capituloId={capituloId}
-                      seccion={id}
-                    />
-                  </div>
-                  <div style={{ display: `${(esquema || editMode) ? "none" : "block"}` }}>
+                  <div style={{ display: `${(editMode) ? "none" : "block"}` }}>
                     <TextoCursoSQL
                       cargando={cargando}
                       contenidoSeccion={contenidoSeccion}
@@ -458,7 +479,9 @@ export function Secciones() {
                       titulo={titulo}
                     />
                   </div>
-                  <div style={{ display: `${esquema ? "none" : "block"}` }}>
+                  <div 
+                  // style={{ display: `${esquema ? "none" : "block"}` }}
+                  >
                     <hr></hr>
                     <blockquote>
                       Anotaciones:
@@ -478,7 +501,7 @@ export function Secciones() {
               </div>
             }
               Right={
-                <>
+                <div className="secciones">
                   {/* <div style={{ display: `${editMode ? "block" : "none"}` }}> */}
                   {editMode &&
                     <div>
@@ -486,9 +509,11 @@ export function Secciones() {
                     </div>
                   }
                   <div
-                    style={{ display: `${editMode ? "none" : "block"}` }}
-                    class="secciones">
-
+                    style={{ display: `${(esquemaRight && !editMode) ? "block" : "none"}` }}>
+                    {esquemaDiv}
+                  </div>
+                  <div
+                    style={{ display: `${editMode || esquemaRight ? "none" : "block"}` }}>
                     <div
                       className={style.cursointeraccion}>
                       <button
@@ -560,7 +585,7 @@ export function Secciones() {
                         curso={curso} />
                     </div>
                   </div>
-                </>
+                </div>
               }
             />
           </>

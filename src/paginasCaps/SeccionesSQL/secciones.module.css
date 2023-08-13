@@ -31,7 +31,9 @@
   padding-top: 10px;
 }
 
-
+.ContenedorBotonesEsquema {
+  position: relative;
+}
 /* Definimos el tamaño del botón */
 .pin {
   width: 50px;
@@ -169,6 +171,16 @@
 .pinSeleccionado:hover:before {
 
   background-color: var(--secundario);
+}
+
+.pinRight {
+  position: absolute;
+  top: 10px;
+  right: -5px;
+}
+.pinRight button{
+  border: none;
+  background: none;
 }
 
 @media screen and (max-width: 500px) {

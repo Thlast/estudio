@@ -76,8 +76,8 @@ export function Consola(props) {
   //cuando le paso directo el id del SVG
   useEffect(() => {
     if (buscarSeccionId) {
-      //setArticulo()
-     
+      setArticulo()
+      
       setCargando(true)
     }
 
