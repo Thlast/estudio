@@ -46,14 +46,14 @@ export function Opciones(props) {
       <input name={`opciones${num}-${p.id}`} type="radio" value="a"/>
       <span>a)</span><ReactMarkdown>{p.opciones.a}</ReactMarkdown>
       </label>
-      <label>          
-      <input name={`opciones${num}-${p.id}`} type="radio" value="c"/>
-      <span>c)</span><ReactMarkdown>{p.opciones.c}</ReactMarkdown>
-      </label>
       <label>           
       <input name={`opciones${num}-${p.id}`} type="radio" value="b"/>
       <span>b)</span><ReactMarkdown>{p.opciones.b}</ReactMarkdown>
       </label>   
+      <label>          
+      <input name={`opciones${num}-${p.id}`} type="radio" value="c"/>
+      <span>c)</span><ReactMarkdown>{p.opciones.c}</ReactMarkdown>
+      </label>
       <label>
       <input name={`opciones${num}-${p.id}`} type="radio" value="d"/>
       <span>d)</span><ReactMarkdown>{p.opciones.d}</ReactMarkdown>
