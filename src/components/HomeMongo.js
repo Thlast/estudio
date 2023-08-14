@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { obtenerLongitudPreguntas, obtenerPreguntaMateria, obtenerPreguntaMateriaPorIndice } from './servicios/preguntas/obtenerPregunta';
+import { obtenerLongitudPreguntas, obtenerPreguntaMateriaPorIndice } from './servicios/preguntas/obtenerPregunta';
 import { Spinner } from './Login/Spinner';
 import { Link } from 'react-router-dom';
 import { alertainfo, alertareiniciar } from './alertas';
@@ -14,10 +14,12 @@ import { SelectMateria } from './selectMateria';
 import { ResueltasContext } from '../context/Resueltas';
 import { ProgressCircle } from './porcentajeProgreso';
 import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
+import { SelectCapitulo } from './selectCapitulo';
 
 export function HomeMongo() {
 
-  const { materias, 
+
+  const { materias,
     matPreferida,
     identificarCurso,
     historialeshistorial,
@@ -26,6 +28,7 @@ export function HomeMongo() {
   const { totalResueltas } = useContext(ResueltasContext)
   const [preguntas, setPreguntas] = useState([]);
   const [longitudPreguntas, setLongitudPreguntas] = useState();
+  const [longitudPreguntasTotal, setLongitudPreguntasTotal] = useState();
   const [current, setCurrent] = useState(0);
   const [show, setShow] = useState(false);
   const [cargando, setCargando] = useState(false);
@@ -34,14 +37,33 @@ export function HomeMongo() {
   const [numeroBuscar, setNumeroBuscar] = useState(1)
   const [recargar, setRecargar] = useState(false)
 
+  const [filtrarCapitulos, setFiltrarCapitulos] = useState(false)
+  const [capituloSeleccionado, setCapituloSeleccionado] = useState()
+
+  const cambiarCapitulo = (id) => {
+    setCapituloSeleccionado(id)
+  }
+  useEffect(() => {
+    if (!filtrarCapitulos) {
+      setCapituloSeleccionado()
+    }
+  }, [filtrarCapitulos, matPreferida])
+
+  useEffect(() => {
+    funcionreiniciar()
+    setCurrent(0)
+    cargarHome()
+  }, [capituloSeleccionado])
+
   const cargarHome = async () => {
     //setCargando(true)
     setRecargar(false)
     if (materias.length > 0) {
 
-      await obtenerLongitudPreguntas(matPreferida).then(data => {
+      await obtenerLongitudPreguntas(matPreferida, capituloSeleccionado).then(data => {
         if (data !== "error del servidor") {
-          setLongitudPreguntas(data)
+          setLongitudPreguntas(data.capitulo)
+          setLongitudPreguntasTotal(data.total)
         } else {
           setRecargar(true)
         }
@@ -51,8 +73,14 @@ export function HomeMongo() {
         if (resp == undefined) {
           setRecargar(true)
         } else {
-          await obtenerPreguntaPorIndice(matPreferida, historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
-          setCurrent(historialeshistorial[resp][historialeshistorial[resp]?.length - 1])
+          await obtenerPreguntaPorIndice(matPreferida, 
+            0
+            // historialeshistorial[resp][historialeshistorial[resp]?.length - 1]
+            )
+          setCurrent(
+            0
+            // historialeshistorial[resp][historialeshistorial[resp]?.length - 1]
+            )
         }
       }
       )
@@ -63,7 +91,7 @@ export function HomeMongo() {
 
   const obtenerPreguntaPorIndice = async (mat, c) => {
     setCargando(true)
-    await obtenerPreguntaMateriaPorIndice(mat, c)
+    await obtenerPreguntaMateriaPorIndice(mat, c, capituloSeleccionado)
       .then(data => {
         if (data !== "error del servidor") {
           if (data.error) {
@@ -90,10 +118,6 @@ export function HomeMongo() {
 
   }, [matPreferida])
 
-
-  // const identificarCurso = async () => {
-  //   return materiasIndices?.indexOf(matPreferida);
-  // };
 
   const funcionreiniciar = async () => {
     await identificarCurso().then(resp => historialesreiniciarh(current, resp))
@@ -208,9 +232,9 @@ export function HomeMongo() {
             </form>
             <div>
               <div>
-                {(totalResueltas && longitudPreguntas) ?
+                {(totalResueltas && longitudPreguntasTotal) ?
                   <>
-                    <ProgressCircle progress={(Math.round((totalResueltas / longitudPreguntas) * 100))} />
+                    <ProgressCircle progress={(Math.round((totalResueltas / longitudPreguntasTotal) * 100))} />
                   </>
                   :
                   <>
@@ -221,6 +245,19 @@ export function HomeMongo() {
               <br></br>
               <div>
                 <SelectMateria />
+                <br></br>
+                <label>
+                  <input
+                    onChange={() => setFiltrarCapitulos(!filtrarCapitulos)}
+                    type='checkbox'></input>
+                  Capítulos
+                </label>
+                <br></br>
+                {filtrarCapitulos ?
+                  <SelectCapitulo curso={matPreferida} cambiarCapitulo={cambiarCapitulo} />
+                  : null
+                }
+
               </div>
               <br></br>
               <div>

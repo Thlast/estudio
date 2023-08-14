@@ -36,32 +36,36 @@ export const obtenerPreguntaMateria = async (materia) => {
    
 }
 //optimizado para home - busca por indice
-export const obtenerPreguntaMateriaPorIndice = async (curso, indice) => {
+export const obtenerPreguntaMateriaPorIndice = async (curso, indice, capitulo) => {
 
  try {
-  const data = await fetch(`${urlserver}/preguntasPorIndice/${curso}/${indice}`)
-  return data.json()
+  if(capitulo) {
+    const data = await fetch(`${urlserver}/preguntasPorIndice/${curso}/${indice}/${capitulo}`)
+    return data.json()
+  } else {
+    const data = await fetch(`${urlserver}/preguntasPorIndice/${curso}/${indice}/`)
+    return data.json()
+  }
+
  } catch(error) {
   return "error del servidor"
  }
 
    
 }
-export const obtenerLongitudPreguntas = async (curso) => {
+export const obtenerLongitudPreguntas = async (curso, capitulo) => {
 
   try {
-   const data = await fetch(`${urlserver}/longitudPreguntas/${curso}`)
+   const data = await fetch(`${urlserver}/longitudPreguntas/${curso}/${capitulo}`)
    return data.json()
   } catch(error) {
    return "error del servidor"
   }
  
-    
  }
 
 export const filtrarPregunta = async (filtro) => {
   
-
   const data = await fetch(`${urlserver}/preguntas/buscar/${filtro}`)
   return data.json()
 
