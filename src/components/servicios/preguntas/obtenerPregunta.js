@@ -39,13 +39,10 @@ export const obtenerPreguntaMateria = async (materia) => {
 export const obtenerPreguntaMateriaPorIndice = async (curso, indice, capitulo) => {
 
  try {
-  if(capitulo) {
+
     const data = await fetch(`${urlserver}/preguntasPorIndice/${curso}/${indice}/${capitulo}`)
     return data.json()
-  } else {
-    const data = await fetch(`${urlserver}/preguntasPorIndice/${curso}/${indice}/`)
-    return data.json()
-  }
+  
 
  } catch(error) {
   return "error del servidor"

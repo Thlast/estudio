@@ -44,23 +44,26 @@ export function HomeMongo() {
     setCapituloSeleccionado(id)
   }
   useEffect(() => {
-    if (!filtrarCapitulos) {
+    
       setCapituloSeleccionado()
-    }
   }, [filtrarCapitulos, matPreferida])
 
   useEffect(() => {
-    funcionreiniciar()
-    setCurrent(0)
-    cargarHome()
+    if(capituloSeleccionado) {
+      funcionreiniciar()
+      setCurrent(0)
+      cargarHome(capituloSeleccionado)
+      console.log("asd")
+    }
   }, [capituloSeleccionado])
 
-  const cargarHome = async () => {
+  const cargarHome = async (cap) => {
     //setCargando(true)
+
     setRecargar(false)
     if (materias.length > 0) {
 
-      await obtenerLongitudPreguntas(matPreferida, capituloSeleccionado).then(data => {
+      await obtenerLongitudPreguntas(matPreferida, cap).then(data => {
         if (data !== "error del servidor") {
           setLongitudPreguntas(data.capitulo)
           setLongitudPreguntasTotal(data.total)
@@ -74,7 +77,8 @@ export function HomeMongo() {
           setRecargar(true)
         } else {
           await obtenerPreguntaPorIndice(matPreferida, 
-            0
+            0,
+            cap
             // historialeshistorial[resp][historialeshistorial[resp]?.length - 1]
             )
           setCurrent(
@@ -89,9 +93,9 @@ export function HomeMongo() {
     }
   }
 
-  const obtenerPreguntaPorIndice = async (mat, c) => {
+  const obtenerPreguntaPorIndice = async (mat, c, cap) => {
     setCargando(true)
-    await obtenerPreguntaMateriaPorIndice(mat, c, capituloSeleccionado)
+    await obtenerPreguntaMateriaPorIndice(mat, c, cap)
       .then(data => {
         if (data !== "error del servidor") {
           if (data.error) {
@@ -114,8 +118,8 @@ export function HomeMongo() {
   }
 
   useEffect(() => {
-    cargarHome()
 
+    cargarHome()
   }, [matPreferida])
 
 
@@ -136,7 +140,7 @@ export function HomeMongo() {
         if (historialeshistorial[resp].indexOf(indice) === -1 && longitudPreguntas !== historialeshistorial[resp].length) {
           historialesagregar(indice, resp)
           setCurrent(indice)
-          obtenerPreguntaPorIndice(matPreferida, indice)
+          obtenerPreguntaPorIndice(matPreferida, indice, capituloSeleccionado)
         } else if (historialeshistorial[resp].indexOf(indice) !== -1 && longitudPreguntas !== historialeshistorial[resp].length) {
           random()
         } else if (longitudPreguntas === historialeshistorial[resp].length) {
@@ -154,7 +158,7 @@ export function HomeMongo() {
       if (indice !== longitudPreguntas) {
         await identificarCurso().then(resp => historialesagregar(indice, resp));
         setCurrent(indice);
-        obtenerPreguntaPorIndice(matPreferida, indice)
+        obtenerPreguntaPorIndice(matPreferida, indice, capituloSeleccionado)
       } else if (indice >= longitudPreguntas) {
         alertainfo("No hay mas preguntas")
       }
@@ -169,7 +173,7 @@ export function HomeMongo() {
       if (indice !== -1) {
         await identificarCurso().then(resp => historialesagregar(indice, resp));
         setCurrent(indice);
-        obtenerPreguntaPorIndice(matPreferida, indice)
+        obtenerPreguntaPorIndice(matPreferida, indice, capituloSeleccionado)
       } else if (indice <= 0) {
 
       }
@@ -186,7 +190,7 @@ export function HomeMongo() {
     if (indice < longitudPreguntas & indice >= 0) {
       await identificarCurso().then(resp => historialesagregar(indice, resp));
       setCurrent(indice);
-      obtenerPreguntaPorIndice(matPreferida, indice)
+      obtenerPreguntaPorIndice(matPreferida, indice, capituloSeleccionado)
     } else if (indice >= longitudPreguntas) {
       alertainfo("No existe la pregunta número " + numeroBuscar + ", número máximo " + longitudPreguntas)
     }
