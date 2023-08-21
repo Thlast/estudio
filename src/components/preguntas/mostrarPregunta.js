@@ -39,15 +39,9 @@ export function MostrarPregunta(props) {
   const { eliminarExamen } = props
   const { perfil } = props
   const [datosVof, setDatosVof] = useState()
-  const [filtro, setFiltro] = useState()
+  const {page, perPage} = props; //DESDE MISPREGUNTAS
   const [filtroUser, setFiltroUser] = useState(false)
   const { obtenerQpreguntas } = props;
-
-  useEffect(() => {
-    if (perfil) {
-      setFiltro(matPreferida)
-    }
-  }, [matPreferida])
 
   useEffect(() => {
     if (seccion || seccionId) {
@@ -69,7 +63,7 @@ export function MostrarPregunta(props) {
       obtenerExamen(examenid)
         .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else if (perfil) {
-      obtenerUsuario(user.uid)
+      obtenerUsuario(curso, user.uid, page, perPage)
         .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     } else if (seccionId) {
       getPreguntaSeccionId(seccionId, { signal })
@@ -78,7 +72,7 @@ export function MostrarPregunta(props) {
       obtenerPregunta(curso)
         .then(data => (setPreguntas(data), setCargandoPreguntas(false)));
     }
-  }, [seccion, seccionId])
+  }, [seccion, seccionId, curso, page, perPage])
 
   const eliminar = async (idpregunta, usuario) => {
     if (usuario === user.uid) {
@@ -189,7 +183,7 @@ export function MostrarPregunta(props) {
 
   return (
     <>
-      <div className={perfil ? 'menuContenedor' : ""}>
+      <div>
         {mostrarPreguntas & !modificar & !modificarVof ?
 
           <div
@@ -242,25 +236,25 @@ export function MostrarPregunta(props) {
                       }
                     }) :
                       preguntas?.map((p, num) => {
-                        if ((filtro === p.curso || filtro === undefined)) {
-                          return (
-                            <div
-                              key={'mostrar-' + p.id}>
-                              <Preguntas
-                                irModificarVof={irModificarVof}
-                                edit={edit}
-                                irModificarPregunta={irModificarPregunta}
-                                eliminar={eliminar}
-                                p={p}
-                                num={num}
-                                integral={true}
-                                isLink={seccion || seccionId}
-                              />
-                              <hr></hr>
-                            </div>
-                          )
 
-                        }
+                        return (
+                          <div
+                            key={'mostrar-' + p.id}>
+                            <Preguntas
+                              irModificarVof={irModificarVof}
+                              edit={edit}
+                              irModificarPregunta={irModificarPregunta}
+                              eliminar={eliminar}
+                              p={p}
+                              num={num}
+                              integral={true}
+                              isLink={seccion || seccionId}
+                            />
+                            <hr></hr>
+                          </div>
+                        )
+
+
                       })
 
                     : <p>No hay preguntas</p>

@@ -36,6 +36,7 @@ import { VerRT } from './components/verRT';
 import { useEffect } from 'react';
 import { FlujosFondos } from './components/flujoFondos/flujosFondos';
 import { CompararFlujos } from './components/flujoFondos/comparacionFlujos';
+import { MisPreguntas } from './components/misPreguntas';
 
 function App() {
 
@@ -167,7 +168,7 @@ function App() {
                 path="/menu/mis-preguntas"
                 element={
                   <ProtectedRoute>
-                    <MostrarPregunta perfil={true} edit={true} mostrarPreguntas={true} filtroMaterias={true} />
+                    <MisPreguntas />
                   </ProtectedRoute>
                 }
               />

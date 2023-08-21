@@ -81,9 +81,9 @@ export const obtenerAnexadas = async (examenid) => {
 
 }
 
-export const obtenerUsuario = async (usuarioid) => {
+export const obtenerUsuario = async (curso, usuarioid, page, perPage) => {
   
-  const data = await fetch(`${urlserver}/preguntas/usuario/${usuarioid}`)
+  const data = await fetch(`${urlserver}/preguntas/usuario/${curso}/${usuarioid}/${page}/${perPage}`)
   return data.json()
 
 }
