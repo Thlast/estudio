@@ -149,6 +149,15 @@ export function Perfil() {
                 <Link
                   draggable={false}
                   className='perfil-boton'
+                  to="/flujo-de-fondos"
+                > Flujo de fondos
+                </Link>
+              </li>
+              <hr></hr>
+              <li>
+                <Link
+                  draggable={false}
+                  className='perfil-boton'
                   to="/estados-contables">Estados contables
                 </Link>
               </li>
@@ -191,8 +200,6 @@ export function Perfil() {
                   </div>}
               </li>
               <hr></hr>
-
-            
                 <>
                   <button
                     className={editMode ? style.botonActivo : style.links}
@@ -205,7 +212,6 @@ export function Perfil() {
                     onClick={() => switchTema()}>
                   </button>
                 </>
-              
               <li>
                 apiKey: {datosUser?.apiKey ?
                   "✓"

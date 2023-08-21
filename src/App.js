@@ -34,6 +34,8 @@ import { Error404 } from './components/Error404';
 import { ConfettiOptions } from './components/confetti';
 import { VerRT } from './components/verRT';
 import { useEffect } from 'react';
+import { FlujosFondos } from './components/flujoFondos/flujosFondos';
+import { CompararFlujos } from './components/flujoFondos/comparacionFlujos';
 
 function App() {
 
@@ -97,6 +99,14 @@ function App() {
             <Nav />
             <MenuDesplegable />
             <Routes>
+              <Route
+                path="/flujo-de-fondos"
+                element={
+                  <ProtectedRoute>
+                    <CompararFlujos />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/verRT/:rt"
                 element={
