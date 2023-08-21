@@ -1,0 +1,27 @@
+.cambiarNombre {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.cambiarNombre button {
+    border: none;
+    background-color: transparent;
+}
+.valores {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+.valores label{
+    display: flex;
+    flex-direction: row;
+    max-width: 300px;
+    justify-content: space-between;
+}
+.valores input{
+    max-width: 80px;
+}
+.flujosTabla {
+    overflow-x: scroll;
+}
