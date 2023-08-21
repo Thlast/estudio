@@ -70,6 +70,7 @@ export const Prestamos = () => {
     }
   
     return (
+      <div className='menuContenedor'>
       <div className={style.contenedorprestamos}>
         <header>
           <div className={style.prestamoshead}>
@@ -200,6 +201,7 @@ export const Prestamos = () => {
         </div>
         </div>
         </header>
+      </div>
       </div>
     );
   }

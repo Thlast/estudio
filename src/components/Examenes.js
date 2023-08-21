@@ -97,7 +97,7 @@ export function Examenes() {
   }
 
   return (
-    <div>
+    <div className='menuContenedor'>
       <div
 
         className='examenes'>

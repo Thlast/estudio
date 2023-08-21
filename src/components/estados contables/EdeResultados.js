@@ -7,7 +7,7 @@ export function EdeResultados() {
 
 
 return (
-  <>
+  <div className='menuContenedor'>
   <div className="contenedorRT">
     <Link
     className='volver'
@@ -62,7 +62,7 @@ return (
     <p id="section6">6) Pueden exponerse en una línea, neto del impuesto a las ganancias, con referencia a la información complementaria, o exponerse detalladamente en el cuerpo del estado, discriminando el impuesto a las ganancias correspondiente.</p>
     </div>
     </div>
-  </>
+  </div>
 
     );
   }

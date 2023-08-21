@@ -103,6 +103,7 @@ export const Examen = () => {
   }
 
   return (
+    <div className='menuContenedor'>
     <div 
     class="pagina-examen">
         <div>
@@ -204,6 +205,7 @@ export const Examen = () => {
             edit={most}
             mostrarPreguntas={true} />
         </div>
+    </div>
     </div>
   )
 }

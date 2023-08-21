@@ -25,3 +25,6 @@
 .flujosTabla {
     overflow-x: scroll;
 }
+.flujosTabla input {
+    max-width: 100px;
+}

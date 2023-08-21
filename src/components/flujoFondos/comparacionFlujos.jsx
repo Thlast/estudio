@@ -74,7 +74,8 @@ export const CompararFlujos = () => {
 
 
   return (
-    <div style={{ padding: "20px" }} >
+    <div className='menuContenedor' >
+      <div style={{ padding: "20px" }}>
       <button
         className="home-boton"
         type='button'
@@ -107,6 +108,7 @@ export const CompararFlujos = () => {
           Agregar
         </button>
       </form>
+      </div>
     </div>
   );
 };
