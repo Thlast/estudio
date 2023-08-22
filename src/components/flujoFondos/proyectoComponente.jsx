@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { FlujosFondos } from './flujosFondos';
 import style from './modulocss.module.css'
 
-export const ProyectoComponent = ({ nombre, id, flujos, onTIRCalculado, handleEliminarProyecto, handleCambiarNombre }) => {
+export const ProyectoComponent = ({ nombre, id, defaultValues, onTIRCalculado, handleEliminarProyecto, handleCambiarNombre }) => {
 
-  const handleTIRCalculado = (tir, rate, van) => {
+  const handleTIRCalculado = (tir, rate, van, Nflujos, inicial, flujos) => {
     // Pasar el TIR calculado al componente padre
-    onTIRCalculado(id, tir, rate, van);
+    onTIRCalculado(id, tir, rate, van, Nflujos, inicial, flujos);
   };
 
   const [editar, setEditar] = useState(false)
@@ -50,7 +50,7 @@ export const ProyectoComponent = ({ nombre, id, flujos, onTIRCalculado, handleEl
       }
       </span>
       </div>
-      <FlujosFondos id={id} onTIRCalculado={handleTIRCalculado} />
+      <FlujosFondos defaultValues={defaultValues} id={id} onTIRCalculado={handleTIRCalculado} />
       <br />
       <button className='btn btn-danger' onClick={() => handleEliminarProyecto(id)}>Eliminar</button>
       <hr />

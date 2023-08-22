@@ -28,3 +28,9 @@
 .flujosTabla input {
     max-width: 100px;
 }
+.positivo {
+    color: green;
+}
+.negativo {
+    color: red;
+}
