@@ -203,3 +203,34 @@ export const alertareiniciarTabla = (funcionreiniciar) => {
   })
 
 }
+export const alertaLimpiarLiquidacion = (limpiarLiquidacion) => {
+
+  swalWithBootstrapButtons.fire({
+    title: 'Eliminar datos?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Si, eliminar!',
+    cancelButtonText: 'No, cancelar!',
+    reverseButtons: true
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      limpiarLiquidacion()
+      localStorage.removeItem("liquidacion");
+      swalWithBootstrapButtons.fire(
+        'Se han borrado los datos!',
+        '',
+        'success'
+      )
+    } else if (
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        '',
+        'error'
+      )
+    }
+  })
+
+}
