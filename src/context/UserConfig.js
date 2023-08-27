@@ -55,7 +55,7 @@ export function UserConfigProvider({ children }) {
     // Guardamos el tema actual que eligió el usuario
     localStorage.setItem('selected-theme', getCurrentTheme())
   }
-
+ 
   return (
     <UserConfig.Provider value={{
       obtenerConfettiUsuario,

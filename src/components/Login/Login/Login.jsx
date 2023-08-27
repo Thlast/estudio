@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth} from '../../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 // import { userContext } from '../context/UserContext';
 import { Spinner } from '../Spinner';
 import style from './Login.module.css';
@@ -12,6 +12,7 @@ export const Login = () => {
     login_password: '',
   });
   const [loading, setLoading] = useState(false);
+  const [redirectPath, setRedirectPath] = useState(localStorage.getItem("redirectPath"));
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -25,12 +26,16 @@ export const Login = () => {
     setLoading(true);
     e.preventDefault();
     try {
-       await login(
+      await login(
         user.login_email,
         user.login_password
       );
       setLoading(false);
-      navigate('/');
+
+      // Borrar la ruta almacenada
+      localStorage.removeItem("redirectPath");
+
+      navigate(redirectPath || "/");
       console.log("navegando a la home")
     } catch (error) {
       setLoading(false);
@@ -85,16 +90,25 @@ export const Login = () => {
     await login(
       'invitado@app.com',
       '123456'
-     );
-     setLoading(false);
-     navigate('/');
-     console.log("navegando a la home")
+    );
+    setLoading(false);
+
+    // Borrar la ruta almacenada
+    localStorage.removeItem("redirectPath");
+
+    navigate(redirectPath || "/");
+    console.log("navegando a la home")
 
   }
+  useEffect(() => {
+    // Obtener la ruta almacenada en el local storage
+    setRedirectPath(localStorage.getItem("redirectPath"))
+
+  }, []);
 
   return (
     <div
-    className='login'>
+      className='login'>
       {loading ? (
         <Spinner />
       ) : (
@@ -133,12 +147,12 @@ export const Login = () => {
             </div>
             <button className={`${style.button}`}>Ingresar</button>
 
-            <button 
-            type='button'
-            onClick={(e) => ingresarInvitado(e)}
-            className={`${style.button}`}>
-                Ingresar como invitado
-              </button>
+            <button
+              type='button'
+              onClick={(e) => ingresarInvitado(e)}
+              className={`${style.button}`}>
+              Ingresar como invitado
+            </button>
             <div>
               <Link to="/register">¿No tienes una cuenta? Regístrate aquí</Link>
             </div>
