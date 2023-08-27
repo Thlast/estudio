@@ -1,0 +1,119 @@
+.contenedorGanancias {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    padding: 15px;
+    min-width: 1200px;
+}
+.contenedorGanancias h1,h2{
+    text-align: center;
+    border: 1px solid var(--text-color);
+}
+.contenedorGanancias h5 {
+    text-align: center;
+    border: 1px solid var(--text-color);
+    display: flex;
+    flex-direction: column;
+}
+.contenedorGanancias h6{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorGanancias h4{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid var(--text-color);
+    background-color: var(--container-color);
+    gap: 3px;
+}
+.contenedorGanancias span{
+    color: red;
+    display: block;
+    text-align: center;
+}
+/* .contenedorGanancias div{
+    border: 1px solid var(--text-color);
+} */
+
+.contenedorGlobal {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+.contenedorGlobalArgentina {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+.contenedorFAFE {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+/* .contenedorGlobalExtranjera {
+    display: grid;
+    grid-template-columns: 80% 20%;
+} */
+.contenedorGlobalExtranjeraCategorias {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.contenedorCedular {
+    display: grid;
+    grid-template-columns: 33% 33% 34%;
+}
+
+/* LIQUIDADOR */
+.contenedorLiquidacion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.contenedorLiquidacion form{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.liquidacionContenido {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.liquidacionContenido button{
+    font-size: 11px;
+}
+.liquidacionImporteConcepto {
+    width: 10%;
+}
+.liquidacionNombreConcepto {
+    min-width: 50%;
+    width: fit-content;
+}
+.articulos {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+.articulosListado {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.impuestoAIngresar {
+    color: var(--colordestello);
+    border: 1px solid var(--colordestello) !important;
+}
