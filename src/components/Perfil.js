@@ -94,6 +94,14 @@ export function Perfil() {
                       Interactuar con la IA
                     </Link>
                     <hr></hr>
+                 
+                    <Link
+                      draggable={false}
+                      className='perfil-boton'
+                      to={"/calculadoras"}>
+                      Liquidación
+                    </Link>
+                    <hr></hr>
                   </>
                   :
                   null
