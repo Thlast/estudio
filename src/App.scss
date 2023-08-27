@@ -1,9 +1,11 @@
 .menuContenedor {
+  width: 100%;
   padding-left: 300px;
 }
 
 @media screen and (max-width: 770px) {
   .menuContenedor {
+    width: 100%;
     padding: 0;
   }
 }
@@ -73,6 +75,7 @@
   // background-image: linear-gradient(to right, var(--text-color), var(--link-hover));
   // background-clip: text;
   // -webkit-background-clip: text;
+  cursor: pointer;
   background-size: 200%;
   background-image: linear-gradient(110deg, transparent, 99%, var(--link-hover), 100%, transparent);
   animation: background-shine 6s forwards infinite;
@@ -1667,10 +1670,12 @@ circle {
   color: var(--text-color);
   text-decoration: none;
 }
+
 .show-element a {
   color: var(--text-color);
   text-decoration: underline;
 }
+
 .secciones a:hover {
   color: var(--link-hover);
 }
