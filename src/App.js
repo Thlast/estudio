@@ -37,6 +37,8 @@ import { useEffect } from 'react';
 import { FlujosFondos } from './components/flujoFondos/flujosFondos';
 import { CompararFlujos } from './components/flujoFondos/comparacionFlujos';
 import { MisPreguntas } from './components/misPreguntas';
+import { CalculadoraGanancias } from './components/calculadorasImpuestos/calculadoraGanancia/calculadoraGanancias';
+import { Calculadoras } from './components/calculadorasImpuestos/calculadoras';
 
 function App() {
 
@@ -100,6 +102,22 @@ function App() {
             <Nav />
             <MenuDesplegable />
             <Routes>
+              <Route
+                path="/calculadoras/ganancias"
+                element={
+                  <ProtectedRoute>
+                    <CalculadoraGanancias />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/calculadoras"
+                element={
+                  <ProtectedRoute>
+                    <Calculadoras />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/flujo-de-fondos"
                 element={
