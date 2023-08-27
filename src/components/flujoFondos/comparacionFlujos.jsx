@@ -27,7 +27,7 @@ export const CompararFlujos = () => {
     }
     setNombreProyecto('');
   };
-  console.log(proyectos)
+
   const handleTIRCalculado = (idProyecto, tir, rate, van, Nflujos, inicial, flujos) => {
     // Actualizar la TIR del proyecto correspondiente
     const proyectosActualizados = proyectos.map((p) =>
@@ -114,8 +114,6 @@ export const CompararFlujos = () => {
     return flujosIncrementales;
   };
 
-
-  console.log(flujosIncrementales)
   const calcularFlujosIncrementales = () => {
     setMostrarIncrementales(true)
     setFlujosIncrementales(calculoFlujosIncrementales(proyectoConMayorTIR, proyectoConMayorVAN))
