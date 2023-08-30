@@ -56,43 +56,41 @@ function App() {
   document.title = 'Estudio'
 
   // useEffect(() => {
-
-  //   if (document.startViewTransition) {
-  //   const navigateHandler = (event) => {
-  //     const toUrl = new URL(event.destination.url);
-
-  //     // es una página externa? si es así, lo ignoramos
-  //     if (window.location.origin !== toUrl.origin) return;
-
-  //     // si es una navegación en el mismo dominio (origen)
-  //     event.intercept({
-  //       async handler() {
-  //         // vamos a cargar la página de destino
-  //         // utilizando un fetch para obtener el HTML
-  //         const response = await fetch("http://localhost:4000/obtenerRTCompleta/17"); // /clean-code
+  //   const navigateHandler = async (event) => {
+  //     if (document.startViewTransition) {
+  //       const toUrl = new URL(event.destination.url);
+  //       // Es una página externa? Si es así, lo ignoramos
+  //       if (window.location.origin !== toUrl.origin) return;
+  
+  //       try {
+  //         // Obtener el contenido HTML de la página de destino
+  //         const response = await fetch(toUrl.href);
   //         const text = await response.text();
-  //         // quedarnos sólo con el contenido del html dentro de la etiqueta body
-  //         // usamos un regex para extraerlo
-  //         const [, data] = text.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-  //         console.log(data)
-  //         // utilizar la api de View Transition API
+  //         console.log(text, response)
+  //         // Utilizar DOMParser para parsear el HTML y obtener el contenido de <body>
+  //         const parser = new DOMParser();
+  //         const htmlDocument = parser.parseFromString(text, 'text/html');
+  //         const bodyContent = htmlDocument.querySelector('body').innerHTML;
+          
+  //         // Utilizar la API de View Transition para realizar el cambio de vista
   //         document.startViewTransition(() => {
-  //           // el scroll hacia arriba del todo
-  //           document.body.innerHTML = data;
+  //           document.body.innerHTML = bodyContent;
   //           document.documentElement.scrollTop = 0;
   //         });
-  //       },
-  //     });
+  //       } catch (error) {
+  //         console.error('Error during navigation:', error);
+  //       }
+  //     }
   //   };
-
-  //   window.navigation.addEventListener('navigate', navigateHandler);
-
-  //   return () => {
-  //     window.navigation.removeEventListener('navigate', navigateHandler);
-  //   };
-  // }
+  
+  //   if (document.startViewTransition) {
+  //     window.navigation.addEventListener('navigate', navigateHandler);
+  //     return () => {
+  //       window.navigation.removeEventListener('navigate', navigateHandler);
+  //     };
+  //   }
   // }, []);
-
+  
 
   return (
     <AuthProvider>

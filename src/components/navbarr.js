@@ -24,7 +24,7 @@ export function Nav() {
         <header className={style.contenedorMobile}>
           {user ?
             <div
-              class={style.usuario}>
+              className={style.usuario}>
               <li>
                 <span>
                   {datosUser?.nombre}
@@ -88,7 +88,7 @@ export function Nav() {
         <header className={style.contenedor}>
           {user ?
             <div
-              class={style.usuario}>
+              className={style.usuario}>
               <li style={{background: "var(--body-color)"}}>
                 <Spinner w={"20px"}></Spinner>
               </li>

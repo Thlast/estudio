@@ -94,8 +94,8 @@ export function Curso() {
           to={"/cursos"}>
           {"<"} Volver a cursos
         </Link>
-        <div class="cursos-container">
-          <div class='cursos-descripcion'>
+        <div className="cursos-container">
+          <div className='cursos-descripcion'>
             <a
               rel="noopener noreferrer"
               href={`/imprimirResumen/${curso}`}
@@ -119,7 +119,7 @@ export function Curso() {
                     {t.nombre}
                   </h1>
 
-                  <div class="bloque-descripcion">
+                  <div className="bloque-descripcion">
                     {t.descripcion}
 
                   </div>
@@ -131,7 +131,7 @@ export function Curso() {
             {cargando ? <CardSkeleton /> :
               <div 
               ref={seccionesFijasRef}
-              class='curso-capitulos-contenedor'>
+              className='curso-capitulos-contenedor'>
                 <hr></hr>
                 Del archivo fijo:
                 {datosCaps ?
@@ -140,13 +140,13 @@ export function Curso() {
                       <div
                         key={s.CapituloId}
                         id={s.CapituloId}
-                        class="cuadro-curso">
-                        <div class="bloque-curso">
+                        className="cuadro-curso">
+                        <div className="bloque-curso">
                           <h3>
                             {s.titulo}
                           </h3>
                         </div>
-                        <div class="bloque-descripcion">
+                        <div className="bloque-descripcion">
                           <ReactMarkdown>{s.descripcion}</ReactMarkdown>
                           <p>Bibliografia:</p>
                           <ul>
@@ -159,15 +159,15 @@ export function Curso() {
                           </ul>
                         </div>
 
-                        <div class="boton-curso">
+                        <div className="boton-curso">
                           <button
-                            class="show boton-curso"
+                            className="show boton-curso"
                             id={"mostrar" + num}
                             onClick={() => most(num)}>
                             Expandir
                           </button>
                           <button
-                            class="hide boton-curso"
+                            className="hide boton-curso"
                             id={"ocultar" + num}
                             onClick={() => ocultar(num)}>
                             Ocultar

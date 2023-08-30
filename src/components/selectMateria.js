@@ -14,10 +14,10 @@ export function SelectMateria() {
       {cargandoMaterias ? <Spinner></Spinner> :
         <select
           onChange={(e) => preferenciaMateria(e.target.value)}
-          class="boton home-boton"
+          className="boton home-boton"
           value={matPreferida}
           name="curso"
-          for="materias">
+          >
           {materias.map(a => {
             return (
               <option

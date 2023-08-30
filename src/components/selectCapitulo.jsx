@@ -30,10 +30,8 @@ export function SelectCapitulo(props) {
       {cargando ? <Spinner></Spinner> :
         <select
           onChange={(e) => cambiarCapitulo(e.target.value)}
-          class="boton home-boton"
-        
-          name="capitulo"
-          for="capitulos">
+          className="boton home-boton"
+          name="capitulo">
             <option selected disabled value={null}>
                 Seleccione un capitulo
             </option>

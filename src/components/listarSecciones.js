@@ -449,18 +449,18 @@ export function Secciones(props) {
                   {t.CapituloNombre}
                 </h1>
 
-                <div class="bloque-descripcion">
+                <div className="bloque-descripcion">
                   {t.CapituloDescripcion}
 
                 </div>
               </div> */}
 
-                  <div class="bloque-curso">
+                  <div className="bloque-curso">
                     <h3>
                       {t.CapituloNombre}
                     </h3>
                   </div>
-                  <div class="bloque-descripcion">
+                  <div className="bloque-descripcion">
                     <ReactMarkdown>{t.CapituloDescripcion}</ReactMarkdown>
                     <p>Bibliografia:</p>
                     <ul>
@@ -500,15 +500,15 @@ export function Secciones(props) {
                       </>
                     }
                   </div>
-                  <div class="boton-curso">
+                  <div className="boton-curso">
                     <button
-                      class="show boton-curso"
+                      className="show boton-curso"
                       id={"mostrarSQL" + num}
                       onClick={() => most(num)}>
                       Expandir
                     </button>
                     <button
-                      class="hide boton-curso"
+                      className="hide boton-curso"
                       id={"ocultarSQL" + num}
                       onClick={() => ocultar(num)}>
                       Ocultar
@@ -549,15 +549,15 @@ export function Secciones(props) {
                       }
                       )
                     }
-                    <div class="boton-curso">
+                    <div className="boton-curso">
                       <button
-                        class="show boton-curso"
+                        className="show boton-curso"
                         id={"mostrarAgregar" + num}
                         onClick={() => mostrarAgregar(num)}>
                         Añadir nueva seccion
                       </button>
                       <button
-                        class="hide boton-curso"
+                        className="hide boton-curso"
                         id={"ocultarAgregar" + num}
                         onClick={() => ocultarAgregar(num)}>
                         Ocultar añadir seccion

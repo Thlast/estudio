@@ -266,17 +266,17 @@ export function HomeMongo() {
               <br></br>
               <div>
                 <button
-                  class="boton home-boton"
+                  className="boton home-boton"
                   onClick={() => anterior()}>
                   {"< "}Anterior
                 </button>
                 <button
-                  class="boton home-boton"
+                  className="boton home-boton"
                   onClick={() => (random(), setShow(false))}>
                   ⚄ Aleatoria ⚄
                 </button>
                 <button
-                  class="boton home-boton"
+                  className="boton home-boton"
                   onClick={() => siguiente()
                   }>
                   <span>Siguiente{" >"}</span>
@@ -292,7 +292,7 @@ export function HomeMongo() {
                         preguntas?.map(p => {
                           return (
                             <div
-                              style={{ "text-align": "-webkit-center" }}
+                              style={{ textAlign: "-webkit-center" }}
                               key={p.id}>
                               <h1>
                                 Pregunta Nº {current + 1} de {longitudPreguntas}:

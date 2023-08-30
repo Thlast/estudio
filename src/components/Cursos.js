@@ -71,11 +71,10 @@ export function Cursos() {
               {
                 listado?.map((mat, index) => {
                   return (
-                    <>
+                    <div key={"curso-"+mat.CursoId}>
                       {editMode ?
                         <div
                           draggable
-                          key={mat.CursoId}
                           onDragStart={(e) => handleDragStart(e, index)}
                           onDragOver={handleDragOver}
                           onDrop={(e) => handleDrop(e, index)}
@@ -86,14 +85,13 @@ export function Cursos() {
                         </div>
                         :
                         <div
-                          key={mat.CursoId}
                           className="listado-cursos box">
                           <Link
                             className='home-boton'
                             to={`/cursos/${mat.CursoId}`}>{mat.CursoNombre}</Link>
                         </div>
                       }
-                    </>
+                    </div>
                   )
                 })
               }
