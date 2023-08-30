@@ -117,3 +117,8 @@
     color: var(--colordestello);
     border: 1px solid var(--colordestello) !important;
 }
+
+.warning {
+    /* background-color: white !important; */
+    fill: none !important;
+}
