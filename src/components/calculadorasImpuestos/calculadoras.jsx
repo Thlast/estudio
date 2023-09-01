@@ -6,9 +6,13 @@ export const Calculadoras = () => {
     return (
         <div className="menuContenedor">
         <div style={{padding:"20px"}}>
-          <Link to={"./ganancias"}>
+          <h1>Calculadoras:</h1>
+          <hr></hr>
+          <div className="cuadrilla">
+          <Link className="examen" to={"./ganancias"}>
             Impuesto a las ganancias (PH)
           </Link>
+          </div>
         </div>
         </div>
     )

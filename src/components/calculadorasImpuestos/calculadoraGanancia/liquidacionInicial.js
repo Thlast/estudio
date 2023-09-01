@@ -134,6 +134,11 @@ export const liquidacionInicialDefault = {
         articulos: [],
         total: 0
     },
+    quebrantosAnterioresFEespecifico: {
+        conceptos: inicializarConceptos(["quebrantosAnterioresFEespecifico"]),
+        articulos: [],
+        total: 0
+    },
     deduccionesGeneralesFEespecifico: {
         conceptos: inicializarConceptos(["deduccionesGeneralesFEespecifico"]),
         articulos: ["Articulo 85", "Articulo 189"],
