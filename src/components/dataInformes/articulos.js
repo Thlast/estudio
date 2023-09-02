@@ -93,6 +93,7 @@ export function Articulos(props) {
 
 
   const [ley, setLey] = useState()
+  const [decreto, setDecreto] = useState(false)
   useEffect(() => {
     setCargando(true)
     setLinkRT()
@@ -117,6 +118,7 @@ export function Articulos(props) {
         //setSeccionHtml(data.replace(/artículo\s+(\d+)(?:º)?\s+de\s+la\s+ley/g, '<code>artículo $1</code> de la ley').replace(patronDR, '<code>$1$</code>3'))
         setSeccionHtml(data.replace(/artículo\s+(\d+)(?:º)?\s+de\s+la\s+ley/g, '<code>artículo $1</code> de la ley').replace(patronDR, '<code>$1 dr</code>'))
         setCargando(false)
+        setDecreto(true)
       })
       //setSeccionHtml(getSectionById(decretoReglamentario, `${articuloNumero}`))
       let link = linkDR.filter(l => l.ley === ley).flatMap(l => l.link);
@@ -130,6 +132,7 @@ export function Articulos(props) {
         setLey("convenioMultilateral")
         setCargando(false)
         setLinkLey("https://www.ca.gob.ar/convenio-multilateral-menu-pagina-legales")
+        setDecreto(false)
       })
 
     }
@@ -141,6 +144,7 @@ export function Articulos(props) {
           setLey("Monotributo")
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/LEY_C_024977_1998_06_03")
+          setDecreto(true)
         })
       }
       else {
@@ -150,6 +154,7 @@ export function Articulos(props) {
           setLey("Monotributo")
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_000001_2010_01_04")
+          setDecreto(false)
         })
       }
     }
@@ -161,6 +166,7 @@ export function Articulos(props) {
           setLey("procedimiento tributario")
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/DEC_C_001397_1979_06_12")
+          setDecreto(true)
         })
       }
       else {
@@ -169,6 +175,7 @@ export function Articulos(props) {
           setLey("procedimiento tributario")
           setCargando(false)
           setLinkLey("http://biblioteca.afip.gob.ar/dcp/TOR_C_011683_1998_07_13")
+          setDecreto(false)
         })
       }
     }
@@ -218,7 +225,7 @@ export function Articulos(props) {
                     //href={`${linkLey}#${formatArticleId(articulo)}`}
                     href={linkLey}
                   >
-                    {ley}
+                    {decreto ? `Decreto: ${ley}` :`Ley: ${ley}`}
                   </a>
                 </em>
               </blockquote>
