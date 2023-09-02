@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from './cGanancias.module.css'
 import { Articulos } from "../../dataInformes/articulos";
+import { BotonEsc } from "../../teclaEsc";
 
 export const Liquidador = (props) => {
 
@@ -122,12 +123,13 @@ export const Liquidador = (props) => {
   return (
     <>
       <div className={style.contenedorLiquidacion}>
-        <button
+        <BotonEsc handleClick={cancelar}/>
+        {/* <button
           className="btn btn-danger"
           type="button"
           onClick={() => cancelar()}>
           Volver
-        </button>
+        </button> */}
         <h1>Liquidando: {id}</h1>
         <form>
           {id == "DeduccionesGeneralesConLimite" ? <p>Tope de donaciones: {topeDonacion}</p> : null}
@@ -254,7 +256,9 @@ export const Liquidador = (props) => {
           {/* <button className="home-boton" onClick={() => cambiarDecreto()}>
           {decreto ? "Decreto Reglamentario" : "Texto ordenado"}
         </button> */}
+        <div className={style.visorArticulos}>
           <Articulos recargarFuncionClickcode={funcionalidadCodes} articulo={articulo} capituloId={1} />
+          </div>
         </div>
         : null}
     </>
