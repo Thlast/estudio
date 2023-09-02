@@ -121,17 +121,17 @@ export const liquidacionInicialDefault = {
     },
     accionesFE: {
         conceptos: inicializarConceptos(["accionesFE"]),
-        articulos: [],
+        articulos: ["Articulo 94"],
         total: 0
     },
     inmueblesFE: {
         conceptos: inicializarConceptos(["inmueblesFE"]),
-        articulos: [],
+        articulos: ["Articulo 94"],
         total: 0
     },
     quebrantosEspecificosFE: {
         conceptos: inicializarConceptos(["quebrantosEspecificosFE"]),
-        articulos: [],
+        articulos: ["Articulo 25", "Artículo 132"],
         total: 0
     },
     quebrantosAnterioresFEespecifico: {
