@@ -125,3 +125,9 @@
 .utilizadoPersonales {
     color: rgb(61, 184, 61) !important;
 }
+.visorArticulos {
+    max-width: 1000px;
+    border: 1px solid var(--text-color);
+    padding: 15px;
+    background-color: var(--container-color);
+}
