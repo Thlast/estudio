@@ -1835,8 +1835,12 @@ a:hover>svg {
 }
 
 .footnotes ol {
-  margin: 0;
+  margin: 15px;
   padding: 10px 0 0 0;
+}
+
+.footnotes li {
+  list-style: decimal;
 }
 
 .footnotes p {
