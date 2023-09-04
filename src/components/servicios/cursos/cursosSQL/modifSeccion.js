@@ -19,17 +19,20 @@ export const modificarSeccion = async (nombreSeccion, contenido, seccionId, even
     });
 
     if (!response.ok) {
-      throw new Error('Error en la solicitud de modificación');
+      const errorMessage = `Error en la solicitud de modificación: ${response.statusText}`;
+      throw new Error(errorMessage);
     }
 
     const data = await response.json();
-    console.log('Seccion modificada:', data);
-    alertasuccess("Seccion modificada");
+    console.log('Sección modificada:', data);
+    alertasuccess("Sección modificada con éxito.");
     return data;
   } catch (error) {
     console.error('Error:', error);
+    throw error; // Re-lanza el error para que se maneje en la función que llama a modificarSeccion.
   }
 };
+
 
 //para el editor rapido
 export const modificarSeccionNombre = async (nombreSeccion, seccionId, event) => {

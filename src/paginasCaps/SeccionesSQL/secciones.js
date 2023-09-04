@@ -190,13 +190,15 @@ export function Secciones() {
       try {
 
         await modificarSeccion(nombreSeccion, contenido, SeccionId, e).then(response => {
-          setContenidoSeccion(response)
+          if(response) {
+            setContenidoSeccion(response)
+          }
           setModificando(false)
         }
         );
 
       } catch (error) {
-        alertainfo(error)
+        alertainfo("Error al conectar con el servidor.")
         setModificando(false)
       }
     } else {
