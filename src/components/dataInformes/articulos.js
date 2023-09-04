@@ -200,7 +200,7 @@ export function Articulos(props) {
       //setSeccionHtml(getSectionById(articulosImpuestoALasGanancias, `${articuloNumero}`))
       let link = linkDeLey.filter(l => l.ley === ley).flatMap(l => l.link);
       setLinkLey(link);
-
+      setDecreto(false)
     }
 
   }, [articuloNumero])
