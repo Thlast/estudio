@@ -65,6 +65,7 @@ export function SVGZoom(props) {
   };
 
 
+  const [buscarSeccionId, setBuscarSeccionId] = useState()
   //funcion que da funcionalidad a las id de las secciones
   const funcionSeccionId = () => {
     if (render) {
@@ -76,6 +77,7 @@ export function SVGZoom(props) {
         elements[i].classList.add("remarcarSecciones")
         elements[i].onclick = function () {
           pasarSeccionId(elements[i].id);
+          setBuscarSeccionId(elements[i].id)
         }
       }
       recargarFuncionClickcode()

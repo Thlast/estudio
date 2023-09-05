@@ -1,0 +1,13 @@
+.contenedorConsola {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-color:var(--body-color);
+    color: var(--text-color);
+    z-index: 2;
+    overflow-y: scroll;
+    border: 1px solid var(--secundario);
+    box-shadow: 2px 3px 2px var(--secundario);
+}

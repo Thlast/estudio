@@ -7,21 +7,28 @@ import { getSeccionPorId } from '../components/servicios/cursos/obtenerSeccion';
 import { Articulos } from '../components/dataInformes/articulos';
 import { buscarConsolaSQL } from '../components/servicios/cursos/cursosSQL/buscarSeccion';
 import { UserConfig } from '../context/UserConfig';
+import style from '../modulos-css/consolaExterna.module.css'
 
 export function Consola(props) {
 
   const { mobile } = useContext(UserConfig)
   const [datos, setDatos] = useState()
   const [datosSeccion, setDatosSeccion] = useState()
-  const { curso } = props;
-  const { dic } = props;
-  const { buscarSeccionId, pasarSeccionId, capituloId } = props;
-  const { eliminarDelHistorial } = props;
-  const { limpiarHistorial } = props;
-  const { enconsola } = props;
+
+  const {
+    esquemaRight,
+    curso,
+    dic,
+    buscarSeccionId,
+    pasarSeccionId,
+    capituloId,
+    eliminarDelHistorial,
+    limpiarHistorial,
+    enconsola,
+    recargarFuncionClickcode } = props;
+
   const [cargando, setCargando] = useState(false)
   const [articulo, setArticulo] = useState(false)
-  const { recargarFuncionClickcode } = props;
 
   const url = process.env.REACT_APP_PROYECT_PRODUCTION_URL || process.env.REACT_APP_PROYECT_LOCAL_URL
 
@@ -33,7 +40,6 @@ export function Consola(props) {
       //setDatosSeccion()
       setCargando(true)
     }
-
 
     if (dic !== "" & !(dic.includes("artículo") || dic.includes("articulo") || dic.includes("rt"))) {
       buscarConsolaSQL(curso, dic)
@@ -77,7 +83,7 @@ export function Consola(props) {
   useEffect(() => {
     if (buscarSeccionId) {
       setArticulo()
-      
+
       setCargando(true)
     }
 
@@ -99,12 +105,13 @@ export function Consola(props) {
   }, [datos, dic])
 
   const [mostrarConsola, setMostrarConsola] = useState(true)
+  const [mostrarConsolaLeft, setMostrarConsolaLeft] = useState(true)
 
   const mostrarResultado = (cap) => {
-    if(document.getElementById(`resultado-${cap}`).style.display == "none") {
+    if (document.getElementById(`resultado-${cap}`).style.display == "none") {
       document.getElementById(`resultado-${cap}`).style.display = "block"
     }
-    else if(document.getElementById(`resultado-${cap}`).style.display == "block") {
+    else if (document.getElementById(`resultado-${cap}`).style.display == "block") {
       document.getElementById(`resultado-${cap}`).style.display = "none"
     }
   }
@@ -115,15 +122,32 @@ export function Consola(props) {
         <div
           style={{ textAlign: "right" }}
         >
+          {mostrarConsola ? null :
           <button
             className="botonConsola"
             onClick={() => setMostrarConsola(!mostrarConsola)}>
-            {mostrarConsola ? <>&#x2191; Ocultar</> : <>&#x2193; Consola</>}
+            <>&#x2193; Consola</>
           </button>
+}
         </div>
       }
       <div
+        className={esquemaRight ? style.contenedorConsola : null}
         style={{ display: `${mostrarConsola ? "block" : "none"}` }}>
+
+        {mobile ? null :
+          <div
+            style={{ textAlign: "right" }}
+          >
+            {mostrarConsola ? 
+            <button
+              className="botonConsola btn btn-danger"
+              onClick={() => setMostrarConsola(!mostrarConsola)}>
+              X
+            </button>
+            : null}
+          </div>
+        }
         <div
           id="consol"
           className="navconsola">
@@ -186,7 +210,7 @@ export function Consola(props) {
                         <h3>&#x2191;&#x2193;{" "}{s.CapituloNombre}: {s.SeccionNombre}</h3>
                       </button>
                       <div
-                      className='show-element'
+                        className='show-element'
                         id={`resultado-${s.CapituloId}`}
                         style={{ display: "none" }}
                       >

@@ -48,9 +48,9 @@ export function Secciones() {
   const pasarSeccionId = (seccionId) => {
     setBuscarSeccionId(seccionId)
   }
-  useEffect(() => {
-    setEsquemaRight(false) //CUANDO SE BUSCA SECCION SE CIERRA EL ESQUEMA
-  }, [buscarSeccionId])
+  // useEffect(() => {
+  //   setEsquemaRight(false) //CUANDO SE BUSCA SECCION SE CIERRA EL ESQUEMA
+  // }, [buscarSeccionId])
 
   const cargarPagina = async () => {
 
@@ -123,7 +123,7 @@ export function Secciones() {
         }
         setDic(e.target.innerHTML.toLowerCase().replace(/[-º°`'".,]/g, '').trim());
         setBuscarSeccionId()
-        setEsquemaRight(false)
+        //setEsquemaRight(false)
       }
     }
 
@@ -556,17 +556,6 @@ export function Secciones() {
                         cursoBuscador={curso}
                       />
                       : null}
-                    <Consola
-                      capituloId={capituloId}
-                      pasarSeccionId={pasarSeccionId}
-                      recargarFuncionClickcode={recargarFuncionClickcode}
-                      curso={curso}
-                      dic={dic}
-                      buscarSeccionId={buscarSeccionId}
-                      enconsola={enconsola}
-                      eliminarDelHistorial={eliminarDelHistorial}
-                      limpiarHistorial={limpiarHistorial} />
-                    <hr></hr>
                     <MostrarPregunta
                       obtenerQpreguntas={obtenerQpreguntas}
                       titulo={titulo}
@@ -587,6 +576,18 @@ export function Secciones() {
                         curso={curso} />
                     </div>
                   </div>
+                    <Consola
+                      esquemaRight={esquemaRight}
+                      capituloId={capituloId}
+                      pasarSeccionId={pasarSeccionId}
+                      recargarFuncionClickcode={recargarFuncionClickcode}
+                      curso={curso}
+                      dic={dic}
+                      buscarSeccionId={buscarSeccionId}
+                      enconsola={enconsola}
+                      eliminarDelHistorial={eliminarDelHistorial}
+                      limpiarHistorial={limpiarHistorial} />
+                    <hr></hr>
                 </div>
               }
             />
