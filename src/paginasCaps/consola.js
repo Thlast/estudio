@@ -8,6 +8,7 @@ import { Articulos } from '../components/dataInformes/articulos';
 import { buscarConsolaSQL } from '../components/servicios/cursos/cursosSQL/buscarSeccion';
 import { UserConfig } from '../context/UserConfig';
 import style from '../modulos-css/consolaExterna.module.css'
+import { Link } from 'react-router-dom';
 
 export function Consola(props) {
 
@@ -105,7 +106,6 @@ export function Consola(props) {
   }, [datos, dic])
 
   const [mostrarConsola, setMostrarConsola] = useState(true)
-  const [mostrarConsolaLeft, setMostrarConsolaLeft] = useState(true)
 
   const mostrarResultado = (cap) => {
     if (document.getElementById(`resultado-${cap}`).style.display == "none") {
@@ -222,11 +222,10 @@ export function Consola(props) {
                         <blockquote>Link a la sección:
                           <em
                             style={{ textDecoration: "underline" }}>
-                            <a
-                              target="_blank"
-                              href={`${url}/cursosSQL/${curso}/${s.CapituloId}/${s.CapituloNombre}/${s.SeccionId}`}>
+                            <Link
+                              to={`/cursosSQL/${curso}/${s.CapituloId}/${s.CapituloNombre}/${s.SeccionId}`}>
                               {" "}{s.SeccionNombre}
-                            </a>
+                            </Link>
                           </em>
                         </blockquote>
                       </div>
@@ -260,11 +259,10 @@ export function Consola(props) {
                     <blockquote>Link a la sección:
                       <em
                         style={{ textDecoration: "underline" }}>
-                        <a
-                          target="_blank"
-                          href={`${url}/cursos/${datos[0].curso}/${datos[0].capitulo}/${datos[0].seccion.nombre}`}>
+                        <Link
+                          to={`/cursos/${datos[0].curso}/${datos[0].capitulo}/${datos[0].seccion.nombre}`}>
                           {" "}{datos[0].seccion.nombre}
-                        </a>
+                        </Link>
                       </em>
                     </blockquote>
                     <hr></hr>
