@@ -576,6 +576,7 @@ export function Secciones() {
                         curso={curso} />
                     </div>
                   </div>
+                  <div style={{ display: `${editMode ? "none" : "block"}` }}>
                     <Consola
                       esquemaRight={esquemaRight}
                       capituloId={capituloId}
@@ -588,6 +589,7 @@ export function Secciones() {
                       eliminarDelHistorial={eliminarDelHistorial}
                       limpiarHistorial={limpiarHistorial} />
                     <hr></hr>
+                    </div>
                 </div>
               }
             />
