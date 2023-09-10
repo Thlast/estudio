@@ -64,8 +64,6 @@ export function SVGZoom(props) {
     }
   };
 
-
-  const [buscarSeccionId, setBuscarSeccionId] = useState()
   //funcion que da funcionalidad a las id de las secciones
   const funcionSeccionId = () => {
     if (render) {
@@ -77,7 +75,6 @@ export function SVGZoom(props) {
         elements[i].classList.add("remarcarSecciones")
         elements[i].onclick = function () {
           pasarSeccionId(elements[i].id);
-          setBuscarSeccionId(elements[i].id)
         }
       }
       recargarFuncionClickcode()
@@ -264,31 +261,53 @@ export function SVGZoom(props) {
   useEffect(() => {
     recargarFuncionClickcode()
   }, [render])
-
+  
+  const handleZoomAtMouse = (event, scaleFactor, translate, scale) => {
+    const svgElement = svgRef.current;
+    const svgRect = svgElement.getBoundingClientRect();
+  
+    // Obtener la posición del puntero del mouse en relación con el elemento SVG
+    const mouseX = event.clientX - svgRect.left;
+    const mouseY = event.clientY - svgRect.top;
+  
+    // Calcular la nueva escala y la diferencia en la posición
+    const newScale = scale * scaleFactor;
+    const deltaX = (mouseX - translate.x) * (1 - scaleFactor);
+    const deltaY = (mouseY - translate.y) * (1 - scaleFactor);
+  
+    return {
+      scale: newScale,
+      translate: {
+        x: translate.x + deltaX,
+        y: translate.y + deltaY,
+      },
+      position: {
+        x: mouseX,
+        y: mouseY,
+      },
+    };
+  };
+  
   const handleWheel = (event) => {
     //event.preventDefault();
+  
     const delta = event.deltaY;
     const scaleFactor = delta > 0 ? 0.9 : 1.1;
+  
     if (scale * scaleFactor > 0.22) {
-      setScale(prevScale => prevScale * scaleFactor);
-      const gElement = gRef.current;
-      const gRect = gElement.getBoundingClientRect();
-      if (gRect) {
-        const newScale = scale * scaleFactor;
-        const newX = (position.x - gRect.left) * (newScale - scale) / scale;
-        const newY = (position.y - gRect.top) * (newScale - scale) / scale;
-        setTranslate(prevT => (
-          {
-            x: prevT.x - newX,
-            y: prevT.y - newY
-          }
-        )
-        );
-
-      }
+      const { scale: newScale, translate: newTranslate, position: newPosition } = handleZoomAtMouse(
+        event,
+        scaleFactor,
+        translate,
+        scale
+      );
+  
+      setScale(newScale);
+      setTranslate(newTranslate);
+      setPosition(newPosition);
     }
-
   };
+  
   //const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [isPanning, setIsPanning] = useState(false);
 
@@ -312,9 +331,9 @@ export function SVGZoom(props) {
       const dx = initialValues.x + (event.clientX - offsetX);
       const dy = initialValues.y + (event.clientY - offsetY);
       //limite derecha
-      const limitX = (-(gRect.width)) * scale
+      const limitX = (-(gRect.width)) 
       //limite abajo
-      const limitY = (-(gRect.height)) * scale
+      const limitY = (-(gRect.height)) 
       //limite izquierda
       const maxX = gRect.width
       //limite arriba
