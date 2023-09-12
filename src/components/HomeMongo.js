@@ -44,12 +44,12 @@ export function HomeMongo() {
     setCapituloSeleccionado(id)
   }
   useEffect(() => {
-    
-      setCapituloSeleccionado()
+
+    setCapituloSeleccionado()
   }, [filtrarCapitulos, matPreferida])
 
   useEffect(() => {
-    if(capituloSeleccionado) {
+    if (capituloSeleccionado) {
       funcionreiniciar()
       setCurrent(0)
       cargarHome(capituloSeleccionado)
@@ -59,7 +59,6 @@ export function HomeMongo() {
 
   const cargarHome = async (cap) => {
     //setCargando(true)
-
     setRecargar(false)
     if (materias.length > 0) {
 
@@ -76,15 +75,15 @@ export function HomeMongo() {
         if (resp == undefined) {
           setRecargar(true)
         } else {
-          await obtenerPreguntaPorIndice(matPreferida, 
+          await obtenerPreguntaPorIndice(matPreferida,
             0,
             cap
             // historialeshistorial[resp][historialeshistorial[resp]?.length - 1]
-            )
+          )
           setCurrent(
             0
             // historialeshistorial[resp][historialeshistorial[resp]?.length - 1]
-            )
+          )
         }
       }
       )
@@ -236,14 +235,8 @@ export function HomeMongo() {
             </form>
             <div>
               <div>
-                {(totalResueltas && longitudPreguntasTotal) ?
-                  <>
-                    <ProgressCircle progress={(Math.round((totalResueltas / longitudPreguntasTotal) * 100))} />
-                  </>
-                  :
-                  <>
-                    <ProgressCircle progress={0} />
-                  </>
+                {cargando ? <Spinner/> :
+                  <ProgressCircle progress={(totalResueltas && longitudPreguntasTotal) ? (Math.round((totalResueltas / longitudPreguntasTotal) * 100)) : 0} />
                 }
               </div>
               <br></br>
