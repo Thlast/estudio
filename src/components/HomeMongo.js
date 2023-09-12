@@ -53,12 +53,11 @@ export function HomeMongo() {
       funcionreiniciar()
       setCurrent(0)
       cargarHome(capituloSeleccionado)
-      console.log("asd")
     }
   }, [capituloSeleccionado])
 
   const cargarHome = async (cap) => {
-    //setCargando(true)
+    setCargando(true)
     setRecargar(false)
     if (materias.length > 0) {
 
