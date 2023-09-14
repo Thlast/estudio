@@ -234,7 +234,7 @@ export function HomeMongo() {
             </form>
             <div>
               <div>
-                {cargando ? <Spinner/> :
+                {cargando ? <Spinner /> :
                   <ProgressCircle progress={(totalResueltas && longitudPreguntasTotal) ? (Math.round((totalResueltas / longitudPreguntasTotal) * 100)) : 0} />
                 }
               </div>
@@ -275,10 +275,10 @@ export function HomeMongo() {
                 </button>
               </div>
             </div >
-            {cargando ? <CardSkeleton /> :
-              <>
-                {!recargar ?
-                  longitudPreguntas > 0 ?
+            {!recargar ?
+              cargando ? <CardSkeleton /> :
+                <>
+                  {longitudPreguntas > 0 ?
                     <>
                       {
                         preguntas?.map(p => {
@@ -352,20 +352,20 @@ export function HomeMongo() {
                         )
                       }
                     </>
-                    : null
+                    : null}
 
-                  : <div
-                    style={{ paddingTop: 20 }}>
+                </>
+              : <div
+                style={{ paddingTop: 20 }}>
 
-                    <button
-                      className='home-boton'
-                      onClick={() => cargarHome()}>
-                      Recargar
-                    </button>
-                  </div>
-                }
-              </>
+                <button
+                  className='home-boton'
+                  onClick={() => cargarHome()}>
+                  Recargar
+                </button>
+              </div>
             }
+
 
           </div>}
 
