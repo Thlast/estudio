@@ -183,7 +183,7 @@ export const liquidacionInicialDefault = {
     },
     cedularInmuebles: {
         conceptos: inicializarConceptos(["cedularInmuebles"]),
-        articulos: ["Artículo 99"],
+        articulos: ["Artículo 99", "Artículo 100"],
         total: 0
     },
     //QUEBRANTOS DE CEDULAR

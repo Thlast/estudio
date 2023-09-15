@@ -130,4 +130,5 @@
     border: 1px solid var(--text-color);
     padding: 15px;
     background-color: var(--container-color);
+    width: 100%;
 }

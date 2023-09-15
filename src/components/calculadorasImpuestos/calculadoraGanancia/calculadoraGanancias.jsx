@@ -121,10 +121,10 @@ export const CalculadoraGanancias = () => {
   const articulo30FE = remanenteDeduccionesPersonales
   ////UTILIZACION DE QUEBRANTOS
   const quebrantoFAUtilizadoFE = //SI TENGO REMANENTE DE DS PERSONALES NO CONVIENE UTILIZAR EL QUEBRANTO
-      (gnDeduccionesGeneralesFE - (liquidacion?.QuebrantosAnterioresFE?.total + remanenteDeduccionesPersonales)) > quebrantoFA ? //SI LA GANANCIA ES MAYOR AL QUEBRANTO USO TODO EL QUEBRANTO
-        quebrantoFA : gnDeduccionesGeneralesFE > 0 ? //SI DA MENOR TENGO QUE VER SI HAY QUEBRANTO EN EL EJERCICIO
-          absorberGanancia(gnDeduccionesGeneralesFE, (liquidacion?.QuebrantosAnterioresFE?.total + remanenteDeduccionesPersonales)) // SI NO HAY QUEBRANTO CALCULO LO QUE TENGO QUE USAR DEL QUEBRANTO DE FA
-          : null //SI HAY QUEBRANTO EN EL EJERCICIO NO USO EL QUEBRANTO DE FA
+    (gnDeduccionesGeneralesFE - (liquidacion?.QuebrantosAnterioresFE?.total + remanenteDeduccionesPersonales)) > quebrantoFA ? //SI LA GANANCIA ES MAYOR AL QUEBRANTO USO TODO EL QUEBRANTO
+      quebrantoFA : gnDeduccionesGeneralesFE > 0 ? //SI DA MENOR TENGO QUE VER SI HAY QUEBRANTO EN EL EJERCICIO
+        absorberGanancia(gnDeduccionesGeneralesFE, (liquidacion?.QuebrantosAnterioresFE?.total + remanenteDeduccionesPersonales)) // SI NO HAY QUEBRANTO CALCULO LO QUE TENGO QUE USAR DEL QUEBRANTO DE FA
+        : null //SI HAY QUEBRANTO EN EL EJERCICIO NO USO EL QUEBRANTO DE FA
   //////////////////
   const especificoFEantesQuebrantos = absorberGanancia(totalFEEspecifico, (liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total))
   const gnQuebrantosFE = absorberGanancia((gnDeduccionesGeneralesFE), (liquidacion?.QuebrantosAnterioresFE?.total + quebrantoFAUtilizadoFE))
@@ -139,16 +139,21 @@ export const CalculadoraGanancias = () => {
   const remanenteDeduccionesPersonalesFE = (gnQuebrantosFE - articulo30FE) < 0 ? -(gnQuebrantosFE - articulo30FE) : 0 //REMANENTE DE LAS DEDUCCIONES GENERALES VAN PARA FUENTE EXTRANJERA
   ////UTILIZACION DE QUEBRANTOS
   const quebrantoFAUtilizadoFEespecifico =//SI TENGO REMANENTE DE DS PERSONALES NO CONVIENE UTILIZAR EL QUEBRANTO
-      (totalFEEspecifico - (remanenteDeduccionesPersonalesFE + liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + liquidacion?.quebrantosAnterioresFEespecifico?.total)) > (quebrantoFA - quebrantoFAUtilizadoFE) ? //SI LA GANANCIA ES MAYOR AL QUEBRANTO USO TODO EL QUEBRANTO
-        (quebrantoFA - quebrantoFAUtilizadoFE) : totalFEEspecifico > 0 ? //TENGO QUE VER SI HAY QUEBRANTO EN EL EJERCICIO
-          absorberGanancia(totalFEEspecifico, (remanenteDeduccionesPersonalesFE + liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + liquidacion?.quebrantosAnterioresFEespecifico?.total)) : //SI HAY QUEBRANTO
-          null
+    (totalFEEspecifico - (remanenteDeduccionesPersonalesFE + liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + liquidacion?.quebrantosAnterioresFEespecifico?.total)) > (quebrantoFA - quebrantoFAUtilizadoFE) ? //SI LA GANANCIA ES MAYOR AL QUEBRANTO USO TODO EL QUEBRANTO
+      (quebrantoFA - quebrantoFAUtilizadoFE) : totalFEEspecifico > 0 ? //TENGO QUE VER SI HAY QUEBRANTO EN EL EJERCICIO
+        absorberGanancia(totalFEEspecifico, (remanenteDeduccionesPersonalesFE + liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + liquidacion?.quebrantosAnterioresFEespecifico?.total)) : //SI HAY QUEBRANTO
+        null
+
+  const baseImponibleGlobal = absorberGanancia(gnFA + gnFE, quebrantoFE)
+
+
+  const quebrantoFENeto = baseImponibleGlobal > 0 ? 0 : (quebrantoFE - gnFA)
 
   const quebrantoFEUtilizadoFEespecifico =
-      (totalFEEspecifico - ((remanenteDeduccionesPersonalesFE + quebrantoFAUtilizadoFEespecifico) + (liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + quebrantoFAUtilizadoFEespecifico + liquidacion?.quebrantosAnterioresFEespecifico?.total))) > (quebrantoFE) ? //SI ES MAYOR USO TODO EL QUEBRANTO
-        (quebrantoFE) : totalFEEspecifico > 0 ? //SI NO TENGO QUE VER SI HAY QUEBRANTO EN EL EJ
-          absorberGanancia(totalFEEspecifico, ((remanenteDeduccionesPersonalesFE + quebrantoFAUtilizadoFEespecifico) + (liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + quebrantoFAUtilizadoFEespecifico + liquidacion?.quebrantosAnterioresFEespecifico?.total)))
-          : null
+    (totalFEEspecifico - ((remanenteDeduccionesPersonalesFE + quebrantoFAUtilizadoFEespecifico) + (liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + liquidacion?.quebrantosAnterioresFEespecifico?.total))) > (quebrantoFENeto) ? //SI ES MAYOR USO TODO EL QUEBRANTO
+      (quebrantoFENeto) : totalFEEspecifico > 0 ? //SI NO TENGO QUE VER SI HAY QUEBRANTO EN EL EJ
+        absorberGanancia(totalFEEspecifico, ((remanenteDeduccionesPersonalesFE + quebrantoFAUtilizadoFEespecifico) + (liquidacion?.deduccionesGeneralesFEespecifico?.total + liquidacion?.quebrantosEspecificosFE?.total + liquidacion?.quebrantosAnterioresFEespecifico?.total)))
+        : null
   ///////////////////////
 
   const especificoFEantesDP = absorberGanancia(especificoFEantesQuebrantos, (quebrantoFEUtilizadoFEespecifico + quebrantoFAUtilizadoFEespecifico))
@@ -205,10 +210,6 @@ export const CalculadoraGanancias = () => {
   const utilizadoGNIFEespecifico = remanentePersonalesUtilizadoEspecifico >= (liquidacion?.GananciaNoImponible?.total - utilizadoGNI - utilizadoGNIFE) ? (liquidacion?.GananciaNoImponible?.total - utilizadoGNI - utilizadoGNIFE) : (remanentePersonalesUtilizadoEspecifico)
 
   const utilizadoFamiliaFEespecifico = (remanentePersonalesUtilizadoEspecifico - utilizadoGNIFEespecifico) >= (liquidacion?.Cargasdefamilia?.total - utilizadoFamilia - utilizadoFamiliaFE) ? (liquidacion?.Cargasdefamilia?.total - utilizadoFamilia - utilizadoFamiliaFE) : (remanentePersonalesUtilizadoEspecifico - utilizadoGNIFEespecifico)
-
-  // const utilizadoGNIFE = utilizadoPersonalesFE >= (liquidacion?.GananciaNoImponible?.total - utilizadoGNI) ? (liquidacion?.GananciaNoImponible?.total - utilizadoGNI) : (utilizadoPersonalesFE)
-  // const utilizadoFamiliaFE =  (utilizadoPersonalesFE - utilizadoGNIFE) >= (liquidacion?.Cargasdefamilia?.total - utilizadoFamilia) ? (liquidacion?.Cargasdefamilia?.total - utilizadoFamilia) : (utilizadoPersonalesFE - utilizadoGNIFE)
-
 
   return (
     <div style={{ overflow: "scroll" }} className='.menuContenedor'>
@@ -383,16 +384,16 @@ export const CalculadoraGanancias = () => {
                       <h6>-</h6>
                       <h4>Ganancia Neta sujeta a impuesto de FE <em>{gnFE}</em></h4>
                       {quebrantoFE ? <h4 className={style.impuestoAIngresar}>Quebranto del ejercicio FE
-                        <em>Total: {quebrantoFE}</em>
+                        <em>Total: {quebrantoFENeto}</em>
                         <em>Utilizado: {quebrantoFEUtilizadoFEespecifico}</em>
-                        <em>Restante: {quebrantoFE - quebrantoFEUtilizadoFEespecifico}</em>
+                        <em>Restante: {quebrantoFENeto - quebrantoFEUtilizadoFEespecifico}</em>
                       </h4> : null}
                     </div>
                   </div>
                 </div>
               </div>
-              <h4>Escala del artículo 94 <em>Total: {gnFA + gnFE}</em></h4>
-              <EscalaValores baseImponible={gnFA + gnFE} />
+              <h4>Escala del artículo 94 <em>Total: {baseImponibleGlobal}</em></h4>
+              <EscalaValores baseImponible={baseImponibleGlobal} />
             </div>
             <div>
               <h2>Fuente Extranjera</h2>
