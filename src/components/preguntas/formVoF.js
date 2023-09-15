@@ -8,7 +8,7 @@ import { UserConfig } from '../../context/UserConfig'
 export function VoF(props) {
 
   //   const {agregarHistorial} = useContext(ResueltasContext)
-  const {confetti} = useContext(UserConfig)
+  const { confetti } = useContext(UserConfig)
   const { p } = props
   const { agregarResueltasContext } = useContext(ResueltasContext)
   const checkRespuesta = async (preg, num, id) => {
@@ -77,31 +77,31 @@ export function VoF(props) {
                     <ReactMarkdown>
                       {`*${1 + num})* ${preg.pregunta}`}
                     </ReactMarkdown>
-                    <div
-                      className='vof-inputs'>
-                      <div
-                        className='vof-vf'>
+                    <div className='vof-inputs'>
+                      <div className='vof-vf'>
                         <input
                           value={true}
                           name={`vof${num}${p.id}`}
                           id={`verdadero${num}${p.id}`}
-                          type="radio" />
-                        <label for={`verdadero${num}${p.id}`}>
+                          type="radio"
+                        />
+                        <label htmlFor={`verdadero${num}${p.id}`}>
                           {"  "}V
                         </label>
                       </div>
-                      <div
-                        className='vof-vf'>
+                      <div className='vof-vf'>
                         <input
                           value={false}
                           name={`vof${num}${p.id}`}
                           id={`falso${num}${p.id}`}
-                          type="radio" />
-                        <label for={`falso${num}${p.id}`}>
+                          type="radio"
+                        />
+                        <label htmlFor={`falso${num}${p.id}`}>
                           {"  "}F
                         </label>
                       </div>
                     </div>
+
                   </div>
                   <div
                     id={`respuesta-${p.id}${num}`}
@@ -128,7 +128,7 @@ export function VoF(props) {
             })}
           </div>
           <div
-            style={{ "textAlign": "center" }}>
+            style={{ textAlign: "center" }}>
             <button
 
               className='home-boton'

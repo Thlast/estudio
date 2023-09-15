@@ -150,7 +150,6 @@ export function SVGZoom(props) {
   useEffect(() => {
     let i = 0
     if (renderCurso) {
-      console.log(renderCurso)
       i += 1
     }
     if (renderCapitulo) {
@@ -193,7 +192,7 @@ export function SVGZoom(props) {
       })
     } else
       getSVGfromMongo(capituloId, curso).then(data => {
-        console.log(data)
+        // console.log(data)
 
         if (!data[0] && !data[1]) {
           limpiarDatos()

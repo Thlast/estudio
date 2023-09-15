@@ -13,7 +13,7 @@ export function HistorialProvider({ children }) {
   //nuevo en MONGODB
   const [resueltas, setResueltas] = useState()
   const [totalResueltas, setTotalResueltas] = useState(0)
-console.log(resueltas)
+
   const devolverResueltas = (curso) => {
     let resueltasCurso = resueltas?.filter(r => r.curso == curso)
 

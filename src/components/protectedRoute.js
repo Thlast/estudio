@@ -11,7 +11,7 @@ export function ProtectedRoute({ children, ...rest }) {
   if (!user) {
     // Almacenar la ruta intentada en el local storage
     localStorage.setItem("redirectPath", window.location.pathname);
-    console.log(window.location.pathname)
+    // console.log(window.location.pathname)
     return <Navigate to="/login" />;
   }
 

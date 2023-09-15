@@ -28,7 +28,7 @@ export function Preguntas(props) {
 
 
   useEffect(() => {
-    if (devolverResueltas(p.curso)[0]?.resueltas == undefined) {
+    if (devolverResueltas(p.curso)?.[0]?.resueltas == undefined) {
       setCompletadas([])
     } else {
       setCompletadas(devolverResueltas(p.curso)[0]?.resueltas)
