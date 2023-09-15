@@ -4,15 +4,12 @@ import { Perfil } from "./Perfil";
 import { useAuth } from "../context/AuthContext";
 
 export function MenuDesplegable() {
-
-  const { user } = useAuth()
+  const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [startX, setStartX] = useState(null);
   const [currentX, setCurrentX] = useState(null);
   const [offsetX, setOffsetX] = useState(0);
   const menuRef = useRef(null);
-  const menuCerrarRef = useRef(null);
-  //const menuAbrirRef = useRef(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -27,13 +24,10 @@ export function MenuDesplegable() {
     if (startX !== null) {
       setCurrentX(e.pageX);
       setOffsetX(e.pageX - startX);
-      if (menuOpen && (e.pageX - startX) < 0) {
+      if (menuOpen && offsetX < 0) {
         menuRef.current.style.transform = `translateX(${offsetX}px)`;
-        menuCerrarRef.current.style.transform = `translateX(${offsetX}px)`;
-      }
-      else if (!menuOpen && (e.pageX - startX) < 250) {
-        menuRef.current.style.transform = `translateX(${offsetX + 40}px)`;
-        //menuAbrirRef.current.style.transform = `translateX(${offsetX + 40}px)`;
+      } else if (!menuOpen && offsetX < 250) {
+        menuRef.current.style.transform = `translateX(${40 + offsetX}px)`;
       }
     }
   };
@@ -47,12 +41,7 @@ export function MenuDesplegable() {
     setStartX(null);
     setCurrentX(null);
     setOffsetX(0);
-    if (menuOpen) {
-      menuCerrarRef.current.style.transform = "";
-    }
-    menuRef.current.style.transform = "";
-
-    //menuAbrirRef.current.style.transform = "";
+    menuRef.current.style.transform = '';
   };
 
   return (
