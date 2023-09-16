@@ -1,5 +1,5 @@
 import './App.scss';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
 import { Login } from './components/Login/Login/Login';
 import { SignUp } from './components/Login/SignUp/SignUp';
 import { AuthProvider } from './context/AuthContext';
@@ -10,20 +10,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cursos } from './components/Cursos'
 import { Curso } from './components/Curso'
 import { Impcaps } from './paginasCaps/Secciones/impcaps';
-import { Secciones } from './paginasCaps/SeccionesSQL/secciones';
-// import { Impuestos } from './components/impuestos';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
 import { DataProvider } from './context/MateriasContext';
 import { HistorialProvider } from './context/Resueltas';
-import { Prestamos } from './components/calcPrestamos';
-import { EdeResultados } from './components/estados contables/EdeResultados';
 import { ModelosRT9 } from './components/estados contables/modelosRT9';
 import { TransformarTabla } from './components/transformarTabla';
 import { ImprimirHTML } from './components/imprimirResumen';
 import { InformeAuditor } from './components/informeAuditor';
 import { MenuDesplegable } from './components/menuDesplegable';
-import { MostrarPregunta } from './components/preguntas/mostrarPregunta';
 import { MostrarNotas } from './components/notes/mostrarNotas';
 import { Buscador } from './components/buscador';
 import { UserConfigProvider } from './context/UserConfig';
@@ -33,25 +28,12 @@ import { InteraccionIA } from './components/IA/interaccion';
 import { Error404 } from './components/Error404';
 import { ConfettiOptions } from './components/confetti';
 import { VerRT } from './components/verRT';
-import { useEffect } from 'react';
-import { FlujosFondos } from './components/flujoFondos/flujosFondos';
 import { CompararFlujos } from './components/flujoFondos/comparacionFlujos';
 import { MisPreguntas } from './components/misPreguntas';
-import { CalculadoraGanancias } from './components/calculadorasImpuestos/calculadoraGanancia/calculadoraGanancias';
 import { Calculadoras } from './components/calculadorasImpuestos/calculadoras';
+import { Suspense, lazy } from 'react';
 
-function App() {
-
-  // const addMetaTag = () => {
-  //   const metaTag = document.createElement('meta');
-  //   metaTag.setAttribute('name', 'view-transition');
-  //   metaTag.setAttribute('content', 'same-origin');
-  //   document.head.appendChild(metaTag);
-  // };
-
-  // useEffect(() => {
-  //   addMetaTag();
-  // }, []);
+export function App() {
 
   document.title = 'Estudio'
 
@@ -61,7 +43,7 @@ function App() {
   //       const toUrl = new URL(event.destination.url);
   //       // Es una página externa? Si es así, lo ignoramos
   //       if (window.location.origin !== toUrl.origin) return;
-  
+
   //       try {
   //         // Obtener el contenido HTML de la página de destino
   //         const response = await fetch(toUrl.href);
@@ -71,7 +53,7 @@ function App() {
   //         const parser = new DOMParser();
   //         const htmlDocument = parser.parseFromString(text, 'text/html');
   //         const bodyContent = htmlDocument.querySelector('body').innerHTML;
-          
+
   //         // Utilizar la API de View Transition para realizar el cambio de vista
   //         document.startViewTransition(() => {
   //           document.body.innerHTML = bodyContent;
@@ -82,7 +64,7 @@ function App() {
   //       }
   //     }
   //   };
-  
+
   //   if (document.startViewTransition) {
   //     window.navigation.addEventListener('navigate', navigateHandler);
   //     return () => {
@@ -90,234 +72,189 @@ function App() {
   //     };
   //   }
   // }, []);
-  
+
+  const EdeResultados = lazy(() => import('./components/estados contables/EdeResultados'))
+  const CalculadoraGanancias = lazy(() => import('./components/calculadorasImpuestos/calculadoraGanancia/calculadoraGanancias'))
+  const Prestamos = lazy(() => import('./components/calcPrestamos'))
+  const Secciones = lazy(() => import('./paginasCaps/SeccionesSQL/secciones'))
 
   return (
     <AuthProvider>
       <DataProvider>
         <HistorialProvider>
           <UserConfigProvider>
-            <Nav />
-            <MenuDesplegable />
             <Routes>
-              <Route
-                path="/calculadoras/ganancias"
+              <Route path="/"
                 element={
                   <ProtectedRoute>
+                    <Layout />
+                  </ProtectedRoute>
+                }>
+                <Route
+                  path="/calculadoras/ganancias"
+                  element={
                     <CalculadoraGanancias />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/calculadoras"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/calculadoras"
+                  element={
                     <Calculadoras />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/flujo-de-fondos"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/flujo-de-fondos"
+                  element={
                     <CompararFlujos />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/verRT/:rt"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/verRT/:rt"
+                  element={
                     <VerRT />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/cursos"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/cursos"
+                  element={
                     <Cursos />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/opcionesUsuario"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/opcionesUsuario"
+                  element={
                     <ConfettiOptions />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/IA"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/IA"
+                  element={
                     <InteraccionIA />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/guia/"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/guia/"
+                  element={
                     <SVGZoom esquema="Impuesto a las ganancias" />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/articulos"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/articulos"
+                  element={
                     <Articulos />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/"
+                  element={
                     <HomeMongo />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/menu/mis-preguntas"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/menu/mis-preguntas"
+                  element={
                     <MisPreguntas />
-                  </ProtectedRoute>
-                }
-              />
+                  }
+                />
 
-              <Route
-                path="/menu/mis-notas"
-                element={
-                  <ProtectedRoute>
+                <Route
+                  path="/menu/mis-notas"
+                  element={
                     <MostrarNotas perfil={true} />
-                  </ProtectedRoute>
-                }
-              />
+                  }
+                />
 
-              <Route
-                path="/menu/buscador"
-                element={
-                  <ProtectedRoute>
+                <Route
+                  path="/menu/buscador"
+                  element={
                     <Buscador perfil={true} />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/informeAuditor"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/informeAuditor"
+                  element={
                     <InformeAuditor />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/examenes"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/examenes"
+                  element={
                     <Examenes />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/cursos/:curso"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/cursos/:curso"
+                  element={
                     <Curso />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/cursos/:curso/:focus"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/cursos/:curso/:focus"
+                  element={
                     <Curso />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/cursos/:materia/:titulo/:sec"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/cursos/:materia/:titulo/:sec"
+                  element={
                     <Impcaps />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/cursosSQL/:curso/:capituloId/:titulo/:id/"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/cursosSQL/:curso/:capituloId/:titulo/:id/"
+                  element={
                     <Secciones />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/Error404"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Error404"
+                  element={
                     <Error404 />
-                  </ProtectedRoute>
-                }
-              />
-              {/* <Route 
+                  }
+                />
+                {/* <Route 
           path="/imp" 
-            element={
-              <ProtectedRoute>
-                <Impuestos />
-              </ProtectedRoute>
+            element={            
+                <Impuestos />              
             }
           /> */}
-              <Route
-                path="/examenes/:id"
-                element={
-                  <ProtectedRoute>
+                <Route
+                  path="/examenes/:id"
+                  element={
                     <Examen />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/calculadora-prestamos"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/calculadora-prestamos"
+                  element={
                     <Prestamos />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/estados-contables"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/estados-contables"
+                  element={
                     <ModelosRT9 />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/estados-contables/estado-de-resultados"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/estados-contables/estado-de-resultados"
+                  element={
                     <EdeResultados />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/texto-a-tabla"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/texto-a-tabla"
+                  element={
                     <TransformarTabla />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/imprimirResumen/:curso"
-                element={
-                  <ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/imprimirResumen/:curso"
+                  element={
                     <ImprimirHTML />
-                  </ProtectedRoute>
-                }
-              />
+                  }
+                />
+              </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<SignUp />} />
             </Routes>
@@ -328,4 +265,15 @@ function App() {
   )
 }
 
-export default App;
+function Layout() {
+  return (
+    <>
+    <Nav />
+    <MenuDesplegable/>
+      <Suspense>
+        <Outlet />
+      </Suspense>
+
+    </>
+  )
+}

@@ -5,7 +5,7 @@ import { guardarLiquidacionEnLocalStorage, obtenerLiquidacionDesdeLocalStorage, 
 import { liquidacionInicialDefault } from './liquidacionInicial'
 import { EscalaValores } from './escalaValores'
 import { Warning } from './warning'
-export const CalculadoraGanancias = () => {
+const CalculadoraGanancias = () => {
 
   const liquidacionInicial = obtenerLiquidacionDesdeLocalStorage();
   const [liquidacion, setLiquidacion] = useState(liquidacionInicial || liquidacionInicialDefault)
@@ -433,3 +433,5 @@ export const CalculadoraGanancias = () => {
     </div>
   )
 }
+
+export default CalculadoraGanancias;

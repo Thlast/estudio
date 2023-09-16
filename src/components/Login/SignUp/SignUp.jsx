@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Spinner } from '../Spinner';
 import style from './SignUp.module.css';
 import { toast } from 'react-toastify';
@@ -64,12 +64,12 @@ export const SignUp = () => {
         const userId = auth.user.uid;
         setDoc(doc(usersRef, userId), { nombre: userData.name, email: userData.email, rol: "Usuario", id: userId })
 
-        .then((docRef) => {
-          console.log("Usuario registrado correctamente con ID: ", userId);
-        })
-        .catch((error) => {
-          console.error("Error al registrar usuario: ", error);
-        });
+          .then((docRef) => {
+            console.log("Usuario registrado correctamente con ID: ", userId);
+          })
+          .catch((error) => {
+            console.error("Error al registrar usuario: ", error);
+          });
       })
         .catch((error) => {
           console.error('Error al registrar al usuario:', error);
@@ -127,23 +127,23 @@ export const SignUp = () => {
           <h1 className={style.titleOutsideForm}>Registrarse</h1>
           <form onSubmit={handleSubmit}>
             {/* <div className={style.filaArriba}> */}
-              <div className={style.contenedorInput}>
-                <label className={style.label}>
-                  Nombre <span className={style.req}>*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  onChange={handleChange}
-                  onFocus={handlerMultiple}
-                  onBlur={handlerMultiple}
-                  onKeyUp={handlerMultiple}
-                  value={userData.name}
-                  required
-                ></input>
-              </div>
+            <div className={style.contenedorInput}>
+              <label className={style.label}>
+                Nombre <span className={style.req}>*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                onChange={handleChange}
+                onFocus={handlerMultiple}
+                onBlur={handlerMultiple}
+                onKeyUp={handlerMultiple}
+                value={userData.name}
+                required
+              ></input>
+            </div>
 
-              {/* <div className={style.contenedorInput}>
+            {/* <div className={style.contenedorInput}>
                 <label className={style.label}>
                   Apellido <span className={style.req}>*</span>
                 </label>
@@ -212,7 +212,11 @@ export const SignUp = () => {
             <button className={`${style.button} ${style.buttonBlock}`}>
               Registrarse
             </button>
+            <div style={{padding:"20px"}}>
+              <Link to="/login">¿Ya tienes una cuenta? Ingresá</Link>
+            </div>
           </form>
+
         </div>
       )}
     </div>

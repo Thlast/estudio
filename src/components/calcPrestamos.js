@@ -2,7 +2,7 @@ import style from '../modulos-css/calcPrestamos.module.css'
 import React, {useState} from 'react';
 import { irr } from 'financial'
 
-export const Prestamos = () => {
+const Prestamos = () => {
 
     const [qcuotas, setQcuotas] = useState()
     const [monto, setMonto] = useState(0)
@@ -205,3 +205,5 @@ export const Prestamos = () => {
       </div>
     );
   }
+
+  export default Prestamos;

@@ -20,7 +20,7 @@ import { UserConfig } from "../../context/UserConfig";
 import { SVGZoom } from "../../components/dataInformes/guia";
 import { ProgresoSecciones } from "../../components/progresoSecciones";
 
-export function Secciones() {
+function Secciones() {
 
   const [ordenActual, setOrdenActual] = useState();
   const { id } = useParams();
@@ -604,3 +604,4 @@ export function Secciones() {
 
 
 
+export default Secciones;

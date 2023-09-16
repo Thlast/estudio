@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import React from 'react';
 
 
-export function EdeResultados() {
+function EdeResultados() {
 
 
 
@@ -67,3 +67,4 @@ return (
     );
   }
 
+export default EdeResultados;
