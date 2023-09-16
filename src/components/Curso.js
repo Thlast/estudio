@@ -10,7 +10,7 @@ import { Secciones } from './listarSecciones';
 import { obtenerAllRT } from './servicios/consola/buscarRT';
 import { CardSkeleton } from '../modulos-css/esqueletoSeccion';
 
-export function Curso() {
+function Curso() {
 
   const [cargando, setCargando] = useState(true)
   const { curso } = useParams();
@@ -224,3 +224,5 @@ export function Curso() {
     </div>
   )
 }
+
+export default Curso;

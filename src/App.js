@@ -8,8 +8,6 @@ import { Examenes } from './components/Examenes';
 import { Examen } from './components/examen'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cursos } from './components/Cursos'
-import { Curso } from './components/Curso'
-import { Impcaps } from './paginasCaps/Secciones/impcaps';
 import { Nav } from './components/navbarr'
 import { HomeMongo } from './components/HomeMongo';
 import { DataProvider } from './context/MateriasContext';
@@ -17,10 +15,8 @@ import { HistorialProvider } from './context/Resueltas';
 import { ModelosRT9 } from './components/estados contables/modelosRT9';
 import { TransformarTabla } from './components/transformarTabla';
 import { ImprimirHTML } from './components/imprimirResumen';
-import { InformeAuditor } from './components/informeAuditor';
 import { MenuDesplegable } from './components/menuDesplegable';
 import { MostrarNotas } from './components/notes/mostrarNotas';
-import { Buscador } from './components/buscador';
 import { UserConfigProvider } from './context/UserConfig';
 import { SVGZoom } from './components/dataInformes/guia';
 import { Articulos } from './components/dataInformes/articulos';
@@ -28,7 +24,6 @@ import { InteraccionIA } from './components/IA/interaccion';
 import { Error404 } from './components/Error404';
 import { ConfettiOptions } from './components/confetti';
 import { VerRT } from './components/verRT';
-import { CompararFlujos } from './components/flujoFondos/comparacionFlujos';
 import { MisPreguntas } from './components/misPreguntas';
 import { Calculadoras } from './components/calculadorasImpuestos/calculadoras';
 import { Suspense, lazy } from 'react';
@@ -76,7 +71,14 @@ export function App() {
   const EdeResultados = lazy(() => import('./components/estados contables/EdeResultados'))
   const CalculadoraGanancias = lazy(() => import('./components/calculadorasImpuestos/calculadoraGanancia/calculadoraGanancias'))
   const Prestamos = lazy(() => import('./components/calcPrestamos'))
+
+  const Buscador = lazy(() => import('./components/buscador'))
+  const Curso = lazy(() => import('./components/Curso'))
+  const CompararFlujos = lazy(() => import('./components/flujoFondos/comparacionFlujos'))
+
+  //PARTE DE LAS SECCIONES
   const Secciones = lazy(() => import('./paginasCaps/SeccionesSQL/secciones'))
+  const Impcaps = lazy(() => import('./paginasCaps/Secciones/impcaps'))
 
   return (
     <AuthProvider>
@@ -168,12 +170,6 @@ export function App() {
                   path="/menu/buscador"
                   element={
                     <Buscador perfil={true} />
-                  }
-                />
-                <Route
-                  path="/informeAuditor"
-                  element={
-                    <InformeAuditor />
                   }
                 />
                 <Route

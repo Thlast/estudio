@@ -7,7 +7,7 @@ import { NavegacionCursos } from "./navegacion";
 import { TextoCurso } from "./textoCurso";
 import style from './impcaps.module.css'
 import Swal from 'sweetalert2'
-import { Buscador } from "../../components/buscador";
+import Buscador from "../../components/buscador";
 import { WindowSplitter } from "./splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -15,7 +15,7 @@ import { UserConfig } from "../../context/UserConfig";
 import { SVGZoom } from "../../components/dataInformes/guia";
 import { obtenerDatosCapitulos } from "../../components/servicios/cursos/obtenerSeccion";
 
-export function Impcaps() {
+function Impcaps() {
 
   // const location = useLocation();
   // const SeccionId = location.state?.SeccionId;
@@ -522,3 +522,6 @@ export function Impcaps() {
 
 
 
+
+
+export default Impcaps;

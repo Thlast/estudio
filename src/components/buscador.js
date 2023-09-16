@@ -9,7 +9,7 @@ import { MostrarDef } from "./definiciones/mostrarDef";
 import { buscarValorSQL } from "./servicios/cursos/cursosSQL/buscarSeccion";
 import { Articulos } from "./dataInformes/articulos";
 
-export const Buscador = (props) => {
+const Buscador = (props) => {
 
   const { materias, matPreferida } = useContext(MateriasContext);
   const { cursoBuscador, capituloId } = props
@@ -325,3 +325,4 @@ export const Buscador = (props) => {
     </div>
   )
 }
+export default Buscador;

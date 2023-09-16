@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { InformeAuditor } from '../../components/informeAuditor';
 import { obtenerDatosSeccion } from '../../components/servicios/cursos/obtenerSeccion';
 import { Spinner } from '../../components/Login/Spinner';
 import { useNavigate } from 'react-router-dom';
@@ -62,10 +61,6 @@ export function TextoCurso(props) {
               <h1>
                 {seccion}
               </h1>
-              {/* {
-            seccion == "Informes de auditor" ? <InformeAuditor recargarFuncionClickcode={recargarFuncionClickcode} /> : null
-          } */}
-
               <br></br>
               <div>
                 {enunciado?.length == 0 ? null :

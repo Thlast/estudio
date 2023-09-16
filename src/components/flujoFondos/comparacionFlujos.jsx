@@ -4,7 +4,7 @@ import style from './modulocss.module.css'
 import { FlujosFondos } from './flujosFondos';
 import { FlujosIncrementales } from './flujosIncrementales';
 
-export const CompararFlujos = () => {
+const CompararFlujos = () => {
   const [proyectos, setProyectos] = useState([]);
   const [nombreProyecto, setNombreProyecto] = useState('');
   const [proyectoConMayorTIR, setProyectoConMayorTIR] = useState();
@@ -243,3 +243,5 @@ export const CompararFlujos = () => {
     </div>
   );
 };
+
+export default CompararFlujos;

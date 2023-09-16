@@ -5,7 +5,7 @@ import { MostrarPregunta } from '../../components/preguntas/mostrarPregunta';
 import { Consola } from "../consola";
 import { TextoCursoSQL } from "./textoCursoSQL.js";
 import style from './secciones.module.css'
-import { Buscador } from "../../components/buscador";
+import Buscador from "../../components/buscador";
 import { WindowSplitter } from "../Secciones/splitter";
 import { MostrarNotas } from "../../components/notes/mostrarNotas";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
