@@ -2,27 +2,15 @@ import React, { useState, useEffect } from "react";
 import style from './cGanancias.module.css'
 import { Articulos } from "../../dataInformes/articulos";
 import { BotonEsc } from "../../teclaEsc";
+import { JPatrimonial } from "./justificacionPatrimonial";
 
 export const Liquidador = (props) => {
 
-  const { id, handleImpuestoCalculado, cancelar, liquidacion, topeDonacion } = props;
+  const { totalGananciasGravadas, id, handleImpuestoCalculado, cancelar, liquidacion, topeDonacion, funcionLiquidar } = props;
 
   const liquidacionActual = liquidacion[id] || [{ conceptos: [], total: 0 }];
 
-  const [decreto, setDecreto] = useState(false);
   const [articulo, setArticulo] = useState(liquidacionActual?.articulos?.[0] || "Artículo 1");
-
-  // const cambiarDecreto = () => {
-  //   if (decreto) {
-  //     // Si ya tiene "DR", lo eliminamos
-  //     setArticulo(articulo?.replace(" DR", ""));
-  //   } else {
-  //     // Si no tiene "DR", lo agregamos
-  //     setArticulo(articulo + " DR");
-  //   }
-  //   // Cambiamos el estado de decreto
-  //   setDecreto(!decreto);
-  // };
 
   useEffect(() => {
     setArticulo(liquidacionActual?.articulos?.[0] || "Artículo 1");
@@ -118,12 +106,12 @@ export const Liquidador = (props) => {
     const totalCalculado = calcularTotal();
     setTotal(totalCalculado);
 
-  }, [conceptos, deducciones]);
+  }, [conceptos, deducciones, deduccionesComunes]);
 
   return (
     <>
       <div className={style.contenedorLiquidacion}>
-        <BotonEsc handleClick={cancelar}/>
+        <BotonEsc handleClick={cancelar} />
         {/* <button
           className="btn btn-danger"
           type="button"
@@ -132,8 +120,11 @@ export const Liquidador = (props) => {
         </button> */}
         <h1>Liquidando: {id}</h1>
         <form>
-          {id == "DeduccionesGeneralesConLimite" ? <p>Tope de donaciones: {topeDonacion}</p> : null}
-          {conceptos?.map((c, index) => (
+          {id == "DeduccionesGeneralesConLimite" ? <p>Tope del 5%: {topeDonacion.toFixed(2)}</p> : null}
+          {id == "justificacionPatrimonial" ?
+            <JPatrimonial funcionLiquidar={funcionLiquidar} liquidacion={liquidacion} totalGananciasGravadas={totalGananciasGravadas}/> :
+            
+          conceptos?.map((c, index) => (
             <div
               className={style.liquidacionContenido}
               key={"ganancias-" + index}>
@@ -256,8 +247,8 @@ export const Liquidador = (props) => {
           {/* <button className="home-boton" onClick={() => cambiarDecreto()}>
           {decreto ? "Decreto Reglamentario" : "Texto ordenado"}
         </button> */}
-        <div className={style.visorArticulos}>
-          <Articulos recargarFuncionClickcode={funcionalidadCodes} articulo={articulo} capituloId={1} />
+          <div className={style.visorArticulos}>
+            <Articulos recargarFuncionClickcode={funcionalidadCodes} articulo={articulo} capituloId={1} />
           </div>
         </div>
         : null}

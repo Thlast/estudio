@@ -1,4 +1,6 @@
 import { G1FAGanancias, G1FADeduccionesEspeciales, G2FAGanancias, G2FADeduccionesEspeciales, G3FADeduccionesEspeciales, G4FAGanancias, DeduccionesEspecialesComunes } from "./liquidaciones/categoriasConceptos";
+import {JPotrosConceptosNoJustificanErogaciones, RentasExentas, JPGananciasNoImplicanErogaciones} from "./liquidaciones/jPatrimonialConceptos";
+
 const deduccionesGeneralesFijo = [
     "INTERESES, ACTUALIZACIONES Y GASTOS ORIGINADOS POR DEUDAS",
     "SEGUROS PARA CASOS DE MUERTE",
@@ -14,11 +16,32 @@ const deduccionesGeneralesVariable = [
     "HONORARIOS POR SERVICIO DE ASISTENCIA SANITARIA MÉDICA Y PARAMÉDICA",
 ]
 
+const justificacionPatrimonial = [
+    { id: "JPotrosConceptosNoJustificanErogaciones", nombre: "Otros Conceptos que no justifican erogaciones y/o aumentos patrimoniales", isColumnI: true },
+    { id: "ResultadoImpositivo", nombre: "Resultado impositivo del periodo", isColumnI: true },
+    { id: "pFinal", nombre: "Patrimonio neto al cierre", isColumnI: true },
+    { id: "RentasExentas", nombre: "Ganancias y/o ingresos exentos o no gravados", isColumnI: false },
+    { id: "JPBienesRecibidos", nombre: "Bienes recibidos por herencia, legado o donación", isColumnI: false },
+    { id: "JPGananciasNoImplicanErogaciones", nombre: "Gastos que no implican erogaciones de fondos correspondientes a cada categoría", isColumnI: false },
+    { id: "JPotrosConceptosjustificanErogaciones", nombre: "Otros Conceptos que justifican erogaciones y/o aumentos patrimoniales", isColumnI: false },
+    { id: "ResultadoImpositivo", nombre: "Resultado impositivo del periodo", isColumnI: false },
+    { id: "pInicial", nombre: "Patrimonio neto al inicio", isColumnI: false }
+]
 const inicializarConceptos = (nombresConceptos) => {
 
     const conceptos = nombresConceptos || ["concepto"]
     return conceptos?.map(nombre => ({
         nombre,
+        importe: 0
+    }));
+};
+const inicializarJustificacion = (nombresConceptos) => {
+
+    const conceptos = nombresConceptos || ["concepto"]
+    return conceptos?.map(c => ({
+        id: c.id,
+        nombre: c.nombre,
+        isColumnI: c.isColumnI,
         importe: 0
     }));
 };
@@ -172,12 +195,12 @@ export const liquidacionInicialDefault = {
         total: 0
     },
     cedularDeduccionEspecialA: {
-        conceptos:inicializarConceptos(["cedularDeduccionEspecial"]),
+        conceptos: inicializarConceptos(["cedularDeduccionEspecial"]),
         articulos: ["Artículo 100", "Artículo 262 DR"],
         total: 0
     },
     cedularDeduccionEspecialB: {
-        conceptos:inicializarConceptos(["cedularDeduccionEspecial"]),
+        conceptos: inicializarConceptos(["cedularDeduccionEspecial"]),
         articulos: ["Artículo 100", "Artículo 262 DR"],
         total: 0
     },
@@ -211,6 +234,57 @@ export const liquidacionInicialDefault = {
         conceptos: inicializarConceptos(["quebrantoDividendos"]),
         articulos: ["Artículo 97"],
         total: 0
+    },
+    pInicial: {
+        conceptos: inicializarConceptos(["pInicial"]),
+        articulos: [],
+        total: 0
+    },
+    pFinal: {
+        conceptos: inicializarConceptos(["pFinal"]),
+        articulos: [],
+        total: 0
+    },
+    justificacionPatrimonial: {
+        justificacionPatrimonial: inicializarJustificacion(justificacionPatrimonial),
+        articulos: [],
+        total: 0
+    },
+    JPotrosConceptosNoJustificanErogaciones: {
+        conceptos: inicializarConceptos(JPotrosConceptosNoJustificanErogaciones),
+        articulos: [],
+        total: 0
+    },
+    RentasExentas: {
+        conceptos: inicializarConceptos(RentasExentas),
+        articulos: ["Artículo 26"],
+        total: 0
+    },
+    JPBienesRecibidos: {
+        conceptos: inicializarConceptos(["conceptos"]),
+        articulos: [],
+        total: 0
+    },
+    JPGananciasNoImplicanErogaciones: {
+        conceptos: inicializarConceptos(JPGananciasNoImplicanErogaciones),
+        articulos: [],
+        total: 0
+    },
+    JPotrosConceptosjustificanErogaciones: {
+        conceptos: inicializarConceptos(["conceptos"]),
+        articulos: [],
+        total: 0
+    },
+    MontoConsumido: {
+        total: 0
+    },
+    ResultadoImpositivo: {
+        total: 0
+    },
+    TotalColumnaI: {
+        total: 0
+    },
+    TotalColumnaII: {
+        total: 0
     }
-
 }

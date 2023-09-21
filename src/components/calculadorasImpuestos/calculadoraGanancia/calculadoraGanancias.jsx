@@ -5,6 +5,9 @@ import { guardarLiquidacionEnLocalStorage, obtenerLiquidacionDesdeLocalStorage, 
 import { liquidacionInicialDefault } from './liquidacionInicial'
 import { EscalaValores } from './escalaValores'
 import { Warning } from './warning'
+import { MontoConsumido } from './montoConsumido'
+import { getLiquidacion } from '../../servicios/liquidacionesServicios/getLiquidaciones'
+import { Ejercicios } from './ejercicios/ejercicios'
 const CalculadoraGanancias = () => {
 
   const liquidacionInicial = obtenerLiquidacionDesdeLocalStorage();
@@ -14,13 +17,19 @@ const CalculadoraGanancias = () => {
   const [enLiquidacion, setEnLiquidacion] = useState()
   const gRef = useRef(null)
 
+  const obtenerLiquidacion = () => {
+    getLiquidacion("650b525f91183df5caa3ba46").then(data => {
+      setLiquidacion(data[0])
+    })
+  }
+
   useEffect(() => {
     guardarLiquidacionEnLocalStorage(liquidacion)
   }, [liquidacion])
 
-  const funcionLiquidar = () => {
+  const funcionLiquidar = (referencia) => {
 
-    const gElement = gRef?.current;
+    const gElement = referencia?.current;
     const elements = gElement?.querySelectorAll('[id]');
 
     for (let i = 0; i < elements?.length; i++) {
@@ -34,27 +43,8 @@ const CalculadoraGanancias = () => {
     }
   }
   useEffect(() => {
-    funcionLiquidar()
+    funcionLiquidar(gRef)
   }, [])
-
-  const handleImpuestoCalculado = (id, total, conceptos, deducciones, deduccionesComunes) => {
-    // Verificar si la instancia ya existe en el objeto liquidacion
-
-    // Si existe, actualiza el total
-    setLiquidacion(prevLiquidacion => ({
-      ...prevLiquidacion,
-      [id]: {
-        ...prevLiquidacion[id],
-        conceptos,
-        deducciones,
-        deduccionesComunes,
-        total: total,
-      },
-    }));
-
-
-    setLiquidando(false)
-  };
 
   const cancelar = () => {
     setLiquidando(false)
@@ -180,7 +170,6 @@ const CalculadoraGanancias = () => {
   const quebrantoEnajenacionC = (liquidacion?.cedularAcciones?.total) < 0 ? (-(liquidacion?.cedularAcciones?.total)) : null
   const quebrantoInmuebles = liquidacion?.cedularInmuebles?.total < 0 ? (-liquidacion?.cedularInmuebles?.total) : null
 
-
   const gnDividendos = absorberGanancia((liquidacion?.dividendos2018?.total + liquidacion?.dividendos2021?.total), liquidacion?.quebrantoDividendos?.total)
   const gnEnajenacionA = absorberGanancia(liquidacion?.cedularTítulosSinAjuste?.total, liquidacion?.quebrantoCedularTítulosSinAjuste?.total)
   const gnEnajenacionB = absorberGanancia((liquidacion?.cedularConAjusteyMonedaDigital?.total), (liquidacion?.quebrantoCedularConAjusteyMonedaDigital?.total))
@@ -211,224 +200,301 @@ const CalculadoraGanancias = () => {
 
   const utilizadoFamiliaFEespecifico = (remanentePersonalesUtilizadoEspecifico - utilizadoGNIFEespecifico) >= (liquidacion?.Cargasdefamilia?.total - utilizadoFamilia - utilizadoFamiliaFE) ? (liquidacion?.Cargasdefamilia?.total - utilizadoFamilia - utilizadoFamiliaFE) : (remanentePersonalesUtilizadoEspecifico - utilizadoGNIFEespecifico)
 
+  const totalCedular = (liquidacion?.dividendos2018?.total + liquidacion?.dividendos2021?.total) +
+    liquidacion?.cedularTítulosSinAjuste?.total +
+    (liquidacion?.cedularConAjusteyMonedaDigital?.total) +
+    (liquidacion?.cedularAcciones?.total) +
+    liquidacion?.cedularInmuebles?.total
+  //PARA MONTOCONSUMIDO GLOBAL + CEDULAR
+  const totalGananciasGravadas = (gnDeduccionesGeneralesConLimite + gnDeduccionesGeneralesFE + especificoFADespuesdeDG) + totalCedular
+
+  const handleImpuestoCalculado = (id, total, conceptos, deducciones, deduccionesComunes) => {
+    // Verificar si la instancia ya existe en el objeto liquidacion
+
+    // Si existe, actualiza el total
+    setLiquidacion(prevLiquidacion => ({
+      ...prevLiquidacion,
+      [id]: {
+        ...prevLiquidacion[id],
+        conceptos,
+        deducciones,
+        deduccionesComunes,
+        total: total,
+      },
+    }));
+
+
+    setLiquidando(false)
+  };
+
+  useEffect(() => {
+
+    setLiquidacion(prevLiquidacion => ({
+      ...prevLiquidacion,
+      ResultadoImpositivo: {
+        total: totalGananciasGravadas,
+      },
+    }));
+
+  }, [totalGananciasGravadas])
+
+  useEffect(() => {
+
+    setLiquidacion(prevLiquidacion => ({
+      ...prevLiquidacion,
+      TotalColumnaII: {
+        total: (liquidacion?.RentasExentas?.total + liquidacion?.pInicial?.total + liquidacion?.JPBienesRecibidos?.total + liquidacion?.JPGananciasNoImplicanErogaciones?.total + liquidacion?.JPotrosConceptosjustificanErogaciones?.total)
+      },
+      TotalColumnaI: {
+        total: (liquidacion?.JPotrosConceptosNoJustificanErogaciones?.total + liquidacion?.pFinal?.total)
+      },
+    }));
+  }, [liquidacion?.RentasExentas?.total, liquidacion?.pInicial?.total, liquidacion?.JPBienesRecibidos?.total, liquidacion?.JPGananciasNoImplicanErogaciones?.total, liquidacion?.JPotrosConceptosjustificanErogaciones?.total, liquidacion?.JPotrosConceptosNoJustificanErogaciones?.total, liquidacion?.pFinal?.total])
+
+  useEffect(() => {
+
+    const resultado = liquidacion?.ResultadoImpositivo?.total > 0 ? liquidacion?.ResultadoImpositivo?.total : -liquidacion?.ResultadoImpositivo?.total
+
+    setLiquidacion(prevLiquidacion => ({
+      ...prevLiquidacion,
+      MontoConsumido: {
+        total: (resultado + (liquidacion?.TotalColumnaII?.total - liquidacion?.TotalColumnaI?.total)),
+      },
+    }));
+  }, [liquidacion?.TotalColumnaI?.total, liquidacion?.TotalColumnaII?.total, liquidacion?.ResultadoImpositivo?.total])
+
+  const [verEjercicio, setVerEjercicio] = useState(false)
   return (
     <div style={{ overflow: "scroll" }} className='.menuContenedor'>
       <button
         className='btn btn-danger'
         onClick={() => borrarLiquidacion()}
       >
-        Limpiar
+        Reiniciar
       </button>
-      <div
-        ref={gRef}
-        style={{ display: liquidando ? "none" : "grid" }}
-        className={style.contenedorGanancias}>
-        <div>
-          <h1>Impuesto Cedular</h1>
-          <h2>Fuente Argentina</h2>
-          <div className={style.contenedorCedular}>
-            <div>
-              <h5>Artículo 97</h5>
-              <h4>Dividendos</h4>
-              <h4>2018-2020 <em id="dividendos2018">{liquidacion?.dividendos2018?.total}</em></h4>
-              <h6>7%</h6>
-              <h4>2021 en adelante <em id="dividendos2021">{liquidacion?.dividendos2021?.total}</em></h4>
-              <h6>7%</h6>
-              <span>Menos</span>
-              <h6 id="quebrantoDividendos">quebrantos ej anteriores<em>({liquidacion?.quebrantoDividendos?.total})</em> </h6>
-              {excedenteQuebrantoDividendos ? <span><Warning />(sobrante: {excedenteQuebrantoDividendos})</span> : null}
 
-              <h4>Total: <em>{gnDividendos}</em></h4>
-              {quebrantoDividendos ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoDividendos}</em></h4> : null}
-              <h4 className={style.impuestoAIngresar}>Impuesto a ingresar<em>{(gnDividendos * 0.07).toFixed(2)}</em></h4>
-            </div>
+      <button  className="home-boton" onClick={() => setVerEjercicio(!verEjercicio)}>Ejercicio 1</button>
+
+      <div ref={gRef}>
+        <MontoConsumido totalGananciasGravadas={totalGananciasGravadas} liquidacion={liquidacion} />
+        <div style={{ display: verEjercicio ? "block" : 'none' }}>
+          <Ejercicios obtenerLiquidacion={obtenerLiquidacion} />
+        </div>
+        <div style={{ display: verEjercicio ? "none" : 'block' }}>
+          <div
+            style={{ display: liquidando ? "none" : "grid" }}
+            className={style.contenedorGanancias}>
             <div>
-              <h5>Artículo 98</h5>
-              <h4>Enajenación</h4>
-              <h4 id="cedularTítulosSinAjuste">a) Títulos S/Ajuste<em>{liquidacion?.cedularTítulosSinAjuste?.total}</em></h4>
-              <span>Menos</span>
-              <h6 id="quebrantoCedularTítulosSinAjuste">quebrantos ej anteriores inc a)<em>({liquidacion?.quebrantoCedularTítulosSinAjuste?.total})</em> </h6>
-              {excedenteQuebrantoEnajenacionA ? <span><Warning />(sobrante: {excedenteQuebrantoEnajenacionA})</span> : null}
-              <span>Menos</span>
-              <h6 id="cedularDeduccionEspecialA">Deduccion especial para inc a)<em>({liquidacion?.cedularDeduccionEspecialA?.total})</em> </h6>
-              {excedenteDeduccionEnajenacionA ? <span><Warning />(sobrante: {excedenteDeduccionEnajenacionA})</span> : null}
-              <h5><em>a) subtotal: {subtotalCedularA}</em></h5>
-              <h6><em>Alicuota 5%</em></h6>
-              {quebrantoEnajenacionA ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoEnajenacionA}</em></h4> : null}
-              <h4 className={style.impuestoAIngresar}>Impuesto a ingresar inc a)<em>{((gnEnajenacionA) * 0.05).toFixed(2)}</em></h4>
-              <hr></hr>
-              <h4 id="cedularConAjusteyMonedaDigital">b) Títulos C/Ajuste, Moneda Digital<em>{liquidacion?.cedularConAjusteyMonedaDigital?.total}</em></h4>
-              <span>Menos</span>
-              <h6 id="quebrantoCedularConAjusteyMonedaDigital">quebrantos ej anteriores inc b)<em>({liquidacion?.quebrantoCedularConAjusteyMonedaDigital?.total})</em> </h6>
-              {excedenteQuebrantoEnajenacionB ? <span><Warning />(sobrante: {excedenteQuebrantoEnajenacionB})</span> : null}
-              <span>Menos</span>
-              <h6 id="cedularDeduccionEspecialB">Deduccion especial para inc b)<em>({liquidacion?.cedularDeduccionEspecialB?.total})</em> </h6>
-              <h5><em>b) subtotal: {subtotalCedularB}</em></h5>
-              <hr></hr>
-              <h4 id="cedularAcciones">c) Acciones<em>{liquidacion?.cedularAcciones?.total}</em></h4>
-              <span>Menos</span>
-              <h6 id="quebrantoCedularAcciones">quebrantos ej anteriores inc c)<em>({liquidacion?.quebrantoCedularAcciones?.total})</em> </h6>
-              {excedenteQuebrantoEnajenacionC ? <span><Warning />(sobrante: {excedenteQuebrantoEnajenacionC})</span> : null}
-              <h5><em>c) subtotal: {subtotalAcciones}</em></h5>
-              <hr></hr>
-              <h5>Total inc b) y c) <em >{subtotalCedularB + subtotalAcciones}</em></h5>
-              <h6><em>Alicuota 15%</em></h6>
-              {quebrantoEnajenacionB ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoEnajenacionB}</em></h4> : null}
-              <h4 className={style.impuestoAIngresar}>Impuesto a ingresar b)+c)
-                <em>{((subtotalCedularB + subtotalAcciones) * 0.15).toFixed(2)}</em>
-              </h4>
-            </div>
-            <div>
-              <div>
-                <h5>Artículo 99</h5>
-                <h4>Venta inmuebles <em id="cedularInmuebles">{liquidacion?.cedularInmuebles?.total}</em></h4>
-                <span>Menos</span>
-                <h6 id="quebrantoCedularInmuebles">quebrantos específicos anteriores<em>({liquidacion?.quebrantoCedularInmuebles?.total})</em> </h6>
-                {excedenteQuebrantoInmuebles ? <span><Warning />(sobrante: {excedenteQuebrantoInmuebles})</span> : null}
-                <h4>Total: <em>{gnInmuebles}</em></h4>
-                <h6>15%</h6>
-                {quebrantoInmuebles ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoInmuebles}</em></h4> : null}
-                <h4 className={style.impuestoAIngresar}>Impuesto a ingresar<em>{(gnInmuebles * 0.15).toFixed(2)}</em></h4>
+              <h1>Impuesto Cedular</h1>
+              <h2>Fuente Argentina</h2>
+              <div className={style.contenedorCedular}>
+                <div>
+                  <h5>Artículo 97</h5>
+                  <h4>Dividendos</h4>
+                  <h4>2018-2020 <em id="dividendos2018">{liquidacion?.dividendos2018?.total}</em></h4>
+                  <h6>7%</h6>
+                  <h4>2021 en adelante <em id="dividendos2021">{liquidacion?.dividendos2021?.total}</em></h4>
+                  <h6>7%</h6>
+                  <span>Menos</span>
+                  <h6 id="quebrantoDividendos">quebrantos ej anteriores<em>({liquidacion?.quebrantoDividendos?.total})</em> </h6>
+                  {excedenteQuebrantoDividendos ? <span><Warning />(sobrante: {excedenteQuebrantoDividendos})</span> : null}
+
+                  <h4>Total: <em>{gnDividendos}</em></h4>
+                  {quebrantoDividendos ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoDividendos}</em></h4> : null}
+                  <h4 className={style.impuestoAIngresar}>Impuesto a ingresar<em>{(gnDividendos * 0.07).toFixed(2)}</em></h4>
+                </div>
+                <div>
+                  <h5>Artículo 98</h5>
+                  <h4>Enajenación</h4>
+                  <h4 id="cedularTítulosSinAjuste">a) Títulos S/Ajuste<em>{liquidacion?.cedularTítulosSinAjuste?.total}</em></h4>
+                  <span>Menos</span>
+                  <h6 id="quebrantoCedularTítulosSinAjuste">quebrantos ej anteriores inc a)<em>({liquidacion?.quebrantoCedularTítulosSinAjuste?.total})</em> </h6>
+                  {excedenteQuebrantoEnajenacionA ? <span><Warning />(sobrante: {excedenteQuebrantoEnajenacionA})</span> : null}
+                  <span>Menos</span>
+                  <h6 id="cedularDeduccionEspecialA">Deduccion especial para inc a)<em>({liquidacion?.cedularDeduccionEspecialA?.total})</em> </h6>
+                  {excedenteDeduccionEnajenacionA ? <span><Warning />(sobrante: {excedenteDeduccionEnajenacionA})</span> : null}
+                  <h5><em>a) subtotal: {subtotalCedularA}</em></h5>
+                  <h6><em>Alicuota 5%</em></h6>
+                  {quebrantoEnajenacionA ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoEnajenacionA}</em></h4> : null}
+                  <h4 className={style.impuestoAIngresar}>Impuesto a ingresar inc a)<em>{((subtotalCedularA) * 0.05).toFixed(2)}</em></h4>
+                  <hr></hr>
+                  <h4 id="cedularConAjusteyMonedaDigital">b) Títulos C/Ajuste, Moneda Digital<em>{liquidacion?.cedularConAjusteyMonedaDigital?.total}</em></h4>
+                  <span>Menos</span>
+                  <h6 id="quebrantoCedularConAjusteyMonedaDigital">quebrantos ej anteriores inc b)<em>({liquidacion?.quebrantoCedularConAjusteyMonedaDigital?.total})</em> </h6>
+                  {excedenteQuebrantoEnajenacionB ? <span><Warning />(sobrante: {excedenteQuebrantoEnajenacionB})</span> : null}
+                  <span>Menos</span>
+                  <h6 id="cedularDeduccionEspecialB">Deduccion especial para inc b)<em>({liquidacion?.cedularDeduccionEspecialB?.total})</em> </h6>
+                  <h5><em>b) subtotal: {subtotalCedularB}</em></h5>
+                  <hr></hr>
+                  <h4 id="cedularAcciones">c) Acciones<em>{liquidacion?.cedularAcciones?.total}</em></h4>
+                  <span>Menos</span>
+                  <h6 id="quebrantoCedularAcciones">quebrantos ej anteriores inc c)<em>({liquidacion?.quebrantoCedularAcciones?.total})</em> </h6>
+                  {excedenteQuebrantoEnajenacionC ? <span><Warning />(sobrante: {excedenteQuebrantoEnajenacionC})</span> : null}
+                  <h5><em>c) subtotal: {subtotalAcciones}</em></h5>
+                  <hr></hr>
+                  <h5>Total inc b) y c) <em >{subtotalCedularB + subtotalAcciones}</em></h5>
+                  <h6><em>Alicuota 15%</em></h6>
+                  {quebrantoEnajenacionB ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoEnajenacionB}</em></h4> : null}
+                  <h4 className={style.impuestoAIngresar}>Impuesto a ingresar b)+c)
+                    <em>{((subtotalCedularB + subtotalAcciones) * 0.15).toFixed(2)}</em>
+                  </h4>
+                </div>
+                <div>
+                  <div>
+                    <h5>Artículo 99</h5>
+                    <h4>Venta inmuebles <em id="cedularInmuebles">{liquidacion?.cedularInmuebles?.total}</em></h4>
+                    <span>Menos</span>
+                    <h6 id="quebrantoCedularInmuebles">quebrantos específicos anteriores<em>({liquidacion?.quebrantoCedularInmuebles?.total})</em> </h6>
+                    {excedenteQuebrantoInmuebles ? <span><Warning />(sobrante: {excedenteQuebrantoInmuebles})</span> : null}
+                    <h4>Total: <em>{gnInmuebles}</em></h4>
+                    <h6>15%</h6>
+                    {quebrantoInmuebles ? <h4 className={style.impuestoAIngresar}>Quebranto del ej: <em>{quebrantoInmuebles}</em></h4> : null}
+                    <h4 className={style.impuestoAIngresar}>Impuesto a ingresar<em>{(gnInmuebles * 0.15).toFixed(2)}</em></h4>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div>
-          <h1>Imposición Global</h1>
-          <div className={style.contenedorGlobal}>
             <div>
-              <div className={style.contenedorFAFE}>
+              <h1>Imposición Global</h1>
+              <div className={style.contenedorGlobal}>
                 <div>
-                  <h2>Fuente Argentina</h2>
-                  <div className={style.contenedorGlobalArgentina}>
+                  <div className={style.contenedorFAFE}>
                     <div>
-                      <h5 id="G1FA">G1 <em>{liquidacion?.G1FA?.total}</em></h5>
+                      <h2>Fuente Argentina</h2>
+                      <div className={style.contenedorGlobalArgentina}>
+                        <div>
+                          <h5 id="G1FA">G1 <em>{liquidacion?.G1FA?.total}</em></h5>
+                        </div>
+                        <div>
+                          <h5 id="G2FA">G2 <em>{liquidacion?.G2FA?.total}</em></h5>
+                        </div>
+                        <div>
+                          <h5 id="G3FA">G3 <em>{liquidacion?.G3FA?.total}</em></h5>
+                        </div>
+                        <div>
+                          <h5 id="G4FA">G4 <em>{liquidacion?.G4FA?.total}</em></h5>
+                        </div>
+                      </div>
+                      <h4>Ganancia Neta de las 4 categorías FA <em>{sumaGananciasFA}</em></h4>
+                      <span>Menos</span>
+                      <h6 id='DeduccionesGenerales'>Deducciones generales Artículo 85 y 29 <em>({liquidacion?.DeduccionesGenerales?.total})</em></h6>
+                      <h4>Ganancia Neta antes de donaciones, cobertura médica asistencial y gastos médicos <em>{gnDeduccionesGenerales}</em></h4>
+                      <span>Menos</span>
+                      <h6 id="DeduccionesGeneralesConLimite">Artículo 85 c), f) y g) <em>({liquidacion?.DeduccionesGeneralesConLimite?.total})</em></h6>
+                      <h4>Ganancia Neta antes de quebrantos <em>{gnDeduccionesGeneralesConLimite}</em></h4>
+                      <span>Menos</span>
+                      <h6 id="QuebrantosAnteriores">Quebrantos ej anteriores - Artículo 25
+                        <em>({liquidacion?.QuebrantosAnteriores?.total})</em>
+                        {excedenteQuebrantoFA ? <span><Warning />(sobrante: {excedenteQuebrantoFA})</span> : null}
+                      </h6>
+                      <h4>Ganancia Neta antes de deducciones personales Artículo 30 <em>{gnQuebrantos}</em></h4>
+                      <span>Menos</span>
+                      <h6>Articulo 30 <em>Total: {articulo30}</em></h6>
+                      <h6 id="GananciaNoImponible">a) Ganancia No Imponible <em>({liquidacion?.GananciaNoImponible?.total})</em>
+                        <div className={style.utilizadoPersonales}>Usado: {utilizadoGNI}</div>
+                      </h6>
+                      <h6 id="Cargasdefamilia">b) Cargas de familia <em>({liquidacion?.Cargasdefamilia?.total})</em>
+                        <div className={style.utilizadoPersonales}>Usado: {utilizadoFamilia}</div>
+                      </h6>
+                      <h6 id="DeducciónEspecial">c) Deducción Especial <em>({liquidacion?.DeducciónEspecial?.total})</em>
+                        <div className={style.utilizadoPersonales}>Usado: {utilizadoEspecial}</div>
+                      </h6>
+                      <h4>Ganancia Neta sujeta a impuesto de FA <em>{gnFA}</em></h4>
+                      {quebrantoFA ? <h4 className={style.impuestoAIngresar}>Quebranto del ejercicio FA
+                        <em>Total: {quebrantoFA}</em>
+                        <em>Utilizado: {quebrantoFAUtilizadoFE + quebrantoFAUtilizadoFEespecifico}</em>
+                        <em>Restante: {quebrantoFA - (quebrantoFAUtilizadoFE + quebrantoFAUtilizadoFEespecifico)}</em>
+                      </h4> : null}
                     </div>
                     <div>
-                      <h5 id="G2FA">G2 <em>{liquidacion?.G2FA?.total}</em></h5>
-                    </div>
-                    <div>
-                      <h5 id="G3FA">G3 <em>{liquidacion?.G3FA?.total}</em></h5>
-                    </div>
-                    <div>
-                      <h5 id="G4FA">G4 <em>{liquidacion?.G4FA?.total}</em></h5>
+                      <h2>Fuente Extranjera</h2>
+                      <div className={style.contenedorGlobalExtranjera}>
+                        <div>
+                          <div className={style.contenedorGlobalExtranjeraCategorias}>
+                            <div>
+                              <h5 id="G1FE">G1 <em>{liquidacion?.G1FE?.total}</em></h5>
+                            </div>
+                            <div>
+                              <h5 id="G2FE">G2 <em>{liquidacion?.G2FE?.total}</em></h5>
+                            </div>
+                            <div>
+                              <h5 id="G3FE">G3 <em>{liquidacion?.G3FE?.total}</em></h5>
+                            </div>
+                            <div>
+                              <h5 id="G4FE">G4 <em>{liquidacion?.G4FE?.total}</em></h5>
+                            </div>
+                          </div>
+                          <h4>Ganancia Neta de las 4 categorías FE <em>{sumaGananciasFE}</em></h4>
+                          <span>Menos</span>
+                          <h6 id="DeduccionesGeneralesFE">Deducciones generales FE <em>({liquidacion?.DeduccionesGeneralesFE?.total})</em></h6>
+                          <h4>-<em>-</em></h4>
+                          <h6>-</h6>
+                          <span>Menos</span>
+                          <h4>Ganancia Neta antes de quebrantos <em>{gnDeduccionesGeneralesFE}</em></h4>
+                          <span>Menos</span>
+                          <h6 id="QuebrantosAnterioresFE">Quebrantos ej anteriores - Artículo 25
+                            <em>{liquidacion?.QuebrantosAnterioresFE?.total}</em>
+                            {excedenteQuebrantoFE ? <span><Warning />(sobrante: {excedenteQuebrantoFE})</span> : null}
+                            {quebrantoFAUtilizadoFE ? <em className={style.impuestoAIngresar}>Utilizado de FA: {quebrantoFAUtilizadoFE}</em> : null}
+                          </h6>
+                          <h4>Ganancia Neta antes de deducciones personales Artículo 30 <em>{gnQuebrantosFE}</em></h4>
+                          <span>Menos</span>
+                          <h6>Articulo 30 <em>Remanente: {remanenteDeduccionesPersonales}</em> <em>Utilizado: {utilizadoPersonalesFE}</em></h6>
+                          <h6>a) Ganancia No Imponible <em className={style.utilizadoPersonales}>{utilizadoGNIFE}</em></h6>
+                          <h6>b) Cargas de familia <em className={style.utilizadoPersonales}>{utilizadoFamiliaFE}</em> </h6>
+                          <h6>-</h6>
+                          <h4>Ganancia Neta sujeta a impuesto de FE <em>{gnFE}</em></h4>
+                          {quebrantoFE ? <h4 className={style.impuestoAIngresar}>Quebranto del ejercicio FE
+                            <em>Total: {quebrantoFENeto}</em>
+                            <em>Utilizado: {quebrantoFEUtilizadoFEespecifico}</em>
+                            <em>Restante: {quebrantoFENeto - quebrantoFEUtilizadoFEespecifico}</em>
+                          </h4> : null}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <h4>Ganancia Neta de las 4 categorías FA <em>{sumaGananciasFA}</em></h4>
-                  <span>Menos</span>
-                  <h6 id='DeduccionesGenerales'>Deducciones generales Artículo 85 y 29 <em>({liquidacion?.DeduccionesGenerales?.total})</em></h6>
-                  <h4>Ganancia Neta antes de donaciones, cobertura médica asistencial y gastos médicos <em>{gnDeduccionesGenerales}</em></h4>
-                  <span>Menos</span>
-                  <h6 id="DeduccionesGeneralesConLimite">Artículo 85 c), f) y g) <em>({liquidacion?.DeduccionesGeneralesConLimite?.total})</em></h6>
-                  <h4>Ganancia Neta antes de quebrantos <em>{gnDeduccionesGeneralesConLimite}</em></h4>
-                  <span>Menos</span>
-                  <h6 id="QuebrantosAnteriores">Quebrantos ej anteriores - Artículo 25
-                    <em>({liquidacion?.QuebrantosAnteriores?.total})</em>
-                    {excedenteQuebrantoFA ? <span><Warning />(sobrante: {excedenteQuebrantoFA})</span> : null}
-                  </h6>
-                  <h4>Ganancia Neta antes de deducciones personales Artículo 30 <em>{gnQuebrantos}</em></h4>
-                  <span>Menos</span>
-                  <h6>Articulo 30 <em>Total: {articulo30}</em></h6>
-                  <h6 id="GananciaNoImponible">a) Ganancia No Imponible <em>({liquidacion?.GananciaNoImponible?.total})</em>
-                    <div className={style.utilizadoPersonales}>Usado: {utilizadoGNI}</div>
-                  </h6>
-                  <h6 id="Cargasdefamilia">b) Cargas de familia <em>({liquidacion?.Cargasdefamilia?.total})</em>
-                    <div className={style.utilizadoPersonales}>Usado: {utilizadoFamilia}</div>
-                  </h6>
-                  <h6 id="DeducciónEspecial">c) Deducción Especial <em>({liquidacion?.DeducciónEspecial?.total})</em>
-                    <div className={style.utilizadoPersonales}>Usado: {utilizadoEspecial}</div>
-                  </h6>
-                  <h4>Ganancia Neta sujeta a impuesto de FA <em>{gnFA}</em></h4>
-                  {quebrantoFA ? <h4 className={style.impuestoAIngresar}>Quebranto del ejercicio FA
-                    <em>Total: {quebrantoFA}</em>
-                    <em>Utilizado: {quebrantoFAUtilizadoFE + quebrantoFAUtilizadoFEespecifico}</em>
-                    <em>Restante: {quebrantoFA - (quebrantoFAUtilizadoFE + quebrantoFAUtilizadoFEespecifico)}</em>
-                  </h4> : null}
+                  <h4>Escala del artículo 94 <em>Total: {baseImponibleGlobal}</em></h4>
+                  <EscalaValores baseImponible={baseImponibleGlobal} />
                 </div>
                 <div>
                   <h2>Fuente Extranjera</h2>
-                  <div className={style.contenedorGlobalExtranjera}>
-                    <div>
-                      <div className={style.contenedorGlobalExtranjeraCategorias}>
-                        <div>
-                          <h5 id="G1FE">G1 <em>{liquidacion?.G1FE?.total}</em></h5>
-                        </div>
-                        <div>
-                          <h5 id="G2FE">G2 <em>{liquidacion?.G2FE?.total}</em></h5>
-                        </div>
-                        <div>
-                          <h5 id="G3FE">G3 <em>{liquidacion?.G3FE?.total}</em></h5>
-                        </div>
-                        <div>
-                          <h5 id="G4FE">G4 <em>{liquidacion?.G4FE?.total}</em></h5>
-                        </div>
-                      </div>
-                      <h4>Ganancia Neta de las 4 categorías FE <em>{sumaGananciasFE}</em></h4>
-                      <span>Menos</span>
-                      <h6 id="DeduccionesGeneralesFE">Deducciones generales FE <em>({liquidacion?.DeduccionesGeneralesFE?.total})</em></h6>
-                      <h4>-<em>-</em></h4>
-                      <h6>-</h6>
-                      <span>Menos</span>
-                      <h4>Ganancia Neta antes de quebrantos <em>{gnDeduccionesGeneralesFE}</em></h4>
-                      <span>Menos</span>
-                      <h6 id="QuebrantosAnterioresFE">Quebrantos ej anteriores - Artículo 25
-                        <em>{liquidacion?.QuebrantosAnterioresFE?.total}</em>
-                        {excedenteQuebrantoFE ? <span><Warning />(sobrante: {excedenteQuebrantoFE})</span> : null}
-                        {quebrantoFAUtilizadoFE ? <em className={style.impuestoAIngresar}>Utilizado de FA: {quebrantoFAUtilizadoFE}</em> : null}
-                      </h6>
-                      <h4>Ganancia Neta antes de deducciones personales Artículo 30 <em>{gnQuebrantosFE}</em></h4>
-                      <span>Menos</span>
-                      <h6>Articulo 30 <em>Remanente: {remanenteDeduccionesPersonales}</em> <em>Utilizado: {utilizadoPersonalesFE}</em></h6>
-                      <h6>a) Ganancia No Imponible <em className={style.utilizadoPersonales}>{utilizadoGNIFE}</em></h6>
-                      <h6>b) Cargas de familia <em className={style.utilizadoPersonales}>{utilizadoFamiliaFE}</em> </h6>
-                      <h6>-</h6>
-                      <h4>Ganancia Neta sujeta a impuesto de FE <em>{gnFE}</em></h4>
-                      {quebrantoFE ? <h4 className={style.impuestoAIngresar}>Quebranto del ejercicio FE
-                        <em>Total: {quebrantoFENeto}</em>
-                        <em>Utilizado: {quebrantoFEUtilizadoFEespecifico}</em>
-                        <em>Restante: {quebrantoFENeto - quebrantoFEUtilizadoFEespecifico}</em>
-                      </h4> : null}
-                    </div>
-                  </div>
+                  <h4>Venta <em id="accionesFE">Acciones: {accionesFE}</em><em id="inmueblesFE">Inmuebles {inmueblesFE}</em></h4>
+                  <span>Menos</span>
+                  <h6 id="quebrantosEspecificosFE">Quebrantos Específico de ej anteriores FE <em>{liquidacion?.quebrantosEspecificosFE?.total}</em>
+                    {excedenteQuebrantoFEespecifico ? <span><Warning />(sobrante: {excedenteQuebrantoFEespecifico})</span> : null}</h6>
+                  <span>Menos</span>
+                  <h6 id="deduccionesGeneralesFEespecifico">Deducciones generales FE <em>({liquidacion?.deduccionesGeneralesFEespecifico?.total})</em></h6>
+                  <span>Menos</span>
+                  <h6 id="quebrantosAnterioresFEespecifico">Quebrantos ej anteriores
+                    <em>{liquidacion?.quebrantosAnterioresFEespecifico?.total}</em>
+                    {excedenteQuebrantosAnterioresFEespecifico ? <span><Warning />(sobrante: {excedenteQuebrantosAnterioresFEespecifico})</span> : null}
+                    {quebrantoFAUtilizadoFEespecifico ? <em className={style.impuestoAIngresar}>Utilizado de FA: {quebrantoFAUtilizadoFEespecifico}</em> : null}
+                    {quebrantoFEUtilizadoFEespecifico ? <em className={style.impuestoAIngresar}>Utilizado de FE: {quebrantoFEUtilizadoFEespecifico}</em> : null}
+                  </h6>
+                  <span>Menos</span>
+                  <h6>Articulo 30 <em>Remanente: {remanenteDeduccionesPersonalesFE}</em> <em>Utilizado: {remanentePersonalesUtilizadoEspecifico}</em></h6>
+                  <h6>a) Ganancia No Imponible <em className={style.utilizadoPersonales}>{utilizadoGNIFEespecifico}</em></h6>
+                  <h6>b) Cargas de familia <em className={style.utilizadoPersonales}>{utilizadoFamiliaFEespecifico}</em></h6>
+                  {quebrantoFEespecifico ? <h4 className={style.impuestoAIngresar}>Quebranto del ejercicio FE específico
+                    <em>Total: {quebrantoFEespecifico}</em>
+                  </h4> : null}
+                  <h4>Ganancia Neta Venta de Acciones / Inmuebles <em>Total: {gnFEAccionesInmuebles}</em></h4>
+                  <h4><em>Alicuota 15%</em></h4>
+                  <h4 className={style.impuestoAIngresar}>Impuesto a ingresar<em>{(gnFEAccionesInmuebles * 0.15).toFixed(2)}</em></h4>
                 </div>
               </div>
-              <h4>Escala del artículo 94 <em>Total: {baseImponibleGlobal}</em></h4>
-              <EscalaValores baseImponible={baseImponibleGlobal} />
-            </div>
-            <div>
-              <h2>Fuente Extranjera</h2>
-              <h4>Venta <em id="accionesFE">Acciones: {accionesFE}</em><em id="inmueblesFE">Inmuebles {inmueblesFE}</em></h4>
-              <span>Menos</span>
-              <h6 id="quebrantosEspecificosFE">Quebrantos Específico de ej anteriores FE <em>{liquidacion?.quebrantosEspecificosFE?.total}</em>
-                {excedenteQuebrantoFEespecifico ? <span><Warning />(sobrante: {excedenteQuebrantoFEespecifico})</span> : null}</h6>
-              <span>Menos</span>
-              <h6 id="deduccionesGeneralesFEespecifico">Deducciones generales FE <em>({liquidacion?.deduccionesGeneralesFEespecifico?.total})</em></h6>
-              <span>Menos</span>
-              <h6 id="quebrantosAnterioresFEespecifico">Quebrantos ej anteriores
-                <em>{liquidacion?.quebrantosAnterioresFEespecifico?.total}</em>
-                {excedenteQuebrantosAnterioresFEespecifico ? <span><Warning />(sobrante: {excedenteQuebrantosAnterioresFEespecifico})</span> : null}
-                {quebrantoFAUtilizadoFEespecifico ? <em className={style.impuestoAIngresar}>Utilizado de FA: {quebrantoFAUtilizadoFEespecifico}</em> : null}
-                {quebrantoFEUtilizadoFEespecifico ? <em className={style.impuestoAIngresar}>Utilizado de FE: {quebrantoFEUtilizadoFEespecifico}</em> : null}
-              </h6>
-              <span>Menos</span>
-              <h6>Articulo 30 <em>Remanente: {remanenteDeduccionesPersonalesFE}</em> <em>Utilizado: {remanentePersonalesUtilizadoEspecifico}</em></h6>
-              <h6>a) Ganancia No Imponible <em className={style.utilizadoPersonales}>{utilizadoGNIFEespecifico}</em></h6>
-              <h6>b) Cargas de familia <em className={style.utilizadoPersonales}>{utilizadoFamiliaFEespecifico}</em></h6>
-              {quebrantoFEespecifico ? <h4 className={style.impuestoAIngresar}>Quebranto del ejercicio FE específico
-                <em>Total: {quebrantoFEespecifico}</em>
-              </h4> : null}
-              <h4>Ganancia Neta Venta de Acciones / Inmuebles <em>Total: {gnFEAccionesInmuebles}</em></h4>
-              <h4><em>Alicuota 15%</em></h4>
-              <h4 className={style.impuestoAIngresar}>Impuesto a ingresar<em>{(gnFEAccionesInmuebles * 0.15).toFixed(2)}</em></h4>
             </div>
           </div>
+          {/* Liquidar */}
+          <div
+            style={{ display: liquidando ? "block" : "none" }}
+          >
+            <Liquidador
+              funcionLiquidar={funcionLiquidar}
+              totalGananciasGravadas={totalGananciasGravadas}
+              topeDonacion={topeDonacion} id={enLiquidacion} handleImpuestoCalculado={handleImpuestoCalculado} cancelar={cancelar} liquidacion={liquidacion} />
+          </div>
         </div>
-      </div>
-      {/* Liquidar */}
-      <div
-        style={{ display: liquidando ? "block" : "none" }}
-      >
-        <Liquidador topeDonacion={topeDonacion} id={enLiquidacion} handleImpuestoCalculado={handleImpuestoCalculado} cancelar={cancelar} liquidacion={liquidacion} />
       </div>
     </div>
   )
