@@ -83,203 +83,201 @@ export function Perfil() {
               <li>
                 <SelectMateria />
               </li>
-              <hr></hr>
-              <li>
                 {matPreferida == "impuestos" ?
                   <>
-                    <Link
-                      draggable={false}
-                      className='perfil-boton'
-                      to={"/IA"}>
-                      Interactuar con la IA
-                    </Link>
-                    <hr></hr>
-                 
-                    <Link
-                      draggable={false}
-                      className='perfil-boton'
-                      to={"/calculadoras"}>
-                      Liquidación
-                    </Link>
-                    <hr></hr>
-                  </>
-                  :
-                  null
+                    <li>
+                      <Link
+                        draggable={false}
+                        className='perfil-boton'
+                        to={"/IA"}>
+                        Interactuar con la IA
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        draggable={false}
+                        className='perfil-boton'
+                        to={"/calculadoras"}>
+                        Liquidación
+                      </Link>
+                    </li>
+              </>
+              :
+              null
                 }
-              </li>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to={"/menu/mis-notas"}>
-                  Mis notas
-                </Link>
-              </li>
-              <hr></hr>
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to={"/menu/mis-notas"}>
+                Mis notas
+              </Link>
+            </li>
 
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/menu/mis-preguntas">Mis preguntas
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/menu/buscador">Buscador
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
-                Enlaces:
-              </li>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/examenes">Examenes
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/calculadora-prestamos"
-                > Calculadora prestamos
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/flujo-de-fondos"
-                > Flujo de fondos
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to="/estados-contables">Estados contables
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
-                {editUser ?
-                  <form>
-                    <input
-                      className={style.usermodificar}
-                      placeholder={datosUser?.nombre}
-                      onChange={(e) => setNombreUser(e.target.value)}
-                    >
-                    </input>
-                    <span>
-                      <button
-                        onClick={(e) => modNombre(nombreUser, e)}
-                        className={style.botonconfirmar}
-                      >
-                        ✓
-                      </button>
-                      <button
-                        type='button'
-                        onClick={() => setEditUser(false)}
-                        className={style.botoncancelar}
-                      >
-                        ✘
-                      </button>
-                    </span>
-                  </form>
-                  : <div>
-                    <span>
-                      {datosUser?.rol}: {datosUser?.nombre}
-                    </span>
-                    <button
-                      onClick={() => setEditUser(true)}
-                      className={style.botoneditar}
-                    >
-                      &#9999;
-                    </button>
-                  </div>}
-              </li>
-              <hr></hr>
-                <>
-                  <button
-                    className={editMode ? style.botonActivo : style.links}
-                    onClick={() => changeEditMode(datosUser?.rol)}
+
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to="/menu/mis-preguntas">Mis preguntas
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to="/menu/buscador">Buscador
+              </Link>
+            </li>
+            <hr />
+            <li>
+              Enlaces:
+            </li>
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to="/examenes">Examenes
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to="/calculadora-prestamos"
+              > Calculadora prestamos
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to="/flujo-de-fondos"
+              > Flujo de fondos
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to="/estados-contables">Estados contables
+              </Link>
+            </li>
+            <hr />
+            <li>
+              {editUser ?
+                <form>
+                  <input
+                    className={style.usermodificar}
+                    placeholder={datosUser?.nombre}
+                    onChange={(e) => setNombreUser(e.target.value)}
                   >
-                    Editar:{editMode ? " on" : " off"}
-                  </button>
+                  </input>
+                  <span>
+                    <button
+                      onClick={(e) => modNombre(nombreUser, e)}
+                      className={style.botonconfirmar}
+                    >
+                      ✓
+                    </button>
+                    <button
+                      type='button'
+                      onClick={() => setEditUser(false)}
+                      className={style.botoncancelar}
+                    >
+                      ✘
+                    </button>
+                  </span>
+                </form>
+                : <div>
+                  <span>
+                    {datosUser?.rol}: {datosUser?.nombre}
+                  </span>
                   <button
-                    className="switchTema"
-                    onClick={() => switchTema()}>
-                  </button>
-                </>
-              <li>
-                apiKey: {datosUser?.apiKey ?
-                  "✓"
-                  :
-                  "✘"}
-                {editApiKey ?
-                  <form>
-                    <input
-                      placeholder='introduce la apiKey'
-                      onChange={(e) => setApiKey(e.target.value)}
-                      value={apiKey}
-                      type='text'>
-                    </input>
-                    <span>
-                      <button
-                        onClick={(e) => añadirApiKey(e)}
-                        className={style.botonconfirmar}
-                      >
-                        ✓
-                      </button>
-                      <button
-                        type='button'
-                        onClick={() => setEditApiKey(false)}
-                        className={style.botoncancelar}
-                      >
-                        ✘
-                      </button>
-                    </span>
-                  </form>
-                  :
-                  <button
-                    onClick={() => setEditApiKey(true)}
+                    onClick={() => setEditUser(true)}
                     className={style.botoneditar}
                   >
                     &#9999;
                   </button>
-                }
-              </li>
-              <hr></hr>
-              <li>
-                <Link
-                  draggable={false}
-                  className='perfil-boton'
-                  to={"/opcionesUsuario"}
-                >
-                  Configuracion
-                </Link>
-              </li>
-              <hr></hr>
-              <li>
+                </div>}
+            </li>
+
+            <>
+              <button
+                className={editMode ? style.botonActivo : style.links}
+                onClick={() => changeEditMode(datosUser?.rol)}
+              >
+                Editar:{editMode ? " on" : " off"}
+              </button>
+              <button
+                className="switchTema"
+                onClick={() => switchTema()}>
+              </button>
+            </>
+            <li>
+              apiKey: {datosUser?.apiKey ?
+                "✓"
+                :
+                "✘"}
+              {editApiKey ?
+                <form>
+                  <input
+                    placeholder='introduce la apiKey'
+                    onChange={(e) => setApiKey(e.target.value)}
+                    value={apiKey}
+                    type='text'>
+                  </input>
+                  <span>
+                    <button
+                      onClick={(e) => añadirApiKey(e)}
+                      className={style.botonconfirmar}
+                    >
+                      ✓
+                    </button>
+                    <button
+                      type='button'
+                      onClick={() => setEditApiKey(false)}
+                      className={style.botoncancelar}
+                    >
+                      ✘
+                    </button>
+                  </span>
+                </form>
+                :
                 <button
-                  className='perfil-boton'
-                  onClick={() => limpiarHistorialUsuario()}
-                > Borrar historial
+                  onClick={() => setEditApiKey(true)}
+                  className={style.botoneditar}
+                >
+                  &#9999;
                 </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </main>
+              }
+            </li>
+
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
+                to={"/opcionesUsuario"}
+              >
+                Configuracion
+              </Link>
+            </li>
+
+            <li>
+              <button
+                className='perfil-boton'
+                onClick={() => limpiarHistorialUsuario()}
+              > Borrar historial
+              </button>
+            </li>
+          </ul>
+        </nav>
     </div>
+      </main >
+    </div >
   );
 }

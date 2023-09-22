@@ -721,12 +721,11 @@ h5 {
 }
 
 hr {
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border: 0;
   border-top: 1px solid var(--text-color) !important;
   border-top: 1px solid var(--text-color) !important;
-
 }
 
 .enconsola {
@@ -815,7 +814,10 @@ code:hover {
 
 .menuperfil ul {
   width: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 16px 5px 5px 5px;
+  gap: 10px;
 }
 
 .menuperfil select {
