@@ -332,7 +332,9 @@ export function HomeMongo() {
                                 <div>
                                   <p style={{ "color": "green" }} className='hide' id={`correcto-${p.id}`}>✓</p>
                                   <p>
-                                    La respuesta correcta es: {p.correcta || p.resultado}
+                                    La respuesta correcta es: 
+                                    {p.correcta || 
+                                    p?.resultado?.map((r,num) => <li key={"resultado"+num+p.id}>{num+1}) {r}</li>)}
                                   </p>
                                 </div>
                                 <div
