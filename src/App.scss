@@ -1912,3 +1912,21 @@ a:hover>svg {
 .buscadorArticulos input {
   width: 70px;
 }
+
+.ejerciciosContenedor {
+display: flex;
+flex-direction: column;
+text-align: left;
+justify-content: center;
+align-items: center;
+gap: 20px;
+padding: 20px;
+}
+
+.ejerciciosLiquidaciones {
+  max-width: 1000px;
+  border: 1px solid var(--text-color);
+  padding: 15px;
+  background-color: var(--container-color);
+  width: 100%;
+}

@@ -234,3 +234,34 @@ export const alertaLimpiarLiquidacion = (limpiarLiquidacion) => {
   })
 
 }
+export const alertaCargarLiquidacion = (cargarLiquidacion) => {
+
+  swalWithBootstrapButtons.fire({
+    title: 'Se reemplazarán los datos actuales, ¿Desea continuar?',
+    text: "Se perderá el progreso actual y se reemplazará con los datos de la solución correcta.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Si, continuar!',
+    cancelButtonText: 'No, cancelar!',
+    reverseButtons: true
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      cargarLiquidacion()
+      localStorage.removeItem("liquidacion");
+      swalWithBootstrapButtons.fire(
+        'Se han cargado los datos!',
+        '',
+        'success'
+      )
+    } else if (
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        '',
+        'error'
+      )
+    }
+  })
+
+}

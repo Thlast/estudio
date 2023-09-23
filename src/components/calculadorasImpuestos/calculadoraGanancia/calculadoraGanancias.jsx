@@ -8,6 +8,8 @@ import { Warning } from './warning'
 import { MontoConsumido } from './montoConsumido'
 import { getLiquidacion } from '../../servicios/liquidacionesServicios/getLiquidaciones'
 import { Ejercicios } from './ejercicios/ejercicios'
+import { verificarTotales } from './ejercicios/testEjercicio'
+import { alertaCargarLiquidacion } from '../../alertas'
 const CalculadoraGanancias = () => {
 
   const liquidacionInicial = obtenerLiquidacionDesdeLocalStorage();
@@ -15,12 +17,21 @@ const CalculadoraGanancias = () => {
   const [liquidando, setLiquidando] = useState(false)
   const [topeDonacion, setTopeDonacion] = useState(0)
   const [enLiquidacion, setEnLiquidacion] = useState()
+  const [verEjercicio, setVerEjercicio] = useState(false)
   const gRef = useRef(null)
 
-  const obtenerLiquidacion = () => {
-    getLiquidacion("650b525f91183df5caa3ba46").then(data => {
+  const cargarLiquidacion = async () => {
+    await getLiquidacion("650b525f91183df5caa3ba46").then(data => {
       setLiquidacion(data[0])
     })
+  }
+
+  const obtenerLiquidacion = () => {
+    alertaCargarLiquidacion(cargarLiquidacion)
+  }
+
+  const controlarEjercicio = () => {
+    return verificarTotales(liquidacion)
   }
 
   useEffect(() => {
@@ -36,6 +47,7 @@ const CalculadoraGanancias = () => {
       elements[i].classList.add("remarcarSecciones")
       elements[i].onclick = function () {
         setLiquidando(true)
+        setVerEjercicio(false)
         setEnLiquidacion(elements[i].id)
         window.scrollTo({ top: 0, behavior: 'smooth' });
         // pasarSeccionId(elements[i].id);
@@ -263,7 +275,6 @@ const CalculadoraGanancias = () => {
     }));
   }, [liquidacion?.TotalColumnaI?.total, liquidacion?.TotalColumnaII?.total, liquidacion?.ResultadoImpositivo?.total])
 
-  const [verEjercicio, setVerEjercicio] = useState(false)
   return (
     <div style={{ overflow: "scroll" }} className='.menuContenedor'>
       <button
@@ -273,12 +284,16 @@ const CalculadoraGanancias = () => {
         Reiniciar
       </button>
 
-      <button  className="home-boton" onClick={() => setVerEjercicio(!verEjercicio)}>Ejercicio 1</button>
+      <button
+        className={verEjercicio ? "botonmostrar home-boton" : "home-boton"}
+        onClick={() => setVerEjercicio(!verEjercicio)}>
+        Ejercicio 1
+      </button>
 
       <div ref={gRef}>
         <MontoConsumido totalGananciasGravadas={totalGananciasGravadas} liquidacion={liquidacion} />
         <div style={{ display: verEjercicio ? "block" : 'none' }}>
-          <Ejercicios obtenerLiquidacion={obtenerLiquidacion} />
+          <Ejercicios funcionLiquidar={funcionLiquidar} controlarEjercicio={controlarEjercicio} obtenerLiquidacion={obtenerLiquidacion} />
         </div>
         <div style={{ display: verEjercicio ? "none" : 'block' }}>
           <div
