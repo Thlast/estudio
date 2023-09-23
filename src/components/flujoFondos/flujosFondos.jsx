@@ -4,7 +4,6 @@ import style from './modulocss.module.css'
 
 export const FlujosFondos = ({ onTIRCalculado, id, flujosEnviados, incremental, nombre, defaultValues }) => {
   const defaultV = [{ año: 0, flujo: null }]
-  console.log(defaultValues)
   const [flujos, setFlujos] = useState(defaultValues?.flujos ? defaultValues?.flujos : defaultV);
   const [cantidadFlujos, setCantidadFlujos] = useState(defaultValues?.flujos ? defaultValues?.flujos?.length - 1 : 0);
   const [irrValue, setIrrValue] = useState();
@@ -123,6 +122,13 @@ export const FlujosFondos = ({ onTIRCalculado, id, flujosEnviados, incremental, 
       <h3>
         Tasa exigida: {tasaExigida ? `${tasaExigida * 100}%` : '-'}
       </h3>
+      {incremental ? <div>
+        <p>La tasa incremental es aquella tasa exigida que iguala el VAN en ambos proyectos.</p>
+        <p>De esta forma podemos separar el análisis en dos tramos:</p><ul>
+          <li>1) Hasta la tasa exigida {Math.round(irrValue * 100, -2)}% conviene aquel proyecto con mayor VAN.</li>
+          <li>2) Desde la tasa {Math.round(irrValue * 100, -2)}% hasta la TIR (exigir una tasa mayor a la TIR implica un VAN en negativo)
+            convendrá el otro proyecto ya que en ese tramo tendrá un VAN superior.</li></ul>
+      </div> : null}
       <button
         onClick={(e) => calculateIRR(e)}
         className='home-boton'>

@@ -6,9 +6,8 @@ export const FlujosIncrementales = ({ flujosIncrementales, proyectoConMayorTIR, 
 
   return (
     <>
-
       <FlujosFondos incremental={true} nombre={`Flujos Incrementales: Proyecto ${proyectoConMayorTIR.id}: ${proyectoConMayorTIR.nombre} - Proyecto ${proyectoConMayorVAN.id}:  ${proyectoConMayorVAN.nombre}`} defaultValues={{flujos: flujosIncrementales}} />
-
+      
     </>
   )
 }

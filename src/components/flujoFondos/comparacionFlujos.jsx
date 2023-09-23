@@ -98,13 +98,12 @@ const CompararFlujos = () => {
       return flujosIncrementales;
     }
 
-    const mayorInicial = Math.max(proyecto1.inicial, proyecto2.inicial);
-    const menorInicial = Math.min(proyecto1.inicial, proyecto2.inicial);
-
+    const mayorInicial = Math.min(proyecto1.inicial, proyecto2.inicial);
+    console.log(mayorInicial)
     for (let i = 0; i < proyecto1.flujos.length; i++) {
       const flujoIncremental = {
         año: proyecto1.flujos[i].año,
-        flujo: menorInicial === proyecto1.inicial
+        flujo: mayorInicial === proyecto1.inicial
           ? proyecto1.flujos[i].flujo - proyecto2.flujos[i].flujo
           : proyecto2.flujos[i].flujo - proyecto1.flujos[i].flujo,
       };
