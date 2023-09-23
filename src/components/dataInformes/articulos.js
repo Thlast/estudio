@@ -203,7 +203,7 @@ export function Articulos(props) {
       setDecreto(false)
     }
 
-  }, [articuloNumero])
+  }, [articuloNumero, articulo])
 
   useEffect(() => {
     if (!cargando && recargarFuncionClickcode) {
