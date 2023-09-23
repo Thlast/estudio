@@ -30,6 +30,8 @@ export const ControlarEjercicio = ({ controlarEjercicio, funcionLiquidar }) => {
     funcionLiquidar(ejRef)
   }, [resultados])
 
+const noEditables= ["MontoConsumido", "ResultadoImpositivo", "TotalColumnaI", "TotalColumnaII"]
+
   return (
     <>
       <div ref={ejRef}>
@@ -39,7 +41,13 @@ export const ControlarEjercicio = ({ controlarEjercicio, funcionLiquidar }) => {
           <ul>
             {Object.entries(resultados)?.map(([categoria, estado]) => (
               <li key={categoria}>
-                <strong><span id={categoria}>{categoria}: </span>{estado === 'Correcto' ? <span style={{ color: 'green' }}><Check />{estado}</span> : <span style={{ color: 'red' }}><Warning />{estado}</span>}</strong>
+                <strong>
+                  <span id={noEditables.indexOf(categoria) !== -1 ? null : categoria}>
+                    {categoria}: 
+                  </span>
+                  {estado === 'Correcto' ? <span style={{ color: 'green' }}><Check />{estado}</span> : <span style={{ color: 'red' }}><Warning />{estado}
+                  </span>}
+                  </strong>
               </li>
             ))}
           </ul>
