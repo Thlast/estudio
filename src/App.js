@@ -70,7 +70,7 @@ export function App() {
 
   const EdeResultados = lazy(() => import('./components/estados contables/EdeResultados'))
   const CalculadoraGanancias = lazy(() => import('./components/calculadorasImpuestos/calculadoraGanancia/calculadoraGanancias'))
-  const Prestamos = lazy(() => import('./components/calcPrestamos'))
+  const Prestamos = lazy(() => import('./components/calculadoraPrestamos/calcPrestamos'))
 
   const Buscador = lazy(() => import('./components/buscador'))
   const Curso = lazy(() => import('./components/Curso'))
