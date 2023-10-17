@@ -12,6 +12,9 @@ export const Calculadoras = () => {
           <Link className="examen" to={"./ganancias"}>
             Impuesto a las ganancias (PH-SI)
           </Link>
+          <Link className="examen" to={"./retenciones"}>
+            Retenciones
+          </Link>
           </div>
         </div>
         </div>

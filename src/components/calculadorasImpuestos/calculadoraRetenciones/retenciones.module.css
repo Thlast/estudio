@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+}
+
+.tContable {
+    display: flex;
+    max-width: 400px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.parteSuperior {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid var(--text-color);
+}
+
+.parteInferior {
+    display: grid;
+    grid-template-columns: 34% 33% 33%;
+    width: 100%;
+}
+
+.izquierda {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--text-color);
+}
+
+.derecha {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--text-color);
+}
+
+.inputFactura {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid var(--text-color);
+    padding: 10px;
+}
+
+.datosCalculadosFactura {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.gananciasDatos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.contenedorDatosFactura {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 600px;
+}
+
+@media screen and (max-width: 600px) {
+    .container input {
+      max-width: 100px;
+    }
+  }

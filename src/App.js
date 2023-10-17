@@ -70,6 +70,7 @@ export function App() {
 
   const EdeResultados = lazy(() => import('./components/estados contables/EdeResultados'))
   const CalculadoraGanancias = lazy(() => import('./components/calculadorasImpuestos/calculadoraGanancia/calculadoraGanancias'))
+  const CalculadoraRetenciones = lazy(() => import('./components/calculadorasImpuestos/calculadoraRetenciones/calculadoraRetenciones'))
   const Prestamos = lazy(() => import('./components/calculadoraPrestamos/calcPrestamos'))
 
   const Buscador = lazy(() => import('./components/buscador'))
@@ -96,6 +97,12 @@ export function App() {
                   path="/calculadoras/ganancias"
                   element={
                     <CalculadoraGanancias />
+                  }
+                />
+                <Route
+                  path="/calculadoras/retenciones"
+                  element={
+                    <CalculadoraRetenciones />
                   }
                 />
                 <Route
