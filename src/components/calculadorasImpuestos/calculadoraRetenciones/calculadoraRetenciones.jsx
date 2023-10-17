@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import style from './retenciones.module.css'
-import MontoInput from './inputPesos';
 
 const CalculadoraRetenciones = () => {
 
