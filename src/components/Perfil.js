@@ -164,6 +164,15 @@ export function Perfil() {
               <Link
                 draggable={false}
                 className='perfil-boton'
+                to="/conciliaciones"
+              > Conciliaciones
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                draggable={false}
+                className='perfil-boton'
                 to="/estados-contables">Estados contables
               </Link>
             </li>

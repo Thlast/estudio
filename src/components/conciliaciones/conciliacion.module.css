@@ -1,0 +1,29 @@
+.contenedorGlobal {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.contenedorDiferencia {
+    text-align: center;
+}
+.contenedorConciliacion {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.tablas {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.cuadroMando {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--text-color);
+}
+.botonEliminar {
+    height: auto;
+    font-size: 15px;
+}

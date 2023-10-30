@@ -72,7 +72,8 @@ export function App() {
   const CalculadoraGanancias = lazy(() => import('./components/calculadorasImpuestos/calculadoraGanancia/calculadoraGanancias'))
   const CalculadoraRetenciones = lazy(() => import('./components/calculadorasImpuestos/calculadoraRetenciones/calculadoraRetenciones'))
   const Prestamos = lazy(() => import('./components/calculadoraPrestamos/calcPrestamos'))
-
+  const FileReader = lazy(() => import('./components/conciliaciones/conciliacion.jsx'))
+  
   const Buscador = lazy(() => import('./components/buscador'))
   const Curso = lazy(() => import('./components/Curso'))
   const CompararFlujos = lazy(() => import('./components/flujoFondos/comparacionFlujos'))
@@ -93,6 +94,12 @@ export function App() {
                     <Layout />
                   </ProtectedRoute>
                 }>
+                <Route
+                  path="/conciliaciones"
+                  element={
+                    <FileReader />
+                  }
+                />
                 <Route
                   path="/calculadoras/ganancias"
                   element={
