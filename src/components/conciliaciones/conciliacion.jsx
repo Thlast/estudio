@@ -37,7 +37,7 @@ const MyFileReader = () => {
         }
       }
 
-      setResumenBancarioSaldoInicial((registros[0].saldo + registros[0].haber - registros[0].debe))
+      setResumenBancarioSaldoInicial((registros[0].saldo - registros[0].haber + registros[0].debe))
       setResumenBancario(registros);
     };
 
@@ -63,7 +63,7 @@ const MyFileReader = () => {
         }
       }
 
-      setMayorBancoSaldoInicial((registros[0].saldo - registros[0].haber + registros[0].debe));
+      setMayorBancoSaldoInicial((registros[0].saldo + registros[0].haber - registros[0].debe));
       setMayorBanco(registros);
     };
 
