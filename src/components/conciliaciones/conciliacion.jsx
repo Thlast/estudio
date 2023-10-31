@@ -6,6 +6,8 @@ import { alertainfo } from "../alertas";
 const MyFileReader = () => {
   const [resumenBancarioSaldoInicial, setResumenBancarioSaldoInicial] = useState(0);
   const [mayorBancoSaldoInicial, setMayorBancoSaldoInicial] = useState(0);
+  const [resumenBancarioSaldoFinal, setResumenBancarioSaldoFinal] = useState(0);
+  const [mayorBancoSaldoFinal, setMayorBancoSaldoFinal] = useState(0);
   const [resumenBancario, setResumenBancario] = useState(null);
   const [mayorBanco, setMayorBanco] = useState(null);
   const [resumenBancarioMonto, setResumenBancarioMonto] = useState(0);
@@ -38,6 +40,7 @@ const MyFileReader = () => {
       }
 
       setResumenBancarioSaldoInicial((registros[0].saldo - registros[0].haber + registros[0].debe))
+      setResumenBancarioSaldoFinal((registros[registros.length-1].saldo))
       setResumenBancario(registros);
     };
 
@@ -64,6 +67,7 @@ const MyFileReader = () => {
       }
 
       setMayorBancoSaldoInicial((registros[0].saldo + registros[0].haber - registros[0].debe));
+      setMayorBancoSaldoFinal((registros[registros.length-1].saldo));
       setMayorBanco(registros);
     };
 
@@ -286,7 +290,7 @@ const MyFileReader = () => {
     }
   ]
   const [tratamiendoRealizado, setTratamientoRealizado] = useState("temporal")
-  const [agregarEn, setAgregarEn] = useState("resumen")
+  const [agregarEn, setAgregarEn] = useState("Mayor")
   const handleChangeTratamiento = (e) => {
     setTratamientoRealizado(e.target.value)
   }
@@ -343,7 +347,8 @@ const MyFileReader = () => {
             <tr><td>Saldo Inicial:</td> <td>{(resumenBancarioSaldoInicial || 0)}</td></tr>
             <tr><td>Movimientos a conciliar:</td> <td>{(resumenBancarioMonto || 0)}</td></tr>
             <tr><td>Movimientos conciliados:</td> <td>{(resumenBancarioMontoConciliado || 0)}</td></tr>
-            <tr><td>Saldo Final:</td> <td>{(resumenBancarioSaldoInicial || 0) + (resumenBancarioMonto || 0) + (resumenBancarioMontoConciliado || 0)}</td></tr>
+            <tr><td>Saldo Final Conciliado:</td> <td>{(resumenBancarioSaldoInicial || 0) + (resumenBancarioMonto || 0) + (resumenBancarioMontoConciliado || 0)}</td></tr>
+            <tr><td>Saldo Final Original:</td> <td>{(resumenBancarioSaldoFinal || 0)}</td></tr>
           </table>
           <hr></hr>
           <input type="file" accept=".txt" onChange={handleFileUpload} />
@@ -397,7 +402,8 @@ const MyFileReader = () => {
             <tr><td>Saldo Inicial:</td> <td>{(mayorBancoSaldoInicial || 0)}</td></tr>
             <tr><td>Movimientos a conciliar:</td> <td>{(mayorBancoMonto || 0)}</td></tr>
             <tr><td>Movimientos conciliados:</td> <td>{(mayorBancoMontoConciliado || 0)}</td></tr>
-            <tr><td>Saldo Final:</td> <td>{(mayorBancoSaldoInicial || 0) + (mayorBancoMonto || 0) + (mayorBancoMontoConciliado || 0)}</td></tr>
+            <tr><td>Saldo Final Conciliado:</td> <td>{(mayorBancoSaldoInicial || 0) + (mayorBancoMonto || 0) + (mayorBancoMontoConciliado || 0)}</td></tr>
+            <tr><td>Saldo Final Original:</td> <td>{(mayorBancoSaldoFinal || 0)}</td></tr>
           </table>
           <hr></hr>
           <input type="file" accept=".txt" onChange={handleFileUploadMayor} />
