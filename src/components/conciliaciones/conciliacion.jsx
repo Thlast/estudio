@@ -1,15 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from './conciliacion.module.css'
 import { v4 as uuidv4 } from 'uuid';
-import { alertainfo } from "../alertas";
+import { buscarPosiblesTotal } from "./buscarPosibles";
+import { mayorEjemplo, resumenEjemplo } from "./ejemplos";
+import { evaluarCombinaciones } from "./evaluarCombinaciones";
+import { convertirFecha } from "./convertirFecha";
+import { botConciliacion } from "./botConciliacion";
+import { encontrarSumasPosibles } from "./encontrarPosibles";
+import { conciliar } from "./conciliarMovimientos";
+import { alertareiniciarTabla } from "../alertas";
+import { FlechaAmbas, FlechaDerecha, FlechaIzquierda } from "./svgFlechas";
 
 const MyFileReader = () => {
+  const fileInputMayorRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  const [resumenBancario, setResumenBancario] = useState(null);
+  const [mayorBanco, setMayorBanco] = useState(null);
+
   const [resumenBancarioSaldoInicial, setResumenBancarioSaldoInicial] = useState(0);
   const [mayorBancoSaldoInicial, setMayorBancoSaldoInicial] = useState(0);
   const [resumenBancarioSaldoFinal, setResumenBancarioSaldoFinal] = useState(0);
   const [mayorBancoSaldoFinal, setMayorBancoSaldoFinal] = useState(0);
-  const [resumenBancario, setResumenBancario] = useState(null);
-  const [mayorBanco, setMayorBanco] = useState(null);
   const [resumenBancarioMonto, setResumenBancarioMonto] = useState(0);
   const [mayorBancoMonto, setMayorBancoMonto] = useState(0);
   const [conciliados, setConciliados] = useState([]);
@@ -20,8 +32,49 @@ const MyFileReader = () => {
   const [mayorBancoMontoConciliado, setMayorBancoMontoConciliado] = useState(0);
   const [resumenBancarioMontoConciliado, setResumenBancarioMontoConciliado] = useState(0);
 
+  const reiniciar = () => {
+    // Restablece todos los valores
+    setResumenBancarioSaldoInicial(0)
+    setMayorBancoSaldoInicial(0)
+    setResumenBancarioSaldoFinal(0)
+    setMayorBancoSaldoFinal(0)
+    setResumenBancario([])
+    setMayorBanco([])
+    setResumenBancarioMonto(0)
+    setMayorBancoMonto(0)
+    setConciliados([])
+    setMayorBancoValoresSeleccionados([])
+    setResumenBancarioValoresSeleccionados([])
+    setMayorBancoMontoSeleccionados(0)
+    setResumenBancarioMontoSeleccionados(0)
+    setMayorBancoMontoConciliado(0)
+    setResumenBancarioMontoConciliado(0)
+  }
+
+
+  const handleCargarEjemplo = () => {
+    const registrosResumen = JSON.parse(JSON.stringify(resumenEjemplo));
+    const registrosMayor = JSON.parse(JSON.stringify(mayorEjemplo));
+
+    //const registrosResumen = resumenEjemplo // Clona el objeto resumenEjemplo
+    setResumenBancarioSaldoInicial(
+      registrosResumen[0].saldo - registrosResumen[0].haber + registrosResumen[0].debe
+    );
+    setResumenBancarioSaldoFinal(registrosResumen[registrosResumen.length - 1].saldo);
+
+    setResumenBancario(registrosResumen);
+
+    //const registrosMayor = mayorEjemplo
+    setMayorBancoSaldoInicial((registrosMayor[0].saldo + registrosMayor[0].haber - registrosMayor[0].debe));
+    setMayorBancoSaldoFinal((registrosMayor[registrosMayor.length - 1].saldo));
+
+    setMayorBanco(registrosMayor);
+  };
+
   const handleFileUpload = (event) => {
-    const file = event.target.files[0];
+
+    const file = event.target.files[0]
+    console.log(file)
     const reader = new FileReader();
 
     reader.onload = (e) => {
@@ -35,20 +88,21 @@ const MyFileReader = () => {
           const [fecha, concepto, debe, haber, saldo] = valores;
           const id = uuidv4();; // Puedes utilizar el índice como ID o asignar uno específico
 
-          registros.push({ conciliado: false, seleccionado: false, id, fecha, concepto, debe: parseFloat(debe), haber: parseFloat(haber), saldo: parseFloat(saldo) });
+          registros.push({ extracto: "resumen", conciliado: false, seleccionado: false, id, fecha, concepto, debe: parseFloat(debe), haber: parseFloat(haber), saldo: parseFloat(saldo) });
         }
       }
 
       setResumenBancarioSaldoInicial((registros[0].saldo - registros[0].haber + registros[0].debe))
-      setResumenBancarioSaldoFinal((registros[registros.length-1].saldo))
+      setResumenBancarioSaldoFinal((registros[registros.length - 1].saldo))
       setResumenBancario(registros);
+      fileInputRef.current.value = null;
     };
 
     reader.readAsText(file);
   };
 
   const handleFileUploadMayor = (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     const reader = new FileReader();
 
     reader.onload = (e) => {
@@ -60,15 +114,17 @@ const MyFileReader = () => {
 
         if (valores.length === 5) {
           const [fecha, concepto, debe, haber, saldo] = valores;
+
           const id = uuidv4(); // Puedes utilizar el índice como ID o asignar uno específico
 
-          registros.push({ conciliado: false, seleccionado: false, id, fecha, concepto, debe: parseFloat(debe), haber: parseFloat(haber), saldo: parseFloat(saldo) });
+          registros.push({ extracto: "mayor", conciliado: false, seleccionado: false, id, fecha, concepto, debe: parseFloat(debe), haber: parseFloat(haber), saldo: parseFloat(saldo) });
         }
       }
 
       setMayorBancoSaldoInicial((registros[0].saldo + registros[0].haber - registros[0].debe));
-      setMayorBancoSaldoFinal((registros[registros.length-1].saldo));
+      setMayorBancoSaldoFinal((registros[registros.length - 1].saldo));
       setMayorBanco(registros);
+      fileInputMayorRef.current.value = null;
     };
 
     reader.readAsText(file);
@@ -93,19 +149,6 @@ const MyFileReader = () => {
   }, [mayorBancoValoresSeleccionados]);
 
   useEffect(() => {
-    //METODO ANTERIOR QUE PUEDO RECORRER LOS ESTADOS ORIGINALES, NO SIRVE PARA LOS AJUSTES QUE NO SE AGREGAN AHI
-    //   const sumaTotal = resumenBancario
-    //     ?.filter(v => v.conciliado) // Filtrar solo los elementos seleccionados
-    //     ?.reduce((total, v) => total + v.haber - v.debe, 0); // Sumar los valores
-    //   setResumenBancarioMontoConciliado(sumaTotal);
-    // }, [conciliados]);
-
-    // useEffect(() => {
-    //   const sumaTotal = mayorBanco
-    //     ?.filter(v => v.conciliado) // Filtrar solo los elementos Conciliado
-    //     ?.reduce((total, v) => total - v.haber + v.debe, 0); // Sumar los valores
-    //   setMayorBancoMontoConciliado(sumaTotal);
-    //METODO NUEVO: RECORRER EL ARRAY DE CONCILIADOS
     const sumaTotal = conciliados
       .filter(item => item.resumen) // Filtrar elementos con la propiedad "resumen"
       .reduce((acc, item) => {
@@ -147,16 +190,6 @@ const MyFileReader = () => {
     setMayorBancoMonto(sumaTotalMayor);
 
   }, [resumenBancario, mayorBanco, conciliados]);
-
-  // const señalarIguales = (concepto) => {
-  //   //console.log(concepto)
-  //   if (document.querySelector(".RemarcarAyudaEditor")) {
-  //     document.querySelector(".RemarcarAyudaEditor")?.classList.remove("RemarcarAyudaEditor")
-  //     document.querySelector(".RemarcarAyudaEditor")?.classList.remove("RemarcarAyudaEditor")
-  //   }
-  //   document.getElementById(`resumen-${concepto}`)?.classList.add("RemarcarAyudaEditor")
-  //   document.getElementById(`mayor-${concepto}`)?.classList.add("RemarcarAyudaEditor")
-  // }
 
   const handleCheckboxChange = (event, registro) => {
     const isChecked = event.target.checked;
@@ -204,81 +237,14 @@ const MyFileReader = () => {
     }
   };
 
-  const conciliar = () => {
-    if (resumenBancarioValoresSeleccionados - mayorBancoValoresSeleccionados.length == 0) {
-      alertainfo("Debes seleccionar movimientos para conciliar")
-    } else {
-
-      if (resumenBancarioMontoSeleccionados == mayorBancoMontoSeleccionados) {
-
-        const nuevoConciliado = { tratamiento: "coincidencia", resumen: resumenBancarioValoresSeleccionados, mayor: mayorBancoValoresSeleccionados }
-        const newConciliados = [...conciliados, nuevoConciliado]
-        setConciliados(newConciliados)
-
-        const indicesResumen = resumenBancarioValoresSeleccionados.map(selectedValue => {
-          return resumenBancario.findIndex(v => v.id === selectedValue.id);
-        });
-
-        const indicesBanco = mayorBancoValoresSeleccionados.map(selectedValue => {
-          return mayorBanco.findIndex(v => v.id === selectedValue.id);
-        });
-
-        indicesResumen?.map(ir => { return resumenBancario[ir].conciliado = true, resumenBancario[ir].seleccionado = false })
-        indicesBanco?.map(ir => { return mayorBanco[ir].conciliado = true, mayorBanco[ir].seleccionado = false })
-
-        setResumenBancarioValoresSeleccionados([])
-        setMayorBancoValoresSeleccionados([])
-      }
-      //SI HAY DIFERENCIA. SE AGREGA EL TRATAMIENTO RESPECTIVO
-      else {
-        //TENGO QUE AGREGAR UNA CONTRA PARTIDA
-        const rBancario = [...resumenBancarioValoresSeleccionados]
-        const mBanco = [...mayorBancoValoresSeleccionados]
-        if (agregarEn == "Mayor") {//TENGO QUE AGREGAR MOVIMIENTO AL MAYOR 
-          mBanco.push({
-            conciliado: true,
-            seleccionado: false,
-            id: uuidv4(),
-            fecha: "Ajuste",
-            concepto: `Ajuste: ${tratamiendoRealizado}`,
-            debe: (mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados < 0 ? -(mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados) : 0),
-            haber: (mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados > 0 ? (mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados) : 0),
-            saldo: ""
-          })
-        } else {
-          rBancario.push({
-            conciliado: true,
-            seleccionado: false,
-            id: uuidv4(),
-            fecha: "Ajuste",
-            concepto: `Ajuste: ${tratamiendoRealizado}`,
-            debe: (mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados < 0 ? -(mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados) : 0),
-            haber: (mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados > 0 ? (mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados) : 0),
-            saldo: ""
-          })
-        }
-        const nuevoConciliado = { tratamiento: tratamiendoRealizado, resumen: rBancario, mayor: mBanco }
-
-        const newConciliados = [...conciliados, nuevoConciliado]
-        setConciliados(newConciliados)
-
-        const indicesResumen = resumenBancarioValoresSeleccionados.map(selectedValue => {
-          return resumenBancario.findIndex(v => v.id === selectedValue.id);
-        });
-
-        const indicesBanco = mayorBancoValoresSeleccionados.map(selectedValue => {
-          return mayorBanco.findIndex(v => v.id === selectedValue.id);
-        });
-
-        indicesResumen?.map(ir => { return resumenBancario[ir].conciliado = true, resumenBancario[ir].seleccionado = false })
-        indicesBanco?.map(ir => { return mayorBanco[ir].conciliado = true, mayorBanco[ir].seleccionado = false })
-
-        setResumenBancarioValoresSeleccionados([])
-        setMayorBancoValoresSeleccionados([])
-      }
-    }
+  const enviarConciliacion = () => {
+    const newC = conciliar(resumenBancarioValoresSeleccionados, mayorBancoValoresSeleccionados, resumenBancarioMontoSeleccionados, mayorBancoMontoSeleccionados, tratamiendoRealizado, conciliados, resumenBancario, mayorBanco, agregarEn)
+    const newConciliados = [...conciliados, newC]
+    setConciliados(newConciliados)
+    setResumenBancarioValoresSeleccionados([])
+    setMayorBancoValoresSeleccionados([])
   }
-
+  console.log("CONCILIADOS:", conciliados)
   const tratamientos = [
     {
       id: "temporal",
@@ -300,7 +266,7 @@ const MyFileReader = () => {
   }
 
   const eliminarConciliacion = (index) => {
-    console.log(index);
+    //console.log(index);
 
     const indicesResumen = conciliados[index].resumen.map(selectedValue => {
       return resumenBancario.findIndex(v => v.id === selectedValue.id);
@@ -310,7 +276,7 @@ const MyFileReader = () => {
       return mayorBanco.findIndex(v => v.id === selectedValue.id);
     });
 
-    console.log(indicesResumen, indicesBanco);
+    //console.log(indicesResumen, indicesBanco);
     indicesResumen.forEach(ir => {
       if (ir !== -1)
         resumenBancario[ir].conciliado = false;
@@ -324,22 +290,98 @@ const MyFileReader = () => {
     setConciliados(conciliados.filter((a, i) => i !== index));
   }
 
+  //////////////////////////////////////////////////////////////////////BUSCAR ALTERNATIVAS POSIBLES/////////////////////////////////////////////////////////////////////
+  const [numbers, setNumbers] = useState()
+  const [targetSum, setTargetSum] = useState()
+  const [sumasPosibles, setSumasPosibles] = useState([]);
+  const [sumasPosiblesEvaluadas, setSumasPosiblesEvaluadas] = useState([]);
 
-  // console.log(conciliados)
-  // console.log(mayorBanco, resumenBancario)
-  // console.log(agregarEn)
-  // console.log(tratamiendoRealizado)
+  useEffect(() => {
+
+    console.log("PUNTUACIONES", evaluarCombinaciones(sumasPosibles, mayorBancoValoresSeleccionados, resumenBancarioValoresSeleccionados, targetSum))
+    const posiblesOrdenadas = evaluarCombinaciones(sumasPosibles, mayorBancoValoresSeleccionados, resumenBancarioValoresSeleccionados, targetSum)?.sort((a, b) => {
+      // Comparamos los valores de puntuación, que están en el último elemento de cada sub-array
+      const puntuacionA = a.puntuacion;
+      const puntuacionB = b.puntuacion;
+
+      // Ordenamos de forma descendente (mayor a menor)
+      return puntuacionB - puntuacionA;
+    });
+
+    console.log("PUNTUACIONES ORDENADAS", posiblesOrdenadas)
+    setSumasPosiblesEvaluadas(posiblesOrdenadas)
+  }, [sumasPosibles])
+
+  //console.log(sumasPosibles, targetSum)
+  console.log(mayorBancoValoresSeleccionados, resumenBancarioValoresSeleccionados)
+
+  useEffect(() => {
+    if ((mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados) !== 0) {
+      setTargetSum(mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados);
+    }
+  }, [mayorBancoMontoSeleccionados, resumenBancarioMontoSeleccionados]);
+
+  const buscarPosibles = async (buscar) => {
+    setAlternativa(0)
+    setSumasPosibles([])
+
+    const newNumbers = await buscarPosiblesTotal(buscar, mayorBancoMontoSeleccionados, resumenBancarioMontoSeleccionados, resumenBancario, mayorBanco)
+    //console.log(newNumbers)
+    const posibles = encontrarSumasPosibles(newNumbers, targetSum, 0, 0, []);
+    setSumasPosibles(posibles)
+  }
+
+  const [alternativa, setAlternativa] = useState()
+  console.log("SUMASPOSIBLES", sumasPosibles)
+  useEffect(() => {
+    // Elimina todas las clases "encontrarSeccion" de elementos
+    const elementsToRemove = document.querySelectorAll(".encontrarSeccion");
+    elementsToRemove.forEach(element => {
+      element.classList.remove("encontrarSeccion");
+    });
+
+    const ordenados = sumasPosiblesEvaluadas?.sort((a, b) => {
+      // Comparamos los valores de puntuación, que están en el último elemento de cada sub-array
+      const puntuacionA = a.puntuacion;
+      const puntuacionB = b.puntuacion;
+
+      // Ordenamos de forma descendente (mayor a menor)
+      return puntuacionB - puntuacionA;
+    })
+
+    ordenados?.map((s, index) => s.combinaciones?.map(i => {
+      console.log(alternativa, index, s)
+      if (alternativa === index) {
+        const element = document.getElementById(i.id);
+        if (element) {
+          element.classList.add("encontrarSeccion");
+        }
+      }
+    }
+    ));
+
+  }, [sumasPosiblesEvaluadas, alternativa])
+
+  const botConciliacionActualizar = async () => {
+    const nuevaConciliacion = await botConciliacion(resumenBancario, mayorBanco, conciliados)
+    setConciliados(nuevaConciliacion)
+
+  }
+
+  console.log(mayorBanco, resumenBancario, numbers)
   return (
     <div className={style.contenedorGlobal}>
       <div className={style.contenedorDiferencia}>
+        <button className="btn btn-danger" onClick={() => alertareiniciarTabla(reiniciar)}>Reiniciar</button>
         <h1>Conciliación bancaria</h1>
+        <button className="btn btn-primary" onClick={() => botConciliacionActualizar(resumenBancario, mayorBanco, conciliados)}>Conciliación automatica</button>
         <h3>
           <span style={(mayorBancoMonto - resumenBancarioMonto) !== 0 ? { color: "red" } : { color: "green" }}>
             Diferencia a conciliar: {(mayorBancoMonto - resumenBancarioMonto) || 0}
           </span>
         </h3>
       </div>
-      <div className={style.contenedorConciliacion}>
+      <div className={style.contenedorConciliacionPrincipal}>
         <div className={style.tablas}>
           Seleccionado: {resumenBancarioMontoSeleccionados || 0}
           <h3>Resumen Bancario</h3>
@@ -351,7 +393,27 @@ const MyFileReader = () => {
             <tr><td>Saldo Final Original:</td> <td>{(resumenBancarioSaldoFinal || 0)}</td></tr>
           </table>
           <hr></hr>
-          <input type="file" accept=".txt" onChange={handleFileUpload} />
+          <button onClick={() => handleCargarEjemplo()}>Cargar ejemplo práctico</button>
+          <input type="file" accept=".txt" onChange={handleFileUpload} ref={fileInputRef} />
+        </div>
+        <div></div>
+        <div className={style.tablas}>
+          Seleccionado: {mayorBancoMontoSeleccionados || 0}
+          <h3>Mayor Banco</h3>
+          <table>
+            <tr><td>Saldo Inicial:</td> <td>{(mayorBancoSaldoInicial || 0)}</td></tr>
+            <tr><td>Movimientos a conciliar:</td> <td>{(mayorBancoMonto || 0)}</td></tr>
+            <tr><td>Movimientos conciliados:</td> <td>{(mayorBancoMontoConciliado || 0)}</td></tr>
+            <tr><td>Saldo Final Conciliado:</td> <td>{(mayorBancoSaldoInicial || 0) + (mayorBancoMonto || 0) + (mayorBancoMontoConciliado || 0)}</td></tr>
+            <tr><td>Saldo Final Original:</td> <td>{(mayorBancoSaldoFinal || 0)}</td></tr>
+          </table>
+          <hr></hr>
+          <button onClick={() => handleCargarEjemplo()}>Cargar ejemplo práctico</button>
+          <input type="file" accept=".txt" onChange={handleFileUploadMayor} ref={fileInputMayorRef} />
+        </div>
+      </div>
+      <div className={style.contenedorConciliacionPrincipal}>
+        <div className={style.tablas}>
           {resumenBancario && resumenBancario.length > 0 && (
             <table>
               <thead>
@@ -371,6 +433,7 @@ const MyFileReader = () => {
                   if (registro.conciliado == false) {
                     return (
                       <tr
+                        id={registro.id}
                         //onMouseEnter={() => señalarIguales(registro.id)}
                         key={registro.id}>
                         <td>
@@ -395,18 +458,12 @@ const MyFileReader = () => {
             </table>
           )}
         </div>
+        <div className={style.botonBuscarPosibles}>
+          <button className={style.botonBuscar} onClick={() => buscarPosibles()}><FlechaAmbas /></button>
+          <button className={style.botonBuscar} onClick={() => buscarPosibles("mayor")}><FlechaDerecha /></button>
+          <button className={style.botonBuscar} onClick={() => buscarPosibles("resumen")}><FlechaIzquierda /></button>
+        </div>
         <div className={style.tablas}>
-          Seleccionado: {mayorBancoMontoSeleccionados || 0}
-          <h3>Mayor Banco</h3>
-          <table>
-            <tr><td>Saldo Inicial:</td> <td>{(mayorBancoSaldoInicial || 0)}</td></tr>
-            <tr><td>Movimientos a conciliar:</td> <td>{(mayorBancoMonto || 0)}</td></tr>
-            <tr><td>Movimientos conciliados:</td> <td>{(mayorBancoMontoConciliado || 0)}</td></tr>
-            <tr><td>Saldo Final Conciliado:</td> <td>{(mayorBancoSaldoInicial || 0) + (mayorBancoMonto || 0) + (mayorBancoMontoConciliado || 0)}</td></tr>
-            <tr><td>Saldo Final Original:</td> <td>{(mayorBancoSaldoFinal || 0)}</td></tr>
-          </table>
-          <hr></hr>
-          <input type="file" accept=".txt" onChange={handleFileUploadMayor} />
           {mayorBanco && mayorBanco.length > 0 && (
             <table>
               <thead>
@@ -426,6 +483,7 @@ const MyFileReader = () => {
                   if (registro.conciliado == false) {
                     return (
                       <tr
+                        id={registro.id}
                         //onMouseEnter={() => señalarIguales(registro.id)}
                         key={registro.id}>
                         <td>
@@ -451,8 +509,25 @@ const MyFileReader = () => {
         </div>
       </div>
       <div className={style.cuadroMando}>
-        <button className="home-boton" onClick={() => conciliar()}>Conciliar</button>
+        <button className="home-boton" onClick={() => enviarConciliacion()}>Conciliar</button>
+
         Diferencia: {mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados}
+        <div>
+          <div>
+            <span>Sumas Posibles: </span>
+            {sumasPosiblesEvaluadas?.map((combinacion, index) => {
+              return (
+                <button
+                  style={combinacion?.puntuacion > 0.5 ? { color: "green", borderColor: "green" } : { color: "red", borderColor: "red" }}
+                  className={alternativa == index ? `${style.botonAlternativa} home-boton` : "home-boton"}
+                  onClick={() => setAlternativa(index)}>
+                  {index + 1}
+                </button>
+              )
+            }
+            )}
+          </div>
+        </div>
         {(mayorBancoMontoSeleccionados - resumenBancarioMontoSeleccionados) !== 0 ?
           <>
             <select value={tratamiendoRealizado} onChange={handleChangeTratamiento}>
