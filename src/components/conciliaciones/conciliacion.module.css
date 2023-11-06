@@ -51,5 +51,10 @@
 }
 .botonBuscar {
     border: none;
-
+}
+.opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
 }

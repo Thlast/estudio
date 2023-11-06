@@ -32,6 +32,7 @@ const MyFileReader = () => {
   const [mayorBancoMontoConciliado, setMayorBancoMontoConciliado] = useState(0);
   const [resumenBancarioMontoConciliado, setResumenBancarioMontoConciliado] = useState(0);
 
+  const [verOpciones, setVerOpciones] = useState(false)
   const reiniciar = () => {
     // Restablece todos los valores
     setResumenBancarioSaldoInicial(0)
@@ -70,7 +71,36 @@ const MyFileReader = () => {
 
     setMayorBanco(registrosMayor);
   };
+  const [opcionesSubida, setOpcionesSubida] = useState({
+    separador: "|",
+    ubicaciones: [
+      0, 1, 2, 3, 4
+    ]
+  })
 
+  const handleChangeOpcionesSubida = (campo, valor) => {
+    if (campo === 'separador') {
+      setOpcionesSubida({
+        ...opcionesSubida,
+        separador: valor
+      });
+    } else {
+      const index = parseInt(campo, 10);
+      //console.log(index, campo)
+      if (parseInt(valor) >= 0) {
+
+        if (!isNaN(index) && index >= 0 && index < opcionesSubida?.ubicaciones?.length) {
+          const nuevasUbicaciones = [...opcionesSubida?.ubicaciones];
+          nuevasUbicaciones[index] = parseInt(valor);
+          setOpcionesSubida({
+            ...opcionesSubida,
+            ubicaciones: nuevasUbicaciones
+          });
+        }
+      }
+    }
+  };
+  //console.log(opcionesSubida)
   const handleFileUpload = (event) => {
 
     const file = event.target.files[0]
@@ -82,14 +112,21 @@ const MyFileReader = () => {
       const registros = [];
 
       for (let i = 1; i < content.length; i++) {
-        const valores = content[i].split("|").map((valor) => valor.trim());
+        const valores = content[i].split(opcionesSubida?.separador).map((valor) => valor.trim());
 
-        if (valores.length === 5) {
-          const [fecha, concepto, debe, haber, saldo] = valores;
-          const id = uuidv4();; // Puedes utilizar el índice como ID o asignar uno específico
+        // if (valores.length === 5) {
+        //const [fecha, concepto, debe, haber, saldo] = valores;
+        const id = uuidv4();; // Puedes utilizar el índice como ID o asignar uno específico
 
-          registros.push({ extracto: "resumen", conciliado: false, seleccionado: false, id, fecha, concepto, debe: parseFloat(debe), haber: parseFloat(haber), saldo: parseFloat(saldo) });
-        }
+        registros.push({
+          extracto: "resumen", conciliado: false, seleccionado: false, id,
+          fecha: valores[opcionesSubida.ubicaciones[0]],
+          concepto: valores[opcionesSubida.ubicaciones[1]],
+          debe: parseFloat(valores[opcionesSubida.ubicaciones[2]]),
+          haber: parseFloat(valores[opcionesSubida.ubicaciones[3]]),
+          saldo: parseFloat(valores[opcionesSubida.ubicaciones[4]])
+        });
+
       }
 
       setResumenBancarioSaldoInicial((registros[0].saldo - registros[0].haber + registros[0].debe))
@@ -110,15 +147,21 @@ const MyFileReader = () => {
       const registros = [];
 
       for (let i = 1; i < content.length; i++) {
-        const valores = content[i].split("|").map((valor) => valor.trim());
+        const valores = content[i].split(opcionesSubida?.separador).map((valor) => valor.trim());
 
-        if (valores.length === 5) {
-          const [fecha, concepto, debe, haber, saldo] = valores;
+        // if (valores.length === 5) {
+        //const [fecha, concepto, debe, haber, saldo] = valores;
 
-          const id = uuidv4(); // Puedes utilizar el índice como ID o asignar uno específico
+        const id = uuidv4(); // Puedes utilizar el índice como ID o asignar uno específico
 
-          registros.push({ extracto: "mayor", conciliado: false, seleccionado: false, id, fecha, concepto, debe: parseFloat(debe), haber: parseFloat(haber), saldo: parseFloat(saldo) });
-        }
+        registros.push({
+          extracto: "mayor", conciliado: false, seleccionado: false, id,
+          fecha: valores[opcionesSubida.ubicaciones[0]],
+          concepto: valores[opcionesSubida.ubicaciones[1]],
+          debe: parseFloat(valores[opcionesSubida.ubicaciones[2]]),
+          haber: parseFloat(valores[opcionesSubida.ubicaciones[3]]),
+          saldo: parseFloat(valores[opcionesSubida.ubicaciones[4]])
+        });
       }
 
       setMayorBancoSaldoInicial((registros[0].saldo + registros[0].haber - registros[0].debe));
@@ -380,6 +423,7 @@ const MyFileReader = () => {
             Diferencia a conciliar: {(mayorBancoMonto - resumenBancarioMonto) || 0}
           </span>
         </h3>
+        <button className="home-boton" onClick={() => handleCargarEjemplo()}>Cargar ejemplo práctico</button>
       </div>
       <div className={style.contenedorConciliacionPrincipal}>
         <div className={style.tablas}>
@@ -393,8 +437,18 @@ const MyFileReader = () => {
             <tr><td>Saldo Final Original:</td> <td>{(resumenBancarioSaldoFinal || 0)}</td></tr>
           </table>
           <hr></hr>
-          <button onClick={() => handleCargarEjemplo()}>Cargar ejemplo práctico</button>
           <input type="file" accept=".txt" onChange={handleFileUpload} ref={fileInputRef} />
+
+          <button className="home-boton" onClick={() => setVerOpciones(!verOpciones)}>opciones de subida</button>
+          <div className={style.opciones} style={{ display: verOpciones ? "flex" : "none" }}>
+            Separador de columnas:<input placeholder="separador" value={opcionesSubida?.separador} type="text" onChange={(e) => handleChangeOpcionesSubida('separador', e.target.value)} />
+            Nº columna fecha:<input placeholder="fecha" value={opcionesSubida?.ubicaciones[0]} type="number" onChange={(e) => handleChangeOpcionesSubida(0, e.target.value)} />
+            Nº columna concepto:<input placeholder="concepto" value={opcionesSubida?.ubicaciones[1]} type="number" onChange={(e) => handleChangeOpcionesSubida(1, e.target.value)} />
+            Nº columna debe:<input placeholder="debe" value={opcionesSubida?.ubicaciones[2]} type="number" onChange={(e) => handleChangeOpcionesSubida(2, e.target.value)} />
+            Nº columna haber:<input placeholder="haber" value={opcionesSubida?.ubicaciones[3]} type="number" onChange={(e) => handleChangeOpcionesSubida(3, e.target.value)} />
+            Nº columna saldo:<input placeholder="saldo" value={opcionesSubida?.ubicaciones[4]} type="number" onChange={(e) => handleChangeOpcionesSubida(4, e.target.value)} />
+          </div>
+
         </div>
         <div></div>
         <div className={style.tablas}>
@@ -408,7 +462,7 @@ const MyFileReader = () => {
             <tr><td>Saldo Final Original:</td> <td>{(mayorBancoSaldoFinal || 0)}</td></tr>
           </table>
           <hr></hr>
-          <button onClick={() => handleCargarEjemplo()}>Cargar ejemplo práctico</button>
+          {/* <button onClick={() => handleCargarEjemplo()}>Cargar ejemplo práctico</button> */}
           <input type="file" accept=".txt" onChange={handleFileUploadMayor} ref={fileInputMayorRef} />
         </div>
       </div>
