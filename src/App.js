@@ -27,6 +27,7 @@ import { VerRT } from './components/verRT';
 import { MisPreguntas } from './components/misPreguntas';
 import { Calculadoras } from './components/calculadorasImpuestos/calculadoras';
 import { Suspense, lazy } from 'react';
+import FileUploadForm from './components/subirExcel.jsx';
 
 export function App() {
 
@@ -94,6 +95,12 @@ export function App() {
                     <Layout />
                   </ProtectedRoute>
                 }>
+                <Route
+                  path="/excel"
+                  element={
+                    <FileUploadForm />
+                  }
+                />
                 <Route
                   path="/conciliaciones"
                   element={
