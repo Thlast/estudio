@@ -13,11 +13,12 @@ const FileUploadForm = () => {
     formData.append('archivoExcel', file);
 
     try {
-      const response = await fetch(`${urlserverSQL}/subirArchivo/${separador}`, {
+      const url = separador ? `${urlserverSQL}/subirArchivo/${separador}` : `${urlserverSQL}/subirArchivo`;
+      const response = await fetch(url, {
         method: 'POST',
         body: formData,
       });
-
+      
       if (response.ok) {
         const contentDisposition = response.headers.get('content-disposition');
 

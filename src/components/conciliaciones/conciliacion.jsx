@@ -122,9 +122,9 @@ const MyFileReader = () => {
           extracto: "resumen", conciliado: false, seleccionado: false, id,
           fecha: valores[opcionesSubida.ubicaciones[0]],
           concepto: valores[opcionesSubida.ubicaciones[1]],
-          debe: parseFloat(valores[opcionesSubida.ubicaciones[2]]),
-          haber: parseFloat(valores[opcionesSubida.ubicaciones[3]]),
-          saldo: parseFloat(valores[opcionesSubida.ubicaciones[4]])
+          debe: parseFloat(valores[opcionesSubida.ubicaciones[2]]) || 0,
+          haber: parseFloat(valores[opcionesSubida.ubicaciones[3]]) || 0,
+          saldo: parseFloat(valores[opcionesSubida.ubicaciones[4]]) || 0
         });
 
       }
@@ -158,9 +158,9 @@ const MyFileReader = () => {
           extracto: "mayor", conciliado: false, seleccionado: false, id,
           fecha: valores[opcionesSubida.ubicaciones[0]],
           concepto: valores[opcionesSubida.ubicaciones[1]],
-          debe: parseFloat(valores[opcionesSubida.ubicaciones[2]]),
-          haber: parseFloat(valores[opcionesSubida.ubicaciones[3]]),
-          saldo: parseFloat(valores[opcionesSubida.ubicaciones[4]])
+          debe: parseFloat(valores[opcionesSubida.ubicaciones[2]]) || 0,
+          haber: parseFloat(valores[opcionesSubida.ubicaciones[3]]) || 0,
+          saldo: parseFloat(valores[opcionesSubida.ubicaciones[4]]) || 0
         });
       }
 
