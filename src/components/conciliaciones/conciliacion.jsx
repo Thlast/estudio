@@ -10,6 +10,7 @@ import { encontrarSumasPosibles } from "./encontrarPosibles";
 import { conciliar } from "./conciliarMovimientos";
 import { alertareiniciarTabla } from "../alertas";
 import { FlechaAmbas, FlechaDerecha, FlechaIzquierda } from "./svgFlechas";
+import { Link } from "react-router-dom";
 
 const MyFileReader = () => {
   const fileInputMayorRef = useRef(null);
@@ -411,9 +412,10 @@ const MyFileReader = () => {
 
   }
 
-  console.log(mayorBanco, resumenBancario, numbers)
+  //console.log(mayorBanco, resumenBancario, numbers)
   return (
     <div className={style.contenedorGlobal}>
+      <Link to="/excel">Transformar excel a txt</Link>
       <div className={style.contenedorDiferencia}>
         <button className="btn btn-danger" onClick={() => alertareiniciarTabla(reiniciar)}>Reiniciar</button>
         <h1>Conciliación bancaria</h1>
@@ -438,7 +440,6 @@ const MyFileReader = () => {
           </table>
           <hr></hr>
           <input type="file" accept=".txt" onChange={handleFileUpload} ref={fileInputRef} />
-
           <button className="home-boton" onClick={() => setVerOpciones(!verOpciones)}>opciones de subida</button>
           <div className={style.opciones} style={{ display: verOpciones ? "flex" : "none" }}>
             Separador de columnas:<input placeholder="separador" value={opcionesSubida?.separador} type="text" onChange={(e) => handleChangeOpcionesSubida('separador', e.target.value)} />
