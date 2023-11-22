@@ -5,14 +5,14 @@ import { evaluarCombinaciones } from "./evaluarCombinaciones";
 
 export const botConciliacion = async (resumen, mayorBanco, conciliadosInicial) => {
     const conciliados = [...conciliadosInicial]
-    
-    const conciliadosResumen = await conciliarResumen(resumen, mayorBanco, conciliados)
+
+    const conciliadosResumen = await conciliarResumen(resumen, mayorBanco, conciliados, false)
 
     const conciliadosMayor = await conciliarMayor(resumen, mayorBanco, conciliadosResumen)
 
-    const conciliadosDefinitivos = await conciliarResumen(resumen, mayorBanco, conciliadosMayor, true)//BUSCO LOS RESTANTES PARA DIFERENCIAS PERMANENTE
+    //const conciliadosDefinitivos = await conciliarResumen(resumen, mayorBanco, conciliadosMayor, true)//BUSCO LOS RESTANTES PARA DIFERENCIAS PERMANENTE
 
-    return conciliadosDefinitivos
+    return conciliadosMayor
 }
 
 export const conciliarResumen = async (resumen, mayorBanco, conciliadosInicial, restantes) => {
@@ -25,7 +25,7 @@ export const conciliarResumen = async (resumen, mayorBanco, conciliadosInicial, 
             const newNumbers = await buscarPosiblesTotal("mayor", mayorBancoMontoSeleccionados, resumenBancarioMontoSeleccionados, resumen, mayorBanco)
             console.log("newNumbers BOT", newNumbers)
             const targetSum = (-resumenBancarioMontoSeleccionados)
-            const posibles = encontrarSumasPosibles(newNumbers, targetSum, 0, 0, []);
+            const posibles = encontrarSumasPosibles(newNumbers, targetSum, false);
             const seleccionadosMayor = []
             const seleccionadosResumen = [resumen[i]]
             const combinacionesEvaluadas = await evaluarCombinaciones(posibles, seleccionadosMayor, seleccionadosResumen)
@@ -51,21 +51,23 @@ export const conciliarResumen = async (resumen, mayorBanco, conciliadosInicial, 
             if (!restantes && combinacionesEvaluadasOrdenadas && combinacionesEvaluadasOrdenadas.length > 0 && combinacionesEvaluadasOrdenadas[0].puntuacion > 0.5) {
                 const tratamiendoRealizado = "temporal"
                 //console.log("LA PUNTUACION ES MAYOR ENTONCES CONCILIO", combinacionesEvaluadasOrdenadas[0].puntuacion)
-                const newConciliado = conciliar(
-                    [resumen[i]],
-                    mayorBancoValoresSeleccionados || [],
-                    resumenBancarioMontoSeleccionados,
-                    mayorBancoMontoSeleccionados,
-                    tratamiendoRealizado,
-                    conciliados,
-                    resumen,
-                    mayorBanco,
-                    agregarEn
-                )
-                resumen[i].conciliado = true;
-                mayorBanco.map(m => {if(mayorBancoIds?.indexOf(m.id) !== -1) {m.conciliado = true}});
-                conciliados.push(newConciliado)
-            } else if(restantes) {
+                if (resumenBancarioMontoSeleccionados == mayorBancoMontoSeleccionados) {
+                    const newConciliado = conciliar(
+                        [resumen[i]],
+                        mayorBancoValoresSeleccionados || [],
+                        resumenBancarioMontoSeleccionados,
+                        mayorBancoMontoSeleccionados,
+                        tratamiendoRealizado,
+                        conciliados,
+                        resumen,
+                        mayorBanco,
+                        agregarEn
+                    )
+                    resumen[i].conciliado = true;
+                    conciliados.push(newConciliado)
+                }
+                mayorBanco.map(m => { if (mayorBancoIds?.indexOf(m.id) !== -1) { m.conciliado = true } });
+            } else if (restantes) {
                 const tratamiendoRealizado = "permanente"
                 const newConciliado = conciliar(
                     [resumen[i]],
@@ -79,7 +81,7 @@ export const conciliarResumen = async (resumen, mayorBanco, conciliadosInicial, 
                     agregarEn
                 )
                 resumen[i].conciliado = true;
-                mayorBanco.map(m => {if(mayorBancoIds?.indexOf(m.id) !== -1) {m.conciliado = true}});
+                mayorBanco.map(m => { if (mayorBancoIds?.indexOf(m.id) !== -1) { m.conciliado = true } });
                 conciliados.push(newConciliado)
             }
             resumen?.map(r => r.seleccionado = false)
@@ -100,12 +102,12 @@ const conciliarMayor = async (resumen, mayorBanco, conciliadosInicial) => {
             const newNumbers = await buscarPosiblesTotal("resumen", mayorBancoMontoSeleccionados, resumenBancarioMontoSeleccionados, resumen, mayorBanco)
             console.log("newNumbers BOT", newNumbers)
             const targetSum = (mayorBancoMontoSeleccionados)
-            const posibles = encontrarSumasPosibles(newNumbers, targetSum, 0, 0, []);
+            const posibles = encontrarSumasPosibles(newNumbers, targetSum, true);
             const seleccionadosResumen = []
             const seleccionadosMayor = [mayorBanco[i]]
             const combinacionesEvaluadas = await evaluarCombinaciones(posibles, seleccionadosMayor, seleccionadosResumen)
             console.log("BOT: combinacionesEvaluadas", combinacionesEvaluadas)
-            const combinacionesEvaluadasOrdenadas = combinacionesEvaluadas?.sort((a, b) => {
+            const combinacionesEvaluadasOrdenadas = combinacionesEvaluadas.filter(a => a.puntuacion >= 0.4)?.sort((a, b) => {
                 // Comparamos los valores de puntuación, que están en el último elemento de cada sub-array
                 const puntuacionA = a.puntuacion;
                 const puntuacionB = b.puntuacion;
@@ -125,20 +127,24 @@ const conciliarMayor = async (resumen, mayorBanco, conciliadosInicial) => {
             const tratamiendoRealizado = "temporal"
             const agregarEn = "Mayor"
 
-            const newConciliado = conciliar(
-                resumenBancoValoresSeleccionados || [],
-                [mayorBanco[i]],
-                resumenBancarioMontoSeleccionados,
-                mayorBancoMontoSeleccionados,
-                tratamiendoRealizado,
-                conciliados,
-                resumen,
-                mayorBanco,
-                agregarEn
-            )
-            mayorBanco[i].conciliado = true;
-            resumen.map(r => {if(resumenBancoIds?.indexOf(r.id) !== -1) {r.conciliado = true}});
-            conciliados.push(newConciliado)
+            if (resumenBancarioMontoSeleccionados == mayorBancoMontoSeleccionados) {
+
+                const newConciliado = conciliar(
+                    resumenBancoValoresSeleccionados || [],
+                    [mayorBanco[i]],
+                    resumenBancarioMontoSeleccionados,
+                    mayorBancoMontoSeleccionados,
+                    tratamiendoRealizado,
+                    conciliados,
+                    resumen,
+                    mayorBanco,
+                    agregarEn
+                )
+                mayorBanco[i].conciliado = true;
+                conciliados.push(newConciliado)
+            }
+            mayorBanco?.map(r => r.seleccionado = false)
+            resumen.map(r => { if (resumenBancoIds?.indexOf(r.id) !== -1) { r.conciliado = true } });
         }
     }
     return conciliados
