@@ -85,7 +85,7 @@ export const encontrarSumasPosibles = (array, target, buscandoEnMayor = false) =
         else if (target < 0 && currentSum >= target) {
           console.log("TARGET NEGATIVO", target, currentSum, newSum)
 
-          encontrarSumas(newSum, i + 1, [...combination, array[i]]);
+          encontrarSumas(newSum, i + 1, [...combination, arrayFiltrado[i]]);
         }
       }
     }

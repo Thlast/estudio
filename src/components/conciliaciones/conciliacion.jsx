@@ -467,7 +467,7 @@ const MyFileReader = () => {
           <input type="file" accept=".txt" onChange={handleFileUploadMayor} ref={fileInputMayorRef} />
         </div>
       </div>
-      <div className={style.contenedorConciliacionPrincipal}>
+      <div className={style.contenedorConciliacionPrincipalBajo}>
         <div className={style.tablas}>
           {resumenBancario && resumenBancario.length > 0 && (
             <table>
@@ -514,9 +514,11 @@ const MyFileReader = () => {
           )}
         </div>
         <div className={style.botonBuscarPosibles}>
-          <button className={style.botonBuscar} onClick={() => buscarPosibles()}><FlechaAmbas /></button>
-          <button className={style.botonBuscar} onClick={() => buscarPosibles("mayor")}><FlechaDerecha /></button>
-          <button className={style.botonBuscar} onClick={() => buscarPosibles("resumen")}><FlechaIzquierda /></button>
+          <div className={style.botonBuscarPosiblesBotones}>
+            <button className={style.botonBuscar} onClick={() => buscarPosibles()}><FlechaAmbas /></button>
+            <button className={style.botonBuscar} onClick={() => buscarPosibles("mayor")}><FlechaDerecha /></button>
+            <button className={style.botonBuscar} onClick={() => buscarPosibles("resumen")}><FlechaIzquierda /></button>
+          </div>
         </div>
         <div className={style.tablas}>
           {mayorBanco && mayorBanco.length > 0 && (

@@ -13,6 +13,15 @@
     display: grid;
     grid-template-columns: 49% 2% 49%;
 }
+
+.contenedorConciliacionPrincipalBajo {
+    max-height: 500px;
+    overflow: scroll;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 49% 2% 49%;
+}
+
 .contenedorConciliacion {
     padding: 10px;
     display: grid;
@@ -44,17 +53,23 @@
 }
 
 .botonBuscarPosibles {
+    position: sticky;
+    left: 0;
+    top: 0;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .botonBuscar {
     border: none;
 }
+
 .opciones {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    
+
 }
