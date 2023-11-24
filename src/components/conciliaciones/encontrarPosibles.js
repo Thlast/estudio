@@ -43,16 +43,16 @@ export const encontrarSumasPosibles = (array, target, buscandoEnMayor = false) =
   console.log("BUSCANDO EN MAYOR:", buscandoEnMayor)
 
   const arrayFiltrado = buscandoEnMayor ? array?.filter(a => {
-    if (target < 0 && a.monto < 0) {
+    if (target < 0 && a.monto < 0 && a.monto >= target) {
       return a
-    } else if (target > 0 && a.monto > 0) {
+    } else if (target > 0 && a.monto > 0 && a.monto <= target) {
       return a
     }
   })
     : array?.filter(a => {
-      if (target < 0 && a.monto < 0) {
+      if (target < 0 && a.monto < 0 && a.monto >= target) {
         return a
-      } else if (target > 0 && a.monto > 0) {
+      } else if (target > 0 && a.monto > 0 && a.monto <= target) {
         return a
       }
     })
@@ -72,21 +72,24 @@ export const encontrarSumasPosibles = (array, target, buscandoEnMayor = false) =
     //console.log(num)
     if (sumasPosibles?.length < 1) {
 
-      for (let i = index; i < arrayFiltrado?.length || currentSum == target; i++) {
+      for (let i = index; i < arrayFiltrado?.length || currentSum == target || sumasPosibles.length < 0; i++) {
         const newSum = currentSum + arrayFiltrado[i].monto;
 
         //if (target + newSum !== 0) {
-        if (target > 0 && currentSum <= target) {
-          console.log("TARGET POSITIVO", target, currentSum, newSum)
+        if (sumasPosibles?.length > 0) {
+          return
+        } else
+          if (target > 0 && currentSum <= target) {
+            console.log("TARGET POSITIVO", target, currentSum, newSum)
 
-          encontrarSumas(newSum, i + 1, [...combination, arrayFiltrado[i]]);
+            encontrarSumas(newSum, i + 1, [...combination, arrayFiltrado[i]]);
 
-        }
-        else if (target < 0 && currentSum >= target) {
-          console.log("TARGET NEGATIVO", target, currentSum, newSum)
+          }
+          else if (target < 0 && currentSum >= target) {
+            console.log("TARGET NEGATIVO", target, currentSum, newSum)
 
-          encontrarSumas(newSum, i + 1, [...combination, arrayFiltrado[i]]);
-        }
+            encontrarSumas(newSum, i + 1, [...combination, arrayFiltrado[i]]);
+          }
       }
     }
   };
