@@ -14,7 +14,7 @@ export function ProgresoSecciones(props) {
   useEffect(() => {
     setCargando(true)
     progresoCapitulo(currentCap).then(data => {
-      setCantidadSecciones(data[0].cantidadSecciones)
+      setCantidadSecciones(data?.cantidadSecciones)
       setCargando(false)
     })
   }, [currentCap])
