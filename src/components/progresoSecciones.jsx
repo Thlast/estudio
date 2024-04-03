@@ -15,6 +15,7 @@ export function ProgresoSecciones(props) {
     setCargando(true)
     progresoCapitulo(currentCap).then(data => {
       setCantidadSecciones(data?.cantidadSecciones)
+      console.log(data)
       setCargando(false)
     })
   }, [currentCap])
