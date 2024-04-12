@@ -104,7 +104,7 @@ const ImageUploader = (props) => {
         />
       <button 
       className='home-boton'
-      onClick={handleCaptureButtonClick}>Capturar</button>
+      onClick={handleCaptureButtonClick}>Tomar Foto</button>
       <button 
       className='home-boton'
       onClick={performOCR}>Realizar OCR</button>
