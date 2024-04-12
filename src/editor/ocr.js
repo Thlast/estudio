@@ -6,7 +6,7 @@ const ImageUploader = (props) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [recognizedText, setRecognizedText] = useState('');
   const videoRef = useRef(null);
-  const mediaStreamRef = useRef(null);
+
   const { realizarOCR } = props;
 
   // Función para subir imagen desde el dispositivo
@@ -21,37 +21,6 @@ const ImageUploader = (props) => {
     }
   };
 
-  // Función para capturar imagen desde la cámara
-  const handleCaptureButtonClick = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        mediaStreamRef.current = stream;
-      }
-    } catch (error) {
-      console.error('Error al iniciar la cámara:', error);
-    }
-  };
-
-  // Función para detener la cámara
-  const stopCamera = () => {
-    if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach(track => track.stop());
-    }
-  };
-
-  // Función para capturar imagen desde la cámara
-  const captureImage = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = videoRef.current.videoWidth;
-    canvas.height = videoRef.current.videoHeight;
-    const context = canvas.getContext('2d');
-    context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-    const imageDataURL = canvas.toDataURL('image/png');
-    setPreviewImage(imageDataURL);
-    stopCamera();
-  };
 
   // Función para mostrar una alerta antes de realizar OCR
   const alertaRealizarOCR = async (texto) => {
@@ -79,10 +48,6 @@ const ImageUploader = (props) => {
   // Función para realizar OCR en la imagen
   const performOCR = async () => {
     try {
-      if (!previewImage) {
-        // Si no hay una imagen previa, se captura la imagen de la cámara
-        captureImage();
-      }
       const result = await Tesseract.recognize(
         previewImage,
         'spa',
@@ -102,9 +67,6 @@ const ImageUploader = (props) => {
         accept="image/*"
         onChange={handleFileInputChange}
         />
-      <button 
-      className='home-boton'
-      onClick={handleCaptureButtonClick}>Tomar Foto</button>
       <button 
       className='home-boton'
       onClick={performOCR}>Realizar OCR</button>
