@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { crearSeccion } from "../components/servicios/cursos/cursosSQL/crearSeccion";
 import { modificarSeccion } from "../components/servicios/cursos/cursosSQL/modifSeccion";
 import { Spinner } from "../components/Login/Spinner";
+import ImageUploader from "./ocr";
 
 
 export function ModificarSeccion(props) {
@@ -25,12 +26,20 @@ export function ModificarSeccion(props) {
     }
   }, [seccionModificar])
 
-
+  // Función para realizar OCR y actualizar el estado del contenido
+  const realizarOCR = (texto, reemplazar) => {
+    if (reemplazar) {
+      setContenido(texto);
+    } else {
+      setContenido(prevContenido => prevContenido + texto);
+    }
+  };
   return (
     <>
       {cargando ? <Spinner></Spinner> :
         <>
           <h5>Editando seccion:</h5>
+          <ImageUploader realizarOCR={realizarOCR} />
           <form
             className="form-vof"
           //onSubmit={(event) => crearSeccion(capituloId, nombreSeccion, contenido, event)}
